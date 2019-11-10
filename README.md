@@ -9,7 +9,7 @@
 - Stephanie Phunket
 - Anton Quietzsch
 - Michal Sienkewicz
-- Jamine
+- Jamine Müller
 
 ---- 
 ![Start page][image-2]
