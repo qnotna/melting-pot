@@ -4,11 +4,11 @@
 
 ## **Getting started**
 
-### 1. init
+### 1. install node modules
 ```sh
-npm init
+npm install
 cd client
-npm init
+npm npm install
 ```
 
 ### 2. db access
