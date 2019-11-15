@@ -8,7 +8,7 @@
 ```sh
 npm install
 cd client
-npm npm install
+npm install
 ```
 
 ### 2. db access
