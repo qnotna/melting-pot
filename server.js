@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 // DB Config
 const db = require("./config/keys").mongoURI;
+console.log(db);
 // Connect to MongoDB
 mongoose.connect(
     db,
