@@ -34,8 +34,8 @@ class SideBar extends Component {
       <div id="sidebar">
         <div className='sidebar-sections'>
           <SideBarSections sections={this.sections}/>
+          <ProfileOverview/>
         </div>
-        <ProfileOverview/>
       </div>
     );
   }

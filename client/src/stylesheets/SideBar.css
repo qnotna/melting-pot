@@ -6,30 +6,52 @@
 }
 
 .sidebar-sections {
-  padding: 1em;
+  padding: 0 1em;
 }
 
 .sidebar-section {
   background-color: pink;
+  margin-top: 1em;
 }
 
-.sidebar-items { }
-
 .sidebar-item {
-  padding-left: 0.1em;
   background-color: cyan;
 }
 
 .sidebar-item * {
-  display: inline;
+  display: inline-block;
+}
+
+.sidebar-item-label {
+  width: 100%;
+}
+
+.sidebar-item input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.sidebar-item-label label {
+  margin-left: 0;
 }
 
 #profile-overview {
-  padding: 1em;
+  margin-top: 1em;
   padding-top: 0; /* TODO: remove later when at the bottom */
   z-index: 1;
 }
 
+.sidebar-item-label:hover {
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: white;
+  background-color: black;
+}
+
 #profile-overview p {
-  background-color: pink;
+  width: 100%;
+  height: 100%;
+  background-color: dodgerBlue;
 }
