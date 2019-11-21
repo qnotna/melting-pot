@@ -1,0 +1,5 @@
+#content-view {
+  height: calc(100% - 3em);
+  width: 100%;
+  background-color: green;
+}

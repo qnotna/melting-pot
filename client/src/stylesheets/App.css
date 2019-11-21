@@ -1,0 +1,15 @@
+.App {
+  display: inline-flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+#left {
+  height: 100%;
+  width: 20em;
+}
+
+#right {
+  height: 100%;
+  width: 100%;
+}

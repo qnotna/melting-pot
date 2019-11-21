@@ -1,10 +1,19 @@
 import React from 'react';
-import './App.css';
+import './stylesheets/App.css';
+import ContentView from './components/ContentView.js';
+import NavigationBar from './components/NavigationBar.js';
+import SideBar from './components/SideBar.js';
 
 function App() {
   return (
-    <div className="App">
-    Hello
+    <div className='App'>
+      <div id='left'>
+        <SideBar/>
+      </div>
+      <div id='right'>
+        <NavigationBar/>
+        <ContentView/>
+      </div>
     </div>
   );
 }
