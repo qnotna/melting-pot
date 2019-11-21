@@ -1,5 +1,28 @@
 #navigation-bar {
-  height: 3em;
-  width: 100%;
+  width: calc(100% - 2em);
+  padding: 1em;
   background-color: red;
+}
+
+#navigation-bar * {
+  display: inline-block;
+}
+
+#search-bar {
+  width: calc(100% - 5em);
+  padding-right: 1em;
+}
+
+#search-bar input {
+  width: 100%;
+  height: 2em;
+  border: none;
+  -webkit-appearance:none;
+}
+
+#navigation-bar button {
+  width: 5em;
+  height: 2em;
+  border: none;
+  background-color: orange;
 }

@@ -7,7 +7,7 @@ class NavigationBar extends Component {
   render() {
     return(
       <div id="navigation-bar">
-        <p>NavigationBar</p>
+        <SearchBar/>
       </div>
     );
   }
