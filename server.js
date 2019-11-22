@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const routes = require('./routes/api')
+const passport = require('passport');
+// const routes = require('./routes/api');
+const usersAuthAPI = require("./routes/auth-api/users")
+const usersAPI = require("./routes/users/users")
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -12,12 +15,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: false
-//   })
-// );
-
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -32,9 +35,16 @@ mongoose.connect(
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-app.use(bodyParser.json());
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
 
-app.use('/api', routes);
+
+// Routes
+// app.use('/api', routes); // Not safe users API
+app.use('/api/auth', usersAuthAPI)
+app.use('/api/users', usersAPI)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)

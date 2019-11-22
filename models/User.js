@@ -13,11 +13,12 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: false
+    required: false,
+    default: ""
   }
 });
 
 // create model for User
-const User = mongoose.model("user", UserSchema);
+const User = mongoose.model("users", UserSchema);
 
 module.exports = User;
