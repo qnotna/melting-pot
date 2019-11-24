@@ -1,22 +1,436 @@
-.App {
-  text-align: center;
+@charset "utf-8";
+
+/* CSS Document */
+
+body{
+	margin:0;
+	padding:0;
+	font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+	margin:0 auto;
+	text-align:center;
+}
+.clear{
+	clear:both;
+}
+img{
+	max-width:100%;
 }
 
-.App-logo {
-  height: 40vmin;
+/* === Login Page ==== */
+.login_header{
+			border-bottom: 2px solid #000000;
+			padding:20px;
+}
+.lt_text{
+	position:absolute;
+	 top:13px;
+}
+.logo {
+	width: 312px;
+	height: 60px;
+}
+.cnt_text {
+	width:100%;
+	color: #000000;
+}
+.cnt_text h3{
+	font-weight:400;
+	font-size: 40px;
+	margin:0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.login_pannel {
+	position: absolute;
+	left: 50%;
+	top:calc(50% + 44px );
+	width:100%;
+	max-width: 500px;
+	transform: translate(-50%, -50%);
+}
+.login_body{
+	border:#000 solid 2px;
+	border-radius:15px;
+	padding:20px;
+	box-sizing:border-box;
+}
+.p_logo {
+	height: 90px;
+}
+.login_form{
+	padding:10px 0 0 0;
 }
 
-.App-link {
-  color: #09d3ac;
+.login_form input[type="text"], .login_form input[type="password"]{
+	width:100%;
+	color: #A3A3A3;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size:18px;
+	font-weight:300;
+	border:#000000 solid 1px;
+	border-radius:10px;
+	box-sizing:border-box;
+	margin-bottom:10px;
+	padding:12px 12px 12px 25px;
 }
+
+.login_form .submit_btn {
+	color: #000000;
+	width: 190px;
+	height: 45px;
+	text-align: center;
+	background: #9DC3E6;
+	font-size: 22px;cursor: pointer;
+	border: #000000 solid 1px;
+	border-radius: 10px;
+	margin: 0 auto;
+	display: block;
+}
+.login_form .submit_btn:hover{
+	background:#006400;
+	 color:#fff;
+}
+
+.login_form input[type="reset"] {
+	width:150px;
+	height:20px;
+	background:#EEEEEE;
+	color:#000;
+	border:#000 solid 1px;
+	border-radius:20px;
+	cursor:pointer;
+}
+
+.login_form .cancel_btn{
+	margin-top:10px;
+	margin-bottom: 20px;
+	padding-bottom: 25px;
+
+}
+
+.login_form .cancel_btn:hover{
+	background:#fa0000;
+}
+
+.signup{
+	text-align:center;
+	font-size:20px;
+	font-weight:400;
+	color: #717171;
+}
+
+
+
+/* === Main Page ==== */
+.db_header{
+	padding:20px 20px 20px 5px;
+	display:flex;
+	border-bottom: 2px #000 solid;
+	align-items: center;
+}
+.lt_side {
+	width: 367px;
+}
+.menu_tag {
+	width: 50px;
+	height: 40px;
+	display: inline-block;
+	color: #000;
+	font-size: 33px;
+	text-decoration: none;
+	float: left;
+	margin: 5px 0 0 0;
+}
+
+.rt_login {
+	width: 130px;
+	text-align: right;
+}
+.rt_login a {
+	text-decoration: none;
+	color: #000;
+	display: inline-block;
+}
+.rt_login img {
+	width: 32px;
+	display: block;
+	margin: 0 auto;
+	height: 32px;
+	object-fit: cover;
+	border: 1px #000 solid;
+	border-radius: 30px;
+}
+.search_box {
+	width: calc(100% - 502px);
+}
+
+form.search_box input[type="text"] {
+	padding:11px 11px 11px 38px;
+	font-size: 16px;
+	border: none;
+	width: 100%;
+	background: #F2F0F0; box-sizing: border-box;
+	color: #737373;
+}
+.search_inputbox::after {
+	content: '\f107';
+	font-family: fontawesome;
+	position: absolute;
+	right: 11px;
+	top: 11px; color: #9a9898;
+}
+.search_inputbox::before {
+	content: '\f002';
+	font-family: fontawesome;
+	left: 13px;
+	position: absolute;
+	top: 10px;
+	color: #ccc;
+}
+.search_inputbox {
+	position: relative;
+	display: inline-block;
+	width: 50%;
+}
+form.search_box button {
+  border: none;
+  cursor: pointer;
+}
+
+
+form.search_box option {
+  border:none;
+  cursor: pointer;
+}
+
+
+.main_body{
+	 text-align:left;
+ }
+.viewed_tags h3{
+	font-weight:700; font-size:20px;
+}
+
+.viewed_tags a{
+	text-decoration:none;
+	border:#000 solid 2px;
+	font-weight:400;
+	font-size:13px;
+	text-align:center;
+	background:#fff;
+	display:inline-block;
+	color:#000;
+	padding:10px;
+	margin:3px;
+}
+
+
+.headlines{
+	margin-top:33px;
+}
+.headlines h3 {
+	margin: 0;padding: 5px 0 10px;
+}
+.news_list{
+	display:block;
+}
+.newslist_items{
+	text-align:center;
+	float:left;
+}
+.newslist_items a{
+	text-decoration:none;
+	display:block;
+}
+.newslist_items img{
+	display:block;
+	width:100%;
+	height:178px;
+	object-fit:cover;
+}
+.newslist_items h3{
+	margin: 0;
+	padding: 8px 0 5px;
+	font-size: 25px;
+	font-weight: 400;
+	color: #000;
+}
+.newslist_items p{
+	font-size:13px;
+	color:#ababab;
+	margin:0;
+}
+
+.news_separator {
+	max-width: 60%;
+	height: 1px;
+	border-bottom: 1px solid #A6A6A6;margin: 70px auto 50px;
+}
+
+.sidebar {
+  width:30px;
+  position: absolute;
+  z-index: 1;
+  top: 74px;
+  left: 0;
+  background-color: #F2F0F0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  border:#000 solid 1px;
+ 
+}
+
+.sidebar a {
+  padding: 15px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #000;
+  display: block;
+  transition: 0.3s;
+  font-weight:400;
+ 
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  right: 25px;
+  font-size: 18px;
+}
+
+
+.side_nav_bar span{
+	position:relative;
+	float:left;
+	top:10px;
+	font-size:30px;
+	cursor:pointer
+} 
+
+.sidebar ul{
+	list-style-type:none;
+	text-align:left;
+}
+
+.sidebar ul img{
+	width:12px;
+	height:12px;
+}
+
+
+.main_body {
+	display: flex;
+}
+.left_navpanel {
+	width: 60px;
+	background: #f2f0f1;
+	border-right: 2px #424242 solid;
+}
+.left_navpanel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width:60px;
+	background: #f2f0f1; overflow:hidden;
+	height: 100%;
+	position: relative;
+	z-index: 50;
+	border-right: 2px #424242 solid; transition:all ease-in-out 0.3s;
+}
+.left_navpanel ul li{
+	display:block;
+	width:200px;
+}
+.right_contentpanel{
+	width:calc(100% - 60px);
+	padding:0 20px;
+	box-sizing:border-box;
+}
+
+.left_navpanel ul li a {
+	display: block;
+	padding: 15px 15px 15px 20px;
+	color: #000;
+	text-decoration: none;
+}
+.left_navpanel ul li a:hover {
+	background: #E3E3E3;
+}
+.left_navpanel ul li a img {
+	float: left;
+	margin-right: 20px;
+	transition:all ease-in-out 0.3s;
+}
+.left_navpanel ul.openmenu{
+	width:200px;
+}
+.left_navpanel ul.openmenu li a img {
+	margin-right: 8px;
+}
+
+
+
+
+
+
+@media(max-width:767px){
+.lt_text {
+	position: static;
+	text-align: center;
+}
+
+.db_header {
+	display: block;
+	padding: 10px;
+}
+.lt_side {
+	width: 100%;
+}
+.search_box {
+	width: 65%;
+	float: left;
+	padding: 7px 0 0 0;
+	text-align: left;
+}
+.rt_login {
+	width: 30%;
+	display: inline-block;
+}
+.search_inputbox{
+	width: 100%;
+}
+.menu_tag {
+	height: 40px;
+	font-size: 28px;
+	margin: 4px 0 0 0;
+}
+.logo {
+	width:220px;
+	height: auto;
+}
+.viewed_tags a {
+	font-size: 13px;
+	padding: 5px;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
