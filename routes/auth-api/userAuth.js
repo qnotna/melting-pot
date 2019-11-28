@@ -11,6 +11,8 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+const HttpError = require('../../middleware/httpError.js');
+
 // @route POST api/auth/register
 router.post("/register", (req, res) => {
   // Validate form
@@ -34,12 +36,17 @@ router.post("/register", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser.save()
-          .then( user => res.json(user))
+          .then( user => res.status(200).json(user))
           .catch( err => console.log(err) );
         })
       });
     }
   });
+});
+
+router.all('/register', (req, res, next) => {
+  let err = new HttpError("Method Not Allowed", 405);
+  next(err);
 });
 
 // @route POST api/auth/login
@@ -76,6 +83,11 @@ router.post('/login', (req, res) => {
       })
     }
   })
-})
+});
+
+router.all('/login', (req, res, next) => {
+  let err = new HttpError("Method Not Allowed", 405);
+  next(err);
+});
 
 module.exports = router;

@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 // const routes = require('./routes/api');
-const usersAuthAPI = require("./routes/auth-api/users")
-const usersAPI = require("./routes/users/users")
+const userAuth = require("./routes/auth-api/userAuth")
+const users = require("./routes/users/users")
+const errorHandler = require("./middleware/errorHandler")
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -43,8 +44,11 @@ require("./config/passport")(passport);
 
 // Routes
 // app.use('/api', routes); // Not safe users API
-app.use('/api/auth', usersAuthAPI)
-app.use('/api/users', usersAPI)
+app.use('/api/auth', userAuth);
+app.use('/api/users', users);
+
+// Error-Errorhandling
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
