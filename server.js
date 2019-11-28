@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 // const routes = require('./routes/api');
-const userAuth = require("./routes/auth-api/userAuth")
-const users = require("./routes/users/users")
-const errorHandler = require("./middleware/errorHandler")
-const responseHeader = require("./middleware/responseHeader")
+const userAuth = require("./routes/auth-api/userAuth");
+const users = require("./routes/users/users");
+const errorHandler = require("./middleware/errorHandler");
+const responseHeader = require("./middleware/responseHeader");
 
 const app = express();
 const port = process.env.PORT || 5000;
