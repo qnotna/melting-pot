@@ -1,15 +1,38 @@
 #content-view {
   height: calc(100% - 3em);
   width: 100%;
-  background-color: green;
+  background-color: gainsboro;
   overflow: auto;
+}
+
+#content-view-tags {
+  padding: 1em 0 0 1em;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.content-view-tag {
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  background-color: yellow;
+  display: inline-block;
+  overflow-x: scroll;
+}
+
+.content-view-tag:hover {
+  cursor: pointer;
+  background-color: orange;
+}
+
+.content-view-tag p {
+  margin: 0.25em;
 }
 
 .content-view-section-title {
   padding: 0.5em;
 }
 
-.content-view-section[type="horizontal"] {
+.content-view-section[type="horizontal"] { /* TODO: redo this */
   display: grid;
   grid-gap: 1em;
   grid-template-columns: 0;
@@ -35,46 +58,4 @@
 
 .content-view-section[type="grid"] .content-view-item {
   margin: 0 1em 1em 0;
-}
-
-.content-view-item {
-  background-color: lightGreen;
-  padding: 0.5em;
-
-}
-
-.content-view-item[preview-size="large"] {
-  height: 20em;
-  width: 20em;
-}
-
-.content-view-item[preview-size="small"] {
-  height: 10em;
-  width: 15em;
-}
-
-.content-view-item:hover {
-  cursor: pointer;
-}
-
-.content-view-preview {
-  height: 100%;
-}
-
-.preview-with-image {
-  margin-bottom: 0.5em;
-  background-color: white;
-  width: 100%;
-}
-
-.preview-with-image[preview-size="large"] {
-  height: 60%;
-}
-
-.preview-with-image[preview-size="small"] {
-  height: 70%;
-}
-
-.preview-with-image p {
-  padding: 0.5em;
 }

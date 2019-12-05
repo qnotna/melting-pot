@@ -1,27 +1,19 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import ContentViewItemPreview from './ContentViewItemPreview.js';
 
 class ContentViewItems extends Component {
 
-  createItem = (item) => {
+  createItemPreview = (item) => {
     let size = this.props.size;
+    let optionalPreviewText = <Fragment/>;
     if (size === 'large') {
-      return(
-        <div className='content-view-preview' preview-size={size}>
-          <div className='preview-with-image' preview-size={size}>
-            <p>{item.publisher}</p>
-            <p>{item.date}</p>
-            <p>{item.readingTime}</p>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.previewText}</p>
-        </div>
-      );
+      optionalPreviewText = <p>{item.previewText}</p>
     }
     return(
       <div className='content-view-preview' preview-size={size}>
-        <div className='preview-with-image' preview-size={size}>
-        </div>
-        <h4>{item.title}</h4>
+        <ContentViewItemPreview item={item} size={size}/>
+        <h3>{item.title}</h3>
+        {optionalPreviewText}
       </div>
     );
   }
@@ -29,7 +21,7 @@ class ContentViewItems extends Component {
   render() {
     return this.props.items.map((item) => (
       <div className='content-view-item' preview-size={this.props.size} key={item.title}>
-        {this.createItem(item)}
+        {this.createItemPreview(item)}
       </div>
     ));
   }
