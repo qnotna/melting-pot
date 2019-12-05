@@ -6,6 +6,7 @@ const passport = require('passport');
 const usersAuthAPI = require("./routes/auth-api/users")
 const usersAPI = require("./routes/users/users")
 
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -23,7 +24,7 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = process.env.DB_PORT ? `mongodb://localhost:${process.env.DB_PORT}/meltingdb` : require("./config/keys").mongoURI;
 // Connect to MongoDB
 mongoose.connect(
     db,
@@ -32,7 +33,7 @@ mongoose.connect(
       useUnifiedTopology: true
     },
   )
-  .then(() => console.log("MongoDB successfully connected"))
+  .then((res) => console.log("MongoDB successfully connected to", res.connection.host))
   .catch(err => console.log(err));
 
 // Passport middleware
