@@ -1,0 +1,69 @@
+#content-view {
+  height: 100%;
+  width: 100%;
+  background-color: gainsboro;
+  overflow: auto;
+}
+
+#content-view-tags {
+  padding-left: 1em;
+  padding-top: 1em;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.content-view-tag {
+  border-radius: 0.25em;
+  padding: 0.25em;
+  margin-right: 1em;
+  background-color: yellow;
+  display: inline-block;
+  overflow-x: scroll;
+}
+
+/* TODO: not working properly */
+.content-view-tag:hover {
+  cursor: pointer;
+  background-color: orange;
+}
+
+.content-view-tag p {
+  margin: 0.25em;
+}
+
+.content-view-section-title {
+  padding: 0.5em;
+}
+
+.content-view-section {
+  padding-left: 1em;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.content-view-item[preview-size="large"] {
+  padding-right: 1em;
+  display: inline-block;
+  overflow-x: scroll;
+}
+
+.content-view-item[preview-size="large"] * {
+  white-space: normal;
+}
+
+.content-view-section[type="horizontal"] * {
+  display: inline-block;
+}
+
+.content-view-section[type="grid"] {
+  width: auto;
+  padding-left: 1em;
+  margin-bottom: 4em; /* TODO: this is a disguisting hack */
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.content-view-section[type="grid"] .content-view-item {
+  margin: 0 1em 1em 0;
+}
