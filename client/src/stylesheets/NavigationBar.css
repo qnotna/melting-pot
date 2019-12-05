@@ -1,11 +1,13 @@
 #navigation-bar {
   width: calc(100% - 2em);
   padding: 1em;
-  background-color: red;
+  background-color: silver;
+  position: sticky;
 }
 
 #navigation-bar * {
   display: inline-block;
+  border-radius: 0.25em;
 }
 
 #search-bar {
@@ -25,4 +27,9 @@
   height: 2em;
   border: none;
   background-color: orange;
+}
+
+#navigation-bar button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.25);
 }
