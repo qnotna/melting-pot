@@ -10,21 +10,62 @@ class SideBar extends Component {
       id: 0,
       title: 'Neuigkeiten',
       items: [
-        'Melting Hot', 'Für dich', 'Favoriten', 'Später lesen'
+        {
+          title: 'Melting Hot',
+          unreadAmount: 10
+        },
+        {
+          title: 'Favoriten',
+          unreadAmount: 2
+        },
+        {
+          title: 'Später lesen',
+          unreadAmount: 14
+        }
       ]
     },
     {
       id: 1,
       title: 'Kategorien',
       items: [
-        'Business', 'Entertainment', 'Health', 'Science', 'Sportz', 'Technology'
+        {
+          title: 'Business',
+          unreadAmount: 17
+        },
+        {
+          title: 'Entertainment',
+          unreadAmount: 23
+        },
+        {
+          title: 'Health',
+          unreadAmount: 43
+        },
+        {
+          title: 'Science',
+          unreadAmount: 10
+        },
+        {
+          title: 'Sportz',
+          unreadAmount: 2
+        },
+        {
+          title: 'Technology',
+          unreadAmount: 0
+        }
       ]
     },
     {
       id: 2,
       title: 'Your Profile',
       items: [
-        'Settings', 'Log Out'
+        {
+          title: 'Settings',
+          unreadAmount: 0
+        },
+        {
+          title: 'Log Out',
+          unreadAmount: 0
+        }
       ]
     }
   ]
@@ -34,8 +75,8 @@ class SideBar extends Component {
       <div id="sidebar">
         <div className='sidebar-sections'>
           <SideBarSections sections={this.sections}/>
-          <ProfileOverview/>
         </div>
+        <ProfileOverview user={this.props.user}/>
       </div>
     );
   }
