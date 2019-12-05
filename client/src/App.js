@@ -6,12 +6,13 @@ import NavigationBar from './components/NavigationBar.js';
 import SideBar from './components/SideBar.js';
 // import ReaderView from './components/ReaderView.js';
 
-class App extends Component {
+import userExampleData from './example/user.json';
+import sideBarSectionsExampleData from './example/sideBarSections.json';
+import contentViewSectionsExampleData from './example/contentViewSections.json';
+import contentViewTagsExampleData from './example/contentViewTags.json';
+// import readerViewArticleExampleData from './example/readerViewArticle.json';
 
-  user = {
-    name: 'Anton Quietzsch',
-    mailAdress: 'spam@me.com'
-  };
+class App extends Component {
 
   isCollapsed = false;
   collapseSidebar = (event) => {
@@ -24,11 +25,24 @@ class App extends Component {
     return (
       <div className='App'>
         <div id='left' ref='Sidebar'>
-          <SideBar user={this.user}/>
+          <SideBar
+            sections={sideBarSectionsExampleData}
+            user={userExampleData}
+          />
         </div>
         <div id='right'>
-          <NavigationBar elastic='false' collapseSidebar={this.collapseSidebar.bind(this)}/>
-          <ContentView/>
+          <NavigationBar
+            collapseSidebar={this.collapseSidebar.bind(this)}
+          />
+          <ContentView
+            sections={contentViewSectionsExampleData}
+            tags={contentViewTagsExampleData}
+            />
+          {
+            // <ReaderView
+            //   article={this.article}
+            // />
+          }
         </div>
       </div>
     );

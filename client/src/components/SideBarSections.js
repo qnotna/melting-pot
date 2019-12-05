@@ -5,12 +5,12 @@ class SideBarSections extends Component {
 
   render() {
     return this.props.sections.map((section) => (
-      <Fragment key={section.id}>
+      <li key={section.id}>
         <p className='sidebar-section'>{section.title}</p>
-        <div className='sidebar-items'>
+        <ul className='sidebar-items'>
           <SideBarItems items={section.items}/>
-        </div>
-      </Fragment>
+        </ul>
+      </li>
     ));
   }
 

@@ -4,7 +4,7 @@
   background-color: silver;
 }
 
-#navigation-bar[elastic="true"] {
+#navigation-bar[collapsed="true"] {
   display: none;
 }
 

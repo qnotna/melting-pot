@@ -4,7 +4,7 @@
 }
 
 .content-view-item h3 {
-  margin-bottom: 0.25em;
+  margin: 0.5em 0;
 }
 
 .content-view-item[preview-size="large"] {
@@ -29,7 +29,6 @@
 
 .preview-with-image {
   border-radius: 0.75em;
-  margin-bottom: 0.5em;
   background-color: white;
   width: 100%;
 }
@@ -49,6 +48,13 @@
   color: white;
   padding: 0.5em;
 }
+
+.preview-with-image button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+
 
 .preview-with-image .unread-mark {
   float: left;
@@ -85,6 +91,12 @@
   float: right;
   right: 2.5em;
 }
+
+/* .preview-with-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 
 .preview-with-image[preview-size="large"] {
   font-size: 10pt;
@@ -123,7 +135,7 @@
   display: inherit;
 }
 
-.preview-with-image[preview-size="small"]:hover {
+.preview-with-image[preview-size="small"]:hover, .preview-with-image[preview-size="large"]:hover {
   cursor: default;
 }
 
@@ -159,4 +171,8 @@
 
 .content-view-item:hover, .preview-actions button:hover, .preview-information-publisher:hover {
   cursor: pointer;
+}
+
+.preview-information-publisher:hover p:first-of-type {
+  text-decoration: underline;
 }
