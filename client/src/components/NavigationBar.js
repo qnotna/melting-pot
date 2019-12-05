@@ -6,7 +6,7 @@ class NavigationBar extends Component {
 
   render() {
     return(
-      <div id="navigation-bar">
+      <div id="navigation-bar" elastic={this.props.elastic}>
         <SearchBar/>
       </div>
     );

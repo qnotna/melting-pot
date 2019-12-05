@@ -2,7 +2,10 @@
   width: calc(100% - 2em);
   padding: 1em;
   background-color: silver;
-  position: sticky;
+}
+
+#navigation-bar[elastic="true"] {
+  display: none;
 }
 
 #navigation-bar * {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './stylesheets/App.css';
-import ContentView from './components/ContentView.js';
+// import ContentView from './components/ContentView.js';
 import NavigationBar from './components/NavigationBar.js';
 import SideBar from './components/SideBar.js';
 import ReaderView from './components/ReaderView.js';
@@ -18,10 +18,7 @@ function App() {
         <SideBar user={user}/>
       </div>
       <div id='right'>
-        <NavigationBar/>
-        {
-          // <ContentView/>
-        }
+        <NavigationBar elastic='true'/>
         <ReaderView/>
       </div>
     </div>
