@@ -9,6 +9,15 @@
   width: 20em;
 }
 
+#left[collapsed='true'] {
+  position: absolute;
+  left: -20em;
+}
+
+#left[collapsed='false'] {
+  position: inherit;
+}
+
 #right {
   height: 100%;
   width: 100%;

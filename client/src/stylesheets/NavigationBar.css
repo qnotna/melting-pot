@@ -9,24 +9,27 @@
 }
 
 #navigation-bar * {
+  vertical-align: middle;
   display: inline-block;
   border-radius: 0.25em;
 }
 
 #search-bar {
-  width: calc(100% - 5em);
-  padding-right: 1em;
+  width: calc(100% - 13em);
+  padding: 0 1em;
 }
 
 #search-bar input {
+  padding: 0 1em;
   width: 100%;
   height: 2em;
   border: none;
-  -webkit-appearance:none;
+  -webkit-appearance:none; /* TODO: remove for deployment */
 }
 
 #navigation-bar button {
-  width: 5em;
+  width: 8em;
+  padding: 0 1em;
   height: 2em;
   border: none;
   background-color: orange;
