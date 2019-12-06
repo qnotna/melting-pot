@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './store'
 
 import Login from './components/auth/Login'
+import Home from './components/Home'
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path="/login" component={Login} />
+        <Route exact path="/home" component={Home} />
       </div>
     </Router>
     </Provider>
