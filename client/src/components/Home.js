@@ -26,15 +26,13 @@ class Home extends Component {
     sideBar.setAttribute('collapsed', this.isCollapsed.toString());
   }
 
-  componentWillMount(){
-    Axios.get("http://localhost:5000/newsapi/top-headlines", JSON.stringify({
+  test(){
+    Axios.get("http://localhost:5000/newsapi/top-headlines",  {
         country: "de"
-    }))
+    })
     .then(
         res => {
-            this.setState(
-            { topHeadlines: res }
-        )
+            console.log(res)
             }
     )
     .catch(
@@ -43,9 +41,7 @@ class Home extends Component {
   }
 
   render() {
-      if (this.state.topHeadlines != null) {
-        console.log(this.state.topHeadlines)
-      }
+      this.test()
       
     return (
       <div className='App'>

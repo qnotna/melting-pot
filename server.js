@@ -7,6 +7,7 @@ const userAuth = require("./routes/auth-api/userAuth");
 const users = require("./routes/users/users");
 const errorHandler = require("./middleware/errorHandler");
 const responseHeader = require("./middleware/responseHeader");
+const newsAPI = require("./routes/news-api/news-api")
 
 
 const app = express();
@@ -44,6 +45,7 @@ require("./config/passport")(passport);
 // app.use('/api', routes); // Not safe users API
 app.use('/api/auth', userAuth);
 app.use('/api/users', users);
+app.use("/newsapi", newsAPI)
 
 // Error-Errorhandling
 app.use(errorHandler);
