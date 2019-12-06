@@ -7,6 +7,7 @@ class ContentViewSections extends Component {
   getItemSize = (section) => ((section.type === 'horizontal') ? 'large' : 'small')
 
   render() {
+    console.log(this.props.sections)
     return this.props.sections.map((section) => (
       <Fragment key={section.id}>
         <h1 className='content-view-section-title'>{section.title}</h1>

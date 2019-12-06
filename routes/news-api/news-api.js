@@ -10,7 +10,6 @@ const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
 
 // top Headlines aus einem bestimmten land und Sprache
 router.get('/top-headlines', (req, res) => {
-    console.log(req.query)
     newsapi.v2.topHeadlines({
         ...req.query
     })
