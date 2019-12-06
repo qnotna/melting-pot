@@ -27,22 +27,19 @@ class Home extends Component {
   }
 
   test(){
-    Axios.get("http://localhost:5000/newsapi/top-headlines",  {
-        country: "de"
-    })
+    Axios.get("http://localhost:5000/newsapi/top-headlines?country=de")
     .then(
-        res => {
-            console.log(res)
-            }
-    )
-    .catch(
-        err => console.log(err)
+      res => {
+        console.log(res)
+      }
+    ).catch(
+      err => console.log(err)
     )
   }
 
   render() {
-      this.test()
-      
+    this.test()
+
     return (
       <div className='App'>
         <div id='left' ref='Sidebar'>
