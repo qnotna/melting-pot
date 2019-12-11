@@ -19,6 +19,7 @@ class ContentViewItems extends Component {
   }
 
   render() {
+    console.log(this.props)
     return this.props.items.map((item) => (
       <div className='content-view-item' preview-size={this.props.size} key={item.title}>
         {this.createItemPreview(item)}

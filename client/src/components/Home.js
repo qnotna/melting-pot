@@ -10,7 +10,7 @@ import SideBar from './SideBar.js';
 
 import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
-// import contentViewSectionsExampleData from '../example/contentViewSections.json';
+import contentViewSectionsExampleData from '../example/contentViewSections.json';
 import contentViewTagsExampleData from '../example/contentViewTags.json';
 // import readerViewArticleExampleData from './example/readerViewArticle.json';
 
@@ -43,6 +43,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.state)
 
         return (
             <div className='App'>
@@ -58,9 +59,11 @@ class Home extends Component {
                     />
                     <ContentView
                         sections={
-                            this.state.topHeadlines
+                            // this.state.topHeadlines.data.articles
+                            contentViewSectionsExampleData
                         }
                         tags={contentViewTagsExampleData}
+                        test="test"
                     />
                     {
                         // <ReaderView
