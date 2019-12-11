@@ -1,22 +1,21 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-
+import {slide as Menu} from "react-burger-menu";
+import { StickyContainer, Sticky } from 'react-sticky';
+import { slider } from './slider';
 
 
 
 
 class mainPage extends React.Component {
-
   render(){
     return (
       <div className="wrapper">
         <header className="db_header">
           <div className="lt_side">
-            <a href="javascript:void(0)" className="menu_tag"> <span>☰</span>
-            </a>
             <a href className="logo">
-              <img className="logo" src="logo01.png" alt />
+              <img className="logo" src="logo01.png" alt = "logo" />
             </a>
           </div>
           <form className="search_box" action> <span className="search_inputbox">
@@ -30,58 +29,51 @@ class mainPage extends React.Component {
         </header>
         <div className="clear" />
         <div className="main_body">
-          <div className="left_navpanel">
-            <ul>
-              <li>
-                <a href="home" target="_blank">
-                  <img src="IconProxy.jpg" />Home</a>
-              </li>
-              <li>
-                <a href="Marks" target="_blank">
-                  <img src="IconProxy.jpg" />Marks</a>
-              </li>
-              <li>
-                <a href="Downloads" target="_blank">
-                  <img src="IconProxy.jpg" />Downloads</a>
-              </li>
-              <li>
-                <a href="MyPress" target="_blank">
-                  <img src="IconProxy.jpg" />MyPress</a>
-              </li>
-              <li>
-                <a href="Business" target="_blank">
-                  <img src="IconProxy.jpg" />Business</a>
-              </li>
-              <li>
-                <a href="Entertainment" target="_blank">
-                  <img src="IconProxy.jpg" />Entertainment</a>
-              </li>
-              <li>
-                <a href="Health" target="_blank">
-                  <img src="IconProxy.jpg" />Health</a>
-              </li>
-              <li>
-                <a href="Science" target="_blank">
-                  <img src="IconProxy.jpg" />Science</a>
-              </li>
-              <li>
-                <a href="Sportz" target="_blank">
-                  <img src="IconProxy.jpg" />Sportz</a>
-              </li>
-              <li>
-                <a href="Technology" target="_blank">
-                  <img src="IconProxy.jpg" />Technology</a>
-              </li>
-              <li>
-                <a href="Setting" target="_blank">
-                  <img src="IconProxy.jpg" />Setting</a>
-              </li>
-              <li>
-                <a href="Contact" target="_blank">
-                  <img src="IconProxy.jpg" />Contact</a>
-              </li>
-            </ul>
-          </div>
+        <StickyContainer>
+          <div className= "theBar" >
+        <Menu>
+      <a className="menu-item" href="/">
+        Home
+      </a>
+
+      <a className="menu-item" href="/Marks">
+        Marks
+      </a>
+      
+      <a className="menu-item" href="/Downloads">
+        Downloads
+      </a>
+
+      <a className="menu-item" href="/MyPress">
+        MyPress
+      </a>
+      <a className="menu-item" href="/Business">
+        Business
+      </a>
+      <a className="menu-item" href="/Entertainment">
+        Entertainment
+      </a>
+      <a className="menu-item" href="/Health">
+        Health
+      </a><a className="menu-item" href="/Science">
+        Science
+      </a>
+      <a className="menu-item" href="/Sportz">
+       Sportz
+      </a>
+      <a className="menu-item" href="/Technology">
+        Technology
+      </a>
+      <a className="menu-item" href="/Setting">
+       Setting
+      </a>
+      <a className="menu-item" href="/Contact">
+        Contact
+      </a>
+
+    </Menu>
+    </div>
+    </StickyContainer>
           <div className="right_contentpanel">
             <div className="viewed_tags">
               <h3>Most-Viewed Tags</h3>
@@ -186,84 +178,12 @@ class mainPage extends React.Component {
                 </div>
               </div>
               <div className="clear" /></div>
-            <div className="news_separator" />
-            <div className="headlines">
-              <h3>Top-News Headline 1</h3>
-              <div className="news_list">
-                <div className="owl-carousel owl-theme newsslider">
-                  <div className="item">
-                    <div className="newslist_items">
-                      <a href>
-                        <img className="news_logo" src="BildProxy.jpg" alt />
-                        <h3>Title</h3>
-                        <p>Wow, so much Tennis.
-                          <br />This article is so interesting...
-                          <br />
-                          <br />ReadingTime: XYZ min
-                          <br />New York Times</p>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="newslist_items">
-                      <a href>
-                        <img className="news_logo" src="BildProxy.jpg" alt />
-                        <h3>Title</h3>
-                        <p>Wow, so much Tennis.
-                          <br />This article is so interesting...
-                          <br />
-                          <br />ReadingTime: XYZ min
-                          <br />New York Times</p>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="newslist_items">
-                      <a href>
-                        <img className="news_logo" src="BildProxy.jpg" alt />
-                        <h3>Title</h3>
-                        <p>Wow, so much Tennis.
-                          <br />This article is so interesting...
-                          <br />
-                          <br />ReadingTime: XYZ min
-                          <br />New York Times</p>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="newslist_items">
-                      <a href>
-                        <img className="news_logo" src="BildProxy.jpg" alt />
-                        <h3>Title</h3>
-                        <p>Wow, so much Tennis.
-                          <br />This article is so interesting...
-                          <br />
-                          <br />ReadingTime: XYZ min
-                          <br />New York Times</p>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item">
-                    <div className="newslist_items">
-                      <a href>
-                        <img className="news_logo" src="BildProxy.jpg" alt />
-                        <h3>Title</h3>
-                        <p>Wow, so much Tennis.
-                          <br />This article is so interesting...
-                          <br />
-                          <br />ReadingTime: XYZ min
-                          <br />New York Times</p>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="clear" /></div>
           </div>
       </div>
         <div className="clear" /></div>
     );
   }
 }
+
 
 export default mainPage;

@@ -30,7 +30,7 @@ function loginPage () {
         <div className="signup">
           <p>Not a member yet? <span>
                 Sign up&nbsp;
-                <a href="here" target="_blank">
+                <a href="Register" target="_self">
                   here.
                 </a>
               </span>
