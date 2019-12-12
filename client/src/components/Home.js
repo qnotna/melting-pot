@@ -15,11 +15,12 @@ import contentViewTagsExampleData from '../example/contentViewTags.json';
 // import readerViewArticleExampleData from './example/readerViewArticle.json';
 
 import Axios from 'axios';
+import api from '../utils/API';
 
 
 class Home extends Component {
     state = {
-        topHeadlines: []
+        sections: []
     }
 
     isCollapsed = false;
@@ -30,20 +31,22 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        Axios.get("http://localhost:5000/newsapi/top-headlines?country=de")
-            .then(
-                res => {
-                    this.setState({
-                        topHeadlines: res
-                    })
-                }
-            ).catch(
-                err => console.log(err)
-            )
+        console.log("Component mount")
+        // console.log(api.getLatest())
+        api.getHot((res) => {
+            this.setState(prevState => ({
+                sections: [...prevState.sections, res]
+            }))
+        })
+        api.getLatest((res) => {
+            this.setState(prevState => ({
+                sections: [...prevState.sections, res]
+            }))
+        })
     }
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
 
         return (
             <div className='App'>
@@ -59,8 +62,8 @@ class Home extends Component {
                     />
                     <ContentView
                         sections={
-                            // this.state.topHeadlines.data.articles
-                            contentViewSectionsExampleData
+                            this.state.sections
+                            // contentViewSectionsExampleData
                         }
                         tags={contentViewTagsExampleData}
                         test="test"
