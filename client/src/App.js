@@ -1,53 +1,23 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import './stylesheets/App.css';
-import ContentView from './components/ContentView.js';
-import NavigationBar from './components/NavigationBar.js';
-import SideBar from './components/SideBar.js';
-// import ReaderView from './components/ReaderView.js';
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from './store'
 
-import userExampleData from './example/user.json';
-import sideBarSectionsExampleData from './example/sideBarSections.json';
-import contentViewSectionsExampleData from './example/contentViewSections.json';
-import contentViewTagsExampleData from './example/contentViewTags.json';
-// import readerViewArticleExampleData from './example/readerViewArticle.json';
+import Login from './components/auth/Login'
+import Home from './components/Home'
 
-class App extends Component {
-
-  isCollapsed = false;
-  collapseSidebar = (event) => {
-    this.isCollapsed = !this.isCollapsed;
-    let sideBar = ReactDOM.findDOMNode(this.refs.Sidebar)
-    sideBar.setAttribute('collapsed', this.isCollapsed.toString());
-  }
-
-  render() {
-    return (
-      <div className='App'>
-        <div id='left' ref='Sidebar'>
-          <SideBar
-            sections={sideBarSectionsExampleData}
-            user={userExampleData}
-          />
-        </div>
-        <div id='right'>
-          <NavigationBar
-            collapseSidebar={this.collapseSidebar.bind(this)}
-          />
-          <ContentView
-            sections={contentViewSectionsExampleData}
-            tags={contentViewTagsExampleData}
-            />
-          {
-            // <ReaderView
-            //   article={this.article}
-            // />
-          }
-        </div>
+function App() {
+  return (
+    <Provider store={store}>
+    <Router>
+      <div className="App">
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/home" component={Home} />
       </div>
-    );
-  }
+    </Router>
+    </Provider>
 
+  );
 }
 
 export default App;

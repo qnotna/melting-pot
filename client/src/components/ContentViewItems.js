@@ -3,15 +3,16 @@ import ContentViewItemPreview from './ContentViewItemPreview.js';
 
 class ContentViewItems extends Component {
 
+  // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
   createItemPreview = (item) => {
-    let size = this.props.size;
+    let previewSize = this.props.previewSize;
     let optionalPreviewText = <Fragment/>;
-    if (size === 'large') {
-      optionalPreviewText = <p>{item.previewText}</p>
+    if (previewSize === 'large') {
+      optionalPreviewText = <p>{item.description}</p>
     }
     return(
-      <div className='content-view-preview' preview-size={size}>
-        <ContentViewItemPreview item={item} size={size}/>
+      <div className='content-view-preview' preview-size={previewSize}>
+        <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
         {optionalPreviewText}
       </div>
@@ -19,9 +20,10 @@ class ContentViewItems extends Component {
   }
 
   render() {
-    return this.props.items.map((item) => (
-      <div className='content-view-item' preview-size={this.props.size} key={item.title}>
-        {this.createItemPreview(item)}
+    console.log(this.props)
+    return this.props.articles.map((article) => (
+      <div className='content-view-item' preview-size={this.props.previewSize} key={article.title}>
+        {this.createItemPreview(article)}
       </div>
     ));
   }
