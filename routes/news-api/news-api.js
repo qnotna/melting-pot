@@ -8,6 +8,23 @@ const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
 
 //https://newsapi.org/docs/endpoints/top-headlines
 
+// get Latest
+router.get('/latest', (req, res) => {
+    newsapi.v2.everything({
+        ...req.query,
+        q: "*",
+        sortBy: "publishedAt",
+
+    })
+    .then(
+        response => res.json(response)
+    )
+    .catch(
+        err => res.json(err)
+    );
+});
+
+
 // top Headlines aus einem bestimmten land und Sprache
 router.get('/top-headlines', (req, res) => {
     newsapi.v2.topHeadlines({
