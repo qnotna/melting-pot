@@ -1,6 +1,6 @@
 const router = require ('express').Router();
 const NewsAPI  = require('newsapi');
-const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
+const newsapi = new NewsAPI('04cc2e205e294f27b2072a47d8ce57bd');
 
 // country: sind ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za
 // language: ar de en es fr he it nl no pt ru se ud zh
@@ -14,7 +14,6 @@ router.get('/latest', (req, res) => {
         ...req.query,
         q: "*",
         sortBy: "publishedAt",
-
     })
     .then(
         response => res.json(response)
