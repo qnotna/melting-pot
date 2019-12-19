@@ -1,7 +1,7 @@
 const router = require ('express').Router();
 const NewsAPI  = require('newsapi');
-const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
-// const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
+// const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
+const newsapi = new NewsAPI('04cc2e205e294f27b2072a47d8ce57bd');
 
 const HttpError = require('../../middleware/httpError');
 
@@ -72,7 +72,7 @@ router.get('/everything', (req, res, next) => {
         //to: '2017-12-12',
         language: query.language,
         sortBy: query.sortBy,
-        pageSize: 20
+        pageSize: query.size
     })
     .then(response => res.json(response)
     )
@@ -89,16 +89,15 @@ router.get('/source', (req, res) => {
 });
 
 function checkInput(query){
-    let queryParams = {};
-    for(let prop of Object.getOwnPropertyNames(query)){
-        let value = query[prop];
+    let queryParams = query;
+    for(let prop of Object.getOwnPropertyNames(queryParams)){
+        let value = queryParams[prop];
         if(prop === 'q' && value === undefined){
             next(new HttpError("Search term required", 400));
         }
-        sources = (prop === 'sources' && value) ? value.split(',') : []
+        prop = (prop === 'sources' && value) ? value.split(',') : [];
         queryParams.prop = value;
     }
-    console.log(queryParams);
     return queryParams;
 }
 

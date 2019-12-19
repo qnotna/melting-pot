@@ -7,6 +7,7 @@ class SearchBar extends Component {
     sortRef = React.createRef();
     sourceRef = React.createRef();
     formRef = React.createRef();
+    sizeRef = React.createRef();
 
     state = {
         showMenu: false
@@ -33,7 +34,7 @@ class SearchBar extends Component {
                             <div className="dropdown-content">
                                 <label>Language</label>
                                 <select ref={this.langRef}>
-                                    <option>Argentinia</option>
+                                    <option>Arabian</option>
                                     <option>Dutch</option>
                                     <option>English</option>
                                     <option>French</option>
@@ -43,10 +44,10 @@ class SearchBar extends Component {
                                     <option>Portuguese</option>
                                     <option>Russian</option>
                                     <option>Spanish</option>
-                                    <option>he</option>
                                     <option>Sweden</option>
+                                    {/* <option>he</option>
                                     <option>ud</option>
-                                    <option>zh</option>
+                                    <option>zh</option> */}
                                 </select>
 
                                 <label>Sort by</label>
@@ -58,6 +59,14 @@ class SearchBar extends Component {
 
                                 <label>Source</label>
                                 <input type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...'/>
+                                
+                                <label>Articles per page</label>
+                                <select ref={this.sizeRef}>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
                             </div>
                         ) : ( null )
                     }
@@ -71,17 +80,18 @@ class SearchBar extends Component {
     
     handleClick = (event) => {
         event.preventDefault();
-        console.log(this.langRef.current);
-
+        
         //TODO Sprache automatisch aus User-Einstellungen wählen
         let langCode = this.langRef.current ? formatLangOption(this.langRef.current.options[this.langRef.current.selectedIndex].text) : "de";
         let sortBy = this.sortRef.current ? this.sortRef.current.options[this.sortRef.current.selectedIndex].text : "publishedAt";
-        let sources = this.sourceRef.current ? this.sourceRef.current.value : []
+        let sources = this.sourceRef.current ? this.sourceRef.current.value : [];
+        let size = this.sizeRef.current ? this.sizeRef.current.value : 20;
         const searchInput = {
             query: this.qRef.current.value,
             lang: langCode,
             sortBy: sortBy,
-            source: sources
+            source: sources,
+            size: size
         }
         this.props.func(searchInput);
         this.formRef.current.reset();

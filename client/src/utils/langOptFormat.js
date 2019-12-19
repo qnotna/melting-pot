@@ -31,18 +31,18 @@ export default function formatLangOption(language){
         case "Spanish":
             code = "es";
             break;
-        case "he":
-            code = "he";
-            break;
         case "Sweden":
             code = "se";
             break;
-        case "ud":
-            code = "ud";
-            break;
-        case "zh":
-            code = "zh";
-            break;
+        // case "he":
+        //     code = "he";
+        //     break;
+        // case "ud":
+        //     code = "ud";
+        //     break;
+        // case "zh":
+        //     code = "zh";
+        //     break;
         default:
             code = "en";
     }

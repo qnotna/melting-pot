@@ -34,11 +34,13 @@ export default {
         "http://localhost:5000/newsapi/everything?q=" + input.query + 
         "&language=" + input.lang + 
         "&sortBy=" + input.sortBy + 
+        "&size=" + input.size +
         "&sources=" + input.sources + 
         "&apiKey=1a1523a02e3d4a65a047b106d46acaaa":
-
+        
         "http://localhost:5000/newsapi/everything?q=" + input.query + 
         "&language=" + input.lang + 
+        "&size=" + input.size +
         "&sortBy=" + input.sortBy +
         "&apiKey=1a1523a02e3d4a65a047b106d46acaaa";
         console.log(url);
