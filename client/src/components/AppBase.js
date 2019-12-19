@@ -11,17 +11,17 @@ import SideBar from './SideBar.js';
 import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import contentViewSectionsExampleData from '../example/contentViewSections.json';
-import contentViewTagsExampleData from '../example/contentViewTags.json';
 // import readerViewArticleExampleData from './example/readerViewArticle.json';
 
 import Axios from 'axios';
-import api from '../utils/API';
+
+import store from '../store'
+import { setUser } from '../actions'
+import { Components } from '../utils/Components';
+import Settings from "./SettingsModule"
 
 
-class Home extends Component {
-    state = {
-        sections: []
-    }
+class AppBase extends Component {
 
     isCollapsed = false;
     collapseSidebar = (event) => {
@@ -31,23 +31,29 @@ class Home extends Component {
         document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
     }
 
-    componentDidMount() {
-        console.log("Component mount")
-        // console.log(api.getLatest())
-        api.getHot((res) => {
-            this.setState(prevState => ({
-                sections: [...prevState.sections, res]
-            }))
-        })
-        api.getLatest((res) => {
-            this.setState(prevState => ({
-                sections: [...prevState.sections, res]
-            }))
-        })
+    
+
+    dispatchBtnAction(){
+        console.log(setUser)
+        store.dispatch(setUser({
+            name: "Steve"
+        }))
+    }
+
+    // Given a name return coresponding component
+    getComponentByName(component_name) {
+        switch (component_name) {
+            case Components.HOME:
+                return <ContentView/>
+            case Components.SETTINGS:
+                return <Settings/>
+        }
     }
 
     render() {
-        // console.log(this.state)
+        // Get the name of the component that should be renderd 
+        // as App content from the App global store
+        const { content_component } = store.getState()
 
         return (
             <div className='App'>
@@ -61,19 +67,9 @@ class Home extends Component {
                     <NavigationBar
                         collapseSidebar={this.collapseSidebar.bind(this)}
                     />
-                    <ContentView
-                        sections={
-                            this.state.sections
-                            // contentViewSectionsExampleData
-                        }
-                        tags={contentViewTagsExampleData}
-                        test="test"
-                    />
-                    {
-                        // <ReaderView
-                        //   article={this.article}
-                        // />
-                    }
+
+                    {this.getComponentByName(content_component)}
+
                 </div>
             </div>
         );
@@ -81,4 +77,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default AppBase;
