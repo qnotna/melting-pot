@@ -25,10 +25,6 @@
   margin-bottom: 0.5em;
 }
 
-#reader-view-content p {
-  padding-top: 1.25em;
-}
-
 #reader-view-meta {
   position: sticky;
   top: 0;
@@ -40,10 +36,19 @@
   /* display: inline-block; */
 }
 
-#reader-view-meta div {
+#reader-view-meta-information {
   background-color: darkGray;
   width: 100%;
   height: 100%;
+}
+
+#reader-view-meta-information .icon {
+  height: 1em;
+  width: 1em;
+}
+
+#reader-view-author {
+  font-style: italic;
 }
 
 @media screen and (min-width: 1000px) {
