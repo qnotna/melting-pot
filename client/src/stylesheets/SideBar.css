@@ -2,12 +2,13 @@
   height: 100%;
   background-color: gray;
   overflow-y: auto;
-  width: 100%;
+  width: 16em;
 }
 
 .sidebar-sections {
   padding: 0 1em;
-  min-height: calc(100vh - 70px);
+  /*min-height: calc(100vh - 70px);*/
+  margin-bottom: 30px;
 }
 
 .sidebar-section {

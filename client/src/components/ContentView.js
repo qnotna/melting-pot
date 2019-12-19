@@ -13,13 +13,14 @@ class ContentView extends Component {
     return(
 
       <div id='content-view'>
-        <ul id='content-view-tags'>
-          <ContentViewTags tags={this.props.tags}/>
-        </ul>
-        {/* {this.props.sections.data != undefined &&  */}
-          <ContentViewSections sections={this.props.sections}/>
-        {/* } */}
-        
+        <div id='content-view-scrollbar'>
+          <ul id='content-view-tags'>
+            <ContentViewTags tags={this.props.tags}/>
+          </ul>
+          {/* {this.props.sections.data != undefined &&  */}
+            <ContentViewSections sections={this.props.sections}/>
+          {/* } */}
+        </div>
       </div>
     );
   }

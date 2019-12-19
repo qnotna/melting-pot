@@ -1,7 +1,7 @@
 #content-view {
   height: 100%;
   width: 100%;
-  background-color: gainsboro;
+  background-color: white;
   overflow: auto;
 }
 
@@ -66,4 +66,27 @@
 
 .content-view-section[type="grid"] .content-view-item {
   margin: 0 1em 1em 0;
+}
+
+/* Scrollbalken gestalten*/
+
+/* width */
+#content-view-scrollbar ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+#content-view-scrollbar ::-webkit-scrollbar-track {
+  background: none; 
+}
+ 
+/* Handle */
+#content-view-scrollbar ::-webkit-scrollbar-thumb {
+  background: none; 
+}
+
+/* Handle on hover */
+#content-view-scrollbar ::-webkit-scrollbar-thumb:hover {
+  background: none; 
 }

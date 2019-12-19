@@ -28,6 +28,7 @@ class Home extends Component {
         this.isCollapsed = !this.isCollapsed;
         let sideBar = ReactDOM.findDOMNode(this.refs.Sidebar)
         sideBar.setAttribute('collapsed', this.isCollapsed.toString());
+        document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
     }
 
     componentDidMount() {
