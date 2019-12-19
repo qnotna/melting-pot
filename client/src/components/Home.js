@@ -10,16 +10,17 @@ import SideBar from './SideBar.js';
 
 import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
-import contentViewSectionsExampleData from '../example/contentViewSections.json';
+// import contentViewSectionsExampleData from '../example/contentViewSections.json';
 import contentViewTagsExampleData from '../example/contentViewTags.json';
 // import readerViewArticleExampleData from './example/readerViewArticle.json';
 
-import Axios from 'axios';
+// import Axios from 'axios';
 import api from '../utils/API';
 
 
 class Home extends Component {
     state = {
+        input: "",
         sections: []
     }
 
@@ -43,10 +44,11 @@ class Home extends Component {
                 sections: [...prevState.sections, res]
             }))
         })
+
     }
 
     render() {
-        // console.log(this.state)
+        // console.log(this.state);
 
         return (
             <div className='App'>
@@ -59,12 +61,14 @@ class Home extends Component {
                 <div id='right'>
                     <NavigationBar
                         collapseSidebar={this.collapseSidebar.bind(this)}
+                        func={this.getSearchInput}
                     />
                     <ContentView
                         sections={
                             this.state.sections
                             // contentViewSectionsExampleData
                         }
+                        // results={this.state.results}
                         tags={contentViewTagsExampleData}
                         test="test"
                     />
@@ -76,6 +80,21 @@ class Home extends Component {
                 </div>
             </div>
         );
+    }
+
+    getSearchInput = (data) => {
+        this.setState({
+            input: data
+        }, this.getSearchResults)
+    }
+
+    getSearchResults = () => {
+        api.getSearchResults((res) => {
+            this.setState(prevState => ({
+                // sections: res
+                sections: [...prevState.sections, res]
+            }))
+        }, this.state.input)
     }
 
 }

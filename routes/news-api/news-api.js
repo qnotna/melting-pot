@@ -1,6 +1,10 @@
 const router = require ('express').Router();
 const NewsAPI  = require('newsapi');
-const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
+const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
+// const newsapi = new NewsAPI('e81d0366f1cc4a2489cd51d4154f5693');
+
+const HttpError = require('../../middleware/httpError');
+
 
 // country: sind ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za
 // language: ar de en es fr he it nl no pt ru se ud zh
@@ -56,20 +60,24 @@ router.get('/topHeadlines/:category', (req, res) => {
 // https://newsapi.org/docs/endpoints/everything
 
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
-router.get('/everything/:query', (req, res) => {
+router.get('/everything', (req, res, next) => {
     var userLanguage = 'en';
+    let query = checkInput(req.query);
     newsapi.v2.everything({
-        q: req.params.query,
-        //sources: 'bbc-news,the-verge',
+        q: query.q,
+        // qInTitle: req.params.q,
+        sources: query.sources,
         //domains: 'bbc.co.uk, techcrunch.com',
         //from: '2017-12-01',
         //to: '2017-12-12',
-        language: userLanguage,
-        sortBy: 'relevancy',
-        pageSize: 2
-    }).then(response => {
-        console.log(response);
-    });
+        language: query.language,
+        sortBy: query.sortBy,
+        pageSize: 20
+    })
+    .then(response => res.json(response)
+    )
+    .catch(err => next(err)
+    );
 });
 
 // Gibt alle Nachrichtendinste z.B. BBC sowie ihre Untergruppen z.B. BBC Sport zurück
@@ -79,5 +87,19 @@ router.get('/source', (req, res) => {
         console.log(response);
     });
 });
+
+function checkInput(query){
+    let queryParams = {};
+    for(let prop of Object.getOwnPropertyNames(query)){
+        let value = query[prop];
+        if(prop === 'q' && value === undefined){
+            next(new HttpError("Search term required", 400));
+        }
+        sources = (prop === 'sources' && value) ? value.split(',') : []
+        queryParams.prop = value;
+    }
+    console.log(queryParams);
+    return queryParams;
+}
 
 module.exports = router;
