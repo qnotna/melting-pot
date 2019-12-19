@@ -1,35 +1,36 @@
-import React, {Component, Fragment} from 'react';
-// import ContentViewItemPreview from './ContentViewItemPreview.js';
+import React from 'react';
+import ActionButton from './simple/ActionButton';
+import ReadingTime from './simple/ReadingTime';
+import Source from './simple/Source';
+import TextBlock from './simple/TextBlock';
 import '../stylesheets/ReaderView.css';
 
-class ReaderView extends Component {
+const ReaderView = ({ article }) => {
 
-
-  createText = (text) => {
-    let paragraphs = text.split('\n');
-    return paragraphs.map((paragraph) => (
-      <Fragment key={paragraphs.indexOf(paragraph)}>
-        <p>{paragraph}</p>
-      </Fragment>
-    ));
-  }
-
-  render() {
-    let article = this.props.sections;
-    return(
-      <div id='reader-view'>
-        <img src={article.content.imgSrc} alt={article.content.imgAlt}/>
-        <div id='reader-view-meta'>
-          <div/>
-        </div>
-        <div id='reader-view-content'>
-          <h1>{article.content.title}</h1>
-          <h3>{article.content.previewText}</h3>
-          {this.createText(article.content.text)}
+  return(
+    <div id='reader-view'>
+      <img src={article.urlToImage} alt={article.description}/>
+      <div id='reader-view-meta'>
+        <div id='reader-view-meta-information'>
+          <Source
+            name={article.source.name}
+            date={article.published}
+          />
+          <ReadingTime time={15}/>
+          <div>
+            <ActionButton type='add'/>
+            <ActionButton type='save'/>
+          </div>
         </div>
       </div>
-    );
-  }
+      <div id='reader-view-content'>
+        <h1>{article.title}</h1>
+        <h3>{article.description}</h3>
+        <p id='reader-view-author'>{`By ${article.author}`}</p>
+        <TextBlock text={article.content}/>
+      </div>
+    </div>
+  );
 
 }
 
