@@ -6,7 +6,7 @@
 
 #left {
   height: 100%;
-  width: 20em;
+  width: 16em;
   overflow: visible;
 }
 
@@ -55,4 +55,27 @@
   to {
     margin-left: 0em;
   }
+}
+
+/* Scrollbalken gestalten*/
+
+/* width */
+#left ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+#left ::-webkit-scrollbar-track {
+  background: none; 
+}
+ 
+/* Handle */
+#left ::-webkit-scrollbar-thumb {
+  background: none; 
+}
+
+/* Handle on hover */
+#left ::-webkit-scrollbar-thumb:hover {
+  background: none; 
 }
