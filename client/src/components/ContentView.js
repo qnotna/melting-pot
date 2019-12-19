@@ -15,8 +15,6 @@ import api from '../utils/API';
 class ContentView extends Component {
 
   componentDidMount() {
-    console.log("Component mount")
-
     api.getHot((res) => {
       store.dispatch( addSection ( res ))
     })
