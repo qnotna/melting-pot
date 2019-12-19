@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import ContentViewItems from './ContentViewItems.js';
 
 class ContentViewSections extends Component {
@@ -7,15 +7,20 @@ class ContentViewSections extends Component {
   getItemSize = (section) => ((section.type === 'horizontal') ? 'large' : 'small')
 
   render() {
-    // console.log(this.props)
-    return this.props.sections.map((section) => (
-      <Fragment key={section.name}>
-        <h1 className='content-view-section-title'>{section.name}</h1>
-        <div className='content-view-section' type={section.type}>
-          <ContentViewItems articles={section.articles} previewSize={this.getItemSize(section)}/>
-        </div>
-      </Fragment>
-    ));
+    const sections = this.props.sections
+
+    return (
+      <>
+        {sections.map(section =>
+          <Fragment key={section.name}>
+            <h1 className='content-view-section-title'>{section.name}</h1>
+            <div className='content-view-section' type={section.type}>
+              <ContentViewItems articles={section.articles} previewSize={this.getItemSize(section)} />
+            </div>
+          </Fragment>
+        )}
+      </>
+    )
   }
 
 }

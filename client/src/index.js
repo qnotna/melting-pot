@@ -3,8 +3,17 @@ import ReactDOM from 'react-dom';
 import './stylesheets/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import store from './store'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const render = function() {
+    ReactDOM.render(<App />, document.getElementById('root'));
+}
+// Any time there is a successful update to the store the
+// <App> component will be re-renderd with new state values!  
+store.subscribe(render);
+
+render();
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
