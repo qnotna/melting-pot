@@ -8,8 +8,8 @@ class ContentViewSections extends Component {
 
   render() {
     // console.log(this.props)
-    return this.props.sections.map((section) => (
-      <Fragment key={section.name}>
+    return this.props.sections.map((section, index) => (
+      <Fragment key={index}>
         <h1 className='content-view-section-title'>{section.name}</h1>
         <div className='content-view-section' type={section.type}>
           <ContentViewItems articles={section.articles} previewSize={this.getItemSize(section)}/>
