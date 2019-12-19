@@ -3,7 +3,7 @@
     "id":0,
     "title":"Neuigkeiten",
     "items":[
-      {"title":"Melting Hot","unreadAmount":10},
+      {"title":"Melting Hot","unreadAmount":10, "component": "HOME"},
       {"title":"Favoriten","unreadAmount":2},
       {"title":"Später lesen","unreadAmount":14}
     ]
@@ -23,6 +23,9 @@
   {
     "id":2,
     "title":"Your Profile",
-    "items":[{"title":"Settings","unreadAmount":0},{"title":"Log Out","unreadAmount":0}]
+    "items":[
+      {"title":"Settings","unreadAmount":0, "component": "SETTINGS"},
+      {"title":"Log Out","unreadAmount":0}
+    ]
   }
 ]

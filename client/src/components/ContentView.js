@@ -3,23 +3,36 @@ import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
 import '../stylesheets/ContentView.css';
 
+// Placeholder data
+import contentViewTagsExampleData from '../example/contentViewTags.json';
+import store from '../store.js';
+import { addSection } from '../actions/index.js';
+
+import api from '../utils/API';
+
+
+
 class ContentView extends Component {
 
-
+  componentDidMount() {
+    api.getHot((res) => {
+      store.dispatch( addSection ( res ))
+    })
+    api.getLatest((res) => {
+      store.dispatch( addSection( res ))
+    })
+}
 
   render() {
-    // console.log(this.props)
+    const { sections } = store.getState()
 
     return(
-
       <div id='content-view'>
         <div id='content-view-scrollbar'>
           <ul id='content-view-tags'>
-            <ContentViewTags tags={this.props.tags}/>
+            <ContentViewTags tags={contentViewTagsExampleData}/>
           </ul>
-          {/* {this.props.sections.data != undefined &&  */}
-            <ContentViewSections sections={this.props.sections}/>
-          {/* } */}
+            <ContentViewSections sections={sections}/>
         </div>
       </div>
     );

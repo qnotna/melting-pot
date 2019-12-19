@@ -6,7 +6,6 @@ import Badge from './simple/Badge';
 import '../stylesheets/ContentViewItemPreview.css';
 
 const ContentViewItemPreview = ({ item, previewSize }) => {
-
   return(
     <div className='preview-with-image' preview-size={previewSize}>
       <img className='preview-image' src={item.urlToImage} alt={item.title}/>

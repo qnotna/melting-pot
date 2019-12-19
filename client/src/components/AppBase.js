@@ -11,18 +11,22 @@ import ReaderView from './ReaderView.js';
 import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import contentViewSectionsExampleData from '../example/contentViewSections.json';
-import contentViewTagsExampleData from '../example/contentViewTags.json';
 import readerViewArticle from '../example/readerViewArticle.json';
 
-import api from '../utils/API';
 
-class Home extends Component {
+// import readerViewArticleExampleData from './example/readerViewArticle.json';
 
-  state = {
-    sections: []
-  }
+import Axios from 'axios';
+
+import store from '../store'
+import { setUser } from '../actions'
+import { Components } from '../utils/Components';
+import Settings from "./SettingsModule"
+
+class AppBase extends Component {
 
   isCollapsed = false;
+
   collapseSidebar = (event) => {
     this.isCollapsed = !this.isCollapsed;
     let sideBar = ReactDOM.findDOMNode(this.refs.Sidebar)
@@ -30,20 +34,23 @@ class Home extends Component {
     document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
   }
 
-  componentDidMount() {
-    api.getHot((res) => {
-      this.setState(prevState => ({
-        sections: [...prevState.sections, res]
-      }))
-    })
-    api.getLatest((res) => {
-      this.setState(prevState => ({
-        sections: [...prevState.sections, res]
-      }))
-    })
+  // Given a name return coresponding component
+  getComponentByName(component_name) {
+    switch (component_name) {
+      case Components.HOME:
+        return <ContentView />
+      case Components.SETTINGS:
+        return <Settings />
+      case Components.ARTICLE:
+        return <ReaderView article={readerViewArticle}/>
+    }
   }
 
   render() {
+    // Get the name of the component that should be renderd 
+    // as App content from the App global store
+    const { content_component } = store.getState()
+
     return (
       <div className='App'>
         <div id='left' ref='Sidebar'>
@@ -56,19 +63,9 @@ class Home extends Component {
           <NavigationBar
             collapseSidebar={this.collapseSidebar.bind(this)}
           />
-        <ContentView
-          sections={
-            this.state.sections
-            // contentViewSectionsExampleData
-          }
-          tags={contentViewTagsExampleData}
-          test="test"
-          />
-          {
-            // <ReaderView
-            //   article={readerViewArticle}
-            //   />
-          }
+
+          {this.getComponentByName(content_component)}
+
         </div>
       </div>
     );
@@ -76,4 +73,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default AppBase;
