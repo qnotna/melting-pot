@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import store from '../store';
 
 import { setContentComponent } from "../actions"
+import { Components } from '../utils/Components';
+
+import api from '../utils/API';
+import { addSection, setSections } from '../actions'
+
+
 
 class SideBarItems extends Component {
 
@@ -9,7 +15,26 @@ class SideBarItems extends Component {
   createItemKey = (item) => (`item-${item.toLowerCase().replace(' ', '-')}`)
 
   setCurrentComponent(component){
+
+    switch (component) {
+      case Components.HOME:
+        this.loadSections()
+        break;
+    
+      default:
+        break;
+    }
+
     store.dispatch( setContentComponent(component))
+  }
+
+  loadSections(){
+    api.getHot((res) => {
+      store.dispatch( addSection ( res ))
+    })
+    api.getLatest((res) => {
+      store.dispatch( addSection( res ))
+    })
   }
 
   render() {

@@ -16,10 +16,10 @@ import readerViewArticle from '../example/readerViewArticle.json';
 
 // import readerViewArticleExampleData from './example/readerViewArticle.json';
 
-import Axios from 'axios';
+import api from '../utils/API';
 
 import store from '../store'
-import { setUser } from '../actions'
+import { addSection, setSections } from '../actions'
 import { Components } from '../utils/Components';
 import Settings from "./SettingsModule"
 
@@ -34,15 +34,31 @@ class AppBase extends Component {
     document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
   }
 
+  test(){
+    console.log("TEST")
+  }
+
+  loadSearchResultSections(){
+    const input = store.getState().search_input
+    api.getSearchResults((res) => {
+      store.dispatch( setSections ( res ))
+    }, input)
+  }
+
   // Given a name return coresponding component
   getComponentByName(component_name) {
     switch (component_name) {
       case Components.HOME:
         return <ContentView />
+
+      case Components.SEARCH_RESULTS:
+        return <ContentView />
+
       case Components.SETTINGS:
         return <Settings />
-      case Components.ARTICLE:
-        return <ReaderView article={readerViewArticle}/>
+
+      // case Components.ARTICLE:
+      //   return <ReaderView article={readerViewArticle}/>
     }
   }
 

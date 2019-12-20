@@ -8,7 +8,17 @@ export const addSection = (section) => ({
     section
 })
 
+export const setSections = (sections) => ({
+    type: "SET_SECTIONS",
+    sections
+})
+
 export const setContentComponent = (component) => ({
     type: "SET_CONTENT_COMPONENT",
     component
+})
+
+export const setSearchInput = (search_input) => ({
+    type: "SET_SEARCH_INPUT",
+    search_input
 })
