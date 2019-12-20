@@ -28,5 +28,34 @@ export default {
         ).catch(
             err => console.log(err)
         )
+    },
+    getSearchResults(callback, input){
+        let url = (input.sources) ?
+        "http://localhost:5000/newsapi/everything?q=" + input.query + 
+        "&language=" + input.lang + 
+        "&sortBy=" + input.sortBy + 
+        "&size=" + input.size +
+        "&sources=" + input.sources :
+        
+        "http://localhost:5000/newsapi/everything?q=" + input.query + 
+        "&language=" + input.lang + 
+        "&size=" + input.size +
+        "&sortBy=" + input.sortBy;
+        console.log(url);
+        Axios.get(url)
+        .then(
+            (res) => {
+                callback({
+                    name: "Results",
+                    type: "list",
+                    articles: res.data.articles,
+                    // res: res
+                })
+            }
+        ).catch(
+            err => callback({
+                error: err
+            })
+        )
     }
 }

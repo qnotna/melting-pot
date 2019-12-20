@@ -23,7 +23,9 @@ const initialState = {
     sections: [],
 
     // Property used to load the article preview
-    current_article: {}
+    current_article: {},
+
+    search_input: {}
 };
 
 const store = createStore(reducer, initialState);
