@@ -16,6 +16,8 @@ class SearchBar extends Component {
     sourceRef = React.createRef();
     formRef = React.createRef();
     sizeRef = React.createRef();
+    fromRef = React.createRef();
+    toRef = React.createRef();
 
     state = {
         showMenu: false
@@ -91,6 +93,12 @@ class SearchBar extends Component {
                                     <option>50</option>
                                     <option>100</option>
                                 </select>
+
+                                <label>From</label>
+                                <input type="date" ref={this.fromRef}/>
+
+                                <label>To</label>
+                                <input type="date" ref={this.toRef}/>
                             </div>
                         ) : (null)
                     }
@@ -104,19 +112,24 @@ class SearchBar extends Component {
 
     handleClick = (event) => {
         event.preventDefault();
-
+        console.log(this.toRef.current);
+        console.log(this.toRef.current.value);
         //TODO Sprache automatisch aus User-Einstellungen wählen
         let langCode = this.langRef.current ? formatLangOption(this.langRef.current.options[this.langRef.current.selectedIndex].text) : "de";
         let sortBy = this.sortRef.current ? this.sortRef.current.options[this.sortRef.current.selectedIndex].text : "publishedAt";
         let sources = this.sourceRef.current ? this.sourceRef.current.value : [];
         let size = this.sizeRef.current ? this.sizeRef.current.value : 20;
+        let from = this.fromRef.current ? this.fromRef.current.value : "";
+        let to = this.toRef.current ? this.toRef.current.value : "";
         const searchInput = {
             query: this.qRef.current.value,
             lang: langCode,
             lang: langCode,
             sortBy: sortBy,
             source: sources,
-            size: size
+            size: size,
+            from: from,
+            to: to
         }
         this.setSearchBarInput(searchInput)
         this.loadSearchResultSections()
