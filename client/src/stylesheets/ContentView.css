@@ -18,7 +18,7 @@
   margin-right: 1em;
   background-color: yellow;
   display: inline-block;
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
 }
 
 /* TODO: not working properly */
@@ -44,7 +44,7 @@
 .content-view-item[preview-size="large"] {
   padding-right: 1em;
   display: inline-block;
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
 }
 
 .content-view-item[preview-size="large"] * {
@@ -66,27 +66,4 @@
 
 .content-view-section[type="grid"] .content-view-item {
   margin: 0 1em 1em 0;
-}
-
-/* Scrollbalken gestalten*/
-
-/* width */
-#content-view-scrollbar ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-/* Track */
-#content-view-scrollbar ::-webkit-scrollbar-track {
-  background: none; 
-}
- 
-/* Handle */
-#content-view-scrollbar ::-webkit-scrollbar-thumb {
-  background: none; 
-}
-
-/* Handle on hover */
-#content-view-scrollbar ::-webkit-scrollbar-thumb:hover {
-  background: none; 
 }

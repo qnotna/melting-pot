@@ -59,23 +59,29 @@
 
 /* Scrollbalken gestalten*/
 
+/* Chrome und Safarie */
 /* width */
+/*
 #left ::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-
-/* Track */
-#left ::-webkit-scrollbar-track {
+*/
+/* Track */ /* Handle */ /* Handle on hover */
+/*
+#left ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb:hover {
   background: none; 
 }
- 
-/* Handle */
-#left ::-webkit-scrollbar-thumb {
-  background: none; 
+*/
+/*
+.scrollbar-container {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox 
+  -ms-overflow-style: none;  /* Internet Explorer 10+ 
 }
-
-/* Handle on hover */
-#left ::-webkit-scrollbar-thumb:hover {
-  background: none; 
+.scrollbar-container ::-webkit-scrollbar { /* WebKit Safari and Chrome
+  width: 0;
+  height: 0;
+  background:none;
 }
+*/

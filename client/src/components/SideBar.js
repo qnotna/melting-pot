@@ -3,17 +3,19 @@ import SideBarSections from './SideBarSections.js'
 import ProfileOverview from './ProfileOverview.js'
 import '../stylesheets/SideBar.css';
 
+import { Scrollbars } from 'react-custom-scrollbars';
+
 class SideBar extends Component {
 
   render() {
     return(
       <div id="sidebar">
-        <div id='sidebar-scrollbar'>
-        <ul className='sidebar-sections'>
-          <SideBarSections sections={this.props.sections}/>
-        </ul>
-        <ProfileOverview user={this.props.user}/>
-        </div>
+        <Scrollbars>
+          <ul className='sidebar-sections'>
+            <SideBarSections sections={this.props.sections}/>
+          </ul>
+          <ProfileOverview user={this.props.user}/>
+        </Scrollbars>
       </div>
     );
   }
