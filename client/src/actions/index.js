@@ -18,7 +18,7 @@ export const setContentComponent = (component) => ({
     component
 })
 
-export const setSearchInput = (search_input) => ({
-    type: "SET_SEARCH_INPUT",
-    search_input
+export const setSearchParams = (searchParams) => ({
+    type: "SET_SEARCH_PARAMS",
+    searchParams
 })
