@@ -21,10 +21,10 @@ export default (state, action) => {
         sections: action.sections
       }
 
-    case "SET_SEARCH_INPUT":
+    case "SET_SEARCH_PARAMS":
       return {
         ...state,
-        search_input: action.search_input
+        searchParams: action.searchParams
       }
 
     case "SET_CONTENT_COMPONENT":
