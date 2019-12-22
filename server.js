@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 // const routes = require('./routes/api');
-const userAuth = require("./routes/auth-api/userAuth");
-const users = require("./routes/users/users");
 const errorHandler = require("./middleware/errorHandler");
 const responseHeader = require("./middleware/responseHeader");
+
+// Define APIs
+const users = require("./routes/users/users");
+const userAuth = require("./routes/auth-api/userAuth");
 const newsAPI = require("./routes/news-api/news-api")
+const prefsAPI = require('./routes/preferences-api/index')
 
 
 const app = express();
@@ -45,6 +48,7 @@ require("./config/passport")(passport);
 // app.use('/api', routes); // Not safe users API
 app.use('/api/auth', userAuth);
 app.use('/api/users', users);
+app.use('/api/prefs', prefsAPI)
 app.use("/newsapi", newsAPI)
 
 // Error-Errorhandling
