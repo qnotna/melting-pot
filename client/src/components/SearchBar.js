@@ -3,10 +3,9 @@ import formatLangOption from '../utils/langOptFormat'
 import store from '../store';
 import { Components } from '../utils/Components';
 
-import { setSearchInput, setContentComponent } from '../actions';
-
 import api from '../utils/API';
-import { addSection, setSections } from '../actions'
+import { setContentComponent, setSections, setSearchParams } from '../actions'
+import { languages, sortOptions } from '../data/options'
 
 
 class SearchBar extends Component {
@@ -21,14 +20,6 @@ class SearchBar extends Component {
         showMenu: false
     }
 
-    setSearchBarInput(input) {
-        store.dispatch(setSearchInput(input))
-    }
-
-    setCurrentComponent(component) {
-        store.dispatch(setContentComponent(component))
-    }
-
     onShowMenu = (event) => {
         event.preventDefault();
         event.target.innerHTML = (this.state.showMenu === true) ? "Erweitert" : "Einklappen";
@@ -39,10 +30,10 @@ class SearchBar extends Component {
 
 
     loadSearchResultSections() {
-        const input = store.getState().search_input
+        const params = store.getState().searchParams
         api.getSearchResults((res) => {
             store.dispatch(setSections([res]))
-        }, input)
+        }, params)
     }
 
     render() {
@@ -53,34 +44,24 @@ class SearchBar extends Component {
 
                 <div className="dropdown">
                     {
-                        this.state.showMenu ? (
+                        this.state.showMenu && (
 
                             <div className="dropdown-content">
                                 <label>Language</label>
                                 <select ref={this.langRef}>
-                                    <option>Arabian</option>
-                                    <option>Dutch</option>
-                                    <option>English</option>
-                                    <option>French</option>
-                                    <option>German</option>
-                                    <option>Italian</option>
-                                    <option>Norwegian</option>
-                                    <option>Portuguese</option>
-                                    <option>Russian</option>
-                                    <option>Spanish</option>
-                                    <option>Sweden</option>
-                                    {/* <option>he</option>
-                                    <option>ud</option>
-                                    <option>zh</option> */}
+                                    {Object.keys(languages).map((key =>
+                                        <option key={key} value={key}>{languages[key]}</option>
+                                    ))}
                                 </select>
 
                                 <label>Sort by</label>
                                 <select ref={this.sortRef}>
-                                    <option>publishedAt</option>
-                                    <option>relevancy</option>
-                                    <option>popularity</option>
+                                    {Object.keys(sortOptions).map((key =>
+                                        <option key={key} value={key}>{sortOptions[key]}</option>
+                                    ))}
                                 </select>
-
+                                {/* TODO: Soures toLowerCase + check if available
+                                    maybe select instead of input? */}
                                 <label>Source</label>
                                 <input type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
 
@@ -92,7 +73,7 @@ class SearchBar extends Component {
                                     <option>100</option>
                                 </select>
                             </div>
-                        ) : (null)
+                        )
                     }
                 </div>
                 <button type="button" onClick={this.onShowMenu}>Erweitert</button>
@@ -106,22 +87,22 @@ class SearchBar extends Component {
         event.preventDefault();
 
         //TODO Sprache automatisch aus User-Einstellungen wählen
-        let langCode = this.langRef.current ? formatLangOption(this.langRef.current.options[this.langRef.current.selectedIndex].text) : "de";
-        let sortBy = this.sortRef.current ? this.sortRef.current.options[this.sortRef.current.selectedIndex].text : "publishedAt";
+        let q = this.qRef.current.value
+        let language = this.langRef.current ? this.langRef.current.value : "de";
+        let sortBy = this.sortRef.current ? this.sortRef.current.value : "publishedAt";
         let sources = this.sourceRef.current ? this.sourceRef.current.value : [];
         let size = this.sizeRef.current ? this.sizeRef.current.value : 20;
-        const searchInput = {
-            query: this.qRef.current.value,
-            lang: langCode,
-            lang: langCode,
-            sortBy: sortBy,
-            source: sources,
-            size: size
-        }
-        this.setSearchBarInput(searchInput)
+
+        // Set search parameters to be accesible in global state
+        store.dispatch( setSearchParams({ q, language, sortBy, sources, size }) );
+
+        // Get search sections and set them to be accesible in global state
         this.loadSearchResultSections()
-        this.setCurrentComponent(Components.SEARCH_RESULTS)
-        this.formRef.current.reset();
+
+        // Set the component to be displayed in the app to search results
+        store.dispatch( setContentComponent(Components.SEARCH_RESULTS) )
+
+        // this.formRef.current.reset();
     }
 }
 
