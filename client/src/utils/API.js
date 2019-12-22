@@ -1,8 +1,10 @@
 import Axios from 'axios';
 
+const src = 'http://localhost:5000/'
+
 export default {
     getHot(callback){
-        Axios.get("http://localhost:5000/newsapi/top-headlines?country=de&pageSize=5")
+        Axios.get(src + "newsapi/top-headlines?country=de&pageSize=5")
         .then(
             (res) => {
                 callback({
@@ -16,7 +18,7 @@ export default {
         )
     },
     getLatest(callback){
-        Axios.get("http://localhost:5000/newsapi/latest?language=de")
+        Axios.get(src + "newsapi/latest?language=de")
         .then(
             (res) => {
                 callback({
@@ -28,5 +30,22 @@ export default {
         ).catch(
             err => console.log(err)
         )
+    },
+    getSearchResults(callback, params){
+        Axios.get(src + "newsapi/everything", { params })
+        .then(
+            (res) => {
+                callback({
+                    name: "Results",
+                    type: "grid",
+                    articles: res.data.articles,
+                    // res: res
+                })
+            }
+        ).catch(
+            err => callback({
+                error: err
+            })
+        )
     }
-} 
+}

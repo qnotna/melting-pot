@@ -6,19 +6,76 @@
 
 #left {
   height: 100%;
-  width: 20em;
+  width: 16em;
+  overflow: visible;
 }
 
 #left[collapsed='true'] {
   position: absolute;
-  left: -20em;
+  left: -16em;
+  animation: leftCollapsedTrue .25s linear;
+}
+
+@keyframes leftCollapsedTrue {
+  from {
+    left: 0em;
+  }
+  to {
+    left: -16em;
+  }
 }
 
 #left[collapsed='false'] {
   position: inherit;
+  animation: leftCollapsedFalse .25s linear;
+}
+
+@keyframes leftCollapsedFalse {
+  from { 
+    margin-left: -16em;
+  }
+  to {
+    margin-left: 0em;
+  }
 }
 
 #right {
   height: 100%;
   width: 100%;
+}
+
+#right[collapsed='true'] {
+  animation: rightCollapsedTrue .25s linear;
+}
+
+@keyframes rightCollapsedTrue {
+  from {
+    margin-left: 16em;
+  }
+  to {
+    margin-left: 0em;
+  }
+}
+
+/* Scrollbalken gestalten*/
+
+/* width */
+#left ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+#left ::-webkit-scrollbar-track {
+  background: none; 
+}
+ 
+/* Handle */
+#left ::-webkit-scrollbar-thumb {
+  background: none; 
+}
+
+/* Handle on hover */
+#left ::-webkit-scrollbar-thumb:hover {
+  background: none; 
 }

@@ -20,9 +20,12 @@ class ContentViewItems extends Component {
   }
 
   render() {
-    console.log(this.props)
-    return this.props.articles.map((article) => (
-      <div className='content-view-item' preview-size={this.props.previewSize} key={article.title}>
+    return this.props.articles.map((article, index) => (
+      <div
+        className='content-view-item'
+        preview-size={this.props.previewSize}
+        key={index}
+      >
         {this.createItemPreview(article)}
       </div>
     ));

@@ -1,6 +1,14 @@
-.content-view-item img {
+.icon {
   width: 2em;
   height: 2em;
+}
+
+.preview-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
 }
 
 .content-view-item h3 {
@@ -8,8 +16,8 @@
 }
 
 .content-view-item[preview-size="large"] {
-  height: 20em;
-  width: 20em;
+  height: 25em;
+  width: 25em;
 }
 
 .content-view-item[preview-size="small"] {
@@ -25,6 +33,16 @@
   background-color: blue;
   color: white;
   font-size: 8pt;
+  float: left;
+  left: 1em;
+}
+
+.preview-with-image[preview-size="small"] .unread-mark {
+  bottom: 11.5em;
+}
+
+.preview-with-image[preview-size="large"] .unread-mark {
+  top: -21.5em;
 }
 
 .preview-with-image {
@@ -49,25 +67,8 @@
   padding: 0.5em;
 }
 
-.preview-with-image button:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-
-
-
-.preview-with-image .unread-mark {
-  float: left;
-  top: 1em;
-  left: 1em;
-}
-
-.preview-with-image:hover .preview-actions button {
-  display: inherit;
-}
-
 .preview-with-image .preview-actions button {
-  display: none;
+  /* display: none; */
   font-size: 8pt;
 }
 
@@ -92,12 +93,6 @@
   right: 2.5em;
 }
 
-/* .preview-with-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
-
 .preview-with-image[preview-size="large"] {
   font-size: 10pt;
   height: 60%;
@@ -105,7 +100,7 @@
 
 .preview-with-image[preview-size="large"] .preview-actions {
   float: right;
-  top: -2.55em;
+  top: -20.5em;
   right: 1em;
 }
 
@@ -117,22 +112,14 @@
 .preview-with-image[preview-size="large"] .preview-information {
   float: left;
   font-size: 8pt;
-  bottom: -13em;
+  bottom: 5em;
   left: 1em;
   width: 100%;
 }
 
 .preview-with-image[preview-size="small"] {
   font-size: 8pt;
-  height: 70%
-}
-
-.preview-with-image[preview-size="small"] .preview-information {
-  display: none;
-}
-
-.preview-with-image[preview-size="small"]:hover .preview-information {
-  display: inherit;
+  height: 70%;
 }
 
 .preview-with-image[preview-size="small"]:hover, .preview-with-image[preview-size="large"]:hover {
@@ -147,12 +134,12 @@
 
 .preview-with-image[preview-size="small"] .preview-actions {
   float: left;
-  top: -11em;
+  top: -23.5em;
 }
 
 .preview-with-image[preview-size="small"] .preview-actions button {
   display: flex;
-  width: 90%;
+  width: 93%;
   margin: 0.25em 1em;
 }
 
@@ -160,13 +147,30 @@
   height: 100%;
   float: left;
   font-size: 8pt;
-  bottom: -7.5em;
+  bottom: 5em;
   left: 1em;
   width: 100%;
 }
 
 .preview-with-image p {
   padding: 0.5em;
+}
+
+.preview-with-image button:hover {
+  background-color: red;
+  color: white;
+}
+
+.preview-with-image:hover .preview-actions button {
+  display: inherit;
+}
+
+.preview-with-image[preview-size="small"] .preview-information {
+  display: none;
+}
+
+.preview-with-image[preview-size="small"]:hover .preview-information {
+  display: inherit;
 }
 
 .content-view-item:hover, .preview-actions button:hover, .preview-information-publisher:hover {
