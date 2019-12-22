@@ -25,7 +25,9 @@ const initialState = {
     // Property used to load the article preview
     current_article: {},
 
-    search_input: {}
+    // Object containing extended search parameters used to be sent with the search request
+    // possible fields are: q, sources, language, sortBy, pageSize 
+    searchParams: {}
 };
 
 const store = createStore(reducer, initialState);
