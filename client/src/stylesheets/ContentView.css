@@ -67,3 +67,9 @@
 .content-view-section[type="grid"] .content-view-item {
   margin: 0 1em 1em 0;
 }
+
+/* Scrollbalken */
+
+#content-view-scrollbar ::-webkit-scrollbar {
+  display: none;
+}
