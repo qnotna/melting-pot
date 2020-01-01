@@ -47,5 +47,21 @@ export default {
                 error: err
             })
         )
+    },
+    
+    updateUserData(callback, params){
+        Axios.patch(src + 'api/users/1234', {params})
+        .then(
+            (res) => {
+                callback({
+                    newUserData: res.data
+                })
+            }
+        )
+        .catch(
+            err => callback({
+                error: err
+            })
+        )
     }
 }

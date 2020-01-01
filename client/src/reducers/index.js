@@ -32,6 +32,12 @@ export default (state, action) => {
         ...state,
         content_component: action.component
       }
+    
+    case "SET_NEW_USER_DATA":
+      return {
+        ...state,
+        user: action.newUserData
+      }
 
     default:
       return state;

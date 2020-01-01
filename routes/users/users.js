@@ -39,6 +39,39 @@ router.route('/:id')
   // @route PATCH api/users/:id
   .patch((req, res, next) => {
 
+    var filter = {_id: req.params.id};
+    var update = {}
+
+    // Überprüfen welche Werte geändert wurden
+    if(req.body.params.name !== undefined) {
+      update.name = req.body.name;
+    }
+    if(req.body.params.email !== undefined) {
+      update.email = req.body.email;
+    }
+    if(req.body.params.password !== undefined) {
+      update.password = req.body.password;
+    }
+
+    // return user object with new values nur name und email
+    res.json({
+      name: req.body.params.name,
+      email: req.body.params.email
+    })
+
+    /*
+    // neue Wertes des Users speichern
+    User.findOneAndUpdate(filter, update, {new: true, safe: true})
+    .then(() => {
+      res.json({
+      idUpdated: true
+      })
+    })
+    .catch(err => {
+      err = new HttpError(err.message, 400);
+      next(err);
+    })
+    */
   })
 
   .all((req, res, next) => {

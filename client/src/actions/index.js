@@ -22,3 +22,8 @@ export const setSearchParams = (searchParams) => ({
     type: "SET_SEARCH_PARAMS",
     searchParams
 })
+
+export const setNewUserData = (newUserData) => ({
+    type: "SET_NEW_USER_DATA",
+    newUserData
+})
