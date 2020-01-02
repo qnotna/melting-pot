@@ -60,8 +60,8 @@ router.route('/:id')
     })
 
     /*
-    // neue Wertes des Users speichern
-    User.findOneAndUpdate(filter, update, {new: true, safe: true})
+    // neue Wertes des Users speichern und neue zurückgeben und im Respones senden
+    User.findOneAndUpdate(filter, update, {new: true, safe: true}).select('name email -_id')
     .then(() => {
       res.json({
       idUpdated: true

@@ -3,8 +3,12 @@ import store from '../../store';
 import { setUser } from '../../actions';
 import api from '../../utils/API'
 import { setNewUserData } from '../../actions/index'
+import EditUserData from './EditUserData'
+import EditUserPassword from './EditUserPassword'
+import OtherSettings from './OtherSettings'
 
 export default class Settings extends Component {
+    /*
     changeName(name){
         store.dispatch( setUser({
             name: name
@@ -17,42 +21,64 @@ export default class Settings extends Component {
         //     }
         // )
     }
-
-    changeUserValues = () => {
-        // Was fehlt: Überprüfen ob sich der Ursprungwert vom neuen Wert unterscheidet
-        var newUserData = {};
-        newUserData.name = document.getElementById("name").value;
-        newUserData.email = document.getElementById("email").value;
-        newUserData.password = document.getElementById("password").value;
-
-        api.updateUserData((res) => {
-            store.dispatch(setNewUserData(res.newUserData))
-            }, newUserData)
-    }
+    */
 
     /*
         <h1>Hello {user.name}</h1>
         <button onClick={() => this.changeName("Steve")}>Change name</button>
     */
+    
+    handleChangeUserData = () => {
+        if(document.getElementById('changeUserData').dataset.active === "false") {
+            document.getElementById('changeUserData').dataset.active = "true";
+            document.getElementById('changeUserPassword').dataset.active = "false";
+            document.getElementById('otherSettings').dataset.active = "false";
+            this.forceUpdate();
+        }
+    }
+
+    handleChangeUserPassword = () => {
+        if(document.getElementById('changeUserPassword').dataset.active === "false") {
+            document.getElementById('changeUserData').dataset.active = "false";
+            document.getElementById('changeUserPassword').dataset.active = "true";
+            document.getElementById('otherSettings').dataset.active = "false";
+            this.forceUpdate();
+        }
+    }
+
+    handleOtherSettings = () => {
+        if(document.getElementById('otherSettings').dataset.active === "false") {
+            document.getElementById('changeUserData').dataset.active = "false";
+            document.getElementById('changeUserPassword').dataset.active = "false";
+            document.getElementById('otherSettings').dataset.active = "true";
+            this.forceUpdate();
+        }
+    }
 
     render(){
-        const { user } = store.getState()
+        var returnComponent = null;
+        console.log('in render')
+        if(document.getElementById('changeUserData') !== null && document.getElementById('changeUserPassword') !== null && document.getElementById('otherSettings') !== null) {
+            if(document.getElementById('changeUserData').dataset.active === "true") {
+                returnComponent = <EditUserData/>;
+            }
+            if(document.getElementById('changeUserPassword').dataset.active === "true") {
+                returnComponent = <EditUserPassword/>;
+            }
+            if(document.getElementById('otherSettings').dataset.active === "true") {
+                returnComponent = <OtherSettings/>;
+            }
+        }
+        else{
+            returnComponent = <h1>Settings</h1>
+        }
+
         return(
             <div>
-                <h1>Hello {store.getState().user.name}</h1>
-                <br></br>
-                <form>
-                    <div style={{"display":"block"}}>
-                        Username: <input type="text" id="name"></input>
-                    </div>
-                    <div style={{"display":"block"}}>
-                    E-Mail: <input type="text" id="email"></input>
-                    </div>
-                    <div style={{"display":"block"}}>
-                    Passwort: <input type="text" id="password"></input>
-                    </div>
-                </form>
-                <button onClick={() => this.changeUserValues()}>Save</button>
+                <button data-active="false" id='changeUserData' onClick={() => {this.handleChangeUserData()}}>Profil bearbeiten</button>
+                <button data-active="false" id='changeUserPassword' onClick={() => {this.handleChangeUserPassword()}}>Passwort bearbeiten</button>
+                <button data-active="false" id='otherSettings' onClick={() => {this.handleOtherSettings()}}>weitere Einstellungen</button>
+                { returnComponent }
             </div>
         )
     }
