@@ -3,6 +3,9 @@ import reducer from "./reducers"
 import { Components } from './utils/Components'
 
 const initialState = {
+    // Dark Mode
+    darkMode: true, 
+
     // TODO: This props should be set with successful user login
     isAuthenticated: true,
     user: {

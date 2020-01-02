@@ -48,7 +48,6 @@ export default {
             })
         )
     },
-    
     updateUserData(callback, params){
         Axios.patch(src + 'api/users/1234', {params})
         .then(

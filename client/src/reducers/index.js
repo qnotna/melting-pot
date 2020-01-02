@@ -39,6 +39,12 @@ export default (state, action) => {
         user: action.newUserData
       }
 
+    case "SET_DARKMODE":
+      return {
+        ...state,
+        darkMode: action.darkModeValue
+      }
+
     default:
       return state;
   }

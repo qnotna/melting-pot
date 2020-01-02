@@ -5,6 +5,7 @@ import api from '../../utils/API'
 import { setNewUserData } from '../../actions/index'
 
 import '../../stylesheets/Settings.css'
+import '../../stylesheets/DarkMode.css';
 
 export default class EditUserPassword extends Component {
     constructor(props) {
@@ -20,10 +21,33 @@ export default class EditUserPassword extends Component {
         }, 5000);
     }
 
+    componentDidMount = () => {
+        if(store.getState().darkMode) {
+            document.getElementById('oldPassword').classList.add('darkMode-input-text');
+            document.getElementById('newPassword').classList.add('darkMode-input-text');
+        }
+        else {
+            document.getElementById('oldPassword').classList.remove('darkMode-input-text');
+            document.getElementById('newPassword').classList.remove('darkMode-input-text');
+        }
+    }
+
     render(){
+        if(document.getElementById('editPasswordForm') !== null) {
+            console.log(document.getElementById('editPasswordForm'))
+            if(store.getState().darkMode) {
+              document.getElementById('oldPassword').classList.add('darkMode-input-text');
+              document.getElementById('newPassword').classList.add('darkMode-input-text');
+            }
+            else {
+              document.getElementById('oldPassword').classList.remove('darkMode-input-text');
+              document.getElementById('newPassword').classList.remove('darkMode-input-text');
+            }
+        }
+
         return(
             <div>
-                <form>
+                <form id='editPasswordForm'>
                     <div style={{'display':'block', 'marginTop':'20px'}}>
                         Old Password: <input type='password' id='oldPassword'></input>
                     </div>

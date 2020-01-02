@@ -1,0 +1,9 @@
+.darkMode-body {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white !important;
+}
+
+.darkMode-input-text {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+}

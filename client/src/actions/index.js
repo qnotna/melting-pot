@@ -27,3 +27,8 @@ export const setNewUserData = (newUserData) => ({
     type: "SET_NEW_USER_DATA",
     newUserData
 })
+
+export const setDarkMode = (darkModeValue) => ({
+    type: "SET_DARKMODE",
+    darkModeValue
+})

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import '../stylesheets/App.css';
+import '../stylesheets/DarkMode.css';
 
 import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
@@ -63,12 +64,21 @@ class AppBase extends Component {
   }
 
   render() {
+    if(document.getElementById('app') !== null) {
+      if(store.getState().darkMode) {
+        document.getElementById('app').classList.add('darkMode-body');
+      }
+      else {
+        document.getElementById('app').classList.remove('darkMode-body');
+      }
+    }
+
     // Get the name of the component that should be renderd 
     // as App content from the App global store
     const { content_component } = store.getState()
 
     return (
-      <div className='App'>
+      <div className='App' id='app'>
         <div id='left' ref='Sidebar'>
           <SideBar
             sections={sideBarSectionsExampleData}

@@ -4,6 +4,8 @@ import { setUser } from '../../actions';
 import api from '../../utils/API'
 import { setNewUserData } from '../../actions/index'
 
+import '../../stylesheets/DarkMode.css';
+
 export default class EditUserData extends Component {
     constructor(props) {
         super(props);
@@ -34,10 +36,32 @@ export default class EditUserData extends Component {
         }, newUserData)
     }
 
-    render(){
+    componentDidMount = () => {
+        if(store.getState().darkMode) {
+            document.getElementById('name').classList.add('darkMode-input-text');
+            document.getElementById('email').classList.add('darkMode-input-text');
+        }
+        else {
+            document.getElementById('name').classList.remove('darkMode-input-text');
+            document.getElementById('email').classList.remove('darkMode-input-text');
+        }
+    }
+
+    render() {
+        if(document.getElementById('editUserDataForm') !== null) {
+            if(store.getState().darkMode) {
+              document.getElementById('name').classList.add('darkMode-input-text');
+              document.getElementById('email').classList.add('darkMode-input-text');
+            }
+            else {
+              document.getElementById('name').classList.remove('darkMode-input-text');
+              document.getElementById('email').classList.remove('darkMode-input-text');
+            }
+        }
+
         return(
             <div>
-                <form>
+                <form id='editUserDataForm'>
                     <div style={{"display":"block", 'marginTop':'20px'}}>
                         Username: <input type="text" id="name" defaultValue={store.getState().user.name}></input>
                     </div>
@@ -46,7 +70,7 @@ export default class EditUserData extends Component {
                         E-Mail: <input type="email" id="email" defaultValue={store.getState().user.email}></input>
                     </div>
                 </form>
-                <button style={{'marginBottom':'8px'}} className='saveButton'onClick={() => this.changeUserValues()}>Save</button>
+                <button style={{'marginBottom':'8px'}} className='saveButton' onClick={() => this.changeUserValues()}>Save</button>
                 <p>{this.state.message}</p>
             </div>
         )
