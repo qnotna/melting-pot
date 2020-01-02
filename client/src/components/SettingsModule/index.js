@@ -15,6 +15,11 @@ export default class Settings extends Component {
             document.getElementById('changeUserData').dataset.active = "true";
             document.getElementById('changeUserPassword').dataset.active = "false";
             document.getElementById('otherSettings').dataset.active = "false";
+
+            document.getElementById('changeUserData').classList.add('active');
+            document.getElementById('changeUserPassword').classList.remove('active');
+            document.getElementById('otherSettings').classList.remove('active');
+            
             this.forceUpdate();
         }
     }
@@ -24,6 +29,11 @@ export default class Settings extends Component {
             document.getElementById('changeUserData').dataset.active = "false";
             document.getElementById('changeUserPassword').dataset.active = "true";
             document.getElementById('otherSettings').dataset.active = "false";
+
+            document.getElementById('changeUserData').classList.remove('active');
+            document.getElementById('changeUserPassword').classList.add('active');
+            document.getElementById('otherSettings').classList.remove('active');
+
             this.forceUpdate();
         }
     }
@@ -33,6 +43,11 @@ export default class Settings extends Component {
             document.getElementById('changeUserData').dataset.active = "false";
             document.getElementById('changeUserPassword').dataset.active = "false";
             document.getElementById('otherSettings').dataset.active = "true";
+
+            document.getElementById('changeUserData').classList.remove('active');
+            document.getElementById('changeUserPassword').classList.remove('active');
+            document.getElementById('otherSettings').classList.add('active');
+
             this.forceUpdate();
         }
     }
@@ -57,9 +72,11 @@ export default class Settings extends Component {
 
         return(
             <div style={{'margin': '2%'}}>
-                <button data-active="false" id='changeUserData' onClick={() => {this.handleChangeUserData()}}>Profil bearbeiten</button>
-                <button data-active="false" id='changeUserPassword' onClick={() => {this.handleChangeUserPassword()}}>Passwort bearbeiten</button>
-                <button data-active="false" id='otherSettings' onClick={() => {this.handleOtherSettings()}}>weitere Einstellungen</button>
+                <div style={{'display':'block'}}>
+                    <button className='settingNavButton' style={{'width':'30%', 'marginRight': '5%'}} data-active="false" id='changeUserData' onClick={() => {this.handleChangeUserData()}}>Profil bearbeiten</button>
+                    <button className='settingNavButton' style={{'width':'30%', 'marginRight': '5%'}} data-active="false" id='changeUserPassword' onClick={() => {this.handleChangeUserPassword()}}>Passwort bearbeiten</button>
+                    <button className='settingNavButton' style={{'width':'30%'}} data-active="false" id='otherSettings' onClick={() => {this.handleOtherSettings()}}>weitere Einstellungen</button>
+                </div>
                 { returnComponent }
             </div>
         )

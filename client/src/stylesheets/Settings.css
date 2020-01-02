@@ -1,4 +1,4 @@
-input[type=text], select {
+input[type=text], input[type=email], input[type=password] {
     width: 50%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -21,4 +21,18 @@ input[type=text], select {
     background-color: grey;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.settingNavButton {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    width: 6em;
+    height: 2em;
+    border: 0;
+    cursor: pointer;
+}
+
+.active {
+    color:white;
+    background-color: grey;
 }

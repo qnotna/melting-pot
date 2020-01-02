@@ -27,7 +27,7 @@ export default class EditUserData extends Component {
 
         api.updateUserData((res) => {
             store.dispatch(setNewUserData(res.newUserData));
-            this.setState({message: 'Das Update war erfolgreich.'});
+            this.setState({message: 'Das Profil wurde aktuallisiert.'});
             setTimeout(() => {
                 this.setState({message: ''})
             }, 5000);
@@ -37,21 +37,17 @@ export default class EditUserData extends Component {
     render(){
         return(
             <div>
-                <h1>Hello {store.getState().user.name}</h1>
-                <br/>
                 <form>
-                    <div style={{"display":"block"}}>
+                    <div style={{"display":"block", 'marginTop':'20px'}}>
                         Username: <input type="text" id="name" defaultValue={store.getState().user.name}></input>
                     </div>
                     <br/>
-                    <div style={{"display":"block"}}>
-                        E-Mail: <input type="text" id="email" defaultValue={store.getState().user.email}></input>
+                    <div style={{"display":"block", 'marginBottom':'8px'}}>
+                        E-Mail: <input type="email" id="email" defaultValue={store.getState().user.email}></input>
                     </div>
-                    <br/>
-                    <p>{this.state.message}</p>
-                    <br/>
                 </form>
-                <button className='saveButton'onClick={() => this.changeUserValues()}>Save</button>
+                <button style={{'marginBottom':'8px'}} className='saveButton'onClick={() => this.changeUserValues()}>Save</button>
+                <p>{this.state.message}</p>
             </div>
         )
     }

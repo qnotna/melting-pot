@@ -7,25 +7,33 @@ import { setNewUserData } from '../../actions/index'
 import '../../stylesheets/Settings.css'
 
 export default class EditUserPassword extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
     changeUserPassword = () => {
-        console.log('change Passwort')
+        this.setState({message: 'Das Passwort wurde aktualisiert.'});
+        setTimeout(() => {
+                this.setState({message: ''})
+        }, 5000);
     }
 
     render(){
         return(
             <div>
-                <h1>change Password</h1>
-                <br/>
                 <form>
-                    <div style={{"display":"block"}}>
-                        Old Password: <input type="text" id="oldPassword"></input>
+                    <div style={{'display':'block', 'marginTop':'20px'}}>
+                        Old Password: <input type='password' id='oldPassword'></input>
                     </div>
                     <br/>
-                    <div style={{"display":"block"}}>
-                        New Password: <input type="text" id="newPassword"></input>
+                    <div style={{'display':'block', 'marginBottom':'8px'}}>
+                        New Password: <input type='password' id='newPassword'></input>
                     </div>
                 </form>
-                <button className='saveButton' onClick={() => this.changeUserPassword()}>Save</button>
+                <button style={{'marginBottom':'8px'}} className='saveButton' onClick={() => this.changeUserPassword()}>Save</button>
+                <p>{this.state.message}</p>
             </div>
         )
     }
