@@ -50,6 +50,7 @@ router.route('/:id')
       update.email = req.body.email;
     }
     if(req.body.params.password !== undefined) {
+      // altes psswort muss überprüft werden dann hashen und dann speichern
       update.password = req.body.password;
     }
 

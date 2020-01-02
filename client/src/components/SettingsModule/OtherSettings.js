@@ -12,7 +12,7 @@ export default class otherSettings extends Component {
     render(){
         return(
             <div>
-                <h1>weitere Einstellungen</h1>
+                <h1>other Settings</h1>
                 <br/>
                 <form>
                     <div style={{"display":"block"}}>

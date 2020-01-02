@@ -1,0 +1,24 @@
+input[type=text], select {
+    width: 50%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+}
+
+.saveButton {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    width: 6em;
+    height: 2em;
+    border: 0;
+}
+
+.saveButton:hover {
+    color: white;
+    background-color: grey;
+    cursor: pointer;
+    border-radius: 4px;
+}

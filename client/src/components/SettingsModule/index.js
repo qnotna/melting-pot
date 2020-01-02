@@ -7,27 +7,9 @@ import EditUserData from './EditUserData'
 import EditUserPassword from './EditUserPassword'
 import OtherSettings from './OtherSettings'
 
+import '../../stylesheets/Settings.css'
+
 export default class Settings extends Component {
-    /*
-    changeName(name){
-        store.dispatch( setUser({
-            name: name
-        }))
-
-        // store.dispatch(
-        //     {
-        //         type: "SET_USER",
-        //         user: {name: name}
-        //     }
-        // )
-    }
-    */
-
-    /*
-        <h1>Hello {user.name}</h1>
-        <button onClick={() => this.changeName("Steve")}>Change name</button>
-    */
-    
     handleChangeUserData = () => {
         if(document.getElementById('changeUserData').dataset.active === "false") {
             document.getElementById('changeUserData').dataset.active = "true";
@@ -55,9 +37,12 @@ export default class Settings extends Component {
         }
     }
 
+    componentDidMount = () => {
+        document.getElementById('changeUserData').click();
+    }
+
     render(){
         var returnComponent = null;
-        console.log('in render')
         if(document.getElementById('changeUserData') !== null && document.getElementById('changeUserPassword') !== null && document.getElementById('otherSettings') !== null) {
             if(document.getElementById('changeUserData').dataset.active === "true") {
                 returnComponent = <EditUserData/>;
@@ -69,12 +54,9 @@ export default class Settings extends Component {
                 returnComponent = <OtherSettings/>;
             }
         }
-        else{
-            returnComponent = <h1>Settings</h1>
-        }
 
         return(
-            <div>
+            <div style={{'margin': '2%'}}>
                 <button data-active="false" id='changeUserData' onClick={() => {this.handleChangeUserData()}}>Profil bearbeiten</button>
                 <button data-active="false" id='changeUserPassword' onClick={() => {this.handleChangeUserPassword()}}>Passwort bearbeiten</button>
                 <button data-active="false" id='otherSettings' onClick={() => {this.handleOtherSettings()}}>weitere Einstellungen</button>
@@ -83,3 +65,24 @@ export default class Settings extends Component {
         )
     }
 }
+
+    /*
+    changeName(name){
+        store.dispatch( setUser({
+            name: name
+        }))
+
+        // store.dispatch(
+        //     {
+        //         type: "SET_USER",
+        //         user: {name: name}
+        //     }
+        // )
+    }
+    */
+
+    /*
+        <h1>Hello {user.name}</h1>
+        <button onClick={() => this.changeName("Steve")}>Change name</button>
+    */
+    

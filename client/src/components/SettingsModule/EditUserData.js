@@ -5,11 +5,16 @@ import api from '../../utils/API'
 import { setNewUserData } from '../../actions/index'
 
 export default class EditUserData extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
     changeUserValues = () => {
         // Was fehlt überprüfen ob email und username schon vorhanden sind in der Datenban
         var submitedName = document.getElementById("name").value;
         var submitedEmail = document.getElementById("email").value;
-        var submitedPassword = document.getElementById("password").value;
 
         // Was fehlt: Überprüfen ob sich der Ursprungwert vom neuen Wert unterscheidet
         var newUserData = {};
@@ -19,13 +24,14 @@ export default class EditUserData extends Component {
         if(store.getState().email !== submitedEmail && '' !== submitedEmail) {
             newUserData.email = submitedEmail;
         }
-        if(store.getState().password !== submitedName && '' !== submitedName) {
-            newUserData.password = submitedPassword;
-        }
 
         api.updateUserData((res) => {
-            store.dispatch(setNewUserData(res.newUserData))
-            }, newUserData)
+            store.dispatch(setNewUserData(res.newUserData));
+            this.setState({message: 'Das Update war erfolgreich.'});
+            setTimeout(() => {
+                this.setState({message: ''})
+            }, 5000);
+        }, newUserData)
     }
 
     render(){
@@ -39,14 +45,13 @@ export default class EditUserData extends Component {
                     </div>
                     <br/>
                     <div style={{"display":"block"}}>
-                        E-Mail: <input type="text" id="email"></input>
+                        E-Mail: <input type="text" id="email" defaultValue={store.getState().user.email}></input>
                     </div>
                     <br/>
-                    <div style={{"display":"block"}}>
-                        Passwort: <input type="text" id="password"></input>
-                    </div>
+                    <p>{this.state.message}</p>
+                    <br/>
                 </form>
-                <button onClick={() => this.changeUserValues()}>Save</button>
+                <button className='saveButton'onClick={() => this.changeUserValues()}>Save</button>
             </div>
         )
     }

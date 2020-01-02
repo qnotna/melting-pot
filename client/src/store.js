@@ -6,7 +6,8 @@ const initialState = {
     // TODO: This props should be set with successful user login
     isAuthenticated: true,
     user: {
-        name: "Pizzaboi"
+        name: "Pizzaboi",
+        email: "Pizzaboi@gmail.com"
     },
     // User preferences used to build personalized sections
     user_preferences: {
