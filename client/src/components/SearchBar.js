@@ -39,7 +39,7 @@ class SearchBar extends Component {
     render() {
         return (
             <form ref={this.formRef}>
-                <label>Search term</label>
+                <label style={{'display':'none'}}>Search term</label>
                 <input type='search' ref={this.qRef} placeholder='Search for title and content...' />
 
                 <div className="dropdown">
@@ -78,7 +78,14 @@ class SearchBar extends Component {
                 </div>
                 <button type="button" onClick={this.onShowMenu}>Erweitert</button>
 
-                <button type='button' onClick={this.handleClick}>Search</button>
+                <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
+                    <span  
+                        style = {{'color':'black', 'fontSize':'20px'}} 
+                        className = 'material-icons'
+                    >
+                        search
+                    </span>
+                </button>
             </form>
         );
     }

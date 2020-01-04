@@ -12,6 +12,7 @@
   vertical-align: middle;
   display: inline-block;
   border-radius: 0.25em;
+  margin-right: 5px;
 }
 
 #search-bar {
@@ -28,14 +29,14 @@
 }
 
 #navigation-bar button {
-  width: 6em;
-  padding: 0 1em;
+  padding: 0 0.5em;
   height: 2em;
   border: none;
   background-color: orange;
+  margin-right: 10px;
 }
 
 #navigation-bar button:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.25);
+  /* background-color: rgba(255, 255, 255, 0.25); */
 }

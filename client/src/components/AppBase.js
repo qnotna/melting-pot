@@ -24,6 +24,8 @@ import { addSection, setSections } from '../actions'
 import { Components } from '../utils/Components';
 import Settings from "./SettingsModule"
 
+import '../../node_modules/material-design-icons/iconfont/material-icons.css'
+
 class AppBase extends Component {
 
   isCollapsed = false;
