@@ -13,10 +13,10 @@
     color: white !important;
 }
 
-.darkMode-content-view {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-}
-
 .darkMode-content-view-tags {
     background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.darkMode-sidebar {
+    background-color: rgba(0, 0, 0, 0.2) !important;
 }

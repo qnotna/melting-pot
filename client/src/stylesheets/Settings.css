@@ -32,6 +32,7 @@ input[type=text], input[type=email], input[type=password] {
     border: 0;
     cursor: pointer;
     color: white;
+    margin-top: 4px;
 }
 
 .active {

@@ -63,6 +63,15 @@ class AppBase extends Component {
     }
   }
 
+  componentDidMount = () => {
+    if(store.getState().darkMode) {
+      document.getElementById('left').classList.add('darkMode-body');
+    }
+    else {
+      document.getElementById('left').classList.remove('darkMode-body');
+    }
+  }
+
   render() {
     if(document.getElementById('left') !== null) {
       if(store.getState().darkMode) {

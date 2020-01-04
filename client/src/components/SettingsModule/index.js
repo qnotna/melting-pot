@@ -78,9 +78,29 @@ export default class Settings extends Component {
             <div id='settings-view' style={{'width': '100%', 'height': '100vh'}}>
                 <div style={{'margin': '2%'}}>
                     <div style={{'display':'block'}}>
-                        <button className='settingNavButton' style={{'width':'30%', 'marginRight': '5%'}} id='changeUserData' onClick={() => {this.handleChangeUserData()}}>Edit Profil</button>
-                        <button className='settingNavButton' style={{'width':'30%', 'marginRight': '5%'}} id='changeUserPassword' onClick={() => {this.handleChangeUserPassword()}}>Edit Password</button>
-                        <button className='settingNavButton' style={{'width':'30%'}} id='otherSettings' onClick={() => {this.handleOtherSettings()}}>Other Settings</button>
+                        <button 
+                            className='settingNavButton' 
+                            style={{'width':'30%', 'marginRight': '5%'}} 
+                            id='changeUserData' 
+                            onClick={() => {this.handleChangeUserData()}}
+                        >
+                            Edit ProfilData
+                        </button>
+                        <button 
+                            className='settingNavButton' 
+                            style={{'width':'30%', 'marginRight': '5%'}} 
+                            id='changeUserPassword' 
+                            onClick={() => {this.handleChangeUserPassword()}}
+                        >
+                            Edit Password
+                        </button>
+                        <button 
+                            className='settingNavButton' 
+                            style={{'width':'30%'}} id='otherSettings' 
+                            onClick={() => {this.handleOtherSettings()}}
+                        >
+                            Other Settings
+                        </button>
                     </div>
                     { returnComponent }
                 </div>
