@@ -7,3 +7,16 @@
     background-color: rgba(0, 0, 0, 0.5) !important;
     color: white !important;
 }
+
+.darkMode-content-view {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white !important;
+}
+
+.darkMode-content-view {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.darkMode-content-view-tags {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}

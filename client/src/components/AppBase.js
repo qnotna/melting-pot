@@ -64,12 +64,12 @@ class AppBase extends Component {
   }
 
   render() {
-    if(document.getElementById('app') !== null) {
+    if(document.getElementById('left') !== null) {
       if(store.getState().darkMode) {
-        document.getElementById('app').classList.add('darkMode-body');
+        document.getElementById('left').classList.add('darkMode-body');
       }
       else {
-        document.getElementById('app').classList.remove('darkMode-body');
+        document.getElementById('left').classList.remove('darkMode-body');
       }
     }
 

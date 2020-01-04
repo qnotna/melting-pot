@@ -9,7 +9,7 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 .saveButton {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 4px;
     width: 6em;
     height: 2em;
@@ -19,13 +19,13 @@ input[type=text], input[type=email], input[type=password] {
 
 .saveButton:hover {
     color: white;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
     border-radius: 4px;
 }
 
 .settingNavButton {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 4px;
     width: 6em;
     height: 2em;
@@ -36,5 +36,5 @@ input[type=text], input[type=email], input[type=password] {
 
 .active {
     color:white;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
 }
