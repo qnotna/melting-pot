@@ -11,7 +11,7 @@ class NavigationBar extends Component {
       <div id="navigation-bar" elastic={this.props.elastic}>
         <button type='submit' onClick={this.props.collapseSidebar} style={{'padding':'0 0 0 0.45em'}}>
           <span  
-              style = {{'color':'white', 'fontSize':'20px'}} 
+              style = {{'color':'black', 'fontSize':'20px'}} 
               className = 'material-icons'
             >
               menu

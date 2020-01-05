@@ -21,13 +21,17 @@ class SearchBar extends Component {
     }
 
     onShowMenu = (event) => {
-        event.preventDefault();
-        event.target.innerHTML = (this.state.showMenu === true) ? "Erweitert" : "Einklappen";
-        this.setState((prevState) => ({
-            showMenu: !prevState.showMenu
-        }))
+        console.log(typeof event.target.tagName)
+        console.log(event.target.tagName);
+        if(event.target.tagName.toString() === 'SPAN') {
+            event.preventDefault();
+            console.log(event.target.firstChild)
+            event.target.innerHTML = (this.state.showMenu === true) ? "expand_more" : "expand_less";
+            this.setState((prevState) => ({
+                showMenu: !prevState.showMenu
+            }))
+        }
     }
-
 
     loadSearchResultSections() {
         const params = store.getState().searchParams
@@ -76,7 +80,14 @@ class SearchBar extends Component {
                         )
                     }
                 </div>
-                <button type="button" onClick={this.onShowMenu}>Erweitert</button>
+                <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
+                    <span  
+                        style = {{'color':'black', 'fontSize':'24px'}} 
+                        className = 'material-icons'
+                    >
+                        expand_more
+                    </span>
+                </button>
 
                 <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
                     <span  
