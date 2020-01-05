@@ -3,7 +3,7 @@ input[type=text], input[type=email], input[type=password] {
     padding: 5px;
     margin: 8px 0;
     display: inline-block;
-    border: 0;
+    border: 1px solid black;
     border-radius: 4px;
     display: block;
 }

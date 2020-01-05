@@ -45,7 +45,6 @@ class SearchBar extends Component {
     }
 
     componentDidMount = () => {
-        console.log('in didmount')
         if(document.getElementById('searchBarForm') !== null) {
             if(store.getState().darkMode) {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -92,7 +91,6 @@ class SearchBar extends Component {
         var dropdownContent = document.getElementsByClassName('dropdown-content');
 
         if(dropdownContent !== null) {
-            console.log(dropdownContent);
             if(store.getState().darkMode) {
                 for(var e = 0; e < dropdownContent.length; e++) {
                     var dropdownContentInput = dropdownContent[e].getElementsByTagName('input');
@@ -123,7 +121,6 @@ class SearchBar extends Component {
     }
 
     render() {
-        console.log('in render')
         if(document.getElementById('searchBarForm') !== null) {
             if(store.getState().darkMode) {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -168,7 +165,7 @@ class SearchBar extends Component {
         return (
             <form ref={this.formRef} id='searchBarForm' style={{'width':'100%'}}>
                 <label style={{'display':'none'}}>Search term</label>
-                <input style={{'width': '40%','height':'2em', 'padding':'5px', 'border':'0'}} type='search' ref={this.qRef} placeholder='Search for title and content...' />
+                <input className='navigation-bar-searchInput' type='search' ref={this.qRef} placeholder='Search for title and content...' />
 
                 <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
                     <span  
@@ -209,7 +206,7 @@ class SearchBar extends Component {
                                 {/* TODO: Soures toLowerCase + check if available
                                     maybe select instead of input? */}
                                 <label>Source</label>
-                                <input style={{'border':'0', 'padding':'5px'}} type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
+                                <input style={{'border':'0', 'padding':'1px'}} type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
 
                                 <label>Articles per page</label>
                                 <select ref={this.sizeRef}>
