@@ -45,6 +45,7 @@ class SearchBar extends Component {
     }
 
     componentDidMount = () => {
+        console.log('in didmount')
         if(document.getElementById('searchBarForm') !== null) {
             if(store.getState().darkMode) {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -58,6 +59,12 @@ class SearchBar extends Component {
                 for(var b = 0; b < inputsInSearchBarForm.length; b++) {
                     inputsInSearchBarForm[b].classList.add('darkMode-input-text');
                 }
+
+                var searchDropdown = document.getElementsByClassName('dropdown');
+                
+                for(var c = 0; c < searchDropdown.length; c++) {
+                    searchDropdown[c].classList.add('darkMode-dropdown');
+                }
             }
             else {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -67,15 +74,56 @@ class SearchBar extends Component {
                 }
 
                 var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
-                
+
                 for(var b = 0; b < inputsInSearchBarForm.length; b++) {
                     inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
+                }
+
+                var searchDropdown = document.getElementsByClassName('dropdown');
+                
+                for(var c = 0; c < searchDropdown.length; c++) {
+                    searchDropdown[c].classList.remove('darkMode-dropdown');
+                }
+            }
+        }
+    }
+
+    componentDidUpdate = () => {
+        var dropdownContent = document.getElementsByClassName('dropdown-content');
+
+        if(dropdownContent !== null) {
+            console.log(dropdownContent);
+            if(store.getState().darkMode) {
+                for(var e = 0; e < dropdownContent.length; e++) {
+                    var dropdownContentInput = dropdownContent[e].getElementsByTagName('input');
+                    for(var f = 0; f < dropdownContentInput.length; f++) {
+                        dropdownContentInput[f].classList.add('darkMode-input-text');
+                    }
+
+                    var dropdownContentSelect = dropdownContent[e].getElementsByTagName('select');
+                    for(var f = 0; f < dropdownContentSelect.length; f++) {
+                        dropdownContentSelect[f].classList.add('darkMode-select');
+                    }
+                }
+            }
+            else {
+                for(var e = 0; e < dropdownContent.length; e++) {
+                    var dropdownContentInput = dropdownContent[e].getElementsByTagName('input');
+                    for(var f = 0; f < dropdownContentInput.length; f++) {
+                        dropdownContentInput[f].classList.remove('darkMode-input-text');
+                    }
+
+                    var dropdownContentSelect = dropdownContent[e].getElementsByTagName('select');
+                    for(var f = 0; f < dropdownContentSelect.length; f++) {
+                        dropdownContentSelect[f].classList.remove('darkMode-select');
+                    }
                 }
             }
         }
     }
 
     render() {
+        console.log('in render')
         if(document.getElementById('searchBarForm') !== null) {
             if(store.getState().darkMode) {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -89,6 +137,12 @@ class SearchBar extends Component {
                 for(var b = 0; b < inputsInSearchBarForm.length; b++) {
                     inputsInSearchBarForm[b].classList.add('darkMode-input-text');
                 }
+
+                var searchDropdown = document.getElementsByClassName('dropdown');
+                
+                for(var c = 0; c < searchDropdown.length; c++) {
+                    searchDropdown[c].classList.add('darkMode-dropdown');
+                }
             }
             else {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -101,6 +155,12 @@ class SearchBar extends Component {
                 
                 for(var b = 0; b < inputsInSearchBarForm.length; b++) {
                     inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
+                }
+
+                var searchDropdown = document.getElementsByClassName('dropdown');
+                
+                for(var c = 0; c < searchDropdown.length; c++) {
+                    searchDropdown[c].classList.remove('darkMode-dropdown');
                 }
             }
         }
@@ -128,13 +188,13 @@ class SearchBar extends Component {
                     </span>
                 </button>
 
-                <div className="dropdown" style={{'width': '100%', 'marginTop': '14px'}}>
+                <div className="dropdown" style={{'width': '100%'}}>
                     {
-                        this.state.showMenu && (
+                        this.state.showMenu ? (
 
-                            <div className="dropdown-content">
+                            <div className="dropdown-content" style={{'width': '100%', 'marginTop': '14px'}}>
                                 <label>Language</label>
-                                <select ref={this.langRef}>
+                                <select ref={this.langRef} style={{'backgroundColor':'white'}}>
                                     {Object.keys(languages).map((key =>
                                         <option key={key} value={key}>{languages[key]}</option>
                                     ))}
@@ -149,7 +209,7 @@ class SearchBar extends Component {
                                 {/* TODO: Soures toLowerCase + check if available
                                     maybe select instead of input? */}
                                 <label>Source</label>
-                                <input type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
+                                <input style={{'border':'0', 'padding':'5px'}} type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
 
                                 <label>Articles per page</label>
                                 <select ref={this.sizeRef}>
@@ -159,7 +219,7 @@ class SearchBar extends Component {
                                     <option>100</option>
                                 </select>
                             </div>
-                        )
+                        ):null
                     }
                 </div>
             </form>
