@@ -20,3 +20,12 @@
 .darkMode-sidebar {
     background-color: rgba(0, 0, 0, 0.2) !important;
 }
+
+.darkMode-navigation-bar-button {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    color: white !important;
+}
+
+.darkMode-navigation-bar {
+    background-color: rgba(0, 0, 0, 0.77) !important;
+}

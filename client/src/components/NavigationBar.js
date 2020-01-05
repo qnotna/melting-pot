@@ -5,23 +5,71 @@ import SearchBar from './SearchBar';
 // Menu button
 // https://en.wikipedia.org/wiki/Hamburger_button
 
-class NavigationBar extends Component {
-  render() {
-    return(
-      <div id="navigation-bar" elastic={this.props.elastic}>
-        <button type='submit' onClick={this.props.collapseSidebar} style={{'padding':'0 0 0 0.45em'}}>
-          <span  
-              style = {{'color':'black', 'fontSize':'20px'}} 
-              className = 'material-icons'
-            >
-              menu
-            </span>
-        </button>
-        <SearchBar/>
-      </div>
-    );
-  }
+// Redux
+import store from '../store.js';
 
+// DarkMode
+import '../stylesheets/DarkMode.css';
+
+class NavigationBar extends Component {
+    componentDidMount = () => {
+        if(document.getElementById('navigation-bar') !== null) {
+            if(store.getState().darkMode) {
+                var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+                }
+
+                document.getElementById('navigation-bar').classList.add('darkMode-navigation-bar');
+            }
+            else {
+                var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+                }
+
+                document.getElementById('navigation-bar').classList.remove('darkMode-navigation-bar');
+            }
+        }
+    }
+
+    render() {
+        if(document.getElementById('navigation-bar') !== null) {
+            if(store.getState().darkMode) {
+                var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+                }
+
+                document.getElementById('navigation-bar').classList.add('darkMode-navigation-bar');
+            }
+            else {
+                var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+                }
+
+                document.getElementById('navigation-bar').classList.remove('darkMode-navigation-bar');
+            }
+        }
+        return(
+            <div id="navigation-bar" elastic={this.props.elastic}>
+                <button type='submit' onClick={this.props.collapseSidebar} style={{'padding':'0 0 0 0.4em'}}>
+                    <span  
+                        style = {{'fontSize':'20px'}} 
+                        className = 'material-icons'
+                      >
+                        menu
+                    </span>
+                </button>
+                <SearchBar/>
+            </div>
+        );
+    }
 }
 
 export default NavigationBar;

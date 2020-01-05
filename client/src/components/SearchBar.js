@@ -47,18 +47,40 @@ class SearchBar extends Component {
     componentDidMount = () => {
         if(document.getElementById('searchBarForm') !== null) {
             if(store.getState().darkMode) {
-                console.log(document.getElementById('searchBarForm').getElementsByTagName('button'))
-                //document.getElementById('name').classList.add('darkMode-input-text');
-                //document.getElementById('email').classList.add('darkMode-input-text');
+                var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+                }
             }
             else {
-                //document.getElementById('name').classList.remove('darkMode-input-text');
-                //document.getElementById('email').classList.remove('darkMode-input-text');
+                var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+                }
             }
         }
     }
 
     render() {
+        if(document.getElementById('searchBarForm') !== null) {
+            if(store.getState().darkMode) {
+                var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.add('darkMode-input-text');
+                }
+            }
+            else {
+                var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+                
+                for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+                    buttonsInSearchBarForm[a].classList.remove('darkMode-input-text');
+                }
+            }
+        }
+
         return (
             <form ref={this.formRef} id='searchBarForm'>
                 <label style={{'display':'none'}}>Search term</label>
@@ -100,7 +122,7 @@ class SearchBar extends Component {
                 </div>
                 <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
                     <span  
-                        style = {{'color':'black', 'fontSize':'24px'}} 
+                        style = {{'fontSize':'24px'}} 
                         className = 'material-icons'
                     >
                         expand_more
@@ -109,7 +131,7 @@ class SearchBar extends Component {
 
                 <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
                     <span  
-                        style = {{'color':'black', 'fontSize':'20px'}} 
+                        style = {{'fontSize':'20px'}} 
                         className = 'material-icons'
                     >
                         search
