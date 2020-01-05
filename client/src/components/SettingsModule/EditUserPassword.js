@@ -36,12 +36,12 @@ export default class EditUserPassword extends Component {
         if(document.getElementById('editPasswordForm') !== null) {
             console.log(document.getElementById('editPasswordForm'))
             if(store.getState().darkMode) {
-              document.getElementById('oldPassword').classList.add('darkMode-input-text');
-              document.getElementById('newPassword').classList.add('darkMode-input-text');
+                document.getElementById('oldPassword').classList.add('darkMode-input-text');
+                document.getElementById('newPassword').classList.add('darkMode-input-text');
             }
             else {
-              document.getElementById('oldPassword').classList.remove('darkMode-input-text');
-              document.getElementById('newPassword').classList.remove('darkMode-input-text');
+                document.getElementById('oldPassword').classList.remove('darkMode-input-text');
+                document.getElementById('newPassword').classList.remove('darkMode-input-text');
             }
         }
 

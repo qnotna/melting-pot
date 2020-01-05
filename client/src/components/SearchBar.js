@@ -21,12 +21,16 @@ class SearchBar extends Component {
     }
 
     onShowMenu = (event) => {
-        console.log(typeof event.target.tagName)
-        console.log(event.target.tagName);
         if(event.target.tagName.toString() === 'SPAN') {
             event.preventDefault();
-            console.log(event.target.firstChild)
             event.target.innerHTML = (this.state.showMenu === true) ? "expand_more" : "expand_less";
+            this.setState((prevState) => ({
+                showMenu: !prevState.showMenu
+            }))
+        }
+        if(event.target.tagName.toString() === 'BUTTON') {
+            event.preventDefault();
+            event.target.firstChild.innerHTML = (this.state.showMenu === true) ? "expand_more" : "expand_less";
             this.setState((prevState) => ({
                 showMenu: !prevState.showMenu
             }))
@@ -40,9 +44,23 @@ class SearchBar extends Component {
         }, params)
     }
 
+    componentDidMount = () => {
+        if(document.getElementById('searchBarForm') !== null) {
+            if(store.getState().darkMode) {
+                console.log(document.getElementById('searchBarForm').getElementsByTagName('button'))
+                //document.getElementById('name').classList.add('darkMode-input-text');
+                //document.getElementById('email').classList.add('darkMode-input-text');
+            }
+            else {
+                //document.getElementById('name').classList.remove('darkMode-input-text');
+                //document.getElementById('email').classList.remove('darkMode-input-text');
+            }
+        }
+    }
+
     render() {
         return (
-            <form ref={this.formRef}>
+            <form ref={this.formRef} id='searchBarForm'>
                 <label style={{'display':'none'}}>Search term</label>
                 <input type='search' ref={this.qRef} placeholder='Search for title and content...' />
 

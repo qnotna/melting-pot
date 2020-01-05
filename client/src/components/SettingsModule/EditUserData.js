@@ -50,12 +50,12 @@ export default class EditUserData extends Component {
     render() {
         if(document.getElementById('editUserDataForm') !== null) {
             if(store.getState().darkMode) {
-              document.getElementById('name').classList.add('darkMode-input-text');
-              document.getElementById('email').classList.add('darkMode-input-text');
+                document.getElementById('name').classList.add('darkMode-input-text');
+                document.getElementById('email').classList.add('darkMode-input-text');
             }
             else {
-              document.getElementById('name').classList.remove('darkMode-input-text');
-              document.getElementById('email').classList.remove('darkMode-input-text');
+                document.getElementById('name').classList.remove('darkMode-input-text');
+                document.getElementById('email').classList.remove('darkMode-input-text');
             }
         }
 
