@@ -1,27 +1,13 @@
 import React, {Component} from 'react';
-import SideBarSections from './SideBarSections.js'
-import ProfileOverview from './ProfileOverview.js'
+import SideBarSections from './SideBarSections.js';
+import ProfileOverview from './ProfileOverview.js';
+import store from '../store.js';
 import '../stylesheets/SideBar.css';
-
+import '../stylesheets/DarkMode.css';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-// DarkMode
-import '../stylesheets/DarkMode.css';
-
-// Redux
-import store from '../store.js';
-
 class SideBar extends Component {
-  componentDidMount = () => {
-    if(store.getState().darkMode) {
-      document.getElementById('sidebar').classList.add('darkMode-sidebar');
-     }
-    else {
-      document.getElementById('sidebar').classList.remove('darkMode-sidebar');
-    }
-  }
-
-  render() {
+  handleDarkMode = () => {
     if(document.getElementById('sidebar') !== null) {
       if(store.getState().darkMode) {
         document.getElementById('sidebar').classList.add('darkMode-sidebar');
@@ -30,6 +16,14 @@ class SideBar extends Component {
         document.getElementById('sidebar').classList.remove('darkMode-sidebar');
       }
     }
+  }
+
+  componentDidMount = () => {
+    this.handleDarkMode();
+  }
+
+  render() {
+    this.handleDarkMode();
 
     return(
       <div id="sidebar">

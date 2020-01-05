@@ -1,34 +1,36 @@
 import React, {Component} from 'react';
 import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
-import ContentViewResults from './ContentViewResults';
+import ContentViewResults from './ContentViewResults.js';
+import store from '../store.js';
 import '../stylesheets/ContentView.css';
-
-// DarkMode
 import '../stylesheets/DarkMode.css';
 
 // Placeholder data
 import contentViewTagsExampleData from '../example/contentViewTags.json';
 
-// Redux
-import store from '../store.js';
-
-
-
 class ContentView extends Component {
-  componentDidMount = () => {
-    if(store.getState().darkMode) {
-      document.getElementById('content-view').classList.add('darkMode-content-view');
+  handleDarkMode = () => {
+    if(document.getElementById('content-view') !== null) {
+      if(store.getState().darkMode) {
+        document.getElementById('content-view').classList.add('darkMode-content-view');
 
-      var childNodeOfIdContentViewTags = document.getElementById('content-view-tags').childNodes;
+        var childNodeOfIdContentViewTags = document.getElementById('content-view-tags').childNodes;
 
-      for(var i = 0; i < childNodeOfIdContentViewTags.length; i++) {
-        childNodeOfIdContentViewTags[i].classList.add('darkMode-content-view-tags');
+        for(var i = 0; i < childNodeOfIdContentViewTags.length; i++) {
+          childNodeOfIdContentViewTags[i].classList.add('darkMode-content-view-tags');
+        }
       }
     }
   }
 
+  componentDidMount = () => {
+    this.handleDarkMode();
+  }
+
   render() {
+    this.handleDarkMode();
+    
     const { sections } = store.getState()
 
     return(

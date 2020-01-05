@@ -65,16 +65,7 @@ class AppBase extends Component {
     }
   }
 
-  componentDidMount = () => {
-    if(store.getState().darkMode) {
-      document.getElementById('left').classList.add('darkMode-body');
-    }
-    else {
-      document.getElementById('left').classList.remove('darkMode-body');
-    }
-  }
-
-  render() {
+  handleDarkMode = () => {
     if(document.getElementById('left') !== null) {
       if(store.getState().darkMode) {
         document.getElementById('left').classList.add('darkMode-body');
@@ -83,6 +74,15 @@ class AppBase extends Component {
         document.getElementById('left').classList.remove('darkMode-body');
       }
     }
+  }
+
+
+  componentDidMount = () => {
+    this.handleDarkMode();
+  }
+
+  render() {
+    this.handleDarkMode();
 
     // Get the name of the component that should be renderd 
     // as App content from the App global store
