@@ -52,12 +52,24 @@ class SearchBar extends Component {
                 for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
                     buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
                 }
+
+                var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+                
+                for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+                    inputsInSearchBarForm[b].classList.add('darkMode-input-text');
+                }
             }
             else {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
                 
                 for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
                     buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+                }
+
+                var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+                
+                for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+                    inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
                 }
             }
         }
@@ -71,6 +83,12 @@ class SearchBar extends Component {
                 for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
                     buttonsInSearchBarForm[a].classList.add('darkMode-input-text');
                 }
+
+                var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+                
+                for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+                    inputsInSearchBarForm[b].classList.add('darkMode-input-text');
+                }
             }
             else {
                 var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
@@ -78,15 +96,39 @@ class SearchBar extends Component {
                 for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
                     buttonsInSearchBarForm[a].classList.remove('darkMode-input-text');
                 }
+
+                var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+                
+                for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+                    inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
+                }
             }
         }
 
         return (
-            <form ref={this.formRef} id='searchBarForm'>
+            <form ref={this.formRef} id='searchBarForm' style={{'width':'100%'}}>
                 <label style={{'display':'none'}}>Search term</label>
-                <input type='search' ref={this.qRef} placeholder='Search for title and content...' />
+                <input style={{'width': '40%','height':'2em', 'padding':'5px', 'border':'0'}} type='search' ref={this.qRef} placeholder='Search for title and content...' />
 
-                <div className="dropdown">
+                <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
+                    <span  
+                        style = {{'fontSize':'24px'}} 
+                        className = 'material-icons'
+                    >
+                        expand_more
+                    </span>
+                </button>
+
+                <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
+                    <span  
+                        style = {{'fontSize':'20px'}} 
+                        className = 'material-icons'
+                    >
+                        search
+                    </span>
+                </button>
+
+                <div className="dropdown" style={{'width': '100%', 'marginTop': '14px'}}>
                     {
                         this.state.showMenu && (
 
@@ -120,23 +162,6 @@ class SearchBar extends Component {
                         )
                     }
                 </div>
-                <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
-                    <span  
-                        style = {{'fontSize':'24px'}} 
-                        className = 'material-icons'
-                    >
-                        expand_more
-                    </span>
-                </button>
-
-                <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
-                    <span  
-                        style = {{'fontSize':'20px'}} 
-                        className = 'material-icons'
-                    >
-                        search
-                    </span>
-                </button>
             </form>
         );
     }
