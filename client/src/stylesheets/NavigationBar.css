@@ -10,7 +10,8 @@
 
 #navigation-bar * {
   vertical-align: middle;
-  display: inline-block;
+  /*display: inline-block;*/
+  display: inline;
   border-radius: 0.25em;
   margin-right: 5px;
 }

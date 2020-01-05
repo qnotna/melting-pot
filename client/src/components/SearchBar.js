@@ -189,7 +189,7 @@ class SearchBar extends Component {
                     {
                         this.state.showMenu ? (
 
-                            <div className="dropdown-content" style={{'width': '100%', 'marginTop': '14px'}}>
+                            <div className="dropdown-content" style={{'width': '100%', 'display':'inline-block', 'marginTop': '14px'}}>
                                 <label>Language</label>
                                 <select ref={this.langRef} style={{'backgroundColor':'white'}}>
                                     {Object.keys(languages).map((key =>

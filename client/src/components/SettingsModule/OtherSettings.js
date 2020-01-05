@@ -6,25 +6,87 @@ import { setNewUserData } from '../../actions/index'
 
 import { setDarkMode } from '../../actions/index'
 
+import { languages, sortOptions } from '../../data/options'
+
 export default class otherSettings extends Component {
+
     handleDarkMode = () => {
         store.dispatch(setDarkMode(document.getElementById('darkMode').checked));
     }
 
     componentDidMount = () => {
         document.getElementById("darkMode").checked = store.getState().darkMode;
+
+        if(document.getElementById('otherSettingsForm') !== null) {
+            if(store.getState().darkMode) {
+
+                var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
+
+                for(var h = 0; h < otherSettingsFormDiv.length; h++) {
+                    var otherSettingsFormDivSelect = otherSettingsFormDiv[h].getElementsByTagName('select');
+                    for(var g = 0; g < otherSettingsFormDivSelect.length; g++) {
+                        otherSettingsFormDivSelect[g].classList.add('darkMode-select');
+                    }
+                }
+            }
+            else {
+                var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
+
+                for(var h = 0; h < otherSettingsFormDiv.length; h++) {
+                    var otherSettingsFormDivSelect = otherSettingsFormDiv[h].getElementsByTagName('select');
+                    for(var g = 0; g < otherSettingsFormDivSelect.length; g++) {
+                        otherSettingsFormDivSelect[g].classList.remove('darkMode-select');
+                    }
+                }
+            }            
+        }
     }
 
-    render(){
+    render() { 
+        if(document.getElementById('otherSettingsForm') !== null) {
+            if(store.getState().darkMode) {
+
+                var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
+
+                for(var h = 0; h < otherSettingsFormDiv.length; h++) {
+                    var otherSettingsFormDivSelect = otherSettingsFormDiv[h].getElementsByTagName('select');
+                    for(var g = 0; g < otherSettingsFormDivSelect.length; g++) {
+                        otherSettingsFormDivSelect[g].classList.add('darkMode-select');
+                    }
+                }
+            }
+            else {
+                var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
+
+                for(var h = 0; h < otherSettingsFormDiv.length; h++) {
+                    var otherSettingsFormDivSelect = otherSettingsFormDiv[h].getElementsByTagName('select');
+                    for(var g = 0; g < otherSettingsFormDivSelect.length; g++) {
+                        otherSettingsFormDivSelect[g].classList.remove('darkMode-select');
+                    }
+                }
+            }  
+        }          
         return(
             <div>
-                <form>
+                <form id='otherSettingsForm'>
                     <div style={{'display':'block', 'marginTop':'20px', 'marginBottom': '8px'}}>
                         Dark Mode <input onClick={() => this.handleDarkMode()} type="checkbox" id="darkMode"/>
                     </div>
-                    <div style={{'display':'block'}}>
-                        Language of Articles: English
-                        Country of Articles: America
+                    <div style={{'display':'block', 'marginTop':'20px'}}>
+                        <label style={{'marginRight':'5px'}}>Language Of Article</label>
+                        <select style={{'borderRadius': '0.25em'}}>
+                            {Object.keys(languages).map((key =>
+                            <option key={key} value={key}>{languages[key]}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div style={{'display':'block', 'marginTop':'20px'}}>
+                        <label style={{'marginRight':'5px'}}>Country Of Article</label>
+                        <select style={{'borderRadius': '0.25em'}}>
+                            {Object.keys(languages).map((key =>
+                            <option key={key} value={key}>{languages[key]}</option>
+                            ))}
+                        </select>
                     </div>
                 </form>
             </div>
