@@ -9,7 +9,7 @@ import NavigationBar from './NavigationBar.js';
 import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
 
-import userExampleData from '../example/user.json';
+// import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import contentViewSectionsExampleData from '../example/contentViewSections.json';
 import readerViewArticle from '../example/readerViewArticle.json';
@@ -93,7 +93,6 @@ class AppBase extends Component {
         <div id='left' ref='Sidebar'>
           <SideBar
             sections={sideBarSectionsExampleData}
-            user={userExampleData}
           />
         </div>
         <div id='right'>

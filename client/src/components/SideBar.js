@@ -31,7 +31,7 @@ class SideBar extends Component {
           <ul className='sidebar-sections'>
             <SideBarSections sections={this.props.sections}/>
           </ul>
-          <ProfileOverview user={this.props.user}/>
+          <ProfileOverview/>
         </Scrollbars>
       </div>
     );
