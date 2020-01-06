@@ -39,3 +39,7 @@ input[type=text], input[type=email], input[type=password] {
     color:white;
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+#settings-view * {
+    outline: 0;
+}

@@ -63,7 +63,7 @@
 }
 
 #profile-overview:hover {
-  cursor: pointer;
+  cursor: default; /*pointer;*/
   color: lightGray;
 }
 
