@@ -5,6 +5,7 @@ import ContentViewResults from './ContentViewResults.js';
 import store from '../store.js';
 import '../stylesheets/ContentView.css';
 import '../stylesheets/DarkMode.css';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 // Placeholder data
 import contentViewTagsExampleData from '../example/contentViewTags.json';
@@ -35,12 +36,14 @@ class ContentView extends Component {
 
     return(
       <div id='content-view'>
-        <div id='content-view-scrollbar'>
-          <ul id='content-view-tags'>
-            <ContentViewTags tags={contentViewTagsExampleData}/>
-          </ul>
-            <ContentViewSections sections={sections}/>
-        </div>
+        <Scrollbars>
+          <div id='content-view-scrollbar'>
+            <ul id='content-view-tags'>
+              <ContentViewTags tags={contentViewTagsExampleData}/>
+            </ul>
+              <ContentViewSections sections={sections}/>
+          </div>
+        </Scrollbars>
       </div>
     );
   }
