@@ -54,10 +54,12 @@ class SideBarItems extends Component {
           htmlFor={this.createItemKey(item.title)} 
           onClick={() => this.setCurrentComponent(item.component)}
         >
-          <img 
-            src='http://www.clker.com/cliparts/a/1/C/x/k/E/pink-square-hi.png' 
-            alt='Item piktogram'
-          />
+          <span  
+              style = {{'fontSize':'16px', 'marginRight':'6px'}} 
+              className = 'material-icons'
+            >
+              {item.icon}
+            </span>
           <p className='sidebar-item-title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
