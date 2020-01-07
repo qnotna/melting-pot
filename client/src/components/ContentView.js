@@ -36,12 +36,14 @@ class ContentView extends Component {
 
     return(
       <div id='content-view'>
-        <div id='content-view-scrollbar'>
-          <ul id='content-view-tags'>
-            <ContentViewTags tags={contentViewTagsExampleData}/>
-          </ul>
-            <ContentViewSections sections={sections}/>
-        </div>
+        <Scrollbars>
+          <div id='content-view-scrollbar'>
+            <ul id='content-view-tags'>
+              <ContentViewTags tags={contentViewTagsExampleData}/>
+            </ul>
+              <ContentViewSections sections={sections}/>
+          </div>
+        </Scrollbars>
       </div>
     );
   }

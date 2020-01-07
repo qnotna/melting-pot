@@ -43,3 +43,19 @@ input[type=text], input[type=email], input[type=password] {
 #settings-view * {
     outline: 0;
 }
+
+
+@media screen and (max-width: 600px) {
+    select {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .settingNavButton {
+        height: 40px;
+    }
+
+    input[type=text], input[type=email], input[type=password] {
+        width: 100%;
+    }
+}

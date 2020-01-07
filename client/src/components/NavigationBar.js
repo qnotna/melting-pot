@@ -34,7 +34,7 @@ class NavigationBar extends Component {
     this.handleDarkMode();
     return(
       <div id="navigation-bar" elastic={this.props.elastic}>
-        <div style={{'width':'100%', 'display': 'flex', 'flexWrap': 'nowrap'}}>
+        <div>
           <button type='submit' onClick={this.props.collapseSidebar} style={{'padding':'0 0 0 0.4em'}}>
             <span  
               style = {{'fontSize':'20px'}} 
