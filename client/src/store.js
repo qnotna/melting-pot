@@ -4,7 +4,7 @@ import { Components } from './utils/Components'
 
 const initialState = {
     // Dark Mode
-    darkMode: true, 
+    darkMode: false, 
 
     // TODO: This props should be set with successful user login
     isAuthenticated: true,
