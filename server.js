@@ -12,6 +12,8 @@ const userAuth = require("./routes/auth-api/userAuth");
 const newsAPI = require("./routes/news-api/news-api")
 const prefsAPI = require('./routes/preferences-api/index')
 
+const cors = require('cors');
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,6 +26,13 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 // DB Config
 const db = process.env.DB_PORT ? `mongodb://localhost:${process.env.DB_PORT}/meltingdb` : require("./config/keys").mongoURI;

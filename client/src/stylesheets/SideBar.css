@@ -18,7 +18,7 @@
 }
 
 .sidebar-section {
-  font-size: 9pt;
+  font-size: 13pt; /*9pt;*/
 }
 
 .sidebar-item {
@@ -63,7 +63,7 @@
 }
 
 #profile-overview:hover {
-  cursor: pointer;
+  cursor: default; /*pointer;*/
   color: lightGray;
 }
 

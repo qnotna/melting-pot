@@ -1,0 +1,61 @@
+input[type=text], input[type=email], input[type=password] {
+    width: 50%;
+    padding: 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    display: block;
+}
+
+.saveButton {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    width: 6em;
+    height: 2em;
+    border: 0;
+    color: white;
+}
+
+.saveButton:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.settingNavButton {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    width: 6em;
+    height: 2em;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    margin-top: 4px;
+}
+
+.active {
+    color:white;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#settings-view * {
+    outline: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    select {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .settingNavButton {
+        height: 40px;
+    }
+
+    input[type=text], input[type=email], input[type=password] {
+        width: 100%;
+    }
+}
