@@ -89,7 +89,7 @@ class AppBase extends Component {
     const { content_component } = store.getState()
 
     return (
-      <div className='App' id='app'>
+      <div className='App' /*id='app'*/>
         <div id='left' ref='Sidebar'>
           <SideBar
             sections={sideBarSectionsExampleData}
