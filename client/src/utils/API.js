@@ -34,8 +34,6 @@ export default {
         "&language=" + input.lang + 
         "&sortBy=" + input.sortBy + 
         "&size=" + input.size
-        console.log(input.from);
-        console.log(input.to);
 
         if(input.source){
             url += "&source=" + input.source;
@@ -52,9 +50,28 @@ export default {
             (res) => {
                 callback({
                     name: "Results",
-                    type: "list",
+                    type: "grid",
                     articles: res.data.articles,
                     // res: res
+                })
+            }
+        ).catch(
+            err => callback({
+                error: err
+            })
+        )
+    },
+    getCategory(component, callback){
+        let category = component.toLowerCase();
+        let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
+        console.log(url);
+        Axios.get("http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10&country=de")
+        .then(
+            (res) => {
+                callback({
+                    name: category[0].toUpperCase() + category.slice(1),
+                    type: "grid",
+                    articles: res.data.articles
                 })
             }
         ).catch(

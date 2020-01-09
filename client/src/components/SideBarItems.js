@@ -12,13 +12,48 @@ import { addSection, setSections } from '../actions'
 class SideBarItems extends Component {
 
   isDefaultChecked = (item) => ((item === 'Melting Hot') ? true : false);
-  createItemKey = (item) => (`item-${item.toLowerCase().replace(' ', '-')}`)
+  createItemKey = (isCategory, item) => {
+    if(isCategory){
+      return (`${item.toLowerCase()}`)
+    } else {
+      return (`item-${item.toLowerCase().replace(' ', '-')}`)
+    }
+  }
 
-  setCurrentComponent(component){
-
+  setCurrentComponent(category, component){
     switch (component) {
       case Components.HOME:
         this.loadSections()
+        break;
+      case Components.BUSINESS:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
+        break;
+      case Components.ENTERTAINMENT:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
+        break;
+        case Components.HEALTH:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
+        break;
+        case Components.SCIENCE:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
+        break;
+        case Components.SPORTS:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
+        break;
+        case Components.TECHNOLOGY:
+        api.getCategory(category, (res) => {
+          store.dispatch(setSections([res]))
+        })
         break;
     
       default:
@@ -30,7 +65,7 @@ class SideBarItems extends Component {
 
   loadSections(){
     api.getHot((res) => {
-      store.dispatch( addSection ( res ))
+      store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {
       store.dispatch( addSection( res ))
@@ -41,18 +76,18 @@ class SideBarItems extends Component {
     return this.props.items.map((item) => (
       <li 
         className='sidebar-item' 
-        key={this.createItemKey(item.title)}
+        key={this.createItemKey(false, item.title)}
+        id={this.createItemKey(true, item.title)} 
+        onClick={(event) => this.setCurrentComponent(event.currentTarget.id, item.component)}
       >
         <input 
           type='radio' 
           name='sidebar-items' 
-          id={this.createItemKey(item.title)} 
           defaultChecked={this.isDefaultChecked(item.title)}
         />
         <label 
           className='sidebar-item-label' 
-          htmlFor={this.createItemKey(item.title)} 
-          onClick={() => this.setCurrentComponent(item.component)}
+          htmlFor={this.createItemKey(false, item.title)} 
         >
           <img 
             src='http://www.clker.com/cliparts/a/1/C/x/k/E/pink-square-hi.png' 

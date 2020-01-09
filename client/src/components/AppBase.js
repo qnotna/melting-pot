@@ -53,6 +53,19 @@ class AppBase extends Component {
 
       case Components.SEARCH_RESULTS:
         return <ContentView />
+        
+      case Components.BUSINESS:
+        return <ContentView />
+      case Components.ENTERTAINMENT:
+        return <ContentView />
+      case Components.HEALTH:
+        return <ContentView />
+      case Components.SCIENCE:
+        return <ContentView />
+      case Components.SPORTS:
+        return <ContentView />
+      case Components.TECHNOLOGY:
+        return <ContentView />
 
       case Components.SETTINGS:
         return <Settings />

@@ -112,8 +112,6 @@ class SearchBar extends Component {
 
     handleClick = (event) => {
         event.preventDefault();
-        console.log(this.toRef.current);
-        console.log(this.toRef.current.value);
         //TODO Sprache automatisch aus User-Einstellungen wählen
         let langCode = this.langRef.current ? formatLangOption(this.langRef.current.options[this.langRef.current.selectedIndex].text) : "de";
         let sortBy = this.sortRef.current ? this.sortRef.current.options[this.sortRef.current.selectedIndex].text : "publishedAt";
