@@ -6,7 +6,7 @@ import { Components } from '../utils/Components';
 import { setSearchInput, setContentComponent } from '../actions';
 
 import api from '../utils/API';
-import { addSection, setSections } from '../actions'
+import { setSections } from '../actions'
 
 
 class SearchBar extends Component {

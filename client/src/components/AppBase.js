@@ -70,8 +70,8 @@ class AppBase extends Component {
       case Components.SETTINGS:
         return <Settings />
 
-      // case Components.ARTICLE:
-      //   return <ReaderView article={readerViewArticle}/>
+      case Components.READER_VIEW:
+        return <ReaderView />
     }
   }
 

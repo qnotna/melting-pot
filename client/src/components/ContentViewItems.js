@@ -1,7 +1,19 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
+import ReaderView from './ReaderView.js';
+import store from '../store.js';
+import { setArticle, setContentComponent } from '../actions'
+import { Components } from '../utils/Components.js';
+
 
 class ContentViewItems extends Component {
+
+  showRenderView(article){
+    store.dispatch(setArticle(article));
+    store.dispatch(setContentComponent(Components.READER_VIEW))
+    // console.log(store.getState());
+    // console.log(article);
+  }
 
   // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
   createItemPreview = (item) => {
@@ -11,7 +23,7 @@ class ContentViewItems extends Component {
       optionalPreviewText = <p>{item.description}</p>
     }
     return(
-      <div className='content-view-preview' preview-size={previewSize}>
+      <div className='content-view-preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
         {optionalPreviewText}

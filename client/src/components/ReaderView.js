@@ -4,9 +4,10 @@ import ReadingTime from './simple/ReadingTime';
 import Source from './simple/Source';
 import TextBlock from './simple/TextBlock';
 import '../stylesheets/ReaderView.css';
+import store from '../store';
 
-const ReaderView = ({ article }) => {
-
+const ReaderView = () => {
+  const article = store.getState().current_article;
   return(
     <div id='reader-view'>
       <img src={article.urlToImage} alt={article.description}/>

@@ -22,3 +22,8 @@ export const setSearchInput = (search_input) => ({
     type: "SET_SEARCH_INPUT",
     search_input
 })
+
+export const setArticle = (current_article) => ({
+    type: "SET_ARTICLE",
+    current_article
+})

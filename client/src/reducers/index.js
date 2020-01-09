@@ -7,7 +7,6 @@ export default (state, action) => {
       }
 
     case "ADD_SECTION":
-      console.log(action)
       const sections = state.sections
       sections.push(action.section)
       return {
@@ -31,6 +30,12 @@ export default (state, action) => {
       return {
         ...state,
         content_component: action.component
+      }
+
+    case "SET_ARTICLE":
+      return {
+        ...state,
+        current_article: action.current_article
       }
 
     default:
