@@ -37,7 +37,7 @@ export default class EditUserData extends Component {
 
   handleDarkMode = () => {
     if(document.getElementById('editUserDataForm') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('name').classList.add('darkMode-input-text');
         document.getElementById('email').classList.add('darkMode-input-text');
       }

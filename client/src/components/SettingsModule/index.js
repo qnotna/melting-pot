@@ -11,14 +11,18 @@ import '../../stylesheets/Settings.css'
 import '../../stylesheets/DarkMode.css';
 
 export default class Settings extends Component {
+  state = {
+    update: true
+  }
+
   handleChangeUserData = () => {
   if(!document.getElementById('changeUserData').classList.contains('active')) {
     document.getElementById('changeUserData').classList.add('active');
     document.getElementById('changeUserPassword').classList.remove('active');
     document.getElementById('otherSettings').classList.remove('active');
             
-    // force re-render
-    this.forceUpdate();
+    // re-render
+    this.setState({update: !this.state.update});
     }
   }
 
@@ -28,7 +32,7 @@ export default class Settings extends Component {
       document.getElementById('changeUserPassword').classList.add('active');
       document.getElementById('otherSettings').classList.remove('active');
 
-      this.forceUpdate();
+      this.setState({update: !this.state.update});
     }
   }
 
@@ -38,13 +42,13 @@ export default class Settings extends Component {
       document.getElementById('changeUserPassword').classList.remove('active');
       document.getElementById('otherSettings').classList.add('active');
 
-      this.forceUpdate();
+      this.setState({update: !this.state.update});
     }
   }
 
   handleDarkMode = () => {
     if(document.getElementById('changeUserData') !== null){
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('settings-view').classList.add('darkMode-body');
       }
       else {

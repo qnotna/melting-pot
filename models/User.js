@@ -15,6 +15,18 @@ const UserSchema = new Schema({
     type: String,
     required: false,
     default: ""
+  },
+  settings: {
+    darkMode: {
+      type: Boolean,
+      required: false,
+      default: false
+    }, 
+    language: {
+      type: String,
+      required: false,
+      default: "en"
+    }
   }
 });
 

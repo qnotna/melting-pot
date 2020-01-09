@@ -15,15 +15,36 @@ export default class EditUserPassword extends Component {
   }
 
   changeUserPassword = () => {
-    this.setState({message: 'Das Passwort wurde aktualisiert.'});
-    setTimeout(() => {
-      this.setState({message: ''})
-    }, 5000);
+    // Was fehlt überprüfen ob email und username schon vorhanden sind in der Datenban
+    var submitedOldPassword = document.getElementById("oldPassword").value;
+    var submitedNewPassword = document.getElementById("newPassword").value;
+
+    // Was fehlt: Überprüfen ob sich der Ursprungwert vom neuen Wert unterscheidet
+    var newUserData = {};
+    if(submitedNewPassword !== '' && submitedOldPassword !== '') {
+      var password = {
+        'oldPassword': submitedOldPassword,
+        'newPassword': submitedNewPassword,
+      }
+      
+      newUserData.password = password;
+
+      api.updateUserData((res) => {
+        store.dispatch(setNewUserData(res.newUserData));
+        this.setState({message: 'Das Passwort wurde aktualisiert.'});
+        setTimeout(() => {
+          this.setState({message: ''})
+        }, 5000);
+      }, newUserData)
+    }
+    else {
+      this.setState({message: 'Bitte fülle beide Felder aus.'});
+    }
   }
 
   handleDarkMode = () => {
     if(document.getElementById('editPasswordForm') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('oldPassword').classList.add('darkMode-input-text');
         document.getElementById('newPassword').classList.add('darkMode-input-text');
       }

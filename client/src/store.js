@@ -3,14 +3,15 @@ import reducer from "./reducers"
 import { Components } from './utils/Components'
 
 const initialState = {
-    // Dark Mode
-    darkMode: false, 
-
     // TODO: This props should be set with successful user login
     isAuthenticated: true,
     user: {
         name: "Pizzaboi",
-        email: "Pizzaboi@gmail.com"
+        email: "Pizzaboi@gmail.com",
+        settings: {
+            darkMode: true,
+            language: "de"
+        }
     },
     // User preferences used to build personalized sections
     user_preferences: {

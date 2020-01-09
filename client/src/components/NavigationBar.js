@@ -7,7 +7,7 @@ import store from '../store.js';
 class NavigationBar extends Component {
   handleDarkMode = () => {
     if(document.getElementById('navigation-bar') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
         for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
           buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');

@@ -38,6 +38,22 @@ router.route('/:id')
 
   // @route PATCH api/users/:id
   .patch((req, res, next) => {
+    /*
+    var newUser = new User({
+      name: 'Jack',
+      email: 'Jack@gmail.com',
+      password: 'password',
+      settings: {
+        darkMode: true,
+        language: "de"
+      }
+    }); 
+                
+    newUser.save()
+
+    console.log('User Jack wurde gespeichert)
+    */
+    /*
 
     var filter = {_id: req.params.id};
     var update = {}
@@ -51,17 +67,18 @@ router.route('/:id')
     }
     if(req.body.params.password !== undefined) {
       // altes psswort muss überprüft werden dann hashen und dann speichern
-      update.password = req.body.password;
+      console.log('in server')
+      console.log(req.body.params.password);
     }
-
+    */
     // return user object with new values nur name und email
     res.json({
-      name: req.body.params.name,
-      email: req.body.params.email
+      name: 'new name',
+      email: 'new email'
     })
 
     /*
-    // neue Wertes des Users speichern und neue zurückgeben und im Respones senden
+    // neue Wertes des Users speichern und neue (name und email) zurückgeben und im Respones senden
     User.findOneAndUpdate(filter, update, {new: true, safe: true}).select('name email -_id')
     .then(() => {
       res.json({
