@@ -27,24 +27,6 @@ router.get('/latest', (req, res) => {
     );
 });
 
-// top Headlines aus einem bestimmten land und Sprache und einer bestimmten Kategorie
-router.get('/top-headlines/:category', (req, res) => {
-    var userLand = 'de';
-    var userLanguage = 'de';
-    console.log(req.params.category);
-    newsapi.v2.topHeadlines({
-        //sources: 'bbc-news,the-verge',
-        //q: 'bitcoin',
-        category: req.params.category,
-        country: 'fr'
-    })
-    .then(response => {
-        res.json(response)
-    })
-    .catch( err => {
-        res.json(err)
-    });
-});
 
 // top Headlines aus einem bestimmten land und Sprache
 router.get('/top-headlines', (req, res) => {

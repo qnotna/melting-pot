@@ -122,7 +122,6 @@ class SearchBar extends Component {
         const searchInput = {
             query: this.qRef.current.value,
             lang: langCode,
-            lang: langCode,
             sortBy: sortBy,
             source: sources,
             size: size,

@@ -4,22 +4,14 @@ import ReadingTime from './simple/ReadingTime';
 import Source from './simple/Source';
 import Badge from './simple/Badge';
 import '../stylesheets/ContentViewItemPreview.css';
-import Moment from 'moment';
+import calcReadingTime from '../utils/readingTimeCalc';
+import formatDate from '../utils/dateFormatter';
 
 class ContentViewItemPreview extends Component {
 
-  formatDate(date){
-    let dateWithoutTime = Moment(date).format('DD MM YY');
-
-    let currentDate = new Date();
-    currentDate = Moment(currentDate).format('DD MM YY');
-
-    let formatted = (dateWithoutTime === currentDate) ? "Heute" : Moment(date).format('DD/MM/YYYY HH:MM:ss');
-    return formatted;
-  }
-
   render() {
     let item =  this.props.item;
+    console.log(item.content)
     let previewSize =  this.props.previewSize;
     return(
       <div className='preview-with-image' preview-size={previewSize}>
@@ -28,9 +20,10 @@ class ContentViewItemPreview extends Component {
         <div className='preview-information'>
           <Source
             name={item.source.name}
-            date={this.formatDate(item.publishedAt)}
+            date={formatDate(item.publishedAt, 'preview')}
             />
-          <ReadingTime time={12}/>
+          <ReadingTime time={calcReadingTime(item.content, 'preview')}/>
+          {/* <ReadingTime time={12}/> */}
           <img className='preview-information-category icon' src='https://www.bevlabvet.com/images/circle-dark.png' alt='Category' />
         </div>
         <div className='preview-actions'>

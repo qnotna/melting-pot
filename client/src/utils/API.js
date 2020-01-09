@@ -63,9 +63,9 @@ export default {
     },
     getCategory(component, callback){
         let category = component.toLowerCase();
-        let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
-        console.log(url);
-        Axios.get("http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10&country=de")
+        // let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
+        // console.log(url);
+        Axios.get("http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=20&country=de")
         .then(
             (res) => {
                 callback({

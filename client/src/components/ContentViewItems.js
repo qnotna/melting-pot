@@ -1,10 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
-import ReaderView from './ReaderView.js';
 import store from '../store.js';
 import { setArticle, setContentComponent } from '../actions'
 import { Components } from '../utils/Components.js';
-
 
 class ContentViewItems extends Component {
 

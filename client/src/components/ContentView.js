@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
-import ContentViewResults from './ContentViewResults';
 import '../stylesheets/ContentView.css';
 
 // Placeholder data
