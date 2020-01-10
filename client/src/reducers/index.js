@@ -34,7 +34,6 @@ export default (state, action) => {
       }
     
     case "SET_NEW_USER_DATA":
-      console.log(action.newUserData)
       var returnObject = {
         ...state
       }
@@ -63,7 +62,6 @@ export default (state, action) => {
               returnObject.sections = [];
             }
             if(Object.keys(settingsObject)[y] === 'country') {
-              console.log('in country')
               returnObject.user.settings.country = settingsObject.country;
 
               // leere die Sections damit die sections mit der neuen sprache und nicht einfach nur unter die 

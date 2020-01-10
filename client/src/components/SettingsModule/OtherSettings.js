@@ -81,8 +81,6 @@ export default class otherSettings extends Component {
       }
     };
 
-    console.log(newUserData)
-
     api.updateUserData((res) => {
       store.dispatch(setNewUserData(res.newUserData))
     }, newUserData)

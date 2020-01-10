@@ -38,7 +38,6 @@ class SideBarItems extends Component {
   }
 
   render() {
-    console.log('render in sidebaritems')
     return this.props.items.map((item) => (
       <li 
         className='sidebar-item' 

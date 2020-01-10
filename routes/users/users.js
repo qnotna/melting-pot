@@ -40,25 +40,25 @@ router.route('/:id')
 
   // @route PATCH api/users/:id
   .patch((req, res, next) => {
-    console.log('in patch')
     /*
-    Cerate example user
+    //Cerate example user
     var newUser = new User({
       name: 'Jack',
       email: 'Jack@gmail.com',
       password: 'password',
       settings: {
-        language: "de"
+        language: "de",
+        country: "de"
       }
     }); 
                 
     newUser.save()
-
-    console.log('User Jack wurde gespeichert')
     */
   
     //var filter = {_id: req.params.id};
-    var filter = {_id: '5e176bdf4b9ab95f9892c09e'}
+
+    // id von Jack aus der DB
+    var filter = {_id: '5e1888098d607a39b8707dfb'}
     var update = {}
 
     // Überprüfen welche Werte geändert wurden
@@ -105,8 +105,6 @@ router.route('/:id')
     // neue Wertes des Users speichern und neue (name und email) zurückgeben und im Respones senden
     User.findOneAndUpdate(filter, update, {new: true, safe: true}).select(selectString)
     .then((updatedUserData) => {
-      console.log('update')
-      console.log(updatedUserData)
       res.json({
         updatedUserData
       })
