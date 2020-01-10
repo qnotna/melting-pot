@@ -5,7 +5,7 @@ const src = 'http://localhost:5000/'
 
 export default {
     getHot(callback){
-        Axios.get(src + "newsapi/top-headlines?country=de&pageSize=5")
+        Axios.get(src + "newsapi/top-headlines?country=" + store.getState().user.settings.country + "&pageSize=5")
         .then(
             (res) => {
                 callback({
@@ -19,7 +19,6 @@ export default {
         )
     },
     getLatest(callback){
-        console.log(store.getState().user.settings.language)
         Axios.get(src + "newsapi/latest?language=" + store.getState().user.settings.language)
         .then(
             (res) => {
@@ -51,12 +50,9 @@ export default {
         )
     },
     updateUserData(callback, params){
-        console.log('in updateUserData')
         Axios.patch(src + 'api/users/1234', params)
         .then(
             (res) => {
-                console.log('in API res')
-                console.log(res.data)
                 callback({
                     newUserData: res.data.updatedUserData
                 })

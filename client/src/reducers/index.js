@@ -7,7 +7,7 @@ export default (state, action) => {
       }
 
     case "ADD_SECTION":
-      console.log(action)
+      //console.log(action)
       const sections = state.sections
       sections.push(action.section)
       return {
@@ -34,9 +34,7 @@ export default (state, action) => {
       }
     
     case "SET_NEW_USER_DATA":
-      console.log('in reducer')
       console.log(action.newUserData)
-
       var returnObject = {
         ...state
       }
@@ -49,28 +47,35 @@ export default (state, action) => {
           returnObject.user.email = action.newUserData.email;
         }
         if(Object.keys(action.newUserData)[i] === 'password'){
+          // aktualsiere den store nicht
         }
         if(Object.keys(action.newUserData)[i] === 'settings'){
-
           var settingsObject = action.newUserData.settings;
           for(var y = 0; y < Object.keys(settingsObject).length; y++) {
             if(Object.keys(settingsObject)[y] === 'darkMode') {
               returnObject.user.settings.darkMode = settingsObject.darkMode;
             }
             if(Object.keys(settingsObject)[y] === 'language') {
-              console.log('in language')
               returnObject.user.settings.language = settingsObject.language;
+
+              // leere die Sections damit die sections mit der neuen sprache und nicht einfach nur unter die 
+              // alten rangehängt werden sonder nur die Artikel der neuen Sprache angezeigt wird
+              returnObject.sections = [];
             }
-            /*
-            if(Object.keys(settingsObject)[y] === 'articleWithoutImg') {
-              returnObject.user.settings.darkMode = settingsObject.darkMode;
+            if(Object.keys(settingsObject)[y] === 'country') {
+              console.log('in country')
+              returnObject.user.settings.country = settingsObject.country;
+
+              // leere die Sections damit die sections mit der neuen sprache und nicht einfach nur unter die 
+              // alten rangehängt werden sonder nur die Artikel der neuen Sprache angezeigt wird
+              returnObject.sections = [];
             }
-            */
+            if(Object.keys(settingsObject)[y] === 'readArticleWithoutPictures') {
+              returnObject.user.settings.readArticleWithoutPictures = settingsObject.readArticleWithoutPictures;
+            }
           }
         }
       }
-      console.log('returnObject vor return')
-      console.log(returnObject)
       return returnObject
 
     default:

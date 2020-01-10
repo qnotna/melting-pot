@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import store from '../../store';
-import { setUser } from '../../actions';
 import api from '../../utils/API';
 import { setNewUserData } from '../../actions/index';
-import { languages, sortOptions } from '../../data/options';
+import { languages, country } from '../../data/options';
 
 // Icons: https://material.io/resources/icons/?style=baseline
 
@@ -60,9 +59,7 @@ export default class otherSettings extends Component {
   }
 
   handleSelectedLanguage = () => {
-    console.log('select another languae')
     var selectedLanguage = document.getElementById('selectLanguage').value;
-    console.log(selectedLanguage)
     
     var newUserData = {
       settings: {
@@ -70,20 +67,58 @@ export default class otherSettings extends Component {
       }
     };
 
-    console.log('hier in handleSelectedLanguage')
+    api.updateUserData((res) => {
+      store.dispatch(setNewUserData(res.newUserData))
+    }, newUserData)
+  }
+
+  handleSelectedCountry = () => {
+    var selectedCountry = document.getElementById('selectCountry').value;
+    
+    var newUserData = {
+      settings: {
+        country: selectedCountry
+      }
+    };
+
+    console.log(newUserData)
 
     api.updateUserData((res) => {
       store.dispatch(setNewUserData(res.newUserData))
     }, newUserData)
   }
 
-  handleArticleWithoutImgCheckbox = () => {
-    console.log('in handleArticleCheckbox');
+  handleReadArticleWithoutPicturesCheckbox = () => {
+    var readArticleWithoutPicturesValue = document.getElementById("readArticleWithoutPictures").checked;
+    
+    var newUserData = {
+      settings: {
+        readArticleWithoutPictures: readArticleWithoutPicturesValue
+      }
+    };
+
+    api.updateUserData((res) => {
+      store.dispatch(setNewUserData(res.newUserData))
+    }, newUserData)
   }
 
   componentDidMount = () => {
     document.getElementById("darkMode").checked = store.getState().user.settings.darkMode;
-    document.getElementById("articleWithoutImg").checked = false;
+    document.getElementById("readArticleWithoutPictures").checked = store.getState().user.settings.readArticleWithoutPictures;
+
+    var selectedLanguageOptions = document.getElementById('selectLanguage').getElementsByTagName('option');
+    for(var w = 0; w < selectedLanguageOptions.length; w++) {
+      if(selectedLanguageOptions[w].value === store.getState().user.settings.language) {
+        selectedLanguageOptions[w].selected = true;
+      }
+    }
+
+    var selectedCountryOptions = document.getElementById('selectCountry').getElementsByTagName('option');
+    for(var v = 0; v < selectedCountryOptions.length; v++) {
+      if(selectedCountryOptions[v].value === store.getState().user.settings.country) {
+        selectedCountryOptions[v].selected = true;
+      }
+    }
 
     this.handleDarkMode();
   }
@@ -98,13 +133,21 @@ export default class otherSettings extends Component {
             Dark Mode <input onClick={() => this.handleDarkModeCheckbox()} type="checkbox" id="darkMode"/>
             </div>
             <div style={{'display':'block', 'marginTop':'20px', 'marginBottom': '8px'}}>
-            Artikel ohne Bilder lesen <input onClick={() => this.handleArticleWithoutImgCheckbox()} type="checkbox" id="articleWithoutImg"/>
+            Artikel ohne Bilder lesen <input onClick={() => this.handleReadArticleWithoutPicturesCheckbox()} type="checkbox" id="readArticleWithoutPictures"/>
             </div>
             <div style={{'display':'block', 'marginTop':'20px'}}>
               <label style={{'marginRight':'5px'}}>Sprache der Artikel</label>
               <select style={{'borderRadius': '0.25em'}} id="selectLanguage" onChange={() => this.handleSelectedLanguage()}>
                   {Object.keys(languages).map((key =>
                   <option key={key} value={key}>{languages[key]}</option>
+                  ))}
+              </select>
+            </div>
+            <div style={{'display':'block', 'marginTop':'20px'}}>
+              <label style={{'marginRight':'5px'}}>Land des Artikel</label>
+              <select style={{'borderRadius': '0.25em'}} id="selectCountry" onChange={() => this.handleSelectedCountry()}>
+                  {Object.keys(country).map((key =>
+                  <option key={key} value={key}>{country[key]}</option>
                   ))}
               </select>
             </div>

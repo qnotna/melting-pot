@@ -40,6 +40,7 @@ router.route('/:id')
 
   // @route PATCH api/users/:id
   .patch((req, res, next) => {
+    console.log('in patch')
     /*
     Cerate example user
     var newUser = new User({
@@ -47,7 +48,6 @@ router.route('/:id')
       email: 'Jack@gmail.com',
       password: 'password',
       settings: {
-        darkMode: true,
         language: "de"
       }
     }); 
@@ -56,9 +56,6 @@ router.route('/:id')
 
     console.log('User Jack wurde gespeichert')
     */
-
-    console.log('Request-Body in dem server')
-    console.log(req.body)
   
     //var filter = {_id: req.params.id};
     var filter = {_id: '5e176bdf4b9ab95f9892c09e'}
@@ -71,12 +68,14 @@ router.route('/:id')
     if(req.body.email !== undefined) {
       update.email = req.body.email;
     }
-    /*
+    
     if(req.body.password !== undefined) {
       // altes psswort muss überprüft werden dann hashen und dann speichern
       console.log(req.body.password);
+
+      update.password = req.body.password.oldPassword;
     }
-    */
+    
     if(req.body.settings !== undefined) {
       if(req.body.settings.darkMode !== undefined){
         // {'settings.darkMode': true} damit hat es funktioniert
@@ -85,41 +84,29 @@ router.route('/:id')
       if(req.body.settings.language !== undefined){
         update = {'settings.language': req.body.settings.language}
       }
+      if(req.body.settings.country !== undefined){
+        update = {'settings.country': req.body.settings.country}
+      }
+      if(req.body.settings.readArticleWithoutPictures !== undefined){
+        update = {'settings.readArticleWithoutPictures': req.body.settings.readArticleWithoutPictures}
+      }
     }
 
-    console.log('Updatet Data')
-    console.log(update)
-
-    // return user object with new values nur name und email
-    /*
-    res.json({
-      name: 'new name',
-      email: 'new email',
-      settings: {
-        darkMode: true,
-        language: "de"
-      }
-    })
-    */
-   console.log('schleife')
-   console.log(Object.keys(update))
-    var selectString = ''
+    // -_id: _id Attribut soll bei der rückgabe nicht angegeben werden
+    var selectString = '-_id '
 
     for(var i = 0; i < Object.keys(update).length; i++){
       selectString = selectString + Object.keys(update)[i] + ' ';
+      if(Object.keys(update)[i] === 'password') {
+        selectString = selectString + ' -password -settings -email -name -__v';
+        }
     }
-
-    console.log('select String')
-    console.log(selectString.trim())
-    
-    selectString = selectString + ' -_id'
     
     // neue Wertes des Users speichern und neue (name und email) zurückgeben und im Respones senden
     User.findOneAndUpdate(filter, update, {new: true, safe: true}).select(selectString)
     .then((updatedUserData) => {
-      console.log('hier nach update')
+      console.log('update')
       console.log(updatedUserData)
-
       res.json({
         updatedUserData
       })

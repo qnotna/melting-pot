@@ -13,8 +13,7 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: false,
-    default: ""
+    required: true,
   },
   settings: {
     darkMode: {
@@ -26,6 +25,16 @@ const UserSchema = new Schema({
       type: String,
       required: false,
       default: "en"
+    },
+    country: {
+      type: String,
+      required: false,
+      default: "us"
+    },
+    readArticleWithoutPictures: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 });

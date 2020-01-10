@@ -9,8 +9,10 @@ const initialState = {
         name: "Pizzaboi",
         email: "Pizzaboi@gmail.com",
         settings: {
-            darkMode: true,
-            language: "de"
+            darkMode: false,
+            language: "de",
+            country: "de",
+            readArticleWithoutPictures: false
         }
     },
     // User preferences used to build personalized sections

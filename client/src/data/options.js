@@ -26,6 +26,18 @@ export const languages = {
     no: 'norwegian',
     pt: 'portuguese',
     ru: 'russian',
+    zh: 'chinese'
+}
+
+export const country = {
+    ar: 'Arabia',
+    de: 'Germany',
+    fr: 'France',
+    it: 'Italy',
+    nl: 'Netherlands',
+    no: 'Norway',
+    pt: 'Portugal',
+    ru: 'Russia'
 }
 
 export const sortOptions = {

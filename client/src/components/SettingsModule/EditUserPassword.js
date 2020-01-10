@@ -11,6 +11,7 @@ export default class EditUserPassword extends Component {
   constructor(props){
     super(props);
     this.state = {
+      message: ''
     }
   }
 
