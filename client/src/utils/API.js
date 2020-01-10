@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import store from '../store.js';
 
 const src = 'http://localhost:5000/'
 
@@ -18,7 +19,7 @@ export default {
         )
     },
     getLatest(callback){
-        Axios.get(src + "newsapi/latest?language=de")
+        Axios.get(src + "newsapi/latest?language=" + store.getState().user.settings.language)
         .then(
             (res) => {
                 callback({

@@ -51,8 +51,20 @@ export default class otherSettings extends Component {
 
   handleSelectedLanguage = () => {
     console.log('select another languae')
-    var selectedCountry = document.getElementById('selectLanguage').value;
-    console.log(selectedCountry)
+    var selectedLanguage = document.getElementById('selectLanguage').value;
+    console.log(selectedLanguage)
+    
+    var newUserData = {
+      settings: {
+        language: selectedLanguage
+      }
+    };
+
+    console.log('hier in handleSelectedLanguage')
+
+    api.updateUserData((res) => {
+      store.dispatch(setNewUserData(res.newUserData))
+    }, newUserData)
   }
 
   handleArticleWithoutImgCheckbox = () => {

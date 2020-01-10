@@ -57,22 +57,19 @@ export default (state, action) => {
           for(var y = 0; y < Object.keys(settingsObject).length; y++) {
             console.log('in settings schleife')
             if(Object.keys(settingsObject)[y] === 'darkMode') {
+              console.log('in darkMode')
               returnObject.user.settings.darkMode = settingsObject.darkMode;
             }
-          }
-          /*
-          console.log(Object.keys(se))
-          console.log('nach settings')
-          for(var y = 0; y < Object.keys(action.newUserData[i].settings).length; y++) {
-            console.log('in darkmode schleife')
-            if(Object.keys(action.newUserData[i].settings[y]) === 'darkMode') {
-              returnObject.user.settings.darkMode = action.newUserData.name;
+            if(Object.keys(settingsObject)[y] === 'language') {
+              console.log('in language')
+              returnObject.user.settings.language = settingsObject.language;
             }
-            if(Object.keys(action.newUserData)[i] === 'language'){
-              returnObject.user.settings.language = action.newUserData.email;
+            /*
+            if(Object.keys(settingsObject)[y] === 'articleWithoutImg') {
+              returnObject.user.settings.darkMode = settingsObject.darkMode;
             }
+            */
           }
-          */
         }
       }
       console.log('returnObject vor return')
