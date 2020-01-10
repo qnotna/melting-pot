@@ -6,8 +6,12 @@ import { setNewUserData } from '../../actions/index'
 import '../../stylesheets/DarkMode.css';
 
 export default class EditUserData extends Component {
-    state = {
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: ''
     }
+  }
 
   changeUserValues = () => {
     // Was fehlt: überprüfen ob email und username schon vorhanden sind in der Datenban

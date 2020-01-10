@@ -51,7 +51,20 @@ export default (state, action) => {
         if(Object.keys(action.newUserData)[i] === 'password'){
         }
         if(Object.keys(action.newUserData)[i] === 'settings'){
+          console.log('in settings')
+          var settingsObject = action.newUserData.settings;
+          console.log(Object.keys(settingsObject));
+          for(var y = 0; y < Object.keys(settingsObject).length; y++) {
+            console.log('in settings schleife')
+            if(Object.keys(settingsObject)[y] === 'darkMode') {
+              returnObject.user.settings.darkMode = settingsObject.darkMode;
+            }
+          }
+          /*
+          console.log(Object.keys(se))
+          console.log('nach settings')
           for(var y = 0; y < Object.keys(action.newUserData[i].settings).length; y++) {
+            console.log('in darkmode schleife')
             if(Object.keys(action.newUserData[i].settings[y]) === 'darkMode') {
               returnObject.user.settings.darkMode = action.newUserData.name;
             }
@@ -59,10 +72,11 @@ export default (state, action) => {
               returnObject.user.settings.language = action.newUserData.email;
             }
           }
-          returnObject.user.email = action.newUserData.email;
+          */
         }
       }
-
+      console.log('returnObject vor return')
+      console.log(returnObject)
       return returnObject
 
     default:

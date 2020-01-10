@@ -11,8 +11,11 @@ import '../../stylesheets/Settings.css'
 import '../../stylesheets/DarkMode.css';
 
 export default class Settings extends Component {
-  state = {
-    update: true
+  constructor(props) {
+    super(props)
+    this.state = {
+      update: true
+    }
   }
 
   handleChangeUserData = () => {
