@@ -9,7 +9,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 class SideBar extends Component {
   handleDarkMode = () => {
     if(document.getElementById('sidebar') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('sidebar').classList.add('darkMode-sidebar');
       }
       else {

@@ -1,10 +1,11 @@
 import Axios from 'axios';
+import store from '../store.js';
 
 const src = 'http://localhost:5000/'
 
 export default {
     getHot(callback){
-        Axios.get(src + "newsapi/top-headlines?country=de&pageSize=5")
+        Axios.get(src + "newsapi/top-headlines?country=" + store.getState().user.settings.country + "&pageSize=5")
         .then(
             (res) => {
                 callback({
@@ -18,7 +19,7 @@ export default {
         )
     },
     getLatest(callback){
-        Axios.get(src + "newsapi/latest?language=de")
+        Axios.get(src + "newsapi/latest?language=" + store.getState().user.settings.language)
         .then(
             (res) => {
                 callback({
@@ -49,11 +50,11 @@ export default {
         )
     },
     updateUserData(callback, params){
-        Axios.patch(src + 'api/users/1234', {params})
+        Axios.patch(src + 'api/users/1234', params)
         .then(
             (res) => {
                 callback({
-                    newUserData: res.data
+                    newUserData: res.data.updatedUserData
                 })
             }
         )

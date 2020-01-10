@@ -34,6 +34,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
+// mongoose.set('debug', true);
+mongoose.set('useFindAndModify', false);
+
 // DB Config
 const db = process.env.DB_PORT ? `mongodb://localhost:${process.env.DB_PORT}/meltingdb` : require("./config/keys").mongoURI;
 // Connect to MongoDB

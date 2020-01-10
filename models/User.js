@@ -13,8 +13,29 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: false,
-    default: ""
+    required: true,
+  },
+  settings: {
+    darkMode: {
+      type: Boolean,
+      required: false,
+      default: false
+    }, 
+    language: {
+      type: String,
+      required: false,
+      default: "en"
+    },
+    country: {
+      type: String,
+      required: false,
+      default: "us"
+    },
+    readArticleWithoutPictures: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   }
 });
 

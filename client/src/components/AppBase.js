@@ -67,7 +67,7 @@ class AppBase extends Component {
 
   handleDarkMode = () => {
     if(document.getElementById('left') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('left').classList.add('darkMode-body');
       }
       else {

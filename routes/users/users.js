@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require("../../models/User")
 const HttpError = require('../../middleware/httpError.js');
 
+const ObjectId = require('mongodb').ObjectID;
+
 router.route('/:id')
   // @route GET api/users/:id
   .get((req, res, next) => {
@@ -38,41 +40,79 @@ router.route('/:id')
 
   // @route PATCH api/users/:id
   .patch((req, res, next) => {
+    /*
+    //Cerate example user
+    var newUser = new User({
+      name: 'Jack',
+      email: 'Jack@gmail.com',
+      password: 'password',
+      settings: {
+        language: "de",
+        country: "de"
+      }
+    }); 
+                
+    newUser.save()
+    */
+  
+    //var filter = {_id: req.params.id};
 
-    var filter = {_id: req.params.id};
+    // id von Jack aus der DB
+    var filter = {_id: '5e1888098d607a39b8707dfb'}
     var update = {}
 
     // Überprüfen welche Werte geändert wurden
-    if(req.body.params.name !== undefined) {
+    if(req.body.name !== undefined) {
       update.name = req.body.name;
     }
-    if(req.body.params.email !== undefined) {
+    if(req.body.email !== undefined) {
       update.email = req.body.email;
     }
-    if(req.body.params.password !== undefined) {
+    
+    if(req.body.password !== undefined) {
       // altes psswort muss überprüft werden dann hashen und dann speichern
-      update.password = req.body.password;
+      console.log(req.body.password);
+
+      update.password = req.body.password.oldPassword;
+    }
+    
+    if(req.body.settings !== undefined) {
+      if(req.body.settings.darkMode !== undefined){
+        // {'settings.darkMode': true} damit hat es funktioniert
+        update = {'settings.darkMode': req.body.settings.darkMode}
+      }
+      if(req.body.settings.language !== undefined){
+        update = {'settings.language': req.body.settings.language}
+      }
+      if(req.body.settings.country !== undefined){
+        update = {'settings.country': req.body.settings.country}
+      }
+      if(req.body.settings.readArticleWithoutPictures !== undefined){
+        update = {'settings.readArticleWithoutPictures': req.body.settings.readArticleWithoutPictures}
+      }
     }
 
-    // return user object with new values nur name und email
-    res.json({
-      name: req.body.params.name,
-      email: req.body.params.email
-    })
+    // -_id: _id Attribut soll bei der rückgabe nicht angegeben werden
+    var selectString = '-_id '
 
-    /*
-    // neue Wertes des Users speichern und neue zurückgeben und im Respones senden
-    User.findOneAndUpdate(filter, update, {new: true, safe: true}).select('name email -_id')
-    .then(() => {
+    for(var i = 0; i < Object.keys(update).length; i++){
+      selectString = selectString + Object.keys(update)[i] + ' ';
+      if(Object.keys(update)[i] === 'password') {
+        selectString = selectString + ' -password -settings -email -name -__v';
+        }
+    }
+    
+    // neue Wertes des Users speichern und neue (name und email) zurückgeben und im Respones senden
+    User.findOneAndUpdate(filter, update, {new: true, safe: true}).select(selectString)
+    .then((updatedUserData) => {
       res.json({
-      idUpdated: true
+        updatedUserData
       })
     })
     .catch(err => {
       err = new HttpError(err.message, 400);
       next(err);
     })
-    */
   })
 
   .all((req, res, next) => {

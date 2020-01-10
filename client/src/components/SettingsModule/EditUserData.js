@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import store from '../../store';
-import { setUser } from '../../actions';
 import api from '../../utils/API'
 import { setNewUserData } from '../../actions/index'
 import '../../stylesheets/DarkMode.css';
 
 export default class EditUserData extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
+      message: ''
     }
   }
 
   changeUserValues = () => {
-    // Was fehlt überprüfen ob email und username schon vorhanden sind in der Datenban
+    // Was fehlt: überprüfen ob email und username schon vorhanden sind in der Datenban
     var submitedName = document.getElementById("name").value;
     var submitedEmail = document.getElementById("email").value;
 
-    // Was fehlt: Überprüfen ob sich der Ursprungwert vom neuen Wert unterscheidet
+    // Was fehlt: Überprüfen ob die Werte in korrekter Format (E-Mail Format übergeben wied)
     var newUserData = {};
-    if(store.getState().name !== submitedName && '' !== submitedName) {
+    if(store.getState().user.name !== submitedName && '' !== submitedName) {
       newUserData.name = submitedName;
     }
-    if(store.getState().email !== submitedEmail && '' !== submitedEmail) {
+    if(store.getState().user.email !== submitedEmail && '' !== submitedEmail) {
       newUserData.email = submitedEmail;
     }
 
@@ -37,7 +37,7 @@ export default class EditUserData extends Component {
 
   handleDarkMode = () => {
     if(document.getElementById('editUserDataForm') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('name').classList.add('darkMode-input-text');
         document.getElementById('email').classList.add('darkMode-input-text');
       }

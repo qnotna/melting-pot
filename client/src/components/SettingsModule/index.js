@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import store from '../../store';
-import { setUser } from '../../actions';
-import api from '../../utils/API'
-import { setNewUserData } from '../../actions/index'
 import EditUserData from './EditUserData'
 import EditUserPassword from './EditUserPassword'
 import OtherSettings from './OtherSettings'
@@ -11,14 +8,21 @@ import '../../stylesheets/Settings.css'
 import '../../stylesheets/DarkMode.css';
 
 export default class Settings extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      update: true
+    }
+  }
+
   handleChangeUserData = () => {
   if(!document.getElementById('changeUserData').classList.contains('active')) {
     document.getElementById('changeUserData').classList.add('active');
     document.getElementById('changeUserPassword').classList.remove('active');
     document.getElementById('otherSettings').classList.remove('active');
             
-    // force re-render
-    this.forceUpdate();
+    // re-render
+    this.setState({update: !this.state.update});
     }
   }
 
@@ -28,7 +32,7 @@ export default class Settings extends Component {
       document.getElementById('changeUserPassword').classList.add('active');
       document.getElementById('otherSettings').classList.remove('active');
 
-      this.forceUpdate();
+      this.setState({update: !this.state.update});
     }
   }
 
@@ -38,13 +42,13 @@ export default class Settings extends Component {
       document.getElementById('changeUserPassword').classList.remove('active');
       document.getElementById('otherSettings').classList.add('active');
 
-      this.forceUpdate();
+      this.setState({update: !this.state.update});
     }
   }
 
   handleDarkMode = () => {
     if(document.getElementById('changeUserData') !== null){
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         document.getElementById('settings-view').classList.add('darkMode-body');
       }
       else {
@@ -84,7 +88,7 @@ export default class Settings extends Component {
                 id='changeUserData' 
                 onClick={() => {this.handleChangeUserData()}}
               >
-                Edit ProfilData
+                Edit Profildata
               </button>
             <button 
               className='settingNavButton' 

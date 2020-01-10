@@ -46,7 +46,7 @@ class SearchBar extends Component {
 
   handleDarkMode = () => {
     if(document.getElementById('searchBarForm') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
         for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
           buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
@@ -88,7 +88,7 @@ class SearchBar extends Component {
   componentDidUpdate = () => {
     var dropdownContent = document.getElementsByClassName('dropdown-content');
     if(dropdownContent !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         for(var e = 0; e < dropdownContent.length; e++) {
           var dropdownContentInput = dropdownContent[e].getElementsByTagName('input');
           for(var f = 0; f < dropdownContentInput.length; f++) {
@@ -98,6 +98,11 @@ class SearchBar extends Component {
           var dropdownContentSelect = dropdownContent[e].getElementsByTagName('select');
           for(var f = 0; f < dropdownContentSelect.length; f++) {
             dropdownContentSelect[f].classList.add('darkMode-select');
+          }
+
+          var dropdownContentOption = dropdownContent[e].getElementsByTagName('option');
+          for(var l = 0; l < dropdownContentOption.length; l++) {
+            dropdownContentOption[l].classList.add('darkMode-option');
           }
         }
       }
@@ -111,6 +116,11 @@ class SearchBar extends Component {
           var dropdownContentSelect = dropdownContent[e].getElementsByTagName('select');
           for(var f = 0; f < dropdownContentSelect.length; f++) {
             dropdownContentSelect[f].classList.remove('darkMode-select');
+          }
+
+          var dropdownContentOption = dropdownContent[e].getElementsByTagName('option');
+          for(var l = 0; l < dropdownContentOption.length; l++) {
+            dropdownContentOption[l].classList.remove('darkMode-option');
           }
         }
       }
@@ -147,7 +157,7 @@ class SearchBar extends Component {
         {
           this.state.showMenu ? (
 
-            <div className="dropdown-content" style={{'width': '100%', 'display':'inline-block', 'marginTop': '14px'}}>
+            <div id='dropdownContent' className="dropdown-content" style={{'width': '100%', 'display':'inline-block', 'marginTop': '14px'}}>
             <label>Language</label>
             <select ref={this.langRef} style={{'backgroundColor':'white'}}>
               {Object.keys(languages).map((key =>
