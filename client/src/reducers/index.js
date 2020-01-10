@@ -34,16 +34,36 @@ export default (state, action) => {
       }
     
     case "SET_NEW_USER_DATA":
-      return {
-        ...state,
-        user: action.newUserData
+      console.log('in reducer')
+      console.log(action.newUserData)
+
+      var returnObject = {
+        ...state
       }
 
-    case "SET_DARKMODE":
-      return {
-        ...state,
-        darkMode: action.darkModeValue
+      for(var i = 0; i < Object.keys(action.newUserData).length; i++) {
+        if(Object.keys(action.newUserData)[i] === 'name'){
+          returnObject.user.name = action.newUserData.name;
+        }
+        if(Object.keys(action.newUserData)[i] === 'email'){
+          returnObject.user.email = action.newUserData.email;
+        }
+        if(Object.keys(action.newUserData)[i] === 'password'){
+        }
+        if(Object.keys(action.newUserData)[i] === 'settings'){
+          for(var y = 0; y < Object.keys(action.newUserData[i].settings).length; y++) {
+            if(Object.keys(action.newUserData[i].settings[y]) === 'darkMode') {
+              returnObject.user.settings.darkMode = action.newUserData.name;
+            }
+            if(Object.keys(action.newUserData)[i] === 'language'){
+              returnObject.user.settings.language = action.newUserData.email;
+            }
+          }
+          returnObject.user.email = action.newUserData.email;
+        }
       }
+
+      return returnObject
 
     default:
       return state;

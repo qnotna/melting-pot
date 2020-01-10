@@ -49,11 +49,14 @@ export default {
         )
     },
     updateUserData(callback, params){
-        Axios.patch(src + 'api/users/1234', {params})
+        console.log('in updateUserData')
+        Axios.patch(src + 'api/users/1234', params)
         .then(
             (res) => {
+                console.log('in API res')
+                console.log(res.data)
                 callback({
-                    newUserData: res.data
+                    newUserData: res.data.updatedUserData
                 })
             }
         )

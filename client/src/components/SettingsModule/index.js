@@ -88,7 +88,7 @@ export default class Settings extends Component {
                 id='changeUserData' 
                 onClick={() => {this.handleChangeUserData()}}
               >
-                Edit ProfilData
+                Edit Profildata
               </button>
             <button 
               className='settingNavButton' 

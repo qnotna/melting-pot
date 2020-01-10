@@ -3,7 +3,6 @@ import store from '../../store';
 import { setUser } from '../../actions';
 import api from '../../utils/API';
 import { setNewUserData } from '../../actions/index';
-import { setDarkMode } from '../../actions/index';
 import { languages, sortOptions } from '../../data/options';
 
 // Icons: https://material.io/resources/icons/?style=baseline
@@ -11,7 +10,7 @@ import { languages, sortOptions } from '../../data/options';
 export default class otherSettings extends Component {
   handleDarkMode = () => {
     if(document.getElementById('otherSettingsForm') !== null) {
-      if(store.getState().darkMode) {
+      if(store.getState().user.settings.darkMode) {
         var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
         for(var h = 0; h < otherSettingsFormDiv.length; h++) {
           var otherSettingsFormDivSelect = otherSettingsFormDiv[h].getElementsByTagName('select');
@@ -33,7 +32,21 @@ export default class otherSettings extends Component {
   } 
 
   handleDarkModeCheckbox = () => {
-    store.dispatch(setDarkMode(document.getElementById('darkMode').checked));
+    var darkModeValue = document.getElementById("darkMode").checked;
+
+    console.log(darkModeValue)
+    
+    var newUserData = {
+      settings: {
+        darkMode: darkModeValue
+      }
+    };
+
+    console.log('hier in othersettings')
+
+    api.updateUserData((res) => {
+      store.dispatch(setNewUserData(res.newUserData))
+    }, newUserData)
   }
 
   handleSelectedLanguage = () => {
@@ -48,7 +61,7 @@ export default class otherSettings extends Component {
 
   componentDidMount = () => {
     document.getElementById("darkMode").checked = store.getState().user.settings.darkMode;
-    document.getElementById("articleWithoutImg").checked = store.getState().user.settings.darkMode;
+    document.getElementById("articleWithoutImg").checked = false;
 
     this.handleDarkMode();
   }

@@ -6,27 +6,25 @@ import { setNewUserData } from '../../actions/index'
 import '../../stylesheets/DarkMode.css';
 
 export default class EditUserData extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
     }
-  }
 
   changeUserValues = () => {
-    // Was fehlt überprüfen ob email und username schon vorhanden sind in der Datenban
+    // Was fehlt: überprüfen ob email und username schon vorhanden sind in der Datenban
     var submitedName = document.getElementById("name").value;
     var submitedEmail = document.getElementById("email").value;
 
-    // Was fehlt: Überprüfen ob sich der Ursprungwert vom neuen Wert unterscheidet
+    // Was fehlt: Überprüfen ob die Werte in korrekter Format (E-Mail Format übergeben wied)
     var newUserData = {};
-    if(store.getState().name !== submitedName && '' !== submitedName) {
+    if(store.getState().user.name !== submitedName && '' !== submitedName) {
       newUserData.name = submitedName;
     }
-    if(store.getState().email !== submitedEmail && '' !== submitedEmail) {
+    if(store.getState().user.email !== submitedEmail && '' !== submitedEmail) {
       newUserData.email = submitedEmail;
     }
 
     api.updateUserData((res) => {
+      console.log('in update edit')
       store.dispatch(setNewUserData(res.newUserData));
       this.setState({message: 'Das Profil wurde aktuallisiert.'});
       setTimeout(() => {
