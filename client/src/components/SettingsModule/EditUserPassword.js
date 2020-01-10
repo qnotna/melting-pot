@@ -8,7 +8,10 @@ import '../../stylesheets/Settings.css'
 import '../../stylesheets/DarkMode.css';
 
 export default class EditUserPassword extends Component {
-  state = {
+  constructor(props){
+    super(props);
+    this.state = {
+    }
   }
 
   changeUserPassword = () => {

@@ -28,7 +28,6 @@ export default class EditUserData extends Component {
     }
 
     api.updateUserData((res) => {
-      console.log('in update edit')
       store.dispatch(setNewUserData(res.newUserData));
       this.setState({message: 'Das Profil wurde aktuallisiert.'});
       setTimeout(() => {

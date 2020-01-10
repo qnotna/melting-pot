@@ -51,13 +51,10 @@ export default (state, action) => {
         if(Object.keys(action.newUserData)[i] === 'password'){
         }
         if(Object.keys(action.newUserData)[i] === 'settings'){
-          console.log('in settings')
+
           var settingsObject = action.newUserData.settings;
-          console.log(Object.keys(settingsObject));
           for(var y = 0; y < Object.keys(settingsObject).length; y++) {
-            console.log('in settings schleife')
             if(Object.keys(settingsObject)[y] === 'darkMode') {
-              console.log('in darkMode')
               returnObject.user.settings.darkMode = settingsObject.darkMode;
             }
             if(Object.keys(settingsObject)[y] === 'language') {

@@ -1,4 +1,4 @@
-export const languages = {
+export const languages_v1 = {
     de: 'german',
     pl: 'polish',
     ar: 'arabic',
@@ -12,6 +12,20 @@ export const languages = {
     pt: 'portuguese',
     ru: 'russian',
     zh: 'chinese'
+}
+
+export const languages = {
+    ar: 'arabic',
+    de: 'german',
+    en: 'english',
+    es: 'spanish',
+    fr: 'french',
+    he: 'hebrew',
+    it: 'italian',
+    nl: 'dutch',
+    no: 'norwegian',
+    pt: 'portuguese',
+    ru: 'russian',
 }
 
 export const sortOptions = {

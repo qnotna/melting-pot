@@ -18,6 +18,13 @@ export default class otherSettings extends Component {
             otherSettingsFormDivSelect[g].classList.add('darkMode-select');
           }
         }
+
+        for(var j = 0; j < otherSettingsFormDiv.length; j++) {
+          var otherSettingsFormDivOption = otherSettingsFormDiv[j].getElementsByTagName('option');
+          for(var k = 0; k < otherSettingsFormDivOption.length; k++) {
+            otherSettingsFormDivOption[k].classList.add('darkMode-option');
+          }
+        }
       }
       else {
         var otherSettingsFormDiv = document.getElementById('otherSettingsForm').getElementsByTagName('div');
@@ -27,22 +34,25 @@ export default class otherSettings extends Component {
             otherSettingsFormDivSelect[g].classList.remove('darkMode-select');
           }
         }
+
+        for(var j = 0; j < otherSettingsFormDiv.length; j++) {
+          var otherSettingsFormDivOption = otherSettingsFormDiv[j].getElementsByTagName('option');
+          for(var k = 0; k < otherSettingsFormDivOption.length; k++) {
+            otherSettingsFormDivOption[k].classList.remove('darkMode-option');
+          }
+        }
       }  
     }          
   } 
 
   handleDarkModeCheckbox = () => {
     var darkModeValue = document.getElementById("darkMode").checked;
-
-    console.log(darkModeValue)
     
     var newUserData = {
       settings: {
         darkMode: darkModeValue
       }
     };
-
-    console.log('hier in othersettings')
 
     api.updateUserData((res) => {
       store.dispatch(setNewUserData(res.newUserData))

@@ -14,6 +14,8 @@ const HttpError = require('../../middleware/httpError');
 
 // get Latest
 router.get('/latest', (req, res) => {
+    console.log('in latest')
+    console.log(req.query)
     newsapi.v2.everything({
         ...req.query,
         q: "*",

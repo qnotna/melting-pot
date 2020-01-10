@@ -19,6 +19,7 @@ export default {
         )
     },
     getLatest(callback){
+        console.log(store.getState().user.settings.language)
         Axios.get(src + "newsapi/latest?language=" + store.getState().user.settings.language)
         .then(
             (res) => {
