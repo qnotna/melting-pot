@@ -12,12 +12,12 @@
     "id":1,
     "title":"Kategorien",
     "items":[
-      {"title":"Business","unreadAmount":17, "icon": "euro_symbol"},
-      {"title":"Entertainment","unreadAmount":23, "icon": "grade"},
-      {"title":"Health","unreadAmount":43, "icon": "healing"},
-      {"title":"Science","unreadAmount":10, "icon": "transform"},
-      {"title":"Sportz","unreadAmount":2, "icon": "fitness_center"},
-      {"title":"Technology","unreadAmount":0, "icon": "memory"}
+      {"title":"Business","unreadAmount":17, "component": "BUSINESS", "icon": "euro_symbol"},
+      {"title":"Entertainment","unreadAmount":23, "component": "ENTERTAINMENT", "icon": "grade"},
+      {"title":"Health","unreadAmount":43, "component": "HEALTH", "icon": "healing"},
+      {"title":"Science","unreadAmount":10, "component": "SCIENCE", "icon": "transform"},
+      {"title":"Sportz","unreadAmount":2, "component": "SPORTS", "icon": "fitness_center"},
+      {"title":"Technology","unreadAmount":0, "component": "TECHNOLOGY", "icon": "memory"}
     ]
   },
   {

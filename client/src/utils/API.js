@@ -63,5 +63,24 @@ export default {
                 error: err
             })
         )
+    },
+    getCategory(component, callback){
+        let category = component.toLowerCase();
+        // let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
+        // console.log(url);
+        Axios.get("http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=20&country=de")
+        .then(
+            (res) => {
+                callback({
+                    name: category[0].toUpperCase() + category.slice(1),
+                    type: "grid",
+                    articles: res.data.articles
+                })
+            }
+        ).catch(
+            err => callback({
+                error: err
+            })
+        )
     }
 }

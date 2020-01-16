@@ -41,37 +41,14 @@ router.get('/top-headlines', (req, res) => {
     );
 });
 
-// top Headlines aus einem bestimmten land und Sprache und einer bestimmten Kategorie
-router.get('/topHeadlines/:category', (req, res) => {
-    var userLand = 'de';
-    var userLanguage = 'de';
-    newsapi.v2.topHeadlines({
-        //sources: 'bbc-news,the-verge',
-        //q: 'bitcoin',
-        category: req.params.category,
-        language: userLand,
-        country: userLanguage
-    }).then(response => {
-        console.log(response);
-    });
-});
 
 // https://newsapi.org/docs/endpoints/everything
 
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
 router.get('/everything', (req, res, next) => {
-    var userLanguage = 'en';
     let query = checkInput(req.query);
     newsapi.v2.everything({
-        q: query.q,
-        // qInTitle: req.params.q,
-        sources: query.sources,
-        //domains: 'bbc.co.uk, techcrunch.com',
-        //from: '2017-12-01',
-        //to: '2017-12-12',
-        language: query.language,
-        sortBy: query.sortBy,
-        pageSize: query.size
+        ...query
     })
     .then(response => res.json(response)
     )

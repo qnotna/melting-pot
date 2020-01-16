@@ -15,6 +15,8 @@ class SearchBar extends Component {
   sourceRef = React.createRef();
   formRef = React.createRef();
   sizeRef = React.createRef();
+  fromRef = React.createRef();
+  toRef = React.createRef();
 
   state = {
     showMenu: false
@@ -183,6 +185,12 @@ class SearchBar extends Component {
                 <option>50</option>
                 <option>100</option>
               </select>
+
+              <label>From</label>
+              <input type="date" ref={this.fromRef}/>
+
+              <label>To</label>
+              <input type="date" ref={this.toRef}/>
               </div>
               ) : (null)
             }
@@ -200,9 +208,11 @@ class SearchBar extends Component {
     let sortBy = this.sortRef.current ? this.sortRef.current.value : "publishedAt";
     let sources = this.sourceRef.current ? this.sourceRef.current.value : [];
     let size = this.sizeRef.current ? this.sizeRef.current.value : 20;
+    let from = this.fromRef.current ? this.fromRef.current.value : "";
+    let to = this.toRef.current ? this.toRef.current.value : "";
 
     // Set search parameters to be accesible in global state
-    store.dispatch( setSearchParams({ q, language, sortBy, sources, size }) );
+    store.dispatch( setSearchParams({ q, language, sortBy, sources, size, from , to }) );
 
     // Get search sections and set them to be accesible in global state
     this.loadSearchResultSections()
