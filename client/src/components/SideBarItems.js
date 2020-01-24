@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import store from '../store';
 
-import { setContentComponent } from "../actions"
+import { setContentComponent, setLoadingState } from "../actions"
 import { Components } from '../utils/Components';
 
 import api from '../utils/API';
@@ -26,32 +26,50 @@ class SideBarItems extends Component {
         this.loadSections()
         break;
       case Components.BUSINESS:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
       case Components.ENTERTAINMENT:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
-        case Components.HEALTH:
+      case Components.HEALTH:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
-        case Components.SCIENCE:
+      case Components.SCIENCE:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
-        case Components.SPORTS:
+      case Components.SPORTS:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
-        case Components.TECHNOLOGY:
+      case Components.TECHNOLOGY:
+        store.dispatch(setSections([]));
+        store.dispatch(setLoadingState(true));
         api.getCategory(category, (res) => {
+          store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
         break;
@@ -64,7 +82,10 @@ class SideBarItems extends Component {
   }
 
   loadSections(){
+    store.dispatch(setSections([]));
+    store.dispatch(setLoadingState(true));
     api.getHot((res) => {
+      store.dispatch(setLoadingState(false));
       store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {

@@ -4,7 +4,7 @@ import store from '../store';
 import { Components } from '../utils/Components';
 
 import api from '../utils/API';
-import { setContentComponent, setSections, setSearchParams } from '../actions'
+import { setContentComponent, setSections, setSearchParams, setLoadingState } from '../actions'
 import { languages, sortOptions } from '../data/options'
 
 
@@ -41,7 +41,10 @@ class SearchBar extends Component {
 
   loadSearchResultSections() {
     const params = store.getState().searchParams
+    store.dispatch(setSections([]))
+    store.dispatch(setLoadingState(true));
     api.getSearchResults((res) => {
+        store.dispatch(setLoadingState(false));
       store.dispatch(setSections([res]))
     }, params)
   }

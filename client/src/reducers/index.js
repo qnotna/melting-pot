@@ -81,6 +81,12 @@ export default (state, action) => {
         current_article: action.current_article
       }
 
+    case "SET_LOADING_STATE":
+      return {
+        ...state,
+        isLoading: action.isLoading
+      }
+
     default:
       return state;
   }

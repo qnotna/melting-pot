@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import ReactLoading from 'react-loading';
 
 import '../stylesheets/App.css';
 import '../stylesheets/DarkMode.css';
@@ -99,7 +100,7 @@ class AppBase extends Component {
 
     // Get the name of the component that should be renderd 
     // as App content from the App global store
-    const { content_component } = store.getState()
+    const { content_component, isLoading } = store.getState()
 
     return (
       <div className='App' /*id='app'*/>
@@ -113,7 +114,7 @@ class AppBase extends Component {
             collapseSidebar={this.collapseSidebar.bind(this)}
           />
 
-          {this.getComponentByName(content_component)}
+          {(isLoading) ? <ReactLoading type={"spokes"} color={"black"} /> : this.getComponentByName(content_component)}
 
         </div>
       </div>

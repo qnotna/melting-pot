@@ -36,3 +36,8 @@ export const setArticle = (current_article) => ({
     type: "SET_ARTICLE",
     current_article
 })
+
+export const setLoadingState = (isLoading) => ({
+    type: "SET_LOADING_STATE",
+    isLoading
+})
