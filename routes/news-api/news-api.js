@@ -1,7 +1,8 @@
 const router = require ('express').Router();
 const NewsAPI  = require('newsapi');
 // const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
-const newsapi = new NewsAPI('04cc2e205e294f27b2072a47d8ce57bd');
+// const newsapi = new NewsAPI('04cc2e205e294f27b2072a47d8ce57bd');
+const newsapi = new NewsAPI('e0da45e697234dbf8e89825c62e5dfbb');
 
 const HttpError = require('../../middleware/httpError');
 
