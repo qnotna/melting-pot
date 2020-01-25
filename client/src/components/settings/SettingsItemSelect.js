@@ -4,8 +4,7 @@ import { languages, country, sortOptions } from '../../data/options.js';
 const SettingsItemSelect = ({ item, onChange }) => {
 
   // Component State
-  // TODO: set default value
-  const [selected, setSelected] = useState('de');
+  const [selected, setSelected] = useState(item.defaultValue);
 
   // EventListener for the select
   // Callback from SettingsView -> onItemValueChange
@@ -30,16 +29,10 @@ const SettingsItemSelect = ({ item, onChange }) => {
 
   // Create the options HTML element
   // Loop through all options from getOptions()
-  // TODO: set default selected value
   // Return the HTML options
   const createOptions= (selectFrom) => {
     const options = getOptions(selectFrom);
     return Object.keys(options).map((item, index) => {
-      if (item === 'de') {
-        return(
-          <option key={index} selected>{item}</option>
-        );
-      }
       return(
         <option key={index}>{item}</option>
       );
@@ -49,7 +42,11 @@ const SettingsItemSelect = ({ item, onChange }) => {
   return(
     <Fragment>
       <label>{item.name}</label>
-      <select onChange={(event) => onSelectChange(event)} value={selected}>
+      <select
+        onChange={(event) => onSelectChange(event)}
+        checked={selected}
+        defaultValue={item.defaultValue}
+      >
         {
           createOptions(item.selectFrom)
         }

@@ -4,8 +4,7 @@ import store from '../../store';
 const SettingsItemText = ({ item, onChange }) => {
 
   // Component State
-  // TODO: set default value
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(item.defaultValue);
 
   // EventListener for the text input
   // Callback from SettingsView -> onItemValueChange
@@ -25,6 +24,7 @@ const SettingsItemText = ({ item, onChange }) => {
         required
         type={item.inputType}
         placeholder={item.placeholder}
+        defaultValue={item.defaultValue}
         value={item.value}
         onChange={(event) => onTextChange(event)}
       />
