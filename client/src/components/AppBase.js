@@ -15,7 +15,8 @@ import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import api from '../utils/API';
 
 import store from '../store'
-import { setSections, setArticle } from '../actions/newsActions'
+import { setSections, setArticle,addSection } from '../actions/newsActions'
+
 import { Components } from '../utils/Components';
 
 import '../../node_modules/material-design-icons/iconfont/material-icons.css'
@@ -38,10 +39,6 @@ class AppBase extends Component {
     }, input)
   }
 
-  loadCurrentArticle(){
-    store.dispatch( setArticle ( "res" ))
-  }
-
   // Given a name return coresponding component
   getComponentByName(component_name) {
     switch (component_name) {
@@ -54,6 +51,16 @@ class AppBase extends Component {
       default:
         return <ContentView />
       }
+  }
+
+  componentDidMount(){
+    // Load home sections
+    api.getHot((res) => {
+      store.dispatch( setSections ( [res] ))
+    })
+    api.getLatest((res) => {
+      store.dispatch( addSection( res ))
+    })
   }
 
   render() {
