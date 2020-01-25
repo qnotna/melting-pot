@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import store from '../../store';
-import { setUser } from '../../actions';
+import { setUser } from '../../actions/newsActions';
 import api from '../../utils/API'
-import { setNewUserData } from '../../actions/index'
+import { setNewUserData } from '../../actions/newsActions'
 
 import '../../stylesheets/Settings.css'
 import '../../stylesheets/DarkMode.css';
