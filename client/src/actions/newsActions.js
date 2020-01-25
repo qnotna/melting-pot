@@ -1,8 +1,3 @@
-export const setUser = (user) => ({
-        type: "SET_USER",
-        user
-})
-
 export const addSection = (section) => ({
     type: "ADD_SECTION",
     section
@@ -23,16 +18,12 @@ export const setSearchParams = (searchParams) => ({
     searchParams
 })
 
-export const setNewUserData = (newUserData) => ({
-    type: "SET_NEW_USER_DATA",
-    newUserData
-})
 export const setSearchInput = (search_input) => ({
     type: "SET_SEARCH_INPUT",
     search_input
 })
 
-export const setArticle = (current_article) => ({
+export const setArticle = (article) => ({
     type: "SET_ARTICLE",
-    current_article
+    article
 })

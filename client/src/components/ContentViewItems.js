@@ -1,14 +1,26 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent } from '../actions'
+import { setArticle, setContentComponent } from '../actions/newsActions'
 import { Components } from '../utils/Components.js';
+import contentParser from '../utils/contentParser'
 
 class ContentViewItems extends Component {
 
+  parseArticleContent(article){
+    contentParser(article.url, article.content, (articleParagraphs) => {
+      article.paragraphs = articleParagraphs
+      store.dispatch(setArticle(article));
+      store.dispatch(setContentComponent(Components.READER_VIEW))
+    })
+  }
+
   showRenderView(article){
+    article.paragraphs = []
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
+    this.parseArticleContent(article)
+
     // console.log(store.getState());
     // console.log(article);
   }

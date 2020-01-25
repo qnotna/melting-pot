@@ -4,7 +4,7 @@ import store from '../store';
 import { Components } from '../utils/Components';
 
 import api from '../utils/API';
-import { setContentComponent, setSections, setSearchParams } from '../actions'
+import { setContentComponent, setSections, setSearchParams } from '../actions/newsActions'
 import { languages, sortOptions } from '../data/options'
 
 
@@ -40,7 +40,7 @@ class SearchBar extends Component {
   }
 
   loadSearchResultSections() {
-    const params = store.getState().searchParams
+    const params = store.getState().news.searchParams
     api.getSearchResults((res) => {
       store.dispatch(setSections([res]))
     }, params)
@@ -48,7 +48,7 @@ class SearchBar extends Component {
 
   handleDarkMode = () => {
     if(document.getElementById('searchBarForm') !== null) {
-      if(store.getState().user.settings.darkMode) {
+      if(store.getState().auth.user.settings.darkMode) {
         var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
         for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
           buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
@@ -90,7 +90,7 @@ class SearchBar extends Component {
   componentDidUpdate = () => {
     var dropdownContent = document.getElementsByClassName('dropdown-content');
     if(dropdownContent !== null) {
-      if(store.getState().user.settings.darkMode) {
+      if(store.getState().auth.user.settings.darkMode) {
         for(var e = 0; e < dropdownContent.length; e++) {
           var dropdownContentInput = dropdownContent[e].getElementsByTagName('input');
           for(var f = 0; f < dropdownContentInput.length; f++) {

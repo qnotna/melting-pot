@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import store from '../store';
 
-import { setContentComponent } from "../actions"
+import { setContentComponent } from "../actions/newsActions"
 import { Components } from '../utils/Components';
 
 import api from '../utils/API';
-import { addSection, setSections } from '../actions'
+import { addSection, setSections } from '../actions/newsActions'
 
 
 
