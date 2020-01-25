@@ -14,7 +14,7 @@ const SettingsItemSelect = ({ item, onChange }) => {
 
   // Call onChange after setting the state completed
   useEffect(() => {
-    onChange(item.name, selected);
+    onChange(item.key, selected);
   }, [selected]);
 
   // Select the correct options from data/options.js

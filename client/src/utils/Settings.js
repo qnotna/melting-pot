@@ -8,7 +8,8 @@ export const Type = {
 
 }
 
-// console.log();
+const { name, email, settings } = store.getState().auth.user;
+const { language, country, darkMode } = settings;
 
 export const Settings = {
 
@@ -17,57 +18,66 @@ export const Settings = {
     inputType: 'text',
     placeholder: 'hans bauer',
     type: Type.TEXT,
-    defaultValue: store.getState().auth.user.name
+    defaultValue: name,
+    key: 'user.name'
   },
   EMAIL_ADRESS: {
     name: 'Email Adress',
     inputType: 'email',
     placeholder: 'spam@me.com',
     type: Type.TEXT,
-    defaultValue: store.getState().auth.user.email
+    defaultValue: email,
+    key: 'user.email'
   },
   PASSWORD: {
     name: 'Password',
     inputType: 'password',
     placeholder: 'New Password',
     type: Type.TEXT,
-    defaultValue: 'my420cool69password' // TODO: get from store
+    defaultValue: 'my420cool69password', // TODO: get from store
+    key: 'user.password'
   },
   DEFAULT_LANGUAGE: {
     name: 'Default Article Language',
     selectFrom: 'language',
     options: [],
     type: Type.SELECT,
-    defaultValue: store.getState().auth.user.settings.language
+    defaultValue: language,
+    key: 'preferences.defaultLanguage'
   },
   DEFAULT_COUNTRY: {
     name: 'Default Article Country',
     selectFrom: 'country',
     options: [],
     type: Type.SELECT,
-    defaultValue: store.getState().auth.user.settings.country
+    defaultValue: country,
+    key: 'preferences.defaultCountry'
   },
   DEFAULT_SORTING: {
     name: 'Sort Articles by Default by',
     selectFrom: 'sortBy',
     options: [],
     type: Type.SELECT,
-    defaultValue: 'relevancy' // TODO: get from store
+    defaultValue: 'relevancy', // TODO: get from store
+    key: 'preferences.sortBy'
   },
   ENABLE_DARK_MODE: {
     name: 'Enable Dark Appearance',
     type: Type.CHECKBOX,
-    defaultValue: store.getState().auth.user.settings.darkMode
+    defaultValue: darkMode,
+    key: 'appearance.darkMode'
   },
   LOAD_ARTICLES_WITHOUT_IMAGES: {
     name: 'Load All Articles Without Images',
     type: Type.CHECKBOX,
-    defaultValue: true // TODO: state undefined
+    defaultValue: true, // TODO: state undefined
+    key: 'preferences.loadArticlesWithoutImages'
   },
   REDIRECT_TO_ORIGINAL_SAUCE: {
     name: 'Present All Articles on the Original Site',
     type: Type.CHECKBOX,
-    defaultValue: true // TODO: get from store
+    defaultValue: true, // TODO: get from store
+    key: 'preferences.redirect'
   }
 
 };

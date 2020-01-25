@@ -14,7 +14,7 @@ const SettingsItemText = ({ item, onChange }) => {
 
   // Call onChange after setting the state completed
   useEffect(() => {
-    onChange(item.name, value);
+    onChange(item.key, value);
   }, [value]);
 
   return(

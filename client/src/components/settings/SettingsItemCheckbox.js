@@ -15,7 +15,7 @@ const SettingsItemCheckbox = ({ item, onChange }) => {
 
   // Call onChange after setting the state completed
   useEffect(() => {
-    onChange(item.name, checked);
+    onChange(item.key, checked);
   }, [checked]);
 
   return(

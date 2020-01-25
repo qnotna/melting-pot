@@ -34,7 +34,7 @@ const SettingsView = () => {
   // Add received configuration to local configuration (state)
   const onItemValueChange = (key, value) => {
     const conf = configuration;
-    conf[key.toLowerCase().replace(' ', '-')] = value;
+    conf[key] = value;
     setConfiguration(conf);
   };
 
