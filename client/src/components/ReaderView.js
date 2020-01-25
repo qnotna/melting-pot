@@ -10,7 +10,6 @@ import formatDate from '../utils/dateFormatter';
 
 const ReaderView = () => {
   const article = store.getState().news.current_article;
-  console.log(article)
   return(
     <div id='reader-view'>
       <img src={article.urlToImage} alt={article.description}/>

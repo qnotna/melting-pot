@@ -1,4 +1,4 @@
-input[type=text], input[type=email], input[type=password] {
+/* input[type=text], input[type=email], input[type=password] {
     width: 50%;
     padding: 5px;
     margin: 8px 0;
@@ -58,4 +58,33 @@ input[type=text], input[type=email], input[type=password] {
     input[type=text], input[type=email], input[type=password] {
         width: 100%;
     }
+} */
+
+.settings-view {
+  padding: 0 1em;
+}
+
+.settings-view table {
+  width: 100%;
+}
+
+.settings-view td * {
+  width: 100%;
+}
+
+.section-view td:last-child {
+}
+
+.settings-view h1 {
+  padding: 0.5em 0;
+}
+
+.settings-view--item * {
+}
+
+.settings-view--save-button {
+  margin: 1em;
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.25em;
 }

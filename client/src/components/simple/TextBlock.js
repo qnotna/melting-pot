@@ -8,7 +8,7 @@ const TextBlock = ({ paragraphs }) => {
 
   return paragraphs.map((paragraph, index) => (
     // <p key={index}>{paragraph}</p>
-    <div dangerouslySetInnerHTML={{ __html: paragraph + "<br><br>" }} />
+    <div key={index} dangerouslySetInnerHTML={{ __html: paragraph + "<br><br>" }} />
   ));
 
 };

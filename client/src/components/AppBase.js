@@ -8,6 +8,7 @@ import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
 import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
+import SettingsView from './settings/SettingsView.js';
 
 // import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
@@ -15,7 +16,7 @@ import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import api from '../utils/API';
 
 import store from '../store'
-import { setSections, setArticle,addSection } from '../actions/newsActions'
+import { setSections, setArticle, addSection } from '../actions/newsActions'
 
 import { Components } from '../utils/Components';
 
@@ -43,7 +44,7 @@ class AppBase extends Component {
   getComponentByName(component_name) {
     switch (component_name) {
       case Components.SETTINGS:
-        // return <Settings />
+        return <SettingsView />
 
       case Components.READER_VIEW:
         return <ReaderView />

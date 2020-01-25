@@ -10,11 +10,11 @@ export default function(url, contentPreview, callback){
 
         let articleParagraphs = []
 
-        console.log(contentPreview)
+        // console.log(contentPreview)
 
-        for(let p of pCollection){
-            console.log(p)
-        }
+        // for(let p of pCollection){
+        //     console.log(p)
+        // }
 
         for(let p of pCollection){
             articleParagraphs.push(p.innerHTML)
