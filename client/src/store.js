@@ -20,12 +20,12 @@ const initialState = {
         countries: ["de"]
     },
 
-    // The Home component renders the NavBar, SideBar and 
+    // The Home component renders the NavBar, SideBar and
     // the component specified by this property
     // Home is renderd as first by default
-    content_component: Components.HOME,
+    content_component: Components.SETTINGS,
 
-    // Array containing the list of articles divided into 
+    // Array containing the list of articles divided into
     // different sections (e.g. "Hot", "Latest"...)
     sections: [],
 
@@ -33,7 +33,7 @@ const initialState = {
     current_article: {},
 
     // Object containing extended search parameters used to be sent with the search request
-    // possible fields are: q, sources, language, sortBy, pageSize 
+    // possible fields are: q, sources, language, sortBy, pageSize
     searchParams: {}
 };
 

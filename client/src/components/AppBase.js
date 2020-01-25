@@ -8,6 +8,7 @@ import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
 import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
+import SettingsView from './settings/SettingsView.js';
 
 // import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
@@ -49,30 +50,26 @@ class AppBase extends Component {
   }
 
   // Given a name return coresponding component
-  getComponentByName(component_name) {
-    switch (component_name) {
+  getComponentByName(componentName) {
+    switch (componentName) {
       case Components.HOME:
-        return <ContentView />
-
+        return <ContentView/>
       case Components.SEARCH_RESULTS:
-        return <ContentView />
-        
+        return <ContentView/>
       case Components.BUSINESS:
-        return <ContentView />
+        return <ContentView/>
       case Components.ENTERTAINMENT:
-        return <ContentView />
+        return <ContentView/>
       case Components.HEALTH:
-        return <ContentView />
+        return <ContentView/>
       case Components.SCIENCE:
-        return <ContentView />
+        return <ContentView/>
       case Components.SPORTS:
-        return <ContentView />
+        return <ContentView/>
       case Components.TECHNOLOGY:
-        return <ContentView />
-
+        return <ContentView/>
       case Components.SETTINGS:
-        return <Settings />
-
+        return <SettingsView/>
       case Components.READER_VIEW:
         return <ReaderView />
     }
@@ -97,7 +94,7 @@ class AppBase extends Component {
   render() {
     this.handleDarkMode();
 
-    // Get the name of the component that should be renderd 
+    // Get the name of the component that should be renderd
     // as App content from the App global store
     const { content_component } = store.getState()
 
