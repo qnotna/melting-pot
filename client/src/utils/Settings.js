@@ -2,64 +2,67 @@ import React from 'react';
 import SettingsItemText from '../components/settings/SettingsItemText.js';
 import SettingsItemSelect from '../components/settings/SettingsItemSelect.js';
 import SettingsItemCheckbox from '../components/settings/SettingsItemCheckbox.js';
-// import api from '../../utils/API';
-// import store from '../../store';
+import { setNewUserData } from '../actions/index';
+import api from './API';
+import store from '../store';
+
+export const Type = {
+
+  TEXT: 'text',
+  SELECT: 'select',
+  CHECKBOX: 'checkbox'
+
+}
 
 export const Settings = {
-  USERNAME: <SettingsItemText
-    name='Username'
-    type='text'
-    placeholder='antoniusmaximus'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  EMAIL_ADRESS: <SettingsItemText
-    name='Email Adress'
-    type='text'
-    placeholder='spam@me.com'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  PASSWORD: <SettingsItemText
-    name='Password'
-    type='password'
-    placeholder='Input New Password'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  DEFAULT_LANGUAGE: <SettingsItemSelect
-    name='Default Article Language'
-    options={[]}
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  DEFAULT_COUNTRY: <SettingsItemSelect
-    name='Default Article Origin Country'
-    options={[]}
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  ENABLE_DARK_MODE: <SettingsItemCheckbox
-    name='Enable Dark Appearance'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  LOAD_ARTICLES_WITHOUT_IMAGES: <SettingsItemCheckbox
-    name='Load All Articles Without Images'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />,
-  REDIRECT_TO_ORIGINAL_SAUCE: <SettingsItemCheckbox
-    name='Present All Articles on its Original Site'
-    dispatch={
-      (value) => console.log(value)
-    }
-  />
+
+  USERNAME: {
+    name: 'Username',
+    inputType: 'text',
+    placeholder: 'hans bauer',
+    type: Type.TEXT
+  },
+  EMAIL_ADRESS: {
+    name: 'Email Adress',
+    inputType: 'text',
+    placeholder: 'spam@me.com',
+    type: Type.TEXT
+  },
+  PASSWORD: {
+    name: 'Password',
+    inputType: 'password',
+    placeholder: 'New Password',
+    type: Type.TEXT
+  },
+  DEFAULT_LANGUAGE: {
+    name: 'Default Article Language',
+    selectFrom: 'language',
+    options: [],
+    type: Type.SELECT
+  },
+  DEFAULT_COUNTRY: {
+    name: 'Default Article Country',
+    selectFrom: 'country',
+    options: [],
+    type: Type.SELECT
+  },
+  DEFAULT_SORTING: {
+    name: 'Sort Articles by Default by',
+    selectFrom: 'sortBy',
+    options: [],
+    type: Type.SELECT
+  },
+  ENABLE_DARK_MODE: {
+    name: 'Toggle Dark Appearance',
+    type: Type.CHECKBOX
+  },
+  LOAD_ARTICLES_WITHOUT_IMAGES: {
+    name: 'Load All Articles Without Images',
+    type: Type.CHECKBOX
+  },
+  REDIRECT_TO_ORIGINAL_SAUCE: {
+    name: 'Present All Articles on its Original Site',
+    type: Type.CHECKBOX
+  }
+
 };

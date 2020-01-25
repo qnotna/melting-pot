@@ -1,24 +1,31 @@
-import React, { Fragment, useState } from 'react';
-// import api from '../../utils/API';
-// import store from '../../store';
+import React, { Fragment, useState, useEffect } from 'react';
+import store from '../../store';
 
-const SettingsItemText = ({ name, type, placeholder, dispatch }) => {
+const SettingsItemText = ({ item, onChange }) => {
 
-  // const [value, setValue] = useState(null);
+  // Component State
+  // TODO: set default value
+  const [value, setValue] = useState('');
 
+  // EventListener for the text input
+  // Callback from SettingsView -> onItemValueChange
   const onTextChange = (event) => {
-    // dispatch(event.target.value);
-    // setValue(event.target.value);
-    console.log(event.target.value);
+    setValue(event.target.value);
   }
+
+  // Call onChange after setting the state completed
+  useEffect(() => {
+    onChange(item.name, value);
+  }, [value]);
 
   return(
     <Fragment>
-      <label>{name}</label>
+      <label>{item.name}</label>
       <input
-        type={type}
-        placeholder={placeholder}
-        onChange={event => onTextChange(event)}
+        type={item.inputType}
+        placeholder={item.placeholder}
+        value={item.value}
+        onChange={(event) => onTextChange(event)}
       />
     </Fragment>
   );

@@ -1,8 +1,10 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 
 const SettingsView = () => {
+
+  const [configuration, setConfiguration] = useState({});
 
   const sections = [
     {
@@ -18,6 +20,7 @@ const SettingsView = () => {
       items: [
         Settings.DEFAULT_LANGUAGE,
         Settings.DEFAULT_COUNTRY,
+        Settings.DEFAULT_SORTING,
         Settings.ENABLE_DARK_MODE,
         Settings.LOAD_ARTICLES_WITHOUT_IMAGES,
         Settings.REDIRECT_TO_ORIGINAL_SAUCE
@@ -25,14 +28,20 @@ const SettingsView = () => {
     }
   ];
 
+  // EventListener for all SettingsItem<T>
+  // Receives SettingsItem configuration: key, value
+  // Add received configuration to local configuration (state)
+  const onItemValueChange = (key, value) => {
+    const conf = configuration;
+    conf[key.toLowerCase().replace(' ', '-')] = value;
+    setConfiguration(conf);
+  };
+
+  // EventListener for the Save Settings button
+  // Dispatch settings configuration in store
   const onSaveSettings = (event) => {
     event.preventDefault();
-    for (let section of sections) {
-      for (let item of section.items) {
-        item.props.dispatch('hello');
-      }
-    }
-    // sections[0].items[0].props.dispatch();
+    console.log(configuration);
   };
 
   return(
@@ -40,12 +49,14 @@ const SettingsView = () => {
       <form onSubmit={event => onSaveSettings(event)}>
         <div className='settings-view--section'>
           {
+            // Loop over all sections and add a SettingsSection element
             sections.map((section, index) => {
               return <SettingsSection
                 key={index}
                 title={section.title}
                 items={section.items}
-                />
+                onChange={onItemValueChange}
+              />
             })
           }
         </div>
