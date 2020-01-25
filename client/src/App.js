@@ -16,10 +16,12 @@ class App extends Component {
     const { isAuthenticated } = store.getState()
     return (
       <Provider store={store}>
-        <div className="App">
-          {/* If the user is authenticated show home, else render login component */}
-          { isAuthenticated ? <AppBase/> : <h1>LOGIN</h1>}
+        <Router>
+          <div className="App">
+            {/* If the user is authenticated show home, else render login component */}
+            { isAuthenticated ? <AppBase/> : <h1>LOGIN</h1>}
           </div>
+        </Router>
       </Provider>
     );
   }

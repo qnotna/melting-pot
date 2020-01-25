@@ -87,6 +87,12 @@ export default (state, action) => {
         isLoading: action.isLoading
       }
 
+    case "SET_PAGING_DATA":
+      return {
+        ...state,
+        pagingData: action.pagingData
+      }
+
     default:
       return state;
   }

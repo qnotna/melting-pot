@@ -34,10 +34,17 @@ const initialState = {
 
     // Object containing extended search parameters used to be sent with the search request
     // possible fields are: q, sources, language, sortBy, pageSize 
-    searchParams: {},
+    searchParams: {
+        size: 20
+    },
 
     // Check if Loading term is displayed
-    isLoading: false
+    isLoading: false,
+    pagingData: {
+        currentPage: 1,
+        totalResults: 0,
+        currentResults: 0
+    }
 };
 
 const store = createStore(reducer, initialState);

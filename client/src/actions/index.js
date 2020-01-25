@@ -41,3 +41,8 @@ export const setLoadingState = (isLoading) => ({
     type: "SET_LOADING_STATE",
     isLoading
 })
+
+export const setPagingData = (pagingData) => ({
+    type: "SET_PAGING_DATA",
+    pagingData
+})

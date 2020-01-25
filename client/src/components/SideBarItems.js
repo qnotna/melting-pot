@@ -20,7 +20,8 @@ class SideBarItems extends Component {
     }
   }
 
-  setCurrentComponent(category, component){
+  setCurrentComponent(urlParams){
+    const component = urlParams.component;
     switch (component) {
       case Components.HOME:
         this.loadSections()
@@ -28,7 +29,7 @@ class SideBarItems extends Component {
       case Components.BUSINESS:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -36,7 +37,7 @@ class SideBarItems extends Component {
       case Components.ENTERTAINMENT:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -44,7 +45,7 @@ class SideBarItems extends Component {
       case Components.HEALTH:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -52,7 +53,7 @@ class SideBarItems extends Component {
       case Components.SCIENCE:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -60,7 +61,7 @@ class SideBarItems extends Component {
       case Components.SPORTS:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -68,7 +69,7 @@ class SideBarItems extends Component {
       case Components.TECHNOLOGY:
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        api.getCategory(category, (res) => {
+        api.getCategory(urlParams, (res) => {
           store.dispatch(setLoadingState(false));
           store.dispatch(setSections([res]))
         })
@@ -94,12 +95,20 @@ class SideBarItems extends Component {
   }
 
   render() {
+    const currentPage = store.getState().currentPage;
     return this.props.items.map((item) => (
       <li 
         className='sidebar-item' 
         key={this.createItemKey(false, item.title)}
         id={this.createItemKey(true, item.title)} 
-        onClick={(event) => this.setCurrentComponent(event.currentTarget.id, item.component)}
+        onClick={(event) => 
+          this.setCurrentComponent( 
+            {
+              // category: event.currentTarget.id,
+              component: item.component, 
+              page: currentPage 
+            }
+          )}
       >
         <input 
           type='radio' 
