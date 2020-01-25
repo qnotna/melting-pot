@@ -1,9 +1,10 @@
 const validator = require('validator')
 const isEmpty = require('is-empty')
 
-const requiredFields = ['name', 'password', 'password2']
+const requiredFields = ['name', 'email', 'password', 'password2']
 
 module.exports = function validateRegisterInput(data) {
+  console.log(data)
   let errors = {};
 
   for (let field of requiredFields) {
@@ -16,9 +17,9 @@ module.exports = function validateRegisterInput(data) {
   }
 
   // // Check if email was sent and has the right format
-  // if ( !errors.email && !validator.isEmail(data.email) ) {
-  //   errors.email = "\'Email\' is invalid";
-  // }
+  if ( !errors.email && !validator.isEmail(data.email) ) {
+    errors.email = "\'Email\' is invalid";
+  }
 
   // Password checks
   if ( !errors.password && !validator.isLength(data.password, {min: 6, max: 30})) {
