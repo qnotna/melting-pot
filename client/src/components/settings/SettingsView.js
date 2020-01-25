@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
+import '../../stylesheets/Settings.css';
 
 const SettingsView = () => {
 
@@ -11,8 +12,8 @@ const SettingsView = () => {
       title: 'User Settings',
       items: [
         Settings.USERNAME,
-        Settings.PASSWORD,
-        Settings.EMAIL_ADRESS
+        Settings.EMAIL_ADRESS,
+        Settings.PASSWORD
       ]
     },
     {
@@ -47,19 +48,17 @@ const SettingsView = () => {
   return(
     <div className='settings-view'>
       <form onSubmit={event => onSaveSettings(event)}>
-        <div className='settings-view--section'>
-          {
-            // Loop over all sections and add a SettingsSection element
-            sections.map((section, index) => {
-              return <SettingsSection
-                key={index}
-                title={section.title}
-                items={section.items}
-                onChange={onItemValueChange}
+        {
+          // Loop over all sections and add a SettingsSection element
+          sections.map((section, index) => {
+            return <SettingsSection
+              key={index}
+              title={section.title}
+              items={section.items}
+              onChange={onItemValueChange}
               />
-            })
-          }
-        </div>
+          })
+        }
         <input
           type='submit'
           value='Save Settings'

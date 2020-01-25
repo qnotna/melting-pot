@@ -16,7 +16,7 @@ export const Settings = {
   },
   EMAIL_ADRESS: {
     name: 'Email Adress',
-    inputType: 'text',
+    inputType: 'email',
     placeholder: 'spam@me.com',
     type: Type.TEXT
   },

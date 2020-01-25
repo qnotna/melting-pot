@@ -22,6 +22,7 @@ const SettingsItemText = ({ item, onChange }) => {
     <Fragment>
       <label>{item.name}</label>
       <input
+        required
         type={item.inputType}
         placeholder={item.placeholder}
         value={item.value}

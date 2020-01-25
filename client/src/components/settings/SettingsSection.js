@@ -30,7 +30,7 @@ const SettingsSection = ({ title, items, onChange }) => {
   };
 
   return(
-    <fieldset>
+    <fieldset className='settings-view--section'>
       <legend>{title}</legend>
       {
         // Loop over all items and add a SettingsItem<T> element
