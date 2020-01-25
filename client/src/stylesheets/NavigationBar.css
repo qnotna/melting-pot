@@ -30,19 +30,18 @@
   -webkit-appearance:none; /* TODO: remove for deployment */
 }
 
-#navigation-bar button {
+/* #navigation-bar button {
   width: 2.5em;
   padding: 0 0.5em;
   height: 2em;
   border: none;
   background-color: orange;
   margin-right: 10px;
-}
+} */
 
-#navigation-bar button:hover {
+/* #navigation-bar button:hover {
   cursor: pointer;
-  /* background-color: rgba(255, 255, 255, 0.25); */
-}
+} */
 
 #navigation-bar select:hover {
   cursor: pointer;

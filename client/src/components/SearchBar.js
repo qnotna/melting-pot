@@ -46,45 +46,45 @@ class SearchBar extends Component {
     }, params)
   }
 
-  handleDarkMode = () => {
-    if(document.getElementById('searchBarForm') !== null) {
-      if(store.getState().auth.user.settings.darkMode) {
-        var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
-        }
-
-        var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');            
-        for(var b = 0; b < inputsInSearchBarForm.length; b++) {
-          inputsInSearchBarForm[b].classList.add('darkMode-input-text');
-        }
-
-        var searchDropdown = document.getElementsByClassName('dropdown');            
-        for(var c = 0; c < searchDropdown.length; c++) {
-          searchDropdown[c].classList.add('darkMode-dropdown');
-        }
-      }
-      else {
-        var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');     
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
-        }
-
-        var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
-        for(var b = 0; b < inputsInSearchBarForm.length; b++) {
-          inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
-        }
-
-        var searchDropdown = document.getElementsByClassName('dropdown');
-        for(var c = 0; c < searchDropdown.length; c++) {
-          searchDropdown[c].classList.remove('darkMode-dropdown');
-        }
-      }
-    }
-  }
+  // handleDarkMode = () => {
+  //   if(document.getElementById('searchBarForm') !== null) {
+  //     if(store.getState().auth.user.settings.darkMode) {
+  //       var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+  //       }
+  //
+  //       var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+  //       for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+  //         inputsInSearchBarForm[b].classList.add('darkMode-input-text');
+  //       }
+  //
+  //       var searchDropdown = document.getElementsByClassName('dropdown');
+  //       for(var c = 0; c < searchDropdown.length; c++) {
+  //         searchDropdown[c].classList.add('darkMode-dropdown');
+  //       }
+  //     }
+  //     else {
+  //       var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+  //       }
+  //
+  //       var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+  //       for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+  //         inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
+  //       }
+  //
+  //       var searchDropdown = document.getElementsByClassName('dropdown');
+  //       for(var c = 0; c < searchDropdown.length; c++) {
+  //         searchDropdown[c].classList.remove('darkMode-dropdown');
+  //       }
+  //     }
+  //   }
+  // }
 
   componentDidMount = () => {
-    this.handleDarkMode();  
+    // this.handleDarkMode();
   }
 
   componentDidUpdate = () => {
@@ -130,38 +130,28 @@ class SearchBar extends Component {
   }
 
   render() {
-    this.handleDarkMode();
+    // this.handleDarkMode();
 
     return (
-      <form ref={this.formRef} id='searchBarForm' style={{'width':'100%'}}>
-      <label style={{'display':'none'}}>Search term</label>
+      <form ref={this.formRef} id='searchBarForm'>
+      <label>Search term</label>
       <input className='navigation-bar-searchInput' type='search' ref={this.qRef} placeholder='Search for title and content...' />
 
-      <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
-        <span  
-          style = {{'fontSize':'24px'}} 
-          className = 'material-icons'
-        >
-          expand_more
-        </span>
+      <button type="button" onClick={this.onShowMenu}>
+        <span className = 'material-icons'>expand_more</span>
       </button>
 
-      <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
-        <span  
-          style = {{'fontSize':'20px'}} 
-          className = 'material-icons'
-        >
-          search
-        </span>
+      <button type='button' onClick={this.handleClick}>
+        <span className='material-icons'>search</span>
       </button>
 
-      <div className="dropdown" style={{'width': '100%'}}>
+      <div className="dropdown">
         {
           this.state.showMenu ? (
 
-            <div id='dropdownContent' className="dropdown-content" style={{'width': '100%', 'display':'inline-block', 'marginTop': '14px'}}>
+            <div id='dropdownContent' className="dropdown-content">
             <label>Language</label>
-            <select ref={this.langRef} style={{'backgroundColor':'white'}}>
+            <select ref={this.langRef}>
               {Object.keys(languages).map((key =>
                 <option key={key} value={key}>{languages[key]}</option>
               ))}
@@ -176,7 +166,7 @@ class SearchBar extends Component {
             {/* TODO: Soures toLowerCase + check if available
                 maybe select instead of input? */}
               <label>Source</label>
-              <input style={{'border':'0', 'padding':'1px'}} type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
+              <input type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
 
               <label>Articles per page</label>
               <select ref={this.sizeRef}>
