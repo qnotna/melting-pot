@@ -5,7 +5,7 @@ const src = 'http://localhost:5000/'
 
 export default {
     getHot(callback){
-        Axios.get(src + "newsapi/top-headlines?country=" + store.getState().user.settings.country + "&pageSize=5")
+        Axios.get(src + "newsapi/top-headlines?country=" + store.getState().auth.user.settings.country + "&pageSize=5")
         .then(
             (res) => {
                 callback({
@@ -19,7 +19,7 @@ export default {
         )
     },
     getLatest(callback){
-        Axios.get(src + "newsapi/latest?language=" + store.getState().user.settings.language)
+        Axios.get(src + "newsapi/latest?language=" + store.getState().auth.user.settings.language)
         .then(
             (res) => {
                 callback({

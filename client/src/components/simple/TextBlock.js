@@ -1,13 +1,14 @@
 import React from 'react';
 import '../../stylesheets/simple/TextBlock.css';
 
-const TextBlock = ({ text }) => {
+const TextBlock = ({ paragraphs }) => {
 
   //TODO: use regex with req res -> str.match(<p>(.*)?</p>)
-  let paragraphs = text.split('\n');
+  // let paragraphs = text.split('\n');
 
   return paragraphs.map((paragraph, index) => (
-    <p key={index}>{paragraph}</p>
+    // <p key={index}>{paragraph}</p>
+    <div key={index} dangerouslySetInnerHTML={{ __html: paragraph + "<br><br>" }} />
   ));
 
 };

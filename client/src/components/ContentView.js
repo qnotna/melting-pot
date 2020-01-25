@@ -11,28 +11,28 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import contentViewTagsExampleData from '../example/contentViewTags.json';
 
 class ContentView extends Component {
-  handleDarkMode = () => {
-    if(document.getElementById('content-view') !== null) {
-      if(store.getState().user.settings.darkMode) {
-        document.getElementById('content-view').classList.add('darkMode-content-view');
+  // handleDarkMode = () => {
+  //   if(document.getElementById('content-view') !== null) {
+  //     if(store.getState().user.settings.darkMode) {
+  //       document.getElementById('content-view').classList.add('darkMode-content-view');
 
-        var childNodeOfIdContentViewTags = document.getElementById('content-view-tags').childNodes;
+  //       var childNodeOfIdContentViewTags = document.getElementById('content-view-tags').childNodes;
 
-        for(var i = 0; i < childNodeOfIdContentViewTags.length; i++) {
-          childNodeOfIdContentViewTags[i].classList.add('darkMode-content-view-tags');
-        }
-      }
-    }
-  }
+  //       for(var i = 0; i < childNodeOfIdContentViewTags.length; i++) {
+  //         childNodeOfIdContentViewTags[i].classList.add('darkMode-content-view-tags');
+  //       }
+  //     }
+  //   }
+  // }
 
   componentDidMount = () => {
-    this.handleDarkMode();
+    // this.handleDarkMode();
   }
 
   render() {
-    this.handleDarkMode();
+    // this.handleDarkMode();
     
-    const { sections } = store.getState()
+    const { sections } = store.getState().news
 
     return(
       <div id='content-view'>

@@ -7,23 +7,23 @@ import '../stylesheets/DarkMode.css';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class SideBar extends Component {
-  handleDarkMode = () => {
-    if(document.getElementById('sidebar') !== null) {
-      if(store.getState().user.settings.darkMode) {
-        document.getElementById('sidebar').classList.add('darkMode-sidebar');
-      }
-      else {
-        document.getElementById('sidebar').classList.remove('darkMode-sidebar');
-      }
-    }
-  }
+  // handleDarkMode = () => {
+  //   if(document.getElementById('sidebar') !== null) {
+  //     if(store.getState().user.settings.darkMode) {
+  //       document.getElementById('sidebar').classList.add('darkMode-sidebar');
+  //     }
+  //     else {
+  //       document.getElementById('sidebar').classList.remove('darkMode-sidebar');
+  //     }
+  //   }
+  // }
 
   componentDidMount = () => {
-    this.handleDarkMode();
+    // this.handleDarkMode();
   }
 
   render() {
-    this.handleDarkMode();
+    // this.handleDarkMode();
 
     return(
       <div id="sidebar">

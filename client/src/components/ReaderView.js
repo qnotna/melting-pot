@@ -9,7 +9,7 @@ import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 
 const ReaderView = () => {
-  const article = store.getState().current_article;
+  const article = store.getState().news.current_article;
   return(
     <div id='reader-view'>
       <img src={article.urlToImage} alt={article.description}/>
@@ -32,7 +32,7 @@ const ReaderView = () => {
         <h3>{article.description}</h3>
         <p id='reader-view-author'>{`By ${article.author}`}</p>
         {/* <a href={article.url}>Link to Original</a> */}
-        <TextBlock text={article.content}/>
+        <TextBlock paragraphs={article.paragraphs}/>
       </div>
     </div>
   );

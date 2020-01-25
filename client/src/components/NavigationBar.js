@@ -5,33 +5,33 @@ import SearchBar from './SearchBar.js';
 import store from '../store.js';
 
 class NavigationBar extends Component {
-  handleDarkMode = () => {
-    if(document.getElementById('navigation-bar') !== null) {
-      if(store.getState().user.settings.darkMode) {
-        var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
-        }
+  // handleDarkMode = () => {
+  //   if(document.getElementById('navigation-bar') !== null) {
+  //     if(store.getState().user.settings.darkMode) {
+  //       var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+  //       }
 
-        document.getElementById('navigation-bar').classList.add('darkMode-navigation-bar');
-      }
-      else {
-        var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');      
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
-        }
+  //       document.getElementById('navigation-bar').classList.add('darkMode-navigation-bar');
+  //     }
+  //     else {
+  //       var buttonsInSearchBarForm = document.getElementById('navigation-bar').getElementsByTagName('button');      
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+  //       }
 
-        document.getElementById('navigation-bar').classList.remove('darkMode-navigation-bar');
-      }
-    }
-  }
+  //       document.getElementById('navigation-bar').classList.remove('darkMode-navigation-bar');
+  //     }
+  //   }
+  // }
 
   componentDidMount = () => {
-    this.handleDarkMode();     
+    // this.handleDarkMode();     
   }
 
   render() {
-    this.handleDarkMode();
+    // this.handleDarkMode();
     return(
       <div id="navigation-bar" elastic={this.props.elastic}>
         <div>

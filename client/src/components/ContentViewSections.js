@@ -16,7 +16,7 @@ class ContentViewSections extends Component {
   }
 
   render() {
-    console.log(this.props.sections)
+    // console.log(this.props.sections)
     return this.props.sections.map((section, index) => (
       <Fragment key={index}>
         <h1 className='content-view-section-title'>{section.name}</h1>

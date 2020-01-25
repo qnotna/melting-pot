@@ -1,11 +1,3 @@
-import React from 'react';
-import SettingsItemText from '../components/settings/SettingsItemText.js';
-import SettingsItemSelect from '../components/settings/SettingsItemSelect.js';
-import SettingsItemCheckbox from '../components/settings/SettingsItemCheckbox.js';
-import { setNewUserData } from '../actions/index';
-import api from './API';
-import store from '../store';
-
 export const Type = {
 
   TEXT: 'text',

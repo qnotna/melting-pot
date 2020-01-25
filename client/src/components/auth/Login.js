@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import authApi from '../../utils/authAPI';
+import store from "../../store";
+
 
 class Login extends Component {
     constructor() {
@@ -46,14 +49,21 @@ class Login extends Component {
             name: this.state.name,
             password: this.state.password
         };
-        this.props.loginUser(userData);
 
-        console.log(this.state.isAuthenticated)
-        if (this.state.isAuthenticated) {
-            this.props.history.push("/dashboard") // push user to dashboard when they login
-        }
+        authApi.login((res)=> {
+            store.dispatch (loginUser (res))
+        }, userData)
 
-        console.log(userData);
+        // console.log(store.getState().auth)
+
+        // this.props.loginUser(userData);
+
+        // console.log(this.state.isAuthenticated)
+        // if (this.state.isAuthenticated) {
+        //     this.props.history.push("/dashboard") // push user to dashboard when they login
+        // }
+
+        // console.log(userData);
     };
 
     render() {

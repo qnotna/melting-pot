@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import store from '../../store';
 import api from '../../utils/API'
-import { setNewUserData } from '../../actions/index'
+import { setNewUserData } from '../../actions/newsActions'
 import '../../stylesheets/DarkMode.css';
 
 export default class EditUserData extends Component {
