@@ -48,30 +48,15 @@ class AppBase extends Component {
   // Given a name return coresponding component
   getComponentByName(component_name) {
     switch (component_name) {
-      case Components.HOME:
-        return <ContentView />
-
-      case Components.SEARCH_RESULTS:
-        return <ContentView />
-        
-      case Components.BUSINESS:
-        return <ContentView />
-      case Components.ENTERTAINMENT:
-        return <ContentView />
-      case Components.HEALTH:
-        return <ContentView />
-      case Components.SCIENCE:
-        return <ContentView />
-      case Components.SPORTS:
-        return <ContentView />
-      case Components.TECHNOLOGY:
-        return <ContentView />
-
       case Components.SETTINGS:
         return <Settings />
 
       case Components.READER_VIEW:
         return <ReaderView />
+      
+      // SEARCH_RESULTS, HOME, #allCategories
+      default:
+        return <ContentView />
     }
   }
 

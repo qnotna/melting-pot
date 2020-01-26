@@ -25,52 +25,13 @@ class SideBarItems extends Component {
         clearContentView()
         this.loadSections()
         break;
-      case Components.BUSINESS:
-        //Clear ContentView
-        clearContentView();
-        api.getCategory(urlParams, (res) => {
-          //FillContentView
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.ENTERTAINMENT:
-        clearContentView()
-        api.getCategory(urlParams, (res) => {
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.HEALTH:
-        clearContentView();
-        api.getCategory(urlParams, (res) => {
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.SCIENCE:
-        clearContentView();
-        api.getCategory(urlParams, (res) => {
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.SPORTS:
-        clearContentView();
-        api.getCategory(urlParams, (res) => {
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.TECHNOLOGY:
-        clearContentView()
-        api.getCategory(urlParams, (res) => {
-          setInitData(res);
-          store.dispatch(setSections([res]))
-        })
-        break;
     
       default:
+        clearContentView()
+        api.getCategory(urlParams, (res) => {
+          setInitData(res);
+          store.dispatch(setSections([res]))
+        })
         break;
     }
 

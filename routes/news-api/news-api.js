@@ -53,11 +53,13 @@ router.get('/everything', (req, res, next) => {
         ...query
     })
     .then(response => {
-        // console.log(response)
         res.json(response)
     }
     )
-    .catch(err => next(err)
+    .catch(err => {
+        next(err)
+        console.log(err)
+    }
     );
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import formatLangOption from '../utils/langOptFormat'
 import store from '../store';
-import { Components, setInitData } from '../utils/Components';
+import { Components, setInitData, clearContentView } from '../utils/Components';
 
 import api from '../utils/API';
 import { setContentComponent, setSections, setSearchParams, setLoadingState } from '../actions'
@@ -41,10 +41,9 @@ class SearchBar extends Component {
 
   loadSearchResultSections() {
     const params = store.getState().searchParams
-    store.dispatch(setSections([]))
-    store.dispatch(setLoadingState(true));
+    clearContentView();
     api.getSearchResults((res) => {
-      setInitData(res)
+      setInitData(res);
       store.dispatch(setSections([res]))
     }, params)
   }
@@ -210,7 +209,7 @@ class SearchBar extends Component {
       q: this.qRef.current.value,
       language: this.langRef.current ? this.langRef.current.value : "de",
       sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
-      sources: this.sourceRef.current ? this.sourceRef.current.value : [],
+      sources: this.sourceRef.current ? this.sourceRef.current.value.toLowerCase() : [],
       size: this.sizeRef.current ? this.sizeRef.current.value : 20,
       from: this.fromRef.current ? this.fromRef.current.value : "",
       to: this.toRef.current ? this.toRef.current.value : "",
@@ -226,7 +225,7 @@ class SearchBar extends Component {
     // Set the component to be displayed in the app to search results
     store.dispatch( setContentComponent(Components.SEARCH_RESULTS) )
 
-    // this.formRef.current.reset();
+    this.qRef.current.value = "";
   }
 }
 

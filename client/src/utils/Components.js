@@ -23,11 +23,12 @@ export function clearContentView() {
 }
 
 export function setInitData(data) {
-    console.log(data.articles.length)
-    store.dispatch(setPagingData({ 
-        currentPage: 1,
-        currentResults: data.articles.length,
-        totalResults: data.totalResults
-    }))
+    if(data.articles) {
+        store.dispatch(setPagingData({ 
+            currentPage: 1,
+            currentResults: data.articles.length,
+            totalResults: data.totalResults
+        }))
+    }
     store.dispatch(setLoadingState(false));
 }
