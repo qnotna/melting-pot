@@ -20,7 +20,7 @@ class Pagination extends Component {
 
     handleClick(event) {
         let current = this.state.currentPage;
-        current = (event.target.innerHTML === "Next") ? current + 1 : current - 1;
+        current = (event.target.className === "pagination_next") ? current + 1 : current - 1;
 
         store.dispatch(setPagingData({
             currentPage: current,
