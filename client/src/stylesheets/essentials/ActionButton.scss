@@ -1,0 +1,20 @@
+.action-button {
+
+  border: none;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  font-size: 10pt;
+
+  &img {
+    padding: 0 0.5em;
+  }
+
+  &_add {
+    background-color: yellow;
+  }
+
+  &_save {
+    background-color: green;
+  }
+
+}
