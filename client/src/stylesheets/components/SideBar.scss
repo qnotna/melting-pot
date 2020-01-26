@@ -1,7 +1,7 @@
 .sidebar {
 
   height: 100%;
-  background-color: gray;
+  background-color: silver;
   overflow-y: auto;
   width: 12em;
   user-select: none;
@@ -15,9 +15,9 @@
     color: white;
     margin: 0.5em 0;
     font-size: 8pt;
-    padding-left: 1em;
+    padding-left:  1em;
     font-weight: 600;
-    color: gray;
+    color: #404040;
   }
 
   &_item {
@@ -27,7 +27,7 @@
     }
 
     &_label {
-      color: darkGray;
+      color: #101010;
       font-size: 10pt;
       padding: 0.25em;
       display: flex;
@@ -54,8 +54,8 @@
       visibility: hidden;
 
       &:checked + label {
-        color: white;
-        background-color: rgba(white, 0.2);
+        color: #202020;
+        background-color: rgba(black, 0.2);
       }
     }
 
@@ -100,6 +100,30 @@
 
   .sidebar {
       background-color: #282828;
+
+      &_section {
+        color: gray;
+      }
+
+      &_item {
+
+        &_label {
+          color: #E0E0E0;
+        }
+
+        input {
+
+          &:checked + label {
+            color: lightGray;
+          }
+        }
+
+        &:checked + label {
+          color: white;
+          background-color: rgba(white, 0.2);
+        }
+
+      }
   }
 
 }

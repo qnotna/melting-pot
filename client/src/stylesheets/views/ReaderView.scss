@@ -1,0 +1,19 @@
+#reader-view {
+  background-color: white;
+  color: black;
+}
+
+#reader-view-meta-information {
+  background-color: #F0F0F0;
+}
+
+@media (prefers-color-scheme: dark) {
+  #reader-view {
+    background-color: #202020;
+    color: white;
+  }
+
+  #reader-view-meta-information {
+    background-color: #101010;
+  }
+}
