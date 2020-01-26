@@ -31,6 +31,7 @@ router.get('/latest', (req, res) => {
 
 // top Headlines aus einem bestimmten land und Sprache
 router.get('/top-headlines', (req, res) => {
+    // console.log(req.query)
     newsapi.v2.topHeadlines({
         ...req.query
     })
@@ -48,12 +49,17 @@ router.get('/top-headlines', (req, res) => {
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
 router.get('/everything', (req, res, next) => {
     let query = checkInput(req.query);
+    // console.log(query)
     newsapi.v2.everything({
         ...query
     })
-    .then(response => res.json(response)
+    .then(response => {
+        res.json(response)
+    }
     )
-    .catch(err => next(err)
+    .catch(err => {
+        next(err)
+    }
     );
 });
 
@@ -69,12 +75,15 @@ function checkInput(query){
     let queryParams = query;
     for(let prop of Object.getOwnPropertyNames(queryParams)){
         let value = queryParams[prop];
-        if(prop === 'q' && value === undefined){
+        if(prop === 'q' && value === ""){
             next(new HttpError("Search term required", 400));
         }
-        prop = (prop === 'sources' && value) ? value.split(',') : [];
-        queryParams.prop = value;
+        if(prop === 'sources' && value) {
+            value = value.split(",");
+        }
+        queryParams[prop] = value;
     }
+    // console.log(queryParams)
     return queryParams;
 }
 

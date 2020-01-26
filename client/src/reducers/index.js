@@ -8,5 +8,3 @@ export default combineReducers({
   errors: errorReducer,
   news: newsReducer
 });
-
-

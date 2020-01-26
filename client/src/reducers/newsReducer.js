@@ -20,7 +20,18 @@ const initialState = {
 
     // Object containing extended search parameters used to be sent with the search request
     // possible fields are: q, sources, language, sortBy, pageSize 
-    searchParams: {}
+    searchParams: {
+        size: 20
+    },
+
+    // Check if Loading term is displayed
+    isLoading: false,
+
+    pagingData: {
+        currentPage: 1,
+        totalResults: 0,
+        currentResults: 0
+    }
 };
 
 
@@ -105,7 +116,20 @@ export default (state = initialState, action) => {
         case "SET_ARTICLE":
             return {
                 ...state,
-                current_article: action.current_article
+                current_article: action.article
+            }
+            
+
+        case "SET_LOADING_STATE":
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
+
+        case "SET_PAGING_DATA":
+            return {
+                ...state,
+                pagingData: action.pagingData
             }
 
         default:
