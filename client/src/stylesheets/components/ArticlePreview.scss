@@ -1,9 +1,5 @@
 .article {
 
-  h3 {
-    margin: 0.5em 0;
-  }
-
   &[preview-size="small"] {
     height: 12em;
     width: 15em;
@@ -22,6 +18,17 @@
 
   &_preview {
     height: 100%;
+
+    h3 {
+      margin: 0.5em 0;
+      font-size: 14pt;
+      line-height: 1.25em;
+    }
+
+    .preview-text {
+      font-size: 12pt;
+      line-height: 1.25em;
+    }
 
     // Article Preview Container -----------------------
     &_container {

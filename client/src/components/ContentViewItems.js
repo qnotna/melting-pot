@@ -36,7 +36,7 @@ class ContentViewItems extends Component {
       <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
-        {optionalPreviewText}
+        <p className='preview-text'>{optionalPreviewText}</p>
       </div>
     );
   }

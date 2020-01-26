@@ -3,6 +3,7 @@
   width: calc(100% - 2em);
   padding: 1em;
   background-color: silver;
+  margin-bottom: -1em; // TODO: hack
 
   * {
     vertical-align: middle;
@@ -13,10 +14,10 @@
   }
 
   &_dropdown {
-
     display: flex;
     flex-direction:column;
     margin-top: 1em;
+    margin-bottom: -1em; // TODO: hack
     padding: 0;
 
     label {

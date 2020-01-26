@@ -136,7 +136,6 @@ class SearchBar extends Component {
     return (
       <form ref={this.formRef} id='searchBarForm'>
         <div className='navigation-bar_default'>
-          <label>Search term</label>
           <input
             id='search-bar'
             type='search'

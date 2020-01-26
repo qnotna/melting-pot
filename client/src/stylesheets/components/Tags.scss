@@ -6,10 +6,12 @@
 }
 
 .tag {
-  margin-right: 1em;
+  margin-right: 0.5em;
   display: inline-block;
 
   p {
+    font-family: monospace;
+    font-size: 9pt;
     border-radius: 0.25em;
     padding: 0.5em;
     background-color: #181818;
