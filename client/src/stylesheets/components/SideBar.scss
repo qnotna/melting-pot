@@ -4,6 +4,7 @@
   background-color: gray;
   overflow-y: auto;
   width: 16em;
+  user-select: none;
 
   &_sections {
     padding: 0 1em;

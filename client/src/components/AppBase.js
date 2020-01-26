@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import '../stylesheets/App.css';
 import '../stylesheets/DarkMode.css';
 
 import ContentView from './ContentView.js';
@@ -65,7 +64,7 @@ class AppBase extends Component {
   }
 
   render() {
-    // Get the name of the component that should be renderd 
+    // Get the name of the component that should be renderd
     // as App content from the App global store
     const { content_component } = store.getState().news
 
