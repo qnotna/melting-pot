@@ -55,7 +55,7 @@ class SideBarItems extends Component {
           store.dispatch(setSections([res]))
         })
         break;
-    
+
       default:
         break;
     }
@@ -74,28 +74,25 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
-      <li 
-        className='sidebar-item' 
+      <li
+        className='sidebar_item'
         key={this.createItemKey(false, item.title)}
-        id={this.createItemKey(true, item.title)} 
+        id={this.createItemKey(true, item.title)}
         onClick={(event) => this.setCurrentComponent(event.currentTarget.id, item.component)}
       >
-        <input 
-          type='radio' 
-          name='sidebar-items' 
+        <input
+          type='radio'
+          name='sidebar-items'
           defaultChecked={this.isDefaultChecked(item.title)}
         />
-        <label 
-          className='sidebar-item-label' 
-          htmlFor={this.createItemKey(false, item.title)} 
+        <label
+          className='sidebar_item_label'
+          htmlFor={this.createItemKey(false, item.title)}
         >
-          <span  
-              style = {{'fontSize':'16px', 'marginRight':'6px'}} 
-              className = 'material-icons'
-            >
+          <span className = 'material-icons'>
               {item.icon}
             </span>
-          <p className='sidebar-item-title' unread-amount={item.unreadAmount}>{item.title}</p>
+          <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
     ));

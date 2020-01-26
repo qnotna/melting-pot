@@ -1,0 +1,105 @@
+.sidebar {
+
+  height: 100%;
+  background-color: gray;
+  overflow-y: auto;
+  width: 16em;
+
+  &_sections {
+    padding: 0 1em;
+    min-height: calc(100vh - 80px);
+    margin-bottom: 30px;
+  }
+
+  &_section {
+    color: white;
+    margin-top: 1em;
+    padding: 0.25em;
+    font-size: 10pt;
+    text-transform: uppercase;
+  }
+
+  &_item {
+    border-radius: 0.25em;
+    margin: 0.125em 0;
+
+    * {
+      display: inline-block;
+    }
+
+    &_label {
+      color: white;
+      width: 100%;
+      padding: 0.25em;
+      display: flex;
+      align-items:center;
+
+      label {
+        margin-left: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+
+    }
+
+    span {
+      width: 1em;
+      height: 1em;
+      margin-right: 0.5em;
+    }
+
+    input {
+      position: absolute;
+      visibility: hidden;
+
+      &:checked + label {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &_title[unread-amount="0"]:after {
+      content: none;
+    }
+
+  }
+
+}
+
+#profile-overview {
+
+  color: white;
+  position: sticky;
+  margin: 1em;
+  display: flex;
+  width: calc(100% - 2em);
+
+  &_avatar-preview {
+    margin-right: 0.5em;
+    object-fit: contain;
+    height: 2em;
+
+    div {
+      width: 100%;
+    }
+
+  }
+
+  &_username { }
+
+  &_mail-adress {
+    font-size: 10pt;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .sidebar {
+      background-color: #282828;
+  }
+
+}

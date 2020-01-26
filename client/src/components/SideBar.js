@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import SideBarSections from './SideBarSections.js';
 import ProfileOverview from './ProfileOverview.js';
 import store from '../store.js';
-import '../stylesheets/SideBar.css';
 import '../stylesheets/DarkMode.css';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -26,9 +25,9 @@ class SideBar extends Component {
     // this.handleDarkMode();
 
     return(
-      <div id="sidebar">
+      <div className="sidebar">
         <Scrollbars>
-          <ul className='sidebar-sections'>
+          <ul className='sidebar_sections'>
             <SideBarSections sections={this.props.sections}/>
           </ul>
           <ProfileOverview/>

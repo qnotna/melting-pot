@@ -6,6 +6,10 @@ button, input[type='button'], input[type='submit'] {
   padding: 0.25em;
   color: white;
   font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   span {
     padding-left: 0.25em;
