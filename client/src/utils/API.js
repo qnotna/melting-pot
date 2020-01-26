@@ -38,7 +38,6 @@ export default {
         Axios.get(src + "newsapi/everything", { params })
         .then(
             (res) => {
-                console.log(res)
                 callback({
                     name: "Results",
                     type: "grid",
@@ -76,7 +75,6 @@ export default {
         Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
         .then(
             (res) => {
-                console.log(res)
                 callback({
                     name: category[0].toUpperCase() + category.slice(1),
                     type: "grid",

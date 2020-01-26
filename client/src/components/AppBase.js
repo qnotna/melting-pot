@@ -38,10 +38,6 @@ class AppBase extends Component {
     document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
   }
 
-  test(){
-    console.log("TEST")
-  }
-
   loadSearchResultSections(){
     const input = store.getState().search_input
     api.getSearchResults((res) => {

@@ -5,16 +5,21 @@ import api from '../utils/API';
 
 class Pagination extends Component {
     state = {
-        totalPages: [1, 2, 3, 4, 5],
         totalResults: store.getState().pagingData.totalResults,
         currentPage: store.getState().pagingData.currentPage,
         currentResults: store.getState().pagingData.currentResults,
         sectionName: ""
     }
     
+    componentDidMount(){ 
+        this.setState({
+            totalResults: this.props.totalResults,
+            currentResults: this.props.currentResults
+        })
+    }
+
     handleClick(event) {
         let current = this.state.currentPage;
-        console.log("State: " + this.state.currentResults);
         current = (event.target.innerHTML === "Next") ? current + 1 : current - 1;
         
         store.dispatch(setPagingData({
@@ -23,25 +28,14 @@ class Pagination extends Component {
             currentResults: this.state.currentResults
         }));
 
-        this.changePage({component: this.state.sectionName, page: current});
+        this.changePage({component: this.props.sectionName, page: current});
     }
 
     changePage(urlParams) {
         let componentName = urlParams.component;
         store.dispatch(setSections([]));
         store.dispatch(setLoadingState(true));
-        switch(this.state.sectionName){
-            case "Hot":
-                api.getHot(urlParams, (res) => {
-                    store.dispatch(setLoadingState(false));
-                    store.dispatch( setSections ( [res] ))
-                })
-                break;
-            case "Latest":
-                api.getLatest(urlParams, (res) => {
-                    store.dispatch( addSection( res ))
-                })
-                break;
+        switch(this.props.sectionName){
             case "Results":
                 componentName = "SEARCH_" + componentName.toUpperCase();
                 api.getSearchResults((res) => {
@@ -58,20 +52,19 @@ class Pagination extends Component {
             // Category
             default:
                 api.getCategory(urlParams, (res) => {
-                    console.log(res)
                     store.dispatch(setLoadingState(false));
                     store.dispatch(setSections([res]));
                 })
                 break;
         }
 
-        console.log(componentName)
         store.dispatch( setContentComponent(componentName.toUpperCase()) );
     }
 
     isDisabled(type) {
         if(type === "Next") {
-            return (this.state.currentResults < store.getState().searchParams.size) ? true : false;
+            // if current results smaller than set in search bar
+            return (this.state.currentResults < store.getState().searchParams.size || this.state.currentPage === 5 && this.state.currentResults * 5 === 100 ) ? true : false;
         }
         else {
             return (this.state.currentPage === 1) ? true : false;
@@ -79,25 +72,15 @@ class Pagination extends Component {
     }
 
     render() {
-        this.state.sectionName = this.props.sectionName;
-        this.state.totalResults = this.props.totalResults;
-        this.state.currentResults = this.props.currentResults;
-        return(
+        // this.props.sectionName = this.props.sectionName;
+        // this.state.totalResults = this.props.totalResults;
+        // this.state.currentResults = this.props.currentResults;
+        return (this.props.sectionName !== "Hot" && this.props.sectionName !== "Latest") ? 
             <div>
                 <button type="button" onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Prev")}>Prev</button>
                 <button type="button" onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Next")}>Next</button>
             </div>
-        )
-        // const pageNumbers = this.state.totalPages.map((pageNum, index) => {
-        // return <li key={index} onClick={(event) => this.handleClick(event)}>{pageNum}</li>;
-        // })
-        // return(
-        //     <div>
-        //         <ul>
-        //             {pageNumbers}
-        //         </ul>
-        //     </div>
-        // );
+            : null
     }
 }
 

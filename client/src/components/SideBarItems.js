@@ -2,12 +2,10 @@ import React, {Component} from 'react';
 import store from '../store';
 
 import { setContentComponent, setLoadingState } from "../actions"
-import { Components } from '../utils/Components';
+import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
 import { addSection, setSections } from '../actions'
-
-
 
 class SideBarItems extends Component {
 
@@ -24,53 +22,50 @@ class SideBarItems extends Component {
     const component = urlParams.component;
     switch (component) {
       case Components.HOME:
+        clearContentView()
         this.loadSections()
         break;
       case Components.BUSINESS:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        //Clear ContentView
+        clearContentView();
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          //FillContentView
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
       case Components.ENTERTAINMENT:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        clearContentView()
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
       case Components.HEALTH:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        clearContentView();
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
       case Components.SCIENCE:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        clearContentView();
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
       case Components.SPORTS:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        clearContentView();
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
       case Components.TECHNOLOGY:
-        store.dispatch(setSections([]));
-        store.dispatch(setLoadingState(true));
+        clearContentView()
         api.getCategory(urlParams, (res) => {
-          store.dispatch(setLoadingState(false));
+          setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
@@ -83,10 +78,9 @@ class SideBarItems extends Component {
   }
 
   loadSections(){
-    store.dispatch(setSections([]));
-    store.dispatch(setLoadingState(true));
+
     api.getHot((res) => {
-      store.dispatch(setLoadingState(false));
+      setInitData(res);
       store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {
@@ -95,7 +89,6 @@ class SideBarItems extends Component {
   }
 
   render() {
-    const currentPage = store.getState().currentPage;
     return this.props.items.map((item) => (
       <li 
         className='sidebar-item' 
@@ -104,9 +97,8 @@ class SideBarItems extends Component {
         onClick={(event) => 
           this.setCurrentComponent( 
             {
-              // category: event.currentTarget.id,
               component: item.component, 
-              page: currentPage 
+              page: 1 
             }
           )}
       >

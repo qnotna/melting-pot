@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import formatLangOption from '../utils/langOptFormat'
 import store from '../store';
-import { Components } from '../utils/Components';
+import { Components, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
 import { setContentComponent, setSections, setSearchParams, setLoadingState } from '../actions'
@@ -44,7 +44,7 @@ class SearchBar extends Component {
     store.dispatch(setSections([]))
     store.dispatch(setLoadingState(true));
     api.getSearchResults((res) => {
-        store.dispatch(setLoadingState(false));
+      setInitData(res)
       store.dispatch(setSections([res]))
     }, params)
   }
@@ -206,16 +206,19 @@ class SearchBar extends Component {
     event.preventDefault();
 
     //TODO Sprache automatisch aus User-Einstellungen wählen
-    let q = this.qRef.current.value
-    let language = this.langRef.current ? this.langRef.current.value : "de";
-    let sortBy = this.sortRef.current ? this.sortRef.current.value : "publishedAt";
-    let sources = this.sourceRef.current ? this.sourceRef.current.value : [];
-    let size = this.sizeRef.current ? this.sizeRef.current.value : 20;
-    let from = this.fromRef.current ? this.fromRef.current.value : "";
-    let to = this.toRef.current ? this.toRef.current.value : "";
+    let searchParams = {
+      q: this.qRef.current.value,
+      language: this.langRef.current ? this.langRef.current.value : "de",
+      sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
+      sources: this.sourceRef.current ? this.sourceRef.current.value : [],
+      size: this.sizeRef.current ? this.sizeRef.current.value : 20,
+      from: this.fromRef.current ? this.fromRef.current.value : "",
+      to: this.toRef.current ? this.toRef.current.value : "",
+      page: 1
+    }
 
     // Set search parameters to be accesible in global state
-    store.dispatch( setSearchParams({ q, language, sortBy, sources, size, from , to }) );
+    store.dispatch( setSearchParams(searchParams) );
 
     // Get search sections and set them to be accesible in global state
     this.loadSearchResultSections()
