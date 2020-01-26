@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import SideBarSections from './SideBarSections.js';
 import ProfileOverview from './ProfileOverview.js';
 import store from '../store.js';
-import '../stylesheets/SideBar.css';
 import '../stylesheets/DarkMode.css';
-import { Scrollbars } from 'react-custom-scrollbars';
+import { SidebarData } from '../data/SidebarData.js';
 
 class SideBar extends Component {
   // handleDarkMode = () => {
@@ -26,13 +25,11 @@ class SideBar extends Component {
     // this.handleDarkMode();
 
     return(
-      <div id="sidebar">
-        <Scrollbars>
-          <ul className='sidebar-sections'>
-            <SideBarSections sections={this.props.sections}/>
-          </ul>
-          <ProfileOverview/>
-        </Scrollbars>
+      <div className="sidebar">
+        <ul className='sidebar_sections'>
+          <SideBarSections sections={SidebarData}/>
+        </ul>
+        <ProfileOverview/>
       </div>
     );
   }

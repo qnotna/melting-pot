@@ -1,12 +1,11 @@
 import React from 'react';
-import '../../stylesheets/simple/ActionButton.css';
 
 const ActionButton = ({ text, type, selected }) => {
 
   //TODO: Hier muss ein onClick event handler sein das je nach type den item + vollen (geparsten) content speichert oder das item spiechert!
 
   return(
-    <button type='submit' className={`action_button action_button-${type}`}>
+    <button type='submit' className={`action-button_${type}`}>
       <img
         className='icon'
         src='https://www.bevlabvet.com/images/circle-dark.png'

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../stylesheets/simple/TextBlock.css';
 
 const TextBlock = ({ paragraphs }) => {
 

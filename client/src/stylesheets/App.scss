@@ -1,0 +1,79 @@
+* {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.App {
+  display: inline-flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+#left {
+  height: 100%;
+  width: 12em;
+  overflow: visible;
+
+  &[collapsed='true'] {
+    position: absolute;
+    left: -12em;
+    animation: leftCollapsedTrue .25s linear;
+  }
+
+  &[collapsed='false'] {
+    position: inherit;
+    animation: leftCollapsedFalse .25s linear;
+  }
+
+}
+
+#right {
+  height: 100%;
+  width: 100%;
+
+  &[collapsed='true'] {
+    animation: rightCollapsedTrue .25s linear;
+  }
+
+}
+
+@keyframes leftCollapsedTrue {
+  from {
+    left: 0em;
+  }
+  to {
+    left: -12em;
+  }
+}
+
+@keyframes leftCollapsedFalse {
+  from {
+    margin-left: -12em;
+  }
+  to {
+    margin-left: 0em;
+  }
+}
+
+@keyframes rightCollapsedTrue {
+  from {
+    margin-left: 12em;
+  }
+  to {
+    margin-left: 0em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #root {
+    background-color: #202020;
+  }
+
+}

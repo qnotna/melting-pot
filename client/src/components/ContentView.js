@@ -3,9 +3,7 @@ import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
 import ContentViewResults from './ContentViewResults.js';
 import store from '../store.js';
-import '../stylesheets/ContentView.css';
 import '../stylesheets/DarkMode.css';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 // Placeholder data
 import contentViewTagsExampleData from '../example/contentViewTags.json';
@@ -31,19 +29,15 @@ class ContentView extends Component {
 
   render() {
     // this.handleDarkMode();
-    
+
     const { sections } = store.getState().news
 
     return(
       <div id='content-view'>
-        <Scrollbars>
-          <div id='content-view-scrollbar'>
-            {/* <ul id='content-view-tags'>
-              <ContentViewTags tags={contentViewTagsExampleData}/>
-            </ul> */}
-              <ContentViewSections sections={sections}/>
-          </div>
-        </Scrollbars>
+        <ul id='tags'>
+          <ContentViewTags tags={contentViewTagsExampleData}/>
+        </ul>
+        <ContentViewSections sections={sections}/>
       </div>
     );
   }

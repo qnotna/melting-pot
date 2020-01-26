@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactLoading from 'react-loading';
 
-import '../stylesheets/App.css';
 import '../stylesheets/DarkMode.css';
 
 import ContentView from './ContentView.js';
@@ -49,7 +48,7 @@ class AppBase extends Component {
 
       case Components.READER_VIEW:
         return <ReaderView />
-      
+
       // SEARCH_RESULTS, HOME, #allCategories
       default:
         return <ContentView />
@@ -68,7 +67,7 @@ class AppBase extends Component {
   }
 
   render() {
-    // Get the name of the component that should be renderd 
+    // Get the name of the component that should be renderd
     // as App content from the App global store
     const { content_component, isLoading } = store.getState().news;
 
@@ -83,9 +82,20 @@ class AppBase extends Component {
           <NavigationBar
             collapseSidebar={this.collapseSidebar.bind(this)}
           />
-
-          {(isLoading) ? <ReactLoading type={"spokes"} color={"black"} /> : this.getComponentByName(content_component)}
-
+        {
+          (isLoading) ?
+          <div className='loading-view'>
+            <ReactLoading
+              className='loading-view_spinner'
+              width={'2.5em'}
+              height={'2.5em'}
+              type={"spokes"}
+              color={"gray"}
+            />
+          </div>
+          :
+          this.getComponentByName(content_component)
+        }
         </div>
       </div>
     );

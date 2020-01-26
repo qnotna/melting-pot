@@ -10,8 +10,8 @@ class Pagination extends Component {
         currentResults: store.getState().news.pagingData.currentResults,
         sectionName: ""
     }
-    
-    componentDidMount(){ 
+
+    componentDidMount(){
         this.setState({
             totalResults: this.props.totalResults,
             currentResults: this.props.currentResults
@@ -21,10 +21,10 @@ class Pagination extends Component {
     handleClick(event) {
         let current = this.state.currentPage;
         current = (event.target.innerHTML === "Next") ? current + 1 : current - 1;
-        
+
         store.dispatch(setPagingData({
-            currentPage: current, 
-            totalResults: this.state.totalResults, 
+            currentPage: current,
+            totalResults: this.state.totalResults,
             currentResults: this.state.currentResults
         }));
 
@@ -41,7 +41,7 @@ class Pagination extends Component {
                 api.getSearchResults((res) => {
                         store.dispatch(setLoadingState(false));
                         store.dispatch(setSections([res]))
-                    }, 
+                    },
                     {
                         ...store.getState().searchParams,
                         page: urlParams.page
@@ -75,10 +75,18 @@ class Pagination extends Component {
         // this.props.sectionName = this.props.sectionName;
         // this.state.totalResults = this.props.totalResults;
         // this.state.currentResults = this.props.currentResults;
-        return (this.props.sectionName !== "Hot" && this.props.sectionName !== "Latest") ? 
-            <div>
-                <button type="button" onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Prev")}>Prev</button>
-                <button type="button" onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Next")}>Next</button>
+        return (this.props.sectionName !== "Hot" && this.props.sectionName !== "Latest") ?
+            <div className='pagination'>
+                <button
+                  className='pagination_previous'
+                  type="button"
+                  onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Prev")}
+                >{'< Previos Page'}</button>
+                <button
+                  className='pagination_next'
+                  type="button"
+                  onClick={(event) => this.handleClick(event)} disabled={this.isDisabled("Next")}
+                >{'Next Page >'}</button>
             </div>
             : null
     }

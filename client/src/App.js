@@ -10,6 +10,8 @@ import store from './store'
 import AppBase from './components/AppBase'
 import Login from './components/auth/Login';
 
+import './stylesheets/index.scss';
+
 class App extends Component {
   render() {
     return (

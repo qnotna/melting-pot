@@ -24,7 +24,7 @@ class SideBarItems extends Component {
         clearContentView()
         this.loadSections()
         break;
-    
+
       default:
         clearContentView()
         api.getCategory(urlParams, (res) => {
@@ -50,34 +50,29 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
-      <li 
-        className='sidebar-item' 
+      <li
+        className='sidebar_item'
         key={this.createItemKey(false, item.title)}
-        id={this.createItemKey(true, item.title)} 
-        onClick={(event) => 
-          this.setCurrentComponent( 
+        id={this.createItemKey(true, item.title)}
+        onClick={(event) =>
+          this.setCurrentComponent(
             {
-              component: item.component, 
-              page: 1 
+              component: item.component,
+              page: 1
             }
           )}
       >
-        <input 
-          type='radio' 
-          name='sidebar-items' 
+        <input
+          type='radio'
+          name='sidebar-items'
           defaultChecked={this.isDefaultChecked(item.title)}
         />
-        <label 
-          className='sidebar-item-label' 
-          htmlFor={this.createItemKey(false, item.title)} 
+        <label
+          className='sidebar_item_label'
+          htmlFor={this.createItemKey(false, item.title)}
         >
-          <span  
-              style = {{'fontSize':'16px', 'marginRight':'6px'}} 
-              className = 'material-icons'
-            >
-              {item.icon}
-            </span>
-          <p className='sidebar-item-title' unread-amount={item.unreadAmount}>{item.title}</p>
+          <img src={item.icon} alt={item.title}/>
+          <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
     ));

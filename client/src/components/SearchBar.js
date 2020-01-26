@@ -34,7 +34,7 @@ class SearchBar extends Component {
       event.preventDefault();
       event.target.firstChild.innerHTML = (this.state.showMenu === true) ? "expand_more" : "expand_less";
       this.setState((prevState) => ({
-      showMenu: !prevState.showMenu
+        showMenu: !prevState.showMenu
       }))
     }
   }
@@ -48,45 +48,45 @@ class SearchBar extends Component {
     }, params)
   }
 
-  handleDarkMode = () => {
-    if(document.getElementById('searchBarForm') !== null) {
-      if(store.getState().auth.user.settings.darkMode) {
-        var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
-        }
-
-        var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');            
-        for(var b = 0; b < inputsInSearchBarForm.length; b++) {
-          inputsInSearchBarForm[b].classList.add('darkMode-input-text');
-        }
-
-        var searchDropdown = document.getElementsByClassName('dropdown');            
-        for(var c = 0; c < searchDropdown.length; c++) {
-          searchDropdown[c].classList.add('darkMode-dropdown');
-        }
-      }
-      else {
-        var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');     
-        for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
-          buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
-        }
-
-        var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
-        for(var b = 0; b < inputsInSearchBarForm.length; b++) {
-          inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
-        }
-
-        var searchDropdown = document.getElementsByClassName('dropdown');
-        for(var c = 0; c < searchDropdown.length; c++) {
-          searchDropdown[c].classList.remove('darkMode-dropdown');
-        }
-      }
-    }
-  }
+  // handleDarkMode = () => {
+  //   if(document.getElementById('searchBarForm') !== null) {
+  //     if(store.getState().auth.user.settings.darkMode) {
+  //       var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.add('darkMode-navigation-bar-button');
+  //       }
+  //
+  //       var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+  //       for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+  //         inputsInSearchBarForm[b].classList.add('darkMode-input-text');
+  //       }
+  //
+  //       var searchDropdown = document.getElementsByClassName('dropdown');
+  //       for(var c = 0; c < searchDropdown.length; c++) {
+  //         searchDropdown[c].classList.add('darkMode-dropdown');
+  //       }
+  //     }
+  //     else {
+  //       var buttonsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('button');
+  //       for(var a = 0; a < buttonsInSearchBarForm.length; a++) {
+  //         buttonsInSearchBarForm[a].classList.remove('darkMode-navigation-bar-button');
+  //       }
+  //
+  //       var inputsInSearchBarForm = document.getElementById('searchBarForm').getElementsByTagName('input');
+  //       for(var b = 0; b < inputsInSearchBarForm.length; b++) {
+  //         inputsInSearchBarForm[b].classList.remove('darkMode-input-text');
+  //       }
+  //
+  //       var searchDropdown = document.getElementsByClassName('dropdown');
+  //       for(var c = 0; c < searchDropdown.length; c++) {
+  //         searchDropdown[c].classList.remove('darkMode-dropdown');
+  //       }
+  //     }
+  //   }
+  // }
 
   componentDidMount = () => {
-    this.handleDarkMode();  
+    // this.handleDarkMode();
   }
 
   componentDidUpdate = () => {
@@ -132,74 +132,85 @@ class SearchBar extends Component {
   }
 
   render() {
-    this.handleDarkMode();
+    // this.handleDarkMode();
 
+    // TODO: this should be it's own component with input child components!
     return (
-      <form ref={this.formRef} id='searchBarForm' style={{'width':'100%'}}>
-      <label style={{'display':'none'}}>Search term</label>
-      <input className='navigation-bar-searchInput' type='search' ref={this.qRef} placeholder='Search for title and content...' />
-
-      <button type="button" onClick={this.onShowMenu} style={{'padding':'0 0 0 0.4em'}}>
-        <span  
-          style = {{'fontSize':'24px'}} 
-          className = 'material-icons'
-        >
-          expand_more
-        </span>
-      </button>
-
-      <button type='button' onClick={this.handleClick} style={{'padding':'0 0 0 0.5em'}}>
-        <span  
-          style = {{'fontSize':'20px'}} 
-          className = 'material-icons'
-        >
-          search
-        </span>
-      </button>
-
-      <div className="dropdown" style={{'width': '100%'}}>
+      <form ref={this.formRef} id='searchBarForm'>
+        <div className='navigation-bar_default'>
+          <input
+            id='search-bar'
+            type='search'
+            ref={this.qRef}
+            placeholder='Search Articles for Title or Content'
+          />
+          <button type="button" onClick={this.onShowMenu}>
+            <span className = 'material-icons'>expand_more</span>
+          </button>
+          <button type='button' onClick={this.handleClick}>
+            <span className='material-icons'>search</span>
+          </button>
+        </div>
         {
           this.state.showMenu ? (
-
-            <div id='dropdownContent' className="dropdown-content" style={{'width': '100%', 'display':'inline-block', 'marginTop': '14px'}}>
-            <label>Language</label>
-            <select ref={this.langRef} style={{'backgroundColor':'white'}}>
-              {Object.keys(languages).map((key =>
-                <option key={key} value={key}>{languages[key]}</option>
-              ))}
-            </select>
-
-            <label>Sort by</label>
-            <select ref={this.sortRef}>
-              {Object.keys(sortOptions).map((key =>
-                <option key={key} value={key}>{sortOptions[key]}</option>
-              ))}
-            </select>
-            {/* TODO: Soures toLowerCase + check if available
-                maybe select instead of input? */}
-              <label>Source</label>
-              <input style={{'border':'0', 'padding':'1px'}} type='search' ref={this.sourceRef} placeholder='die-zeit, Bild, ...' />
-
-              <label>Articles per page</label>
-              <select ref={this.sizeRef}>
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
-              </select>
-
-              <label>From</label>
-              <input type="date" ref={this.fromRef}/>
-
-              <label>To</label>
-              <input type="date" ref={this.toRef}/>
+            <div className='navigation-bar_dropdown'>
+              <div className='navigation-bar_dropdown_filter'>
+                <label>Language:</label>
+                <select ref={this.langRef}>
+                  {
+                    Object.keys(languages).map((key =>
+                      <option key={key} value={key}>{languages[key]}</option>
+                    ))
+                  }
+                </select>
               </div>
-              ) : (null)
-            }
-          </div>
-        </form>
-      );
-    }
+              <div className='navigation-bar_dropdown_filter'>
+                <label>Sort by:</label>
+                <select ref={this.sortRef}>
+                  {Object.keys(sortOptions).map((key =>
+                    <option key={key} value={key}>
+                      {
+                        sortOptions[key]
+                      }
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {
+                /* TODO: Soures toLowerCase + check if available
+                maybe select instead of input? */
+              }
+              <div className='navigation-bar_dropdown_filter'>
+                <label>Source:</label>
+                <input
+                  type='search'
+                  ref={this.sourceRef}
+                  placeholder='die-zeit, Bild, ...'
+                  />
+              </div>
+              <div className='navigation-bar_dropdown_filter'>
+                <label>Articles Per Page:</label>
+                <select ref={this.sizeRef}>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                  <option>100</option>
+                </select>
+              </div>
+              <div className='navigation-bar_dropdown_filter'>
+                <label>From:</label>
+                <input type="date" ref={this.fromRef}/>
+              </div>
+              <div className='navigation-bar_dropdown_filter'>
+                <label>To:</label>
+                <input type="date" ref={this.toRef}/>
+              </div>
+            </div>
+          ) : (null)
+        }
+      </form>
+    );
+  }
 
   handleClick = (event) => {
     event.preventDefault();

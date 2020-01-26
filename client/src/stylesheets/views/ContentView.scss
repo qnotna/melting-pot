@@ -1,0 +1,49 @@
+#content-view {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow: auto;
+}
+
+.section-title {
+  font-size: 20pt;
+  padding: 0.5em;
+}
+
+.section {
+  padding-left: 1em;
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  &:last-of-type {
+    margin-bottom: 14em; /* TODO: this is a disguisting hack */
+  }
+
+  &[type="horizontal"] * {
+    display: inline-block;
+  }
+
+  &[type="grid"] {
+    width: auto;
+    padding-left: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+    .article {
+      margin: 0 1em 1em 0;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  #content-view {
+    background-color: #202020;
+  }
+
+  .section-title {
+    color: white;
+  }
+
+}
