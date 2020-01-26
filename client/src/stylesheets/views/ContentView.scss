@@ -1,0 +1,45 @@
+#content-view {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow: auto;
+}
+
+.section-title {
+  padding: 0.5em;
+}
+
+.section {
+  padding-left: 1em;
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  &[type="horizontal"] * {
+    display: inline-block;
+  }
+
+  &[type="grid"] {
+    width: auto;
+    padding-left: 1em;
+    margin-bottom: 4em; /* TODO: this is a disguisting hack */
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+    .article {
+      margin: 0 1em 1em 0;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  #content-view {
+    background-color: #202020;
+  }
+
+  .section-title {
+    color: white;
+  }
+
+}

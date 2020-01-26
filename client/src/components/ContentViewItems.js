@@ -33,7 +33,7 @@ class ContentViewItems extends Component {
       optionalPreviewText = <p>{item.description}</p>
     }
     return(
-      <div className='content-view-preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
+      <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
         {optionalPreviewText}
@@ -44,7 +44,7 @@ class ContentViewItems extends Component {
   render() {
     return this.props.articles.map((article, index) => (
       <div
-        className='content-view-item'
+        className='article'
         preview-size={this.props.previewSize}
         key={index}
       >

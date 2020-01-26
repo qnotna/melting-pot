@@ -8,7 +8,7 @@ class ContentViewSections extends Component {
   handleClick(event) {
     let isNext = (event.target.innerHTML === 'Next') ? true : false;
     if(isNext) {
-      
+
     }
     else {
 
@@ -19,8 +19,8 @@ class ContentViewSections extends Component {
     // console.log(this.props.sections)
     return this.props.sections.map((section, index) => (
       <Fragment key={index}>
-        <h1 className='content-view-section-title'>{section.name}</h1>
-        <div className='content-view-section' type={section.type}>
+        <h1 className='section-title'>{section.name}</h1>
+        <div className='section' type={section.type}>
           <ContentViewItems articles={section.articles} previewSize={this.getItemSize(section)}/>
         </div>
         <div className='btn-container'>

@@ -4,17 +4,26 @@
   padding: 0.25em;
   border-radius: 0.25em;
   font-size: 10pt;
+  color: white;
 
   &img {
     padding: 0 0.5em;
   }
 
   &_add {
-    background-color: yellow;
+    background-color: rgba(orange, 0.75);
+
+    &:hover {
+      background-color: orange;
+    }
   }
 
   &_save {
-    background-color: green;
+    background-color: rgba(green, 0.75);
+
+  &:hover {
+      background-color: green;
+    }
   }
 
 }
