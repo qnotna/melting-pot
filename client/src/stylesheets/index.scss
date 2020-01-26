@@ -1,1 +1,8 @@
-@import './essentials/button.scss'
+// Essentials
+
+@import './essentials/Button.scss';
+@import './essentials/SearchBar.scss';
+
+// Components
+
+@import './components/NavigationBar.scss';

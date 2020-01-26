@@ -1,0 +1,20 @@
+#search-bar {
+
+  appearance: none;
+  height: 2.4em;
+  border: none;
+  width: 50%; // TODO: wrong width -> should be calculated
+  font-size: 10pt;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  #search-bar {
+
+    background-color: #282828;
+    color: white;
+
+  }
+
+}

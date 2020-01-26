@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../stylesheets/NavigationBar.css';
 import '../stylesheets/DarkMode.css';
 import SearchBar from './SearchBar.js';
 import store from '../store.js';
@@ -33,14 +32,12 @@ class NavigationBar extends Component {
   render() {
     // this.handleDarkMode();
     return(
-      <div id="navigation-bar" elastic={this.props.elastic}>
-        <div>
-          <button type='submit' onClick={this.props.collapseSidebar}>
-            <span className='material-icons'>menu</span>
-          </button>
-          <SearchBar/>
-          </div>
-        </div>
+      <div className="navigation-bar" elastic={this.props.elastic}>
+        <button type='submit' onClick={this.props.collapseSidebar}>
+          <span className='material-icons'>menu</span>
+        </button>
+        <SearchBar/>
+      </div>
     );
   }
 }
