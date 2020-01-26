@@ -4,6 +4,7 @@ import ProfileOverview from './ProfileOverview.js';
 import store from '../store.js';
 import '../stylesheets/DarkMode.css';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { SidebarData } from '../data/SidebarData.js';
 
 class SideBar extends Component {
   // handleDarkMode = () => {
@@ -28,7 +29,7 @@ class SideBar extends Component {
       <div className="sidebar">
         <Scrollbars>
           <ul className='sidebar_sections'>
-            <SideBarSections sections={this.props.sections}/>
+            <SideBarSections sections={SidebarData}/>
           </ul>
           <ProfileOverview/>
         </Scrollbars>

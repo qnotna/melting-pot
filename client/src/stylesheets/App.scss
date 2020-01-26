@@ -18,12 +18,12 @@
 
 #left {
   height: 100%;
-  width: 16em;
+  width: 12em;
   overflow: visible;
 
   &[collapsed='true'] {
     position: absolute;
-    left: -16em;
+    left: -12em;
     animation: leftCollapsedTrue .25s linear;
   }
 
@@ -49,13 +49,13 @@
     left: 0em;
   }
   to {
-    left: -16em;
+    left: -12em;
   }
 }
 
 @keyframes leftCollapsedFalse {
   from {
-    margin-left: -16em;
+    margin-left: -12em;
   }
   to {
     margin-left: 0em;
@@ -64,7 +64,7 @@
 
 @keyframes rightCollapsedTrue {
   from {
-    margin-left: 16em;
+    margin-left: 12em;
   }
   to {
     margin-left: 0em;

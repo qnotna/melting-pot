@@ -1,31 +1,83 @@
 [
   {
-    "id":0,
-    "title":"Neuigkeiten",
-    "items":[
-      {"title":"Melting Hot","unreadAmount":10, "component": "HOME", "icon": "home"},
-      {"title":"Favoriten","unreadAmount":2, "icon": "favorite"},
-      {"title":"Später lesen","unreadAmount":14, "icon": "bookmark"}
+    "id": 0,
+    "title": "Neuigkeiten",
+    "items": [
+      {
+        "title": "Melting Hot",
+        "unreadAmount": 10,
+        "component": "HOME",
+        "icon": "client/src/img/icons/melting-hot.png"
+      },
+      {
+        "title": "Favoriten",
+        "unreadAmount": 2,
+        "icon": "../img/icons/like.png"
+      },
+      {
+        "title": "Später lesen",
+        "unreadAmount": 14,
+        "icon": "../img/icons/bookmark.png"
+      }
     ]
   },
   {
-    "id":1,
-    "title":"Kategorien",
-    "items":[
-      {"title":"Business","unreadAmount":17, "component": "BUSINESS", "icon": "euro_symbol"},
-      {"title":"Entertainment","unreadAmount":23, "component": "ENTERTAINMENT", "icon": "grade"},
-      {"title":"Health","unreadAmount":43, "component": "HEALTH", "icon": "healing"},
-      {"title":"Science","unreadAmount":10, "component": "SCIENCE", "icon": "transform"},
-      {"title":"Sportz","unreadAmount":2, "component": "SPORTS", "icon": "fitness_center"},
-      {"title":"Technology","unreadAmount":0, "component": "TECHNOLOGY", "icon": "memory"}
+    "id": 1,
+    "title": "Kategorien",
+    "items": [
+      {
+        "title": "Business",
+        "unreadAmount": 17,
+        "component": "BUSINESS",
+        "icon": "../img/icons/business.png"
+      },
+      {
+        "title": "Entertainment",
+        "unreadAmount": 23,
+        "component": "ENTERTAINMENT",
+        "icon": "../img/icons/entertainment.png"
+      },
+      {
+        "title": "Health",
+        "unreadAmount": 43,
+        "component": "HEALTH",
+        "icon": "../img/icons/health.png"
+      },
+      {
+        "title": "Science",
+        "unreadAmount": 10,
+        "component": "SCIENCE",
+        "icon": "../img/icons/science.png"
+      },
+      {
+        "title": "Sportz",
+        "unreadAmount": 2,
+        "component": "SPORTS",
+        "icon": "../img/icons/sport.png"
+      },
+      {
+        "title": "Technology",
+        "unreadAmount": 0,
+        "component": "TECHNOLOGY",
+        "icon": "../img/icons/technology.png"
+      }
     ]
   },
   {
-    "id":2,
-    "title":"Your Profile",
-    "items":[
-      {"title":"Settings","unreadAmount":0, "component": "SETTINGS", "icon": "build"},
-      {"title":"Log Out","unreadAmount":0, "icon": "vpn_key"}
+    "id": 2,
+    "title": "Your Profile",
+    "items": [
+      {
+        "title": "Settings",
+        "unreadAmount": 0,
+        "component": "SETTINGS",
+        "icon": "../img/icons/settings.png"
+      },
+      {
+        "title": "Log Out",
+        "unreadAmount": 0,
+        "icon": "../img/icons/logout.png"
+      }
     ]
   }
 ]

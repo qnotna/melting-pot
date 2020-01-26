@@ -3,38 +3,40 @@
   height: 100%;
   background-color: gray;
   overflow-y: auto;
-  width: 16em;
+  width: 12em;
   user-select: none;
 
   &_sections {
-    padding: 0 1em;
     min-height: calc(100vh - 80px);
-    margin-bottom: 30px;
+    margin-bottom: 1.5em;
   }
 
   &_section {
     color: white;
-    margin-top: 1em;
-    padding: 0.25em;
+    margin: 0.5em 0;
     font-size: 8pt;
-    text-transform: uppercase;
-    padding-bottom: 0.75em;
+    padding-left: 1em;
+    font-weight: 600;
+    color: gray;
   }
 
   &_item {
-    border-radius: 0.25em;
-    margin: 0.125em 0;
-
-    * {
-      display: inline-block;
+    // left indentation
+    *:first-of-type {
+      padding-left: 0.5em;
     }
 
     &_label {
-      color: white;
-      width: 100%;
+      color: darkGray;
+      font-size: 10pt;
       padding: 0.25em;
       display: flex;
       align-items:center;
+
+      img {
+        width: 1.3em;
+        height: 1.3em;
+      }
 
       label {
         margin-left: 0;
@@ -47,19 +49,13 @@
 
     }
 
-    span {
-      width: 1em;
-      height: 1em;
-      margin-right: 0.5em;
-    }
-
     input {
       position: absolute;
       visibility: hidden;
 
       &:checked + label {
         color: white;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(white, 0.2);
       }
     }
 
@@ -82,7 +78,7 @@
   &_avatar-preview {
     margin-right: 0.5em;
     object-fit: contain;
-    height: 2em;
+    height: 1.75em;
 
     div {
       width: 100%;
@@ -90,10 +86,12 @@
 
   }
 
-  &_username { }
+  &_username {
+    font-size: 10pt;
+  }
 
   &_mail-adress {
-    font-size: 10pt;
+    font-size: 8pt;
   }
 
 }

@@ -7,8 +7,6 @@ import { Components } from '../utils/Components';
 import api from '../utils/API';
 import { addSection, setSections } from '../actions/newsActions'
 
-
-
 class SideBarItems extends Component {
 
   isDefaultChecked = (item) => ((item === 'Melting Hot') ? true : false);
@@ -23,41 +21,41 @@ class SideBarItems extends Component {
   setCurrentComponent(category, component){
     switch (component) {
       case Components.HOME:
-        this.loadSections()
-        break;
+      this.loadSections()
+      break;
       case Components.BUSINESS:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
       case Components.ENTERTAINMENT:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.HEALTH:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.SCIENCE:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.SPORTS:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.TECHNOLOGY:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
+      case Components.HEALTH:
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
+      case Components.SCIENCE:
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
+      case Components.SPORTS:
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
+      case Components.TECHNOLOGY:
+      api.getCategory(category, (res) => {
+        store.dispatch(setSections([res]))
+      })
+      break;
 
       default:
-        break;
+      break;
     }
 
     store.dispatch( setContentComponent(component))
@@ -89,9 +87,7 @@ class SideBarItems extends Component {
           className='sidebar_item_label'
           htmlFor={this.createItemKey(false, item.title)}
         >
-          <span className = 'material-icons'>
-              {item.icon}
-            </span>
+          <img src={item.icon} alt={item.title}/>
           <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
