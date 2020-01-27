@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-// const routes = require('./routes/api');
 const errorHandler = require("./middleware/errorHandler");
 const responseHeader = require("./middleware/responseHeader");
 
@@ -48,7 +47,6 @@ require("./config/passport")(passport);
 
 
 // Routes
-// app.use('/api', routes); // Not safe users API
 app.use('/api/auth', userAuth);
 app.use('/api/users', users);
 app.use('/api/prefs', prefsAPI)

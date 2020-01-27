@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent, setSections, setLoadingState } from '../actions/newsActions'
+import { setArticle, setContentComponent, setLoadingState } from '../actions/newsActions'
 import { Components, clearContentView } from '../utils/Components.js';
 import contentParser from '../utils/contentParser'
 
@@ -21,9 +21,6 @@ class ContentViewItems extends Component {
     store.dispatch(setArticle(article));
     clearContentView();
     this.parseArticleContent(article)
-
-    // console.log(store.getState());
-    // console.log(article);
   }
 
   // TODO: optionalPreviewText in die ContentViewItemPreview verschieben

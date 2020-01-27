@@ -70,8 +70,6 @@ export default {
     getCategory(urlParams, callback){
         console.log(urlParams);
         let category = urlParams.component.toLowerCase();
-        // let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
-        // console.log(url);
         Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
         .then(
             (res) => {

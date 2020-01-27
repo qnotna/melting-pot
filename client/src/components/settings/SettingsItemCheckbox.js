@@ -1,6 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-// import api from '../../utils/API';
-// import store from '../../store';
 
 const SettingsItemCheckbox = ({ item, onChange }) => {
 

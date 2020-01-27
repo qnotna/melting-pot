@@ -25,6 +25,7 @@ const SettingsItemSelect = ({ item, onChange }) => {
       case 'language': return languages;
       case 'country':  return country;
       case 'sortBy':   return sortOptions;
+      default: break;
     }
   };
 

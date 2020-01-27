@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import ContentViewItems from './ContentViewItems.js';
-// import Pagination from "react-js-pagination";
 import Pagination from './Pagination.js';
 import NoContent from './NoContent.js';
 

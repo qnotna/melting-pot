@@ -72,9 +72,6 @@ class Pagination extends Component {
     }
 
     render() {
-        // this.props.sectionName = this.props.sectionName;
-        // this.state.totalResults = this.props.totalResults;
-        // this.state.currentResults = this.props.currentResults;
         return (this.props.sectionName !== "Hot" && this.props.sectionName !== "Latest") ?
             <div className='pagination'>
                 <button

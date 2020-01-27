@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SettingsItemText from './SettingsItemText.js';
 import SettingsItemSelect from './SettingsItemSelect.js';
 import SettingsItemCheckbox from './SettingsItemCheckbox.js';
@@ -26,6 +26,8 @@ const SettingsSection = ({ title, items, onChange }) => {
         item={item}
         onChange={onChange}
       />
+      default:
+        break;
     }
   };
 

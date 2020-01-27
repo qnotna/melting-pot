@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactLoading from 'react-loading';
+import { Switch, Route } from 'react-router';
 
-import '../stylesheets/DarkMode.css';
 
 import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
@@ -10,13 +10,12 @@ import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
 import SettingsView from './settings/SettingsView.js';
 
-// import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 
 import api from '../utils/API';
 
 import store from '../store'
-import { setSections, setArticle, addSection } from '../actions/newsActions'
+import { setSections, addSection } from '../actions/newsActions'
 
 import { Components } from '../utils/Components';
 
@@ -44,14 +43,14 @@ class AppBase extends Component {
   getComponentByName(component_name) {
     switch (component_name) {
       case Components.SETTINGS:
-        return <SettingsView />
+        return <SettingsView/>
 
       case Components.READER_VIEW:
-        return <ReaderView />
+        return <ReaderView/>
 
       // SEARCH_RESULTS, HOME, #allCategories
       default:
-        return <ContentView />
+        return <ContentView/>
     }
   }
 
@@ -72,7 +71,7 @@ class AppBase extends Component {
     const { content_component, isLoading } = store.getState().news;
 
     return (
-      <div className='App' /*id='app'*/>
+      <div className='App'>
         <div id='left' ref='Sidebar'>
           <SideBar
             sections={sideBarSectionsExampleData}
@@ -94,6 +93,9 @@ class AppBase extends Component {
             />
           </div>
           :
+          // <Switch>
+          //   <Route path={'/'+content_component.toLowerCase()} component={this.getComponentByName(content_component)}/>
+          // </Switch>
           this.getComponentByName(content_component)
         }
         </div>

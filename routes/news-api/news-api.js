@@ -49,7 +49,6 @@ router.get('/top-headlines', (req, res) => {
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
 router.get('/everything', (req, res, next) => {
     let query = checkInput(req.query);
-    // console.log(query)
     newsapi.v2.everything({
         ...query
     })
@@ -83,7 +82,6 @@ function checkInput(query){
         }
         queryParams[prop] = value;
     }
-    // console.log(queryParams)
     return queryParams;
 }
 

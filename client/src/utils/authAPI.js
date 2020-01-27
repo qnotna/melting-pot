@@ -1,5 +1,4 @@
 import Axios from 'axios';
-import store from '../store.js';
 
 const src = 'http://localhost:5000/'
 
