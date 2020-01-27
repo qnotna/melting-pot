@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent } from '../actions/newsActions'
-import { Components } from '../utils/Components.js';
+import { setArticle, setContentComponent, setSections, setLoadingState } from '../actions/newsActions'
+import { Components, clearContentView } from '../utils/Components.js';
 import contentParser from '../utils/contentParser'
 
 class ContentViewItems extends Component {
@@ -11,14 +11,15 @@ class ContentViewItems extends Component {
     contentParser(article.url, article.content, (articleParagraphs) => {
       article.paragraphs = articleParagraphs
       store.dispatch(setArticle(article));
+      store.dispatch(setLoadingState(false));
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
 
   showRenderView(article){
-    article.paragraphs = []
+    article.paragraphs = [];
     store.dispatch(setArticle(article));
-    store.dispatch(setContentComponent(Components.READER_VIEW))
+    clearContentView();
     this.parseArticleContent(article)
 
     // console.log(store.getState());

@@ -19,8 +19,7 @@ const ReaderView = () => {
             name={article.source.name}
             date={formatDate(article.publishedAt, 'reader')}
           />
-          <ReadingTime time={calcReadingTime(article.content, 'reader')}/>
-          {/* <ReadingTime time={15}/> */}
+          <ReadingTime time={calcReadingTime(article.paragraphs, 'reader')}/>
           <div>
             <ActionButton type='add'/>
             <ActionButton type='save'/>
