@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import ActionButton from './simple/ActionButton';
 import ReadingTime from './simple/ReadingTime';
 import Source from './simple/Source';
@@ -12,6 +13,7 @@ const ReaderView = () => {
   const article = store.getState().news.current_article;
   return(
     <div id='reader-view'>
+      {/* <button onClick={() => this.props.history.goBack()}>&lt;</button>  */}
       <img src={article.urlToImage} alt={article.description}/>
       <div id='reader-view-meta'>
         <div id='reader-view-meta-information'>
@@ -30,7 +32,7 @@ const ReaderView = () => {
         <h1>{article.title}</h1>
         <h3>{article.description}</h3>
         <p id='reader-view-author'>{`By ${article.author}`}</p>
-        {/* <a href={article.url}>Link to Original</a> */}
+        <a href={article.url}>Link to Original</a>
         <TextBlock paragraphs={article.paragraphs}/>
       </div>
     </div>
@@ -38,4 +40,4 @@ const ReaderView = () => {
 
 }
 
-export default ReaderView;
+export default withRouter(ReaderView);

@@ -22,7 +22,44 @@ import { Components } from '../utils/Components';
 import '../../node_modules/material-design-icons/iconfont/material-icons.css'
 
 class AppBase extends Component {
-
+  routes = [
+    {
+        path: "/",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/business",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/entertainment",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/health",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/science",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/sports",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/tecnology",
+        component: () => <ContentView/>
+    },
+    {
+        path: "/settings",
+        component: () => <SettingsView/>
+    },
+    {
+        path: "/home",
+        component: () => <ContentView/>
+    },
+];
   isCollapsed = false;
 
   collapseSidebar = (event) => {
@@ -33,7 +70,7 @@ class AppBase extends Component {
   }
 
   loadSearchResultSections(){
-    const input = store.getState().search_input
+    const input = store.getState().news.search_input
     api.getSearchResults((res) => {
       store.dispatch( setSections ( res ))
     }, input)
@@ -64,7 +101,6 @@ class AppBase extends Component {
       store.dispatch( addSection( res ))
     })
   }
-
   render() {
     // Get the name of the component that should be renderd
     // as App content from the App global store
@@ -93,8 +129,17 @@ class AppBase extends Component {
             />
           </div>
           :
+
           // <Switch>
-          //   <Route path={'/'+content_component.toLowerCase()} component={this.getComponentByName(content_component)}/>
+          //   {this.routes.map((route, index) => (
+          //     // Render more <Route>s with the same paths as
+          //     // above, but different components this time.
+          //     <Route
+          //       key={index}
+          //       path={route.path}
+          //       children={<route.component />}
+          //     />
+          //   ))}
           // </Switch>
           this.getComponentByName(content_component)
         }

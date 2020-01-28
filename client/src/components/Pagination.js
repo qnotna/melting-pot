@@ -43,7 +43,7 @@ class Pagination extends Component {
                         store.dispatch(setSections([res]))
                     },
                     {
-                        ...store.getState().searchParams,
+                        ...store.getState().news.searchParams,
                         page: urlParams.page
                     }
                 )
@@ -64,7 +64,7 @@ class Pagination extends Component {
     isDisabled(type) {
         if(type === "Next") {
             // if current results smaller than set in search bar
-            return (this.state.currentResults < store.getState().news.searchParams.size || this.state.currentPage === 5 && this.state.currentResults * 5 === 100 ) ? true : false;
+            return (this.state.currentResults < store.getState().news.searchParams.size || this.state.currentResults * this.state.currentPage === 100 ) ? true : false;
         }
         else {
             return (this.state.currentPage === 1) ? true : false;

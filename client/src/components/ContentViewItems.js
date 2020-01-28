@@ -4,6 +4,7 @@ import store from '../store.js';
 import { setArticle, setContentComponent, setLoadingState } from '../actions/newsActions'
 import { Components, clearContentView } from '../utils/Components.js';
 import contentParser from '../utils/contentParser'
+import { Link } from 'react-router-dom';
 
 class ContentViewItems extends Component {
 
@@ -28,14 +29,16 @@ class ContentViewItems extends Component {
     let previewSize = this.props.previewSize;
     let optionalPreviewText = <Fragment/>;
     if (previewSize === 'large') {
-      optionalPreviewText = <p>{item.description}</p>
+      optionalPreviewText = <Fragment>{item.description}</Fragment>
     }
-    return(
+    return(        
+      // <Link to='/reader-view'>
       <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
         <p className='preview-text'>{optionalPreviewText}</p>
       </div>
+      // </Link>
     );
   }
 

@@ -63,9 +63,11 @@ class SearchBar extends Component {
           <button type="button" onClick={this.onShowMenu}>
             <span className = 'material-icons'>expand_more</span>
           </button>
+          {/* <Link to='search-results'> */}
           <button type='button' onClick={this.handleClick}>
             <span className='material-icons'>search</span>
           </button>
+          {/* </Link> */}
         </div>
         {
           this.state.showMenu ? (
@@ -137,7 +139,7 @@ class SearchBar extends Component {
       language: this.langRef.current ? this.langRef.current.value : "de",
       sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
       sources: this.sourceRef.current ? this.sourceRef.current.value.toLowerCase() : [],
-      size: this.sizeRef.current ? this.sizeRef.current.value : 20,
+      pageSize: this.sizeRef.current ? this.sizeRef.current.value : 20,
       from: this.fromRef.current ? this.fromRef.current.value : "",
       to: this.toRef.current ? this.toRef.current.value : "",
       page: 1
