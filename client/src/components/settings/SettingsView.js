@@ -2,8 +2,12 @@ import React, { Fragment, useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 import '../../stylesheets/Settings.css';
+import store from '../../store.js';
+import {setCurrentUser} from '../../actions/authActions.js';
 
 const SettingsView = () => {
+
+  console.log(store.getState().auth.user);
 
   const [configuration, setConfiguration] = useState({});
 
@@ -12,8 +16,8 @@ const SettingsView = () => {
       title: 'User Settings',
       items: [
         Settings.USERNAME,
-        Settings.EMAIL_ADRESS,
-        Settings.PASSWORD
+        Settings.EMAIL_ADRESS//,
+        // Settings.PASSWORD
       ]
     },
     {
@@ -21,10 +25,10 @@ const SettingsView = () => {
       items: [
         Settings.DEFAULT_LANGUAGE,
         Settings.DEFAULT_COUNTRY,
-        Settings.DEFAULT_SORTING,
-        Settings.ENABLE_DARK_MODE,
-        Settings.LOAD_ARTICLES_WITHOUT_IMAGES,
-        Settings.REDIRECT_TO_ORIGINAL_SAUCE
+        // Settings.DEFAULT_SORTING,
+        Settings.ENABLE_DARK_MODE//,
+        // Settings.LOAD_ARTICLES_WITHOUT_IMAGES,
+        // Settings.REDIRECT_TO_ORIGINAL_SAUCE
       ]
     }
   ];
@@ -43,6 +47,17 @@ const SettingsView = () => {
   const onSaveSettings = (event) => {
     event.preventDefault();
     console.log(configuration);
+    const user = {
+      name: configuration.name,
+      email: configuration.email,
+      settings: {
+        darkMode: configuration.darkMode,
+        country: configuration.defaultCountry,
+        language: configuration.defaultLanguage
+      }
+    };
+    store.dispatch(setCurrentUser(user));
+    console.log(store.getState().auth.user)
   };
 
   return(

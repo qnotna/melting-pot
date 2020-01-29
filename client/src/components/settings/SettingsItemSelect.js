@@ -4,7 +4,7 @@ import { languages, country, sortOptions } from '../../data/options.js';
 const SettingsItemSelect = ({ item, onChange }) => {
 
   // Component State
-  const [selected, setSelected] = useState(item.defaultValue);
+  const [selected, setSelected] = useState(item.defaultValue());
 
   // EventListener for the select
   // Callback from SettingsView -> onItemValueChange
@@ -45,7 +45,7 @@ const SettingsItemSelect = ({ item, onChange }) => {
       <select
         onChange={(event) => onSelectChange(event)}
         checked={selected}
-        defaultValue={item.defaultValue}
+        defaultValue={item.defaultValue()}
       >
         {
           createOptions(item.selectFrom)
