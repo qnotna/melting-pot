@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
@@ -43,13 +43,11 @@ class SearchBar extends Component {
     const params = store.getState().news.searchParams
     clearContentView();
     api.getSearchResults((res) => {
-      setInitData(res);
       console.log(res)
+      setInitData(res);
       store.dispatch(setSections([res]))
     }, params)
   }
-
-
 
   render() {
     // TODO: this should be it's own component with input child components!
@@ -61,15 +59,14 @@ class SearchBar extends Component {
             type='search'
             ref={this.qRef}
             placeholder='Search Articles for Title or Content'
+            onKeyPress={this.listenToKeyPress}
           />
           <button type="button" onClick={this.onShowMenu}>
             <span className = 'material-icons'>expand_more</span>
           </button>
-          {/* <Link to='search-results'> */}
           <button type='button' onClick={this.handleClick}>
             <span className='material-icons'>search</span>
           </button>
-          {/* </Link> */}
         </div>
         {
           this.state.showMenu ? (
@@ -109,6 +106,7 @@ class SearchBar extends Component {
                   />
               </div>
               <div className='navigation-bar_dropdown_filter'>
+                {/* TODO page size aus store laden */}
                 <label>Articles Per Page:</label>
                 <select ref={this.sizeRef}>
                   <option>10</option>
@@ -157,6 +155,13 @@ class SearchBar extends Component {
     store.dispatch( setContentComponent(Components.SEARCH_RESULTS) )
 
     this.qRef.current.value = "";
+  }
+
+  listenToKeyPress = (event) => {
+    if(event.key === "Enter") {
+      event.preventDefault();
+      this.handleClick(event);
+    }
   }
 }
 

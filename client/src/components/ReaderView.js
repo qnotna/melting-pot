@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+// import { withRouter } from 'react-router';
 import ActionButton from './simple/ActionButton';
 import ReadingTime from './simple/ReadingTime';
 import Source from './simple/Source';
@@ -40,4 +40,5 @@ const ReaderView = () => {
 
 }
 
-export default withRouter(ReaderView);
+export default ReaderView;
+// export default withRouter(ReaderView);

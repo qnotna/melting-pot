@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactLoading from 'react-loading';
-import { Switch, Route } from 'react-router';
+import { Switch } from 'react-router';
 
 
 import ContentView from './ContentView.js';
-import NavigationBar from './NavigationBar.js';
-import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
 import SettingsView from './settings/SettingsView.js';
+import NavigationBar from './NavigationBar.js';
+import SideBar from './SideBar.js';
 
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 
@@ -18,52 +18,11 @@ import store from '../store'
 import { setSections, addSection } from '../actions/newsActions'
 
 import { Components } from '../utils/Components';
-
+import { Routes } from '../routes/index';
 import '../../node_modules/material-design-icons/iconfont/material-icons.css'
 
 class AppBase extends Component {
-  routes = [
-    {
-        path: "/",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/business",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/entertainment",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/health",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/science",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/sports",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/tecnology",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/settings",
-        component: () => <SettingsView/>
-    },
-    {
-        path: "/home",
-        component: () => <ContentView/>
-    },
-    {
-        path: "/reader-view",
-        component: () => <ReaderView/>
-    }
-];
+  routes = Routes;
   isCollapsed = false;
 
   collapseSidebar = (event) => {
@@ -73,24 +32,20 @@ class AppBase extends Component {
     document.getElementById('right').setAttribute('collapsed', this.isCollapsed.toString());
   }
 
-  loadSearchResultSections(){
-    const input = store.getState().news.search_input
-    api.getSearchResults((res) => {
-      store.dispatch( setSections ( res ))
-    }, input)
-  }
-
   // Given a name return coresponding component
   getComponentByName(component_name) {
     switch (component_name) {
       case Components.SETTINGS:
+        // return SettingsView
         return <SettingsView/>
 
       case Components.READER_VIEW:
+        // return ReaderView
         return <ReaderView/>
 
       // SEARCH_RESULTS, HOME, #allCategories
       default:
+        // return ContentView
         return <ContentView/>
     }
   }
@@ -109,7 +64,6 @@ class AppBase extends Component {
     // Get the name of the component that should be renderd
     // as App content from the App global store
     const { content_component, isLoading } = store.getState().news;
-
     return (
       <div className='App'>
         <div id='left' ref='Sidebar'>
@@ -121,6 +75,7 @@ class AppBase extends Component {
           <NavigationBar
             collapseSidebar={this.collapseSidebar.bind(this)}
           />
+          <Switch>
         {
           (isLoading) ?
           <div className='loading-view'>
@@ -134,19 +89,18 @@ class AppBase extends Component {
           </div>
           :
 
-          // <Switch>
-          //   {this.routes.map((route, index) => (
-          //     // Render more <Route>s with the same paths as
-          //     // above, but different components this time.
-          //     <Route
-          //       key={index}
-          //       path={route.path}
-          //       children={<route.component />}
-          //     />
-          //   ))}
-          // </Switch>
+          // this.routes.map((route, index) => (
+          //       <Route
+          //         key={index}
+          //         path={route.path}
+          //         // component={() => this.getComponentByName(content_component)}
+          //         component={route.component}
+          //       />
+          //     ))
+          //   } 
           this.getComponentByName(content_component)
         }
+          </Switch>
         </div>
       </div>
     );

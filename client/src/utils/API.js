@@ -16,7 +16,9 @@ export default {
                 })
             }
         ).catch(
-            err => console.log(err)
+            err => callback({
+                error: err
+            })
         )
     },
     getLatest(callback){
@@ -31,7 +33,9 @@ export default {
                 })
             }
         ).catch(
-            err => console.log(err)
+            err => callback({
+                error: err
+            })
         )
     },
     getSearchResults(callback, params){
@@ -68,7 +72,7 @@ export default {
         )
     },
     getCategory(urlParams, callback){
-        console.log(urlParams);
+        // console.log(urlParams);
         let category = urlParams.component.toLowerCase();
         Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
         .then(

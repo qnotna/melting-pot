@@ -5,7 +5,7 @@ import { setContentComponent, addSection, setSections } from "../actions/newsAct
 import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 class SideBarItems extends Component {
@@ -54,7 +54,6 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
-      // <Link to={item.title.toLowerCase()}>
       <li
         className='sidebar_item'
         key={this.createItemKey(false, item.title)}
@@ -80,7 +79,6 @@ class SideBarItems extends Component {
           <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
-      // </Link>
     ));
   }
 
