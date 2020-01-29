@@ -3,9 +3,11 @@ import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 import '../../stylesheets/Settings.css';
 import store from '../../store.js';
-import { setCurrentUser } from '../../actions/authActions.js';
+import { setCurrentSettings } from '../../actions/authActions.js';
 
 const SettingsView = () => {
+
+  console.log(store.getState());
 
   const [configuration, setConfiguration] = useState({});
   const [hasUnsavedChanges, setUnsavedChanges] = useState(false);
@@ -61,23 +63,27 @@ const SettingsView = () => {
   // Dispatch settings configuration in store
   const onSaveSettings = (event) => {
     event.preventDefault();
-    const settings = {
-      fakeNews: {
-        verifiedSources: configuration.verifiedSources,
-        highQuality: configuration.highQuality,
-        clickbaitTitles: configuration.clickbaitTitles,
-        domainNameCheck: configuration.domainNameCheck
-      },
-      search: {
-        language: configuration.language,
-        country: configuration.country,
-        pageSize: configuration.pageSize
-      },
-      app: {
-        appearance: configuration.appearance
-      }
+    const fakeNewsSettings = {
+      verifiedSources: configuration.verifiedSources,
+      highQuality: configuration.highQuality,
+      clickbaitTitles: configuration.clickbaitTitles,
+      domainNameCheck: configuration.domainNameCheck
     };
-    store.dispatch(setCurrentUser(settings));
+    const searchSettings = {
+      language: configuration.language,
+      country: configuration.country,
+      pageSize: configuration.pageSize
+    };
+    const appSettings = {
+      appearance: configuration.appearance
+    };
+    const settings = {
+      fakeNews: fakeNewsSettings,
+      search: searchSettings,
+      app: appSettings
+    };
+    console.log(settings);
+    store.dispatch(setCurrentSettings(settings));
   };
 
   return(

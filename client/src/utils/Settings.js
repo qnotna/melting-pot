@@ -15,7 +15,7 @@ export const Settings = {
     type: Type.CHECKBOX,
     name: 'Show Verified Sources',
     defaultValue: () => (
-      store.getState().auth.settings.fakeNews.verifiedSources
+      store.getState().settings.fakeNews.verifiedSources
     ),
     key: 'verifiedSources'
   },
@@ -24,7 +24,7 @@ export const Settings = {
     type: Type.CHECKBOX,
     name: 'Show Article Quality',
     defaultValue: () => (
-      store.getState().auth.settings.fakeNews.highQuality
+      store.getState().settings.fakeNews.highQuality
     ),
     key: 'highQuality'
   },
@@ -33,7 +33,7 @@ export const Settings = {
     type: Type.CHECKBOX,
     name: 'Show Title Accuracy',
     defaultValue: () => (
-      store.getState().auth.settings.fakeNews.clickbaitTitles
+      store.getState().settings.fakeNews.clickbaitTitles
     ),
     key: 'clickbaitTitles'
   },
@@ -42,7 +42,7 @@ export const Settings = {
     type: Type.CHECKBOX,
     name: 'Show Weird Source Website Names',
     defaultValue: () => (
-      store.getState().auth.settings.fakeNews.domainNameCheck
+      store.getState().settings.fakeNews.domainNameCheck
     ),
     key: 'domainNameCheck'
   },
@@ -52,7 +52,7 @@ export const Settings = {
     name: 'Default Article Language',
     options: languages,
     defaultValue: () => (
-      store.getState().auth.settings.search.language
+      store.getState().settings.search.language
     ),
     key: 'language'
   },
@@ -62,7 +62,7 @@ export const Settings = {
     name: 'Default Article Country',
     options: country,
     defaultValue: () => (
-      store.getState().auth.settings.search.country
+      store.getState().settings.search.country
     ),
     key: 'country'
   },
@@ -72,7 +72,7 @@ export const Settings = {
     name: 'How Many Articles Should Be Loaded',
     inputType: 'number',
     defaultValue: () => (
-      store.getState().auth.settings.search.pageSize
+      store.getState().settings.search.pageSize
     ),
     key: 'pageSize'
   },
@@ -82,7 +82,7 @@ export const Settings = {
     name: 'Use Appearance',
     options: appearance,
     defaultValue: () => (
-      store.getState().auth.settings.app.appearance
+      store.getState().settings.app.appearance
     ),
     key: 'appearance'
   }
