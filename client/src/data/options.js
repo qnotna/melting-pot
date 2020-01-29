@@ -15,18 +15,18 @@ export const languages_v1 = {
 }
 
 export const languages = {
-    ar: 'arabic',
-    de: 'german',
-    en: 'english',
-    es: 'spanish',
-    fr: 'french',
-    he: 'hebrew',
-    it: 'italian',
-    nl: 'dutch',
-    no: 'norwegian',
-    pt: 'portuguese',
-    ru: 'russian',
-    zh: 'chinese'
+    ar: 'Arabic',
+    de: 'German',
+    en: 'English',
+    es: 'Spanish',
+    fr: 'French',
+    he: 'Hebrew',
+    it: 'Italian',
+    nl: 'Dutch',
+    no: 'Norwegian',
+    pt: 'Portuguese',
+    ru: 'Russian',
+    zh: 'Chinese'
 }
 
 export const country = {
@@ -38,6 +38,12 @@ export const country = {
     no: 'Norway',
     pt: 'Portugal',
     ru: 'Russia'
+}
+
+export const appearance = {
+  system: 'System Style',
+  light: 'Always Light',
+  dark: 'Always Dark',
 }
 
 export const sortOptions = {

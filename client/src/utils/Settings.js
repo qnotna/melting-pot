@@ -1,3 +1,4 @@
+import { languages, country, appearance } from '../data/options.js';
 import store from '../store.js';
 
 export const Type = {
@@ -10,85 +11,79 @@ export const Type = {
 
 export const Settings = {
 
-  // { name, email, settings } = store.getState().auth.user,
-  // { language, country, darkMode } = settings,
-  // console.log(name)
-
-  USERNAME: {
-    name: 'Username',
-    inputType: 'text',
-    placeholder: 'hans bauer',
-    type: Type.TEXT,
-    defaultValue: () => (
-      store.getState().auth.user.name
-    ),
-    key: 'name'
-  },
-  EMAIL_ADRESS: {
-    name: 'Email Adress',
-    inputType: 'email',
-    placeholder: 'spam@me.com',
-    type: Type.TEXT,
-    defaultValue: () => (
-      store.getState().auth.user.email
-    ),
-    key: 'email'
-  },
-  // PASSWORD: {
-  //   name: 'Password',
-  //   inputType: 'password',
-  //   placeholder: 'New Password',
-  //   type: Type.TEXT,
-  //   defaultValue: 'my420cool69password', // TODO: get from store
-  //   key: 'password'
-  // },
-  DEFAULT_LANGUAGE: {
-    name: 'Default Article Language',
-    selectFrom: 'language',
-    options: [],
-    type: Type.SELECT,
-    defaultValue: () => (
-      store.getState().auth.user.settings.language
-    ),
-    key: 'defaultLanguage'
-  },
-  DEFAULT_COUNTRY: {
-    name: 'Default Article Country',
-    selectFrom: 'country',
-    options: [],
-    type: Type.SELECT,
-    defaultValue: () => (
-      store.getState().auth.user.settings.country
-    ),
-    key: 'defaultCountry'
-  },
-  // DEFAULT_SORTING: {
-  //   name: 'Sort Articles by Default by',
-  //   selectFrom: 'sortBy',
-  //   options: [],
-  //   type: Type.SELECT,
-  //   defaultValue: 'settings.relevancy', // TODO: get from store
-  //   key: 'sortBy'
-  // },
-  ENABLE_DARK_MODE: {
-    name: 'Enable Dark Appearance',
+  VERIFIED_SOURCES: {
     type: Type.CHECKBOX,
+    name: 'Show Verified Sources',
     defaultValue: () => (
-      store.getState().auth.user.settings.darkMode
+      store.getState().auth.settings.fakeNews.verifiedSources
     ),
-    key: 'darkMode'
-  }//,
-  // LOAD_ARTICLES_WITHOUT_IMAGES: {
-  //   name: 'Load All Articles Without Images',
-  //   type: Type.CHECKBOX,
-  //   defaultValue: true, // TODO: state undefined
-  //   key: 'loadArticlesWithoutImages'
-  // },
-  // REDIRECT_TO_ORIGINAL_SAUCE: {
-  //   name: 'Present All Articles on the Original Site',
-  //   type: Type.CHECKBOX,
-  //   defaultValue: true, // TODO: get from store
-  //   key: 'redirect'
-  // }
+    key: 'verifiedSources'
+  },
 
+  HIGH_QUALITY_ARTICLES: {
+    type: Type.CHECKBOX,
+    name: 'Show Article Quality',
+    defaultValue: () => (
+      store.getState().auth.settings.fakeNews.highQuality
+    ),
+    key: 'highQuality'
+  },
+
+  CLICKBAIT_TITLES: {
+    type: Type.CHECKBOX,
+    name: 'Show Title Accuracy',
+    defaultValue: () => (
+      store.getState().auth.settings.fakeNews.clickbaitTitles
+    ),
+    key: 'clickbaitTitles'
+  },
+
+  DOMAIN_NAME_CHECK: {
+    type: Type.CHECKBOX,
+    name: 'Show Weird Source Website Names',
+    defaultValue: () => (
+      store.getState().auth.settings.fakeNews.domainNameCheck
+    ),
+    key: 'domainNameCheck'
+  },
+
+  DEFAULT_LANGUAGE: {
+    type: Type.SELECT,
+    name: 'Default Article Language',
+    options: languages,
+    defaultValue: () => (
+      store.getState().auth.settings.search.language
+    ),
+    key: 'language'
+  },
+
+  DEFAULT_COUNTRY: {
+    type: Type.SELECT,
+    name: 'Default Article Country',
+    options: country,
+    defaultValue: () => (
+      store.getState().auth.settings.search.country
+    ),
+    key: 'country'
+  },
+
+  DEFAULT_PAGESIZE: {
+    type: Type.TEXT,
+    name: 'How Many Articles Should Be Loaded',
+    inputType: 'number',
+    defaultValue: () => (
+      store.getState().auth.settings.search.pageSize
+    ),
+    key: 'pageSize'
+  },
+
+  ENABLE_DARK_MODE: {
+    type: Type.SELECT,
+    name: 'Use Appearance',
+    options: appearance,
+    defaultValue: () => (
+      store.getState().auth.settings.app.appearance
+    ),
+    key: 'appearance'
+  }
 };

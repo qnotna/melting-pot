@@ -6,17 +6,33 @@ import {
 const isEmpty = require("is-empty");
 
 const initialState = {
-  isAuthenticated: false,
-  user: {
-    name: "Pizzaboi",
-    email: "pizza@hut.com",
-    settings: {
-      darkMode: false,
-      country: "de",
-      language: "de"
-    }
-  },
-  loading: false
+  // isAuthenticated: false,
+  settings: {
+    fakeNews: {
+      verifiedSources: true,
+      highQuality: true,
+      clickbaitTitles: true,
+      domainNameCheck: true
+    },
+    search: {
+      language: 'de',
+      country: 'de',
+      pageSize: 20
+    },
+    app: {
+      appearance: 'System Style'
+    },
+  }//,
+  // user: {
+  //   name: "Pizzaboi",
+  //   email: "pizza@hut.com",
+  //   settings: {
+  //     darkMode: false,
+  //     country: "de",
+  //     language: "de"
+  //   }
+  // },
+  // loading: false
 };
 
 export default function (state = initialState, action) {
@@ -25,7 +41,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
-        user: action.payload
+        settings: action.payload
       };
 
     case USER_LOADING:

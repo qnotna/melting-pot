@@ -1,34 +1,49 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 import '../../stylesheets/Settings.css';
 import store from '../../store.js';
-import {setCurrentUser} from '../../actions/authActions.js';
+import { setCurrentUser } from '../../actions/authActions.js';
 
 const SettingsView = () => {
 
-  console.log(store.getState().auth.user);
-
   const [configuration, setConfiguration] = useState({});
+  const [hasUnsavedChanges, setUnsavedChanges] = useState(false);
+
+  // useEffect(() => {
+  //   setUnsavedChanges(true);
+  // }, [configuration]);
+
+  // useEffect(() => {
+  //   return () => {
+  //     if (hasUnsavedChanges === true) {
+  //       alert('lol');
+  //     }
+  //   };
+  // }, []);
 
   const sections = [
     {
-      title: 'User Settings',
+      title: 'Fake News Detector',
       items: [
-        Settings.USERNAME,
-        Settings.EMAIL_ADRESS//,
-        // Settings.PASSWORD
+        Settings.VERIFIED_SOURCES,
+        Settings.HIGH_QUALITY_ARTICLES,
+        Settings.CLICKBAIT_TITLES,
+        Settings.DOMAIN_NAME_CHECK
+      ]
+    },
+    {
+      title: 'Search Preferences',
+      items: [
+        Settings.DEFAULT_LANGUAGE,
+        Settings.DEFAULT_COUNTRY,
+        Settings.DEFAULT_PAGESIZE
       ]
     },
     {
       title: 'App Settings',
       items: [
-        Settings.DEFAULT_LANGUAGE,
-        Settings.DEFAULT_COUNTRY,
-        // Settings.DEFAULT_SORTING,
-        Settings.ENABLE_DARK_MODE//,
-        // Settings.LOAD_ARTICLES_WITHOUT_IMAGES,
-        // Settings.REDIRECT_TO_ORIGINAL_SAUCE
+        Settings.ENABLE_DARK_MODE,
       ]
     }
   ];
@@ -46,18 +61,23 @@ const SettingsView = () => {
   // Dispatch settings configuration in store
   const onSaveSettings = (event) => {
     event.preventDefault();
-    console.log(configuration);
-    const user = {
-      name: configuration.name,
-      email: configuration.email,
-      settings: {
-        darkMode: configuration.darkMode,
-        country: configuration.defaultCountry,
-        language: configuration.defaultLanguage
+    const settings = {
+      fakeNews: {
+        verifiedSources: configuration.verifiedSources,
+        highQuality: configuration.highQuality,
+        clickbaitTitles: configuration.clickbaitTitles,
+        domainNameCheck: configuration.domainNameCheck
+      },
+      search: {
+        language: configuration.language,
+        country: configuration.country,
+        pageSize: configuration.pageSize
+      },
+      app: {
+        appearance: configuration.appearance
       }
     };
-    store.dispatch(setCurrentUser(user));
-    console.log(store.getState().auth.user)
+    store.dispatch(setCurrentUser(settings));
   };
 
   return(

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { languages, country, sortOptions } from '../../data/options.js';
+import { languages, country, appearance } from '../../data/options.js';
 
 const SettingsItemSelect = ({ item, onChange }) => {
 
@@ -17,22 +17,11 @@ const SettingsItemSelect = ({ item, onChange }) => {
     onChange(item.key, selected);
   }, [selected]);
 
-  // Select the correct options from data/options.js
-  // Return the options object
-  const getOptions = (selectFrom) => {
-    switch (selectFrom) {
-      case 'language': return languages;
-      case 'country':  return country;
-      case 'sortBy':   return sortOptions;
-    }
-  };
-
   // Create the options HTML element
   // Loop through all options from getOptions()
   // Return the HTML options
-  const createOptions= (selectFrom) => {
-    const options = getOptions(selectFrom);
-    return Object.keys(options).map((item, index) => {
+  const createOptions = (options) => {
+    return Object.keys(options).map((item, index) => { //TODO: use values() instead of keys()
       return(
         <option key={index}>{item}</option>
       );
@@ -48,7 +37,7 @@ const SettingsItemSelect = ({ item, onChange }) => {
         defaultValue={item.defaultValue()}
       >
         {
-          createOptions(item.selectFrom)
+          createOptions(item.options)
         }
       </select>
     </Fragment>

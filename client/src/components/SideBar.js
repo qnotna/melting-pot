@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SideBarSections from './SideBarSections.js';
-import ProfileOverview from './ProfileOverview.js';
 import store from '../store.js';
 import '../stylesheets/SideBar.css';
 import '../stylesheets/DarkMode.css';
@@ -31,7 +30,6 @@ class SideBar extends Component {
           <ul className='sidebar-sections'>
             <SideBarSections sections={this.props.sections}/>
           </ul>
-          <ProfileOverview/>
         </Scrollbars>
       </div>
     );
