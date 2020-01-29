@@ -57,20 +57,24 @@ router.get('/everything', (req, res, next) => {
     })
     .then(response => {
         res.json(response)
-    }
-    )
+    })
     .catch(err => {
-        // console.log(err)
         next(err)
     }
     );
 });
 
 // Gibt alle Nachrichtendinste z.B. BBC sowie ihre Untergruppen z.B. BBC Sport zurück
-router.get('/source', (req, res) => {
+router.get('/source', (req, res, next) => {
+    console.log("here")
     newsapi.v2.sources({
-    }).then(response => {
-        console.log(response);
+        ...req.query
+    })
+    .then(response => {
+        res.json(response)
+    })
+    .catch( err => {
+        next(err)
     });
 });
 

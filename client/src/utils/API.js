@@ -75,19 +75,31 @@ export default {
         // console.log(urlParams);
         let category = urlParams.component.toLowerCase();
         Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
-        .then(
-            (res) => {
+        .then(res => {
                 callback({
                     name: category[0].toUpperCase() + category.slice(1),
                     type: "grid",
                     articles: res.data.articles,
                     totalResults: res.data.totalResults
                 })
-            }
-        ).catch(
+        })
+        .catch(
             err => callback({
                 error: err
             })
         )
+    },
+    getSources(callback){
+        Axios.get(src + "newsapi/source")
+            .then( res => {
+                // console.log(res)
+                callback({
+                    status: res.status,
+                    sources: res.data.sources
+                })
+            })
+            .catch( err => callback({
+                error: err
+            }))
     }
 }

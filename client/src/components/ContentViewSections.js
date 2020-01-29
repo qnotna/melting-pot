@@ -25,8 +25,8 @@ class ContentViewSections extends Component {
       {section.error ?
         <NoContent errorData={section.error.response.data.error}/>
         :
+        section.articles.length !== 0 ?
         <Fragment>
-        
         <h1 className='section-title'>{section.name}</h1>
         <div className='section' type={section.type}>
             <ContentViewItems articles={this.filterArticles(section.articles)} previewSize={this.getItemSize(section)}/>
@@ -37,6 +37,8 @@ class ContentViewSections extends Component {
           currentResults={section.articles.length}
         />
         </Fragment>
+        :
+        <NoContent errorData={{message: "No Results"}}/>
       }
       </Fragment>
     ));

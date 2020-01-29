@@ -7,6 +7,8 @@ import api from '../utils/API';
 import { setContentComponent, setSections, setSearchParams } from '../actions/newsActions'
 import { languages, sortOptions } from '../data/options'
 
+import Suggestions from './Suggestions';
+
 
 class SearchBar extends Component {
   qRef = React.createRef();
@@ -19,7 +21,9 @@ class SearchBar extends Component {
   toRef = React.createRef();
 
   state = {
-    showMenu: false
+    showMenu: false,
+    results: [],
+    sourceName: ""
   }
 
   onShowMenu = (event) => {
@@ -47,6 +51,10 @@ class SearchBar extends Component {
       setInitData(res);
       store.dispatch(setSections([res]))
     }, params)
+  }
+
+  componentDidMount() {
+    this.getSuggestions();
   }
 
   render() {
@@ -93,17 +101,14 @@ class SearchBar extends Component {
                   ))}
                 </select>
               </div>
-              {
-                /* TODO: Soures toLowerCase + check if available
-                maybe select instead of input? */
-              }
               <div className='navigation-bar_dropdown_filter'>
                 <label>Source:</label>
-                <input
+                <select
                   type='search'
                   ref={this.sourceRef}
-                  placeholder='die-zeit, Bild, ...'
-                  />
+                >
+                  <Suggestions sources={this.state.results}/>
+                </select>
               </div>
               <div className='navigation-bar_dropdown_filter'>
                 {/* TODO page size aus store laden */}
@@ -162,6 +167,26 @@ class SearchBar extends Component {
       event.preventDefault();
       this.handleClick(event);
     }
+  }
+
+  handleSource = (event) => {
+    let sourceInput = this.sourceRef.current.value;
+    if(sourceInput && sourceInput.length > 0){
+      this.setState({
+        sourceInput: sourceInput
+      })
+      if(sourceInput) {
+        this.getSuggestions();
+      }
+    }
+  }
+
+  getSuggestions() {
+    api.getSources((res) => {
+      this.setState({
+        results: res.sources
+      })
+    })
   }
 }
 
