@@ -30,13 +30,15 @@ class SideBarItems extends Component {
       default:
         clearContentView()
         api.getCategory(urlParams, (res) => {
+          console.log(res)
           setInitData(res);
           store.dispatch(setSections([res]))
         })
         break;
     }
-
+    console.log(store.getState().news.content_component)
     store.dispatch( setContentComponent(component))
+    console.log(store.getState().news.content_component)
   }
 
   loadSections(){

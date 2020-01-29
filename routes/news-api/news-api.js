@@ -30,7 +30,7 @@ router.get('/latest', (req, res) => {
 
 
 // top Headlines aus einem bestimmten land und Sprache
-router.get('/top-headlines', (req, res) => {
+router.get('/top-headlines', (req, res, next) => {
     // console.log(req.query)
     newsapi.v2.topHeadlines({
         ...req.query
@@ -39,7 +39,7 @@ router.get('/top-headlines', (req, res) => {
         response => res.json(response)
     )
     .catch(
-        err => res.json(err)
+        err => next(err)
     );
 });
 
@@ -48,7 +48,7 @@ router.get('/top-headlines', (req, res) => {
 
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
 router.get('/everything', (req, res, next) => {
-    let query = checkInput(req.query);
+    let query = checkInput(req.query, next);
     newsapi.v2.everything({
         ...query
     })
@@ -70,7 +70,7 @@ router.get('/source', (req, res) => {
     });
 });
 
-function checkInput(query){
+function checkInput(query, next){
     let queryParams = query;
     for(let prop of Object.getOwnPropertyNames(queryParams)){
         let value = queryParams[prop];

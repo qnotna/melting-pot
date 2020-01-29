@@ -59,6 +59,10 @@ class AppBase extends Component {
         path: "/home",
         component: () => <ContentView/>
     },
+    {
+        path: "/reader-view",
+        component: () => <ReaderView/>
+    }
 ];
   isCollapsed = false;
 

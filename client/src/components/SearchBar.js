@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
@@ -43,6 +44,7 @@ class SearchBar extends Component {
     clearContentView();
     api.getSearchResults((res) => {
       setInitData(res);
+      console.log(res)
       store.dispatch(setSections([res]))
     }, params)
   }

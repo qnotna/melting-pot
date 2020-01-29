@@ -11,7 +11,7 @@ class ContentViewSections extends Component {
     return this.props.sections.map((section, index) => (
       <Fragment key={index}>
       {section.error ?
-        <NoContent/>
+        <NoContent errorData={section.error.response.data.error}/>
         :
         <Fragment>
         <Pagination

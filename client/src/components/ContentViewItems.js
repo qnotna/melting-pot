@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 class ContentViewItems extends Component {
 
   parseArticleContent(article){
+    // store.dispatch(setLoadingState(true));
     contentParser(article.url, article.content, (articleParagraphs) => {
       article.paragraphs = articleParagraphs
       store.dispatch(setArticle(article));
@@ -16,11 +17,12 @@ class ContentViewItems extends Component {
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
-
+  
   showRenderView(article){
     article.paragraphs = [];
     store.dispatch(setArticle(article));
     clearContentView();
+    store.dispatch(setContentComponent(Components.READER_VIEW))
     this.parseArticleContent(article)
   }
 
@@ -31,7 +33,7 @@ class ContentViewItems extends Component {
     if (previewSize === 'large') {
       optionalPreviewText = <Fragment>{item.description}</Fragment>
     }
-    return(        
+    return(
       // <Link to='/reader-view'>
       <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>

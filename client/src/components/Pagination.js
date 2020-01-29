@@ -64,7 +64,7 @@ class Pagination extends Component {
     isDisabled(type) {
         if(type === "Next") {
             // if current results smaller than set in search bar
-            return (this.state.currentResults < store.getState().news.searchParams.size || this.state.currentResults * this.state.currentPage === 100 ) ? true : false;
+            return (this.state.currentResults < store.getState().news.searchParams.pageSize || this.state.currentResults * this.state.currentPage === 100 ) ? true : false;
         }
         else {
             return (this.state.currentPage === 1) ? true : false;
