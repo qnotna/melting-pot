@@ -21,9 +21,14 @@ const SettingsItemSelect = ({ item, onChange }) => {
   // Loop through all options from getOptions()
   // Return the HTML options
   const createOptions = (options) => {
-    return Object.keys(options).map((item, index) => { //TODO: use values() instead of keys()
+    const values = Object.values(options)
+    const keys = Object.keys(options)
+    return keys.map((item, index) => { //TODO: use values() instead of keys()
+      console.log();
       return(
-        <option key={index}>{item}</option>
+        <option key={index} value={keys[index]} >
+          {values[index]}
+        </option>
       );
     })
   };
