@@ -15,7 +15,10 @@ const ReaderView = () => {
   console.log(String(article.urlToImage))
   return(
     <div id='reader-view'>
-      <img onError={(e)=>{ e.target.src='http://localhost:3000/img/image-not-found-dark.png';console.log(e.target.src);}} src={article.urlToImage} alt={article.description}/>
+      { String(article.urlToImage) !== 'null'
+        ? <img onError={(e) => e.target.src='http://localhost:3000/img/image-not-found-dark.png'} src={article.urlToImage} alt={article.description}/>
+        : <img src='http://localhost:3000/img/image-not-found-dark.png' alt={article.description}/>
+      }  
       <div id='reader-view-meta'>
         <div id='reader-view-meta-information'>
           <Source
