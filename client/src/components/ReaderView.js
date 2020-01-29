@@ -8,11 +8,14 @@ import store from '../store';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 
+// Link zum Bild: https://privateflite.com/assets/global/img/image-not-found-dark.png
+
 const ReaderView = () => {
   const article = store.getState().news.current_article;
+  console.log(String(article.urlToImage))
   return(
     <div id='reader-view'>
-      <img src={article.urlToImage} alt={article.description}/>
+      <img onError={(e)=>{ e.target.src='http://localhost:3000/img/image-not-found-dark.png';console.log(e.target.src);}} src={article.urlToImage} alt={article.description}/>
       <div id='reader-view-meta'>
         <div id='reader-view-meta-information'>
           <Source

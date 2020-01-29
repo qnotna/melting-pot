@@ -7,6 +7,8 @@ import '../stylesheets/ContentViewItemPreview.css';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 
+// Link zum Bild: https://privateflite.com/assets/global/img/image-not-found-dark.png
+
 class ContentViewItemPreview extends Component {
 
   render() {
@@ -14,7 +16,10 @@ class ContentViewItemPreview extends Component {
     let previewSize =  this.props.previewSize;
     return(
       <div className='preview-with-image' preview-size={previewSize}>
-        <img className='preview-image' src={item.urlToImage} alt={item.title}/>
+        { String(item.urlToImage) !== 'null'
+          ? <img ref={img => this.img = img} onError={()=>{this.img.src='http://localhost:3000/img/image-not-found-dark.png';}} className='preview-image' src={item.urlToImage} alt={item.title}/>
+          : <img className='preview-image' src='http://localhost:3000/img/image-not-found-dark.png' alt={item.title}/>
+        }
         <Badge/>
         <div className='preview-information'>
           <Source

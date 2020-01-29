@@ -5,6 +5,7 @@ export default function(url, contentPreview, callback){
         let html = document.createElement('html');
         html.innerHTML = htmlString.trim();
         
+        
 
         let pCollection = html.getElementsByTagName('p');
 
