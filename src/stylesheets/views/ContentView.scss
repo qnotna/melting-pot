@@ -1,5 +1,5 @@
 #content-view {
-  height: 100%;
+  height: calc(100% - 4em);
   width: 100%;
   background-color: white;
   overflow: auto;
@@ -8,31 +8,27 @@
 .section-title {
   font-size: 20pt;
   padding: 0.5em;
+  padding-bottom: 0;
 }
 
 .section {
-  padding-left: 1em;
+  padding-left: 0.5em;
   overflow-x: scroll;
   white-space: nowrap;
 
-  &:last-of-type {
-    margin-bottom: 14em; /* TODO: this is a disguisting hack */
+  &[type="horizontal"] {
+    // height: 28em;
   }
 
-  &[type="horizontal"] * {
+  &[type="horizontal"] .article {
     display: inline-block;
   }
 
   &[type="grid"] {
     width: auto;
-    padding-left: 1em;
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-
-    .article {
-      margin: 0 1em 1em 0;
-    }
   }
 }
 

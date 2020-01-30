@@ -1,15 +1,17 @@
-import React, {Component, Fragment} from 'react';
-import ContentViewItemPreview from './ContentViewItemPreview.js';
+import React, { Component, Fragment } from 'react';
 import store from '../store.js';
 import { setArticle, setContentComponent, setContentLoadingState } from '../actions/newsActions'
 import { Components } from '../utils/Components.js';
 import contentParser from '../utils/contentParser';
 import { Link } from 'react-router-dom';
+import ArticlePreview from '../components/article/ArticlePreview.js';
 
 class ContentViewItems extends Component {
 
-  parseArticleContent(article){
+  parseArticleContent(article) {
     contentParser(article.url, article.content, article.description, (parsedContent) => {
+      console.log("CONTENT PARSED!");
+      
       article.paragraphs = parsedContent.paragraphs
       article.rawParagraphs = parsedContent.rawParagraphs
       store.dispatch(setContentLoadingState(false))
@@ -17,28 +19,12 @@ class ContentViewItems extends Component {
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
-  
-  showRenderView(article){
+
+  showRenderView(article) {
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
     store.dispatch(setContentLoadingState(true))
     this.parseArticleContent(article)
-  }
-
-  // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
-  createItemPreview = (item) => {
-    let previewSize = this.props.previewSize;
-    let optionalPreviewText = '';
-    if (previewSize === 'large') {
-      optionalPreviewText = item.description
-    }
-    return(
-      <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
-        <ContentViewItemPreview item={item} previewSize={previewSize}/>
-        <h3>{item.title}</h3>
-        <p className='preview-text'>{optionalPreviewText}</p>
-      </div>
-    );
   }
 
   render() {
@@ -49,7 +35,11 @@ class ContentViewItems extends Component {
         key={index}
       >
         <Link to='/reader-view'>
-        {this.createItemPreview(article)}
+          <div className='article_preview' onClick={() => this.showRenderView(article)}>
+            <ArticlePreview
+              article={article} previewSize={this.props.previewSize}
+            />
+          </div>
         </Link>
       </div>
     ));

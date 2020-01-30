@@ -6,14 +6,16 @@ const ActionButton = ({ text, type, selected }) => {
 
   return(
     <button type='submit' className={`action-button_${type}`}>
-      <img
-        className='icon'
-        src='https://www.bevlabvet.com/images/circle-dark.png'
-        alt='Category'
-      />
+    <span className='material-icons'>
     {
-      type === 'add' ? 'Zu Favoriten hinzufügen' : 'Für später speichern'
+      type === 'add' ? 'star' : 'bookmark'
     }
+  </span>
+    <p>
+      {
+        type === 'add' ? 'Zu Favoriten hinzufügen' : 'Für später speichern'
+      }
+    </p>
     </button>
   );
 

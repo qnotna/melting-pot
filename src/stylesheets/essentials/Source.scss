@@ -1,0 +1,29 @@
+.source {
+  line-height: 0.5em;
+
+  * {
+    display: inline;
+    vertical-align: middle;
+    line-height: 1em;
+  }
+
+  &_name {
+    font-size: 10pt;
+    margin-right: 1em;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &_date {
+    font-size: 9pt;
+    font-family: monospace;
+  }
+
+  &:hover {
+    cursor: default;
+  }
+
+}

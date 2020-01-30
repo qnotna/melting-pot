@@ -1,29 +1,44 @@
 .action-button {
 
-  border: none;
-  padding: 0.25em;
-  border-radius: 0.25em;
-  font-size: 10pt;
-  color: white;
+  &_add, &_save {
+    border-radius: 0.75em;
 
-  &img {
-    padding: 0 0.5em;
+    * {
+      line-height: 1.25em;
+      padding: 0.125em;
+      display: inline;
+      vertical-align: middle;
+    }
+
+    p {
+      padding-right: 0.5em;
+    }
+
+    p {
+      font-size: 10pt;
+    }
+
+    span {
+      font-size: 16pt;
+    }
   }
+
 
   &_add {
     background-color: rgba(orange, 0.75);
-
-    &:hover {
-      background-color: orange;
-    }
+    margin-right: 1em;
   }
 
   &_save {
     background-color: rgba(green, 0.75);
-
-  &:hover {
-      background-color: green;
-    }
   }
 
+}
+
+.action-button_add:hover {
+  background-color: orange;
+}
+
+.action-button_save:hover {
+  background-color: green;
 }
