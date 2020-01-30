@@ -31,13 +31,13 @@ const SettingsSection = ({ title, items, onChange }) => {
   };
 
   return(
-    <fieldset className='settings-view--section'>
+    <fieldset className='settings-view_section'>
       <legend>{title}</legend>
       {
         // Loop over all items and add a SettingsItem<T> element
         items.map((item, index) => {
           return(
-            <div className='settings-view--item' key={index}>
+            <div className='settings-view_item' key={index}>
               {
                 createItem(item)
               }

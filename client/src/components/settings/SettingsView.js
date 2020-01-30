@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
-import '../../stylesheets/Settings.css';
 import store from '../../store.js';
 import { setCurrentSettings } from '../../actions/authActions.js';
 

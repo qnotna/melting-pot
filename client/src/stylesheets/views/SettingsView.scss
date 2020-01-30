@@ -1,0 +1,85 @@
+.settings-view {
+  padding: 1em 0;
+
+  &_section {
+    margin-top: 1em;
+    padding: 1em 0;
+    border: none;
+  }
+
+  &_item {
+    width: calc(100% - 2em);
+    padding: 0.5em 1em;
+
+    &:nth-child(even), &:nth-child(even) input {
+      background-color: #F0F0F0;
+    }
+
+    &:hover, &:hover > input{
+      background-color: #E8E8E8;
+    }
+
+    label, select, input {
+      width: calc(50% - 1em);
+    }
+
+    input[type='checkbox'] {
+      margin-top: 0.2em;
+      line-height: 100%; //HACK: float left
+    }
+
+    select, input {
+      float: right;
+
+    }
+
+    input {
+      display: block;
+      background-color: none;
+      border: none;
+      outline: none;
+      font-size: 10pt;
+    }
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+legend {
+  padding-left: 0.75em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .settings-view {
+    &_item {
+      &:nth-child(even), &:nth-child(even) input {
+        background-color: #282828;
+      }
+      &:hover, &:hover > input{
+        background-color: #383838;
+      }
+    }
+  }
+
+  legend {
+    color: white;
+  }
+
+  .settings-view_item {
+    label {
+      color: #e0e0e0;
+    }
+
+    input[type="number"] {
+      color: white;
+    }
+  }
+
+
+}
