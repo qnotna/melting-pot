@@ -68,7 +68,7 @@ export default {
         ).catch(
             err => {
                 console.log(err)
-                // callback( {error: err} )
+                callback( {error: err} )
             }
         )
     },

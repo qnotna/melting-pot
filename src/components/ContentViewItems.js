@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent } from '../actions/newsActions'
+import { setArticle, setContentComponent, setContentLoadingState } from '../actions/newsActions'
 import { Components } from '../utils/Components.js';
 import contentParser from '../utils/contentParser';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ class ContentViewItems extends Component {
     contentParser(article.url, article.content, article.description, (parsedContent) => {
       article.paragraphs = parsedContent.paragraphs
       article.rawParagraphs = parsedContent.rawParagraphs
+      store.dispatch(setContentLoadingState(false))
       store.dispatch(setArticle(article));
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
@@ -20,6 +21,7 @@ class ContentViewItems extends Component {
   showRenderView(article){
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
+    store.dispatch(setContentLoadingState(true))
     this.parseArticleContent(article)
   }
 

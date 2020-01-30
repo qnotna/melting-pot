@@ -8,7 +8,7 @@ const NoContent = ({ errorData }) => {
       <div id='no-content_container'>
         <div id='no-content_container_error'>
           <h1 id='no-content_container_error_code'>
-            {errorData.statuscode}
+            {errorData.status}
           </h1>
           <h2 id='no-content_container_error_message'>
             {errorData.message}

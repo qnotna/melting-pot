@@ -22,7 +22,7 @@ class ContentViewSections extends Component {
     return this.props.sections.map((section, index) => (
       <Fragment key={index}>
       {section.error ?
-        <NoContent errorData={section.error.response.data.error}/>
+        <NoContent errorData={section.error}/>
         :
         section.articles.length !== 0 ?
         <Fragment>

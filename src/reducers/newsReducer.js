@@ -26,6 +26,7 @@ const initialState = {
 
     // Check if Loading term is displayed
     isLoading: false,
+    contentLoading: false,
 
     pagingData: {
         currentPage: 1,
@@ -74,6 +75,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.isLoading
+            }
+
+        case "SET_CONTENT_LOADING_STATE":
+            return {
+                ...state,
+                contentLoading: action.contentLoading
             }
 
         case "SET_PAGING_DATA":
