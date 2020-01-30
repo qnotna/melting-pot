@@ -45,8 +45,6 @@ class SideBarItems extends Component {
   loadSections(){
 
     api.getHot((res) => {
-      console.log('home')
-      console.log([res])
       setInitData(res);
       store.dispatch( setSections ( [res] ))
     })
@@ -56,16 +54,15 @@ class SideBarItems extends Component {
   }
 
   loadFavoriteSections(){
-    let favoriteArticle = [];
     if ('indexedDB' in window) {
-      console.log('This browser support IndexedDB');
+      //console.log('This browser support IndexedDB');
 
       // Datenbank anlegen
       var request = indexedDB.open('favoriteArticle', 1);
 
       // Änderungs/Erzeugungs-Event
       request.onupgradeneeded = function(){
-        console.log('Datenbank angelegt');
+        //console.log('Datenbank angelegt');
         var db = this.result;
         if(!db.objectStoreNames.contains('Article')){
           const store = db.createObjectStore('Article', {
@@ -77,7 +74,7 @@ class SideBarItems extends Component {
 
       // Öffnungs-Event (feuert nach upgradeneeded)
       request.onsuccess = function(){
-        console.log('Datenbank geöffnet');
+        //console.log('Datenbank geöffnet');
         var db = this.result;
           
         // Überprüft ob der Artikel schon in der DB gespeichert wurde
@@ -87,8 +84,6 @@ class SideBarItems extends Component {
         var requestAllArticle = IndexDBstore.getAll();
         requestAllArticle.onsuccess = function(evt){
           //console.log('Eintrag ' + evt.target.result + ' gespeichert');
-          console.log('evt.target.result')
-          console.log(evt.target.result)
 
           // baue array das valide für die content View ist
           let contentViewObject = 
@@ -99,8 +94,6 @@ class SideBarItems extends Component {
               totalResults: evt.target.result.length
             }
           
-          console.log('ob')
-          console.log(contentViewObject)
           setInitData(contentViewObject);
           store.dispatch(setSections([contentViewObject]))
           

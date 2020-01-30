@@ -43,6 +43,10 @@ const ActionButton = ({ text, type, selected, icon }) => {
           requestCheckArticle.onsuccess = function(evt){
             //console.log(evt.target.result)
             if(evt.target.result === undefined){
+              // Artikel mit der url existiert nicht
+              // TODO: bei den favoriten muss paragraphen nicht mit gespeichert werden nur
+              // wenn man den Artikel später lesen will
+
               // Zu speichernder Datensatz
               var item = article;
     
@@ -56,6 +60,9 @@ const ActionButton = ({ text, type, selected, icon }) => {
               requestSaveArticle.onsuccess = function(evt){
                 //console.log('Eintrag ' + evt.target.result + ' gespeichert');
               };
+            }
+            else{
+              // Remove 
             }
           }
         }
