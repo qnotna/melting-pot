@@ -7,6 +7,9 @@
     "app",
     "mern"
   ],
+  "engines": {
+    "node": "13.3.0"
+  },
   "author": "AMNJM",
   "license": "ISC",
   "dependencies": {
