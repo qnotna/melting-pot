@@ -18,8 +18,11 @@ button, input[type='button'], input[type='submit'] {
 
   &:hover {
     cursor: pointer;
-    background-color: #484848;
   }
+
+  // &:hover, &:not(.action-button:hover) {
+  //   background-color: #484848;
+  // }
 
 }
 

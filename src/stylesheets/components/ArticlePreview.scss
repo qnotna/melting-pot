@@ -1,221 +1,384 @@
 .article {
+  display: block;
+  vertical-align: top;
+  margin: 0.5em;
+}
 
-  &[preview-size="small"] {
-    height: 12em;
-    width: 15em;
+.article_preview {
+  &_container {
+    position: relative;
+    border-radius: 0.75em;
+
+    &_image {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    &_source, &_unread, &_actions {
+      position: absolute;
+      border-radius: 0.5em;
+    }
+
+    &_source {
+      bottom: 0.75em;
+      left: 0.5em;
+      display: inline-block;
+      padding: 0.6em;
+      background-color: rgba(black, 0.75);
+
+      * {
+        color: white;
+      }
+    }
+
+    &_unread {
+      top: 0.5em;
+      left: 0.5em;
+      padding: 0.5em;
+      background-color: rgba(blue, 0.75);
+    }
+
+    &_actions {
+      top: 0.5em;
+      right: 0.5em;
+    }
   }
 
-  &[preview-size="large"] {
-    height: 25em;
-    width: 25em;
-    padding-right: 1em;
-    display: inline-block;
+  &_info {
+    width: 100%;
 
     * {
+      color: black;
+    }
+
+    h3 {
+      line-height: 1.25em;
+    }
+
+    p {
+      line-height: 1.25em;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    h3, p {
+      margin-top: 0.5em;
       white-space: normal;
     }
   }
 
-  &_preview {
-    height: 100%;
+}
 
-    h3 {
-      margin: 0.5em 0;
-      font-size: 14pt;
-      line-height: 1.25em;
-    }
+[preview-size="small"] {
 
-    .preview-text {
-      font-size: 12pt;
-      line-height: 1.25em;
-    }
+  .article_preview {
+    width: 17.5em;
 
-    // Article Preview Container -----------------------
     &_container {
-      border-radius: 0.75em;
-      background-color: white;
-      width: 100%;
-
       &_image {
+        // border-radius: 0.75em;
         transition: transform 0.25s;
         transform: scale(1);
-        position: relative;
+        height: 10em;
+      }
+
+      &_source, &_actions {
+        display: none;
+      }
+
+      &_actions {
+        top: 2.8em;
+      }
+    }
+
+    &_info p {
+      display: none;
+    }
+
+  &:hover .article_preview_container {
+    &_source {
+      display: inherit;
+    }
+
+    &_image {
+      transition: transform 0.25s;
+      transform: scale(1.1);
+      filter: blur(1px);
+    }
+
+    &_actions {
+      display: inherit;
+      width: calc(100% - 1em);
+
+      button{
+        display: block;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
 
-      }
-
-      * {
-        float: left;
-        position: relative;
-      }
-
-      button {
-        border: none;
-        padding: 0.5em;
-      }
-
-      button, p {
-        border-radius: 0.25em;
-      }
-
-      // Article Preview Container -------------------- S
-      &[preview-size="small"] {
-        font-size: 8pt;
-        height: 70%;
-
-        .unread-mark {
-          bottom: 11.5em;
+        &:first-of-type {
+          margin-bottom: 0.5em;
         }
-
-        .article_preview-actions {
-          float: left;
-          top: -23.5em;
-
-          button {
-            display: flex;
-            width: 93%;
-            margin: 0.25em 1em;
-          }
-        }
-
-        .article_preview_information {
-          height: 100%;
-          float: left;
-          font-size: 8pt;
-          bottom: 5em;
-          left: 1em;
-          width: 100%;
-          display: none;
-
-          &_category {
-            float: right;
-            right: 0;
-            top: -3em;
-          }
-        }
-
-        &:hover {
-          .article_preview_container_image {
-            transition: transform 0.25s;
-            filter: blur(2.5px);
-            transform: scale(1.1);
-          }
-          .article_preview_information {
-            display: inherit;
-          }
-        }
-
       }
-
-      // Article Preview Container -------------------- L
-      &[preview-size="large"] {
-        font-size: 10pt;
-        height: 60%;
-
-        .unread-mark {
-          top: -21.5em;
-        }
-
-        .article_preview-actions {
-          float: right;
-          top: -20.5em;
-          right: 1em;
-
-          button {
-            margin-left: 1em;
-            font-size: 8pt;
-          }
-        }
-
-        .article_preview_information {
-          float: left;
-          font-size: 8pt;
-          bottom: 5em;
-          left: 1em;
-          width: 100%;
-        }
-
-      }
-
-      p {
-        padding: 0.5em;
-      }
-
-      &:hover .article_preview-actions button {
-        display: inherit;
-      }
-
     }
+  }
 
-    &_information {
-      color: white;
+  }
 
-      &_date {
-        line-height: 2em;
-      }
+}
 
-      &_reading-time {
-        float: left;
-        margin-left: 1em;
-      }
+[preview-size="large"] {
 
-      &_category {
-        float: right;
-        right: 2.5em;
-      }
+  .article_preview {
+    width: 30em;
 
-      &_publisher {
-        &:hover p:first-of-type {
-          text-decoration: underline;
-        }
-      }
-
-      &_publisher, &_reading-time, &_category {
-        border-radius: 0.25em;
-        background-color: rgba(0,0,0,0.5);
-      }
+    &_container_image {
+      height: 17.5em;
     }
 
   }
 
-  &_preview_container &_preview-actions button {
-    font-size: 8pt;
-  }
-
-  &_preview_container &_preview-actions button img {
-    height: 1.2em;
-    width: 1.2em;
-    padding-right: 0.75em;
-  }
-
-  &:hover, .article_preview-actions button:hover, .article_preview_information_publisher:hover {
-    cursor: pointer;
-  }
-
 }
 
-.icon {
-  width: 2em;
-  height: 2em;
-}
 
-.unread-mark {
-  background-color: blue;
-  color: white;
-  font-size: 8pt;
-  float: left;
-  left: 1em;
-}
+  // a {
 
+  // [preview-size='small'] {
+
+      // &_preview_image {
+      //   height: 10em;
+      // }
+
+  //   }
+  //
+  // [preview-size='large'] {
+    // &_preview_image {
+    //   height: 5em;
+    // }
+
+  // }
+
+  // }
+
+
+//   &[preview-size="small"] {
+//     height: 16em;
+//     width: 15em;
+//   }
+//
+//   &[preview-size="large"] {
+//     height: 30em;
+//     width: 25em;
+//     padding-right: 1em;
+//     display: inline-block;
+//
+//     * {
+//       white-space: normal;
+//     }
+//   }
+//
+//   &_preview {
+//     height: 100%;
+//
+//     h3 {
+//       margin: 0.5em 0;
+//       font-size: 14pt;
+//       line-height: 1.25em;
+//     }
+//
+//     .preview-text {
+//       font-size: 12pt;
+//       line-height: 1.25em;
+//     }
+//
+//     // Article Preview Container -----------------------
+//     &_container {
+//       border-radius: 0.75em;
+//       background-color: white;
+//       width: 100%;
+//       // height: 4em;
+//
+//       &_image {
+//         transition: transform 0.25s;
+//         transform: scale(1);
+//         position: relative;
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover;
+//
+//       }
+//
+//       * {
+//         float: left;
+//         position: relative;
+//       }
+//
+//       button {
+//         border: none;
+//         padding: 0.5em;
+//       }
+//
+//       button, p {
+//         border-radius: 0.25em;
+//       }
+//
+//       // Article Preview Container -------------------- S
+//       &[preview-size="small"] {
+//         font-size: 8pt;
+//         height: 12.5em;
+//
+//         .unread-mark {
+//           bottom: 11.5em;
+//         }
+//
+//         .article_preview-actions {
+//           float: left;
+//           top: -23.5em;
+//
+//           button {
+//             display: flex;
+//             width: 93%;
+//             margin: 0.25em 1em;
+//           }
+//         }
+//
+//         h3 {
+//           color: red; //TODO: not working
+//         }
+//
+//         .article_preview_information {
+//           height: 100%;
+//           float: left;
+//           font-size: 8pt;
+//           bottom: 5em;
+//           left: 1em;
+//           width: 100%;
+//           display: none;
+//
+//           &_category {
+//             float: right;
+//             right: 0;
+//             top: -3em;
+//           }
+//         }
+//
+//         &:hover {
+//           .article_preview_container_image {
+//             transition: transform 0.25s;
+//             filter: blur(2.5px);
+//             transform: scale(1.1);
+//           }
+//           .article_preview_information {
+//             display: inherit;
+//           }
+//         }
+//
+//       }
+//
+//       // Article Preview Container -------------------- L
+//       &[preview-size="large"] {
+//         font-size: 10pt;
+//         height: 50%;
+//
+//         .unread-mark {
+//           top: -21.5em;
+//         }
+//
+//         .article_preview-actions {
+//           float: right;
+//           top: -20.5em;
+//           right: 1em;
+//
+//           button {
+//             margin-left: 1em;
+//             font-size: 8pt;
+//           }
+//         }
+//
+//         .article_preview_information {
+//           float: left;
+//           font-size: 8pt;
+//           bottom: 5em;
+//           left: 1em;
+//           width: 100%;
+//         }
+//
+//       }
+//
+//       p {
+//         padding: 0.5em;
+//       }
+//
+//       &:hover .article_preview-actions button {
+//         display: inherit;
+//       }
+//
+//     }
+//
+//     &_information {
+//       color: white;
+//
+//       &_date {
+//         line-height: 2em;
+//       }
+//
+//       &_reading-time {
+//         float: left;
+//         margin-left: 1em;
+//       }
+//
+//       &_category {
+//         float: right;
+//         right: 2.5em;
+//       }
+//
+//       &_publisher {
+//         &:hover p:first-of-type {
+//           text-decoration: underline;
+//         }
+//       }
+//
+//       &_publisher, &_reading-time, &_category {
+//         border-radius: 0.25em;
+//         background-color: rgba(0,0,0,0.5);
+//       }
+//     }
+//
+//   }
+//
+//   &_preview_container &_preview-actions button {
+//     font-size: 8pt;
+//   }
+//
+//   &_preview_container &_preview-actions button img {
+//     height: 1.2em;
+//     width: 1.2em;
+//     padding-right: 0.75em;
+//   }
+//
+//   &:hover, .article_preview-actions button:hover, .article_preview_information_publisher:hover {
+//     cursor: pointer;
+//   }
+//
+// }
+//
+// .icon {
+//   width: 2em;
+//   height: 2em;
+// }
+//
+// .unread-mark {
+//   background-color: blue;
+//   color: white;
+//   font-size: 8pt;
+//   float: left;
+//   left: 1em;
+// }
+//
 @media (prefers-color-scheme: dark) {
 
   .article_preview {
     h3, p {
       color: white;
     }
-
   }
 
 }
