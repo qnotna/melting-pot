@@ -3,6 +3,10 @@
   padding: 1em;
   background-color: lightGray;
 
+  &_default a {
+    margin: 0;
+  }
+
   * {
     vertical-align: middle;
     display: inline;

@@ -1,12 +1,16 @@
 import React from 'react';
+import formatDate from '../../utils/dateFormatter';
 
 const Source = ({ name, date }) => {
 
   return(
-    <div className='article_preview_information_publisher'>
-      <img className='icon' src='https://www.bevlabvet.com/images/circle-dark.png' alt='Publisher logo' />
-      <p className='article_preview_information_publisher-name'>{name}</p>
-      <p className='article_preview_information_publisher-date'>{date}</p>
+    <div className='source'>
+      <p className='source_name'>
+        {name}
+      </p>
+      <p className='source_date'>
+        {formatDate(date, 'preview')}
+      </p>
     </div>
   );
 
