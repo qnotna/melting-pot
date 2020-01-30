@@ -41,7 +41,7 @@ export const Routes = [
         component: () => <ContentView/>
     },
     {
-        path: "/melting hot",
+        path: "/melting-hot",
         component: () => <ContentView/>
     },
     {

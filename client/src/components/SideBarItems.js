@@ -5,12 +5,15 @@ import { setContentComponent, addSection, setSections } from "../actions/newsAct
 import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 class SideBarItems extends Component {
 
-  isDefaultChecked = (item) => ((item === 'Melting Hot') ? true : false);
+  isChecked = (title) => {
+    let urlTitle = this.props.history.location.pathname.replace("/", "").replace("-", " ");
+    return title.toLowerCase() === urlTitle ? true : false;
+  }
   createItemKey = (isCategory, item) => {
     if(isCategory){
       return (`${item.toLowerCase()}`)
@@ -53,7 +56,7 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
-      <Link to={"/" + item.title.toLowerCase()}>
+      <Link to={"/" + item.title.toLowerCase().replace(" ", "-")}>
       <li
         className='sidebar_item'
         key={this.createItemKey(false, item.title)}
@@ -69,7 +72,7 @@ class SideBarItems extends Component {
         <input
           type='radio'
           name='sidebar-items'
-          defaultChecked={this.isDefaultChecked(item.title)}
+          checked={this.isChecked(item.title)}
         />
         <label
           className='sidebar_item_label'
@@ -85,4 +88,4 @@ class SideBarItems extends Component {
 
 }
 
-export default SideBarItems;
+export default withRouter(SideBarItems);

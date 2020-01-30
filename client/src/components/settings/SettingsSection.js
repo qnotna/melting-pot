@@ -3,7 +3,6 @@ import SettingsItemText from './SettingsItemText.js';
 import SettingsItemSelect from './SettingsItemSelect.js';
 import SettingsItemCheckbox from './SettingsItemCheckbox.js';
 import { Type } from '../../utils/Settings.js';
-import store from '../../store.js';
 
 const SettingsSection = ({ title, items, onChange }) => {
 

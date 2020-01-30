@@ -5,7 +5,6 @@ import Source from './simple/Source';
 import Badge from './simple/Badge';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
-import { Link } from 'react-router-dom';
 
 class ContentViewItemPreview extends Component {
 

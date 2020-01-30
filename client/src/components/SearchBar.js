@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
@@ -162,6 +162,7 @@ class SearchBar extends Component {
   listenToKeyPress = (event) => {
     if(event.key === "Enter") {
       event.preventDefault();
+      this.props.history.push("/search-results");
       this.handleClick(event);
     }
   }
@@ -191,4 +192,4 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

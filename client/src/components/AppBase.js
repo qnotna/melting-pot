@@ -63,7 +63,7 @@ class AppBase extends Component {
   render() {
     // Get the name of the component that should be renderd
     // as App content from the App global store
-    const { content_component, isLoading } = store.getState().news;
+    const { isLoading } = store.getState().news;
     return (
       <div className='App'>
         <div id='left' ref='Sidebar'>
@@ -97,8 +97,6 @@ class AppBase extends Component {
                 />
               ))
             } 
-          {/* // this.getComponentByName(content_component) */}
-        }
           </Switch>
         </div>
       </div>
