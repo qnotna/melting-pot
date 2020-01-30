@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import formatLangOption from '../utils/langOptFormat'
+import { Link } from 'react-router-dom';
 import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
 import api from '../utils/API';
 import { setContentComponent, setSections, setSearchParams } from '../actions/newsActions'
 import { languages, sortOptions } from '../data/options'
+
+import Suggestions from './Suggestions';
 
 
 class SearchBar extends Component {
@@ -19,7 +21,9 @@ class SearchBar extends Component {
   toRef = React.createRef();
 
   state = {
-    showMenu: false
+    showMenu: false,
+    results: this.getSuggestions(),
+    sourceName: ""
   }
 
   onShowMenu = (event) => {
@@ -58,13 +62,16 @@ class SearchBar extends Component {
             type='search'
             ref={this.qRef}
             placeholder='Search Articles for Title or Content'
+            onKeyPress={this.listenToKeyPress}
           />
           <button type="button" onClick={this.onShowMenu}>
             <span className = 'material-icons'>expand_more</span>
           </button>
+          <Link to="/search-results">
           <button type='button' onClick={this.handleClick}>
             <span className='material-icons'>search</span>
           </button>
+          </Link>
         </div>
         {
           this.state.showMenu ? (
@@ -91,17 +98,14 @@ class SearchBar extends Component {
                   ))}
                 </select>
               </div>
-              {
-                /* TODO: Soures toLowerCase + check if available
-                maybe select instead of input? */
-              }
               <div className='navigation-bar_dropdown_filter'>
                 <label>Source:</label>
-                <input
+                <select
                   type='search'
                   ref={this.sourceRef}
-                  placeholder='die-zeit, Bild, ...'
-                  />
+                >
+                  <Suggestions sources={this.state.results}/>
+                </select>
               </div>
               <div className='navigation-bar_dropdown_filter'>
                 <label>Articles Per Page:</label>
@@ -131,12 +135,13 @@ class SearchBar extends Component {
     event.preventDefault();
 
     //TODO Sprache automatisch aus User-Einstellungen wählen
+    //TODO pageSize automatisch aus User-Einstellungen wählen
     let searchParams = {
       q: this.qRef.current.value,
-      language: this.langRef.current ? this.langRef.current.value : "de",
+      language: this.langRef.current ? this.langRef.current.value : "de", //store.getState().auth,
       sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
       sources: this.sourceRef.current ? this.sourceRef.current.value.toLowerCase() : [],
-      size: this.sizeRef.current ? this.sizeRef.current.value : 20,
+      pageSize: this.sizeRef.current ? this.sizeRef.current.value : 20, // store.getState().news
       from: this.fromRef.current ? this.fromRef.current.value : "",
       to: this.toRef.current ? this.toRef.current.value : "",
       page: 1
@@ -152,6 +157,37 @@ class SearchBar extends Component {
     store.dispatch( setContentComponent(Components.SEARCH_RESULTS) )
 
     this.qRef.current.value = "";
+  }
+
+  listenToKeyPress = (event) => {
+    if(event.key === "Enter") {
+      event.preventDefault();
+      this.handleClick(event);
+    }
+  }
+
+  // handleSource = (event) => {
+  //   let sourceInput = this.sourceRef.current.value;
+  //   if(sourceInput && sourceInput.length > 0){
+  //     this.setState({
+  //       sourceInput: sourceInput
+  //     })
+  //     if(sourceInput) {
+  //       this.getSuggestions();
+  //     }
+  //   }
+  // }
+
+  getSuggestions() {
+    // TODO select language from preferences
+    let urlParams = {
+      // language: this.langRef.current ? this.langRef.current.value : store.getState().auth,
+    }
+    api.getSources(urlParams, (res) => {
+      this.setState({
+        results: res.sources
+      })
+    })
   }
 }
 

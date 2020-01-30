@@ -47,7 +47,7 @@ export const appearance = {
 }
 
 export const sortOptions = {
-   relevancy: 'relevancy', // articles more closely related to q come first
-   popularity: 'popularity', // articles from popular sources and publishers come first
-   publishedAt: 'newest', // newest articles come first
+    publishedAt: 'newest', // newest articles come first
+    relevancy: 'relevancy', // articles more closely related to q come first
+    popularity: 'popularity', // articles from popular sources and publishers come first
 }

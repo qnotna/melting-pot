@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent, setSections, setLoadingState } from '../actions/newsActions'
-import { Components, clearContentView } from '../utils/Components.js';
-import contentParser from '../utils/contentParser'
+import { setArticle, setContentComponent } from '../actions/newsActions'
+import { Components } from '../utils/Components.js';
+import contentParser from '../utils/contentParser';
+import { Link } from 'react-router-dom';
 
 class ContentViewItems extends Component {
 
@@ -14,20 +15,19 @@ class ContentViewItems extends Component {
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
-
+  
   showRenderView(article){
     article.paragraphs = [];
 
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
-
     this.parseArticleContent(article)
   }
 
   // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
   createItemPreview = (item) => {
     let previewSize = this.props.previewSize;
-    let optionalPreviewText = <Fragment/>;
+    let optionalPreviewText = '';
     if (previewSize === 'large') {
       optionalPreviewText = item.description
     }
@@ -47,7 +47,9 @@ class ContentViewItems extends Component {
         preview-size={this.props.previewSize}
         key={index}
       >
+        <Link to='/reader-view'>
         {this.createItemPreview(article)}
+        </Link>
       </div>
     ));
   }

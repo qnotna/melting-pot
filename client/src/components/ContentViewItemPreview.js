@@ -5,6 +5,7 @@ import Source from './simple/Source';
 import Badge from './simple/Badge';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
+import { Link } from 'react-router-dom';
 
 class ContentViewItemPreview extends Component {
 
@@ -21,18 +22,17 @@ class ContentViewItemPreview extends Component {
             date={formatDate(item.publishedAt, 'preview')}
             />
           <ReadingTime time={calcReadingTime(item.content, 'preview')}/>
-          {/* <ReadingTime time={12}/> */}
           <img className='article_preview_information_category icon' src='https://www.bevlabvet.com/images/circle-dark.png' alt='Category' />
         </div>
         <div className='article_preview-actions'>
           <ActionButton
             text='Zu Favoriten hinzufügen'
             type='add'
-          />
+            />
           <ActionButton
             text='Für später speichern'
             type='save'
-          />
+            />
         </div>
       </div>
     );

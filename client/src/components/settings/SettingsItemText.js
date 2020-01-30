@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import store from '../../store';
 
 const SettingsItemText = ({ item, onChange }) => {
 

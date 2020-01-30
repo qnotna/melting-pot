@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SearchBar from './SearchBar.js';
-import store from '../store.js';
 
 class NavigationBar extends Component {
 

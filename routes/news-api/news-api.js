@@ -1,8 +1,8 @@
 const router = require ('express').Router();
 const NewsAPI  = require('newsapi');
-// const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
+const newsapi = new NewsAPI('1a1523a02e3d4a65a047b106d46acaaa');
 // const newsapi = new NewsAPI('04cc2e205e294f27b2072a47d8ce57bd');
-const newsapi = new NewsAPI('e0da45e697234dbf8e89825c62e5dfbb');
+// const newsapi = new NewsAPI('e0da45e697234dbf8e89825c62e5dfbb');
 
 const HttpError = require('../../middleware/httpError');
 
@@ -14,7 +14,7 @@ const HttpError = require('../../middleware/httpError');
 //https://newsapi.org/docs/endpoints/top-headlines
 
 // get Latest
-router.get('/latest', (req, res) => {
+router.get('/latest', (req, res, next) => {
     newsapi.v2.everything({
         ...req.query,
         q: "*",
@@ -24,22 +24,24 @@ router.get('/latest', (req, res) => {
         response => res.json(response)
     )
     .catch(
-        err => res.json(err)
+        err => next(err)
     );
 });
 
 
 // top Headlines aus einem bestimmten land und Sprache
-router.get('/top-headlines', (req, res) => {
+router.get('/top-headlines', (req, res, next) => {
     // console.log(req.query)
     newsapi.v2.topHeadlines({
         ...req.query
     })
     .then(
-        response => res.json(response)
+        response => {
+            res.json(response)
+        }
     )
     .catch(
-        err => res.json(err)
+        err => next(err)
     );
 });
 
@@ -48,15 +50,13 @@ router.get('/top-headlines', (req, res) => {
 
 // Gebe die ersten beiden Ergebnisse des gesuchten Keywords zurück
 router.get('/everything', (req, res, next) => {
-    let query = checkInput(req.query);
-    // console.log(query)
+    let query = checkInput(req.query, next);
     newsapi.v2.everything({
         ...query
     })
     .then(response => {
         res.json(response)
-    }
-    )
+    })
     .catch(err => {
         next(err)
     }
@@ -64,14 +64,19 @@ router.get('/everything', (req, res, next) => {
 });
 
 // Gibt alle Nachrichtendinste z.B. BBC sowie ihre Untergruppen z.B. BBC Sport zurück
-router.get('/source', (req, res) => {
+router.get('/source', (req, res, next) => {
     newsapi.v2.sources({
-    }).then(response => {
-        console.log(response);
+        ...req.query
+    })
+    .then(response => {
+        res.json(response)
+    })
+    .catch( err => {
+        next(err)
     });
 });
 
-function checkInput(query){
+function checkInput(query, next){
     let queryParams = query;
     for(let prop of Object.getOwnPropertyNames(queryParams)){
         let value = queryParams[prop];
@@ -83,7 +88,6 @@ function checkInput(query){
         }
         queryParams[prop] = value;
     }
-    // console.log(queryParams)
     return queryParams;
 }
 

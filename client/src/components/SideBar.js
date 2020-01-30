@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SideBarSections from './SideBarSections.js';
-import store from '../store.js';
 import { SidebarData } from '../data/SidebarData.js';
 
 class SideBar extends Component {

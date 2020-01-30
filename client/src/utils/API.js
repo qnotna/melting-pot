@@ -16,7 +16,9 @@ export default {
                 })
             }
         ).catch(
-            err => console.log(err)
+            err => callback({
+                error: err
+            })
         )
     },
     getLatest(callback){
@@ -31,7 +33,9 @@ export default {
                 })
             }
         ).catch(
-            err => console.log(err)
+            err => callback({
+                error: err
+            })
         )
     },
     getSearchResults(callback, params){
@@ -68,24 +72,33 @@ export default {
         )
     },
     getCategory(urlParams, callback){
-        console.log(urlParams);
+        // console.log(urlParams);
         let category = urlParams.component.toLowerCase();
-        // let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
-        // console.log(url);
         Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
-        .then(
-            (res) => {
+        .then(res => {
                 callback({
                     name: category[0].toUpperCase() + category.slice(1),
                     type: "grid",
                     articles: res.data.articles,
                     totalResults: res.data.totalResults
                 })
-            }
-        ).catch(
+        })
+        .catch(
             err => callback({
                 error: err
             })
         )
+    },
+    getSources(urlParams, callback){
+        Axios.get(src + "newsapi/source", urlParams)
+            .then( res => {
+                callback({
+                    status: res.status,
+                    sources: res.data.sources
+                })
+            })
+            .catch( err => callback({
+                error: err
+            }))
     }
 }

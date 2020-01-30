@@ -6,7 +6,7 @@ export default function calcReadingTime(content, type){
         }
         let readingTime = Math.round(text.split(" ").length/200);
         let suffix = "< 1 Min";
-        if(type == 'preview') {
+        if(type === 'preview') {
             readingTime = readingTime === 0 ? suffix : "" + readingTime + " Min";
         }
         else {
