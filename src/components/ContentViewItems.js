@@ -9,16 +9,15 @@ import { Link } from 'react-router-dom';
 class ContentViewItems extends Component {
 
   parseArticleContent(article){
-    contentParser(article.url, article.content, article.description, (articleParagraphs) => {
-      article.paragraphs = articleParagraphs
+    contentParser(article.url, article.content, article.description, (parsedContent) => {
+      article.paragraphs = parsedContent.paragraphs
+      article.rawParagraphs = parsedContent.rawParagraphs
       store.dispatch(setArticle(article));
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
   
   showRenderView(article){
-    article.paragraphs = [];
-
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
     this.parseArticleContent(article)

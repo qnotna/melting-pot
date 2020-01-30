@@ -13,6 +13,7 @@ import findTopics from "../utils/lda"
 class ReaderView extends Component {
   render() {
     const article = store.getState().news.current_article;
+    const paragraphs = article.paragraphs || []
     console.log(article)
     return (
       <div id='reader-view'>
@@ -36,7 +37,7 @@ class ReaderView extends Component {
           <h3>{article.description}</h3>
           <p id='reader-view-author'>{`By ${article.author}`}</p>
           <a href={article.url}>Link to Original</a>
-          <TextBlock paragraphs={article.paragraphs} />
+          <TextBlock paragraphs={paragraphs} />
         </div>
       </div>
   );
