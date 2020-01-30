@@ -17,8 +17,16 @@ class ContentViewItemPreview extends Component {
     return(
       <div className='preview-with-image' preview-size={previewSize}>
         { String(item.urlToImage) !== 'null'
-          ? <img onError={(e) => e.target.src='http://localhost:3000/img/image-not-found-dark.png'} className='preview-image' src={item.urlToImage} alt={item.title}/>
-          : <img className='preview-image' src='http://localhost:3000/img/image-not-found-dark.png' alt={item.title}/>
+          ? <img 
+              onError={(e) => e.target.src='http://localhost:3000/img/image-not-found-dark.png'} 
+              className='preview-image' 
+              src={item.urlToImage} alt={item.title}
+            />
+          : <img
+              className='preview-image' 
+              src='http://localhost:3000/img/image-not-found-dark.png' 
+              alt={item.title}
+            />
         }
         <Badge/>
         <div className='preview-information'>
@@ -34,10 +42,12 @@ class ContentViewItemPreview extends Component {
           <ActionButton
             text='Zu Favoriten hinzufügen'
             type='add'
+            icon='favorite'
           />
           <ActionButton
             text='Für später speichern'
             type='save'
+            icon='bookmark'
           />
         </div>
       </div>

@@ -14,7 +14,8 @@ export const Components = {
     TECHNOLOGY: 'TECHNOLOGY',
     SETTINGS: 'SETTINGS',
     SEARCH_RESULTS: 'SEARCH_RESULTS',
-    READER_VIEW: 'READER_VIEW'
+    READER_VIEW: 'READER_VIEW',
+    FAVORITEN: 'FAVORITEN'
 }
 
 export function clearContentView() {

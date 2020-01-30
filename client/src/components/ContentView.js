@@ -33,7 +33,8 @@ class ContentView extends Component {
     // this.handleDarkMode();
     
     const { sections } = store.getState().news
-
+    console.log('sections');
+    console.log(sections)
     return(
       <div id='content-view'>
         <Scrollbars>

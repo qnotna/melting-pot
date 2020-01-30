@@ -4,7 +4,7 @@
     "title":"Neuigkeiten",
     "items":[
       {"title":"Melting Hot","unreadAmount":10, "component": "HOME", "icon": "home"},
-      {"title":"Favoriten","unreadAmount":2, "icon": "favorite"},
+      {"title":"Favoriten","unreadAmount":2, "component": "FAVORITEN", "icon": "favorite"},
       {"title":"Später lesen","unreadAmount":14, "icon": "bookmark"}
     ]
   },

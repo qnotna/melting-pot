@@ -24,6 +24,11 @@ class SideBarItems extends Component {
         clearContentView()
         this.loadSections()
         break;
+
+      case Components.FAVORITEN:
+        clearContentView()
+        this.loadFavoriteSections()
+        break;
     
       default:
         clearContentView()
@@ -40,12 +45,71 @@ class SideBarItems extends Component {
   loadSections(){
 
     api.getHot((res) => {
+      console.log('home')
+      console.log([res])
       setInitData(res);
       store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {
       store.dispatch( addSection( res ))
     })
+  }
+
+  loadFavoriteSections(){
+    let favoriteArticle = [];
+    if ('indexedDB' in window) {
+      console.log('This browser support IndexedDB');
+
+      // Datenbank anlegen
+      var request = indexedDB.open('savedArticles', 1);
+
+      // Änderungs/Erzeugungs-Event
+      request.onupgradeneeded = function(){
+        console.log('Datenbank angelegt');
+        var db = this.result;
+        if(!db.objectStoreNames.contains('Article')){
+          const store = db.createObjectStore('Article', {
+            keyPath: 'url',
+            unique: true
+          });
+        }
+      };
+
+      // Öffnungs-Event (feuert nach upgradeneeded)
+      request.onsuccess = function(){
+        console.log('Datenbank geöffnet');
+        var db = this.result;
+          
+        // Überprüft ob der Artikel schon in der DB gespeichert wurde
+        var trans = db.transaction(['Article'], 'readonly');
+
+        var IndexDBstore = trans.objectStore('Article')
+        var requestAllArticle = IndexDBstore.getAll();
+        requestAllArticle.onsuccess = function(evt){
+          //console.log('Eintrag ' + evt.target.result + ' gespeichert');
+          console.log('evt.target.result')
+          console.log(evt.target.result)
+
+          // baue array das valide für die content View ist
+          let contentViewObject = 
+            {
+              name: 'Favoriten',
+              type: 'grid',
+              articles: evt.target.result,
+              totalResults: evt.target.result.length
+            }
+          
+          console.log('ob')
+          console.log(contentViewObject)
+          setInitData(contentViewObject);
+          store.dispatch(setSections([contentViewObject]))
+          
+        };
+      }
+    }
+    else {
+      console.log('This browser support IndexedDB');
+    }
   }
 
   render() {

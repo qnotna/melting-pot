@@ -12,12 +12,18 @@ import formatDate from '../utils/dateFormatter';
 
 const ReaderView = () => {
   const article = store.getState().news.current_article;
-  console.log(String(article.urlToImage))
   return(
     <div id='reader-view'>
       { String(article.urlToImage) !== 'null'
-        ? <img onError={(e) => e.target.src='http://localhost:3000/img/image-not-found-dark.png'} src={article.urlToImage} alt={article.description}/>
-        : <img src='http://localhost:3000/img/image-not-found-dark.png' alt={article.description}/>
+        ? <img 
+            onError={(e) => e.target.src='http://localhost:3000/img/image-not-found-dark.png'} 
+            src={article.urlToImage} 
+            alt={article.description}
+          />
+        : <img 
+            src='http://localhost:3000/img/image-not-found-dark.png' 
+            alt={article.description}
+          />
       }  
       <div id='reader-view-meta'>
         <div id='reader-view-meta-information'>
@@ -28,8 +34,16 @@ const ReaderView = () => {
           <ReadingTime time={calcReadingTime(article.content, 'reader')}/>
           {/* <ReadingTime time={15}/> */}
           <div>
-            <ActionButton type='add'/>
-            <ActionButton type='save'/>
+            <ActionButton
+              text='Zu Favoriten hinzufügen'
+              type='add' 
+              icon='favorite'
+            />
+            <ActionButton 
+              text='Für später speichern'
+              type='save' 
+              icon='bookmark'
+            />
           </div>
         </div>
       </div>
