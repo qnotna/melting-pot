@@ -1,6 +1,9 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
+import '../../stylesheets/Settings.css';
+import store from '../../store.js';
+import { setCurrentSettings } from '../../actions/authActions.js';
 
 const SettingsView = () => {
 
@@ -8,22 +11,26 @@ const SettingsView = () => {
 
   const sections = [
     {
-      title: 'User Settings',
+      title: 'Fake News Detector',
       items: [
-        Settings.USERNAME,
-        Settings.PASSWORD,
-        Settings.EMAIL_ADRESS
+        Settings.VERIFIED_SOURCES,
+        Settings.HIGH_QUALITY_ARTICLES,
+        Settings.CLICKBAIT_TITLES,
+        Settings.DOMAIN_NAME_CHECK
+      ]
+    },
+    {
+      title: 'Search Preferences',
+      items: [
+        Settings.DEFAULT_LANGUAGE,
+        Settings.DEFAULT_COUNTRY,
+        Settings.DEFAULT_PAGESIZE
       ]
     },
     {
       title: 'App Settings',
       items: [
-        Settings.DEFAULT_LANGUAGE,
-        Settings.DEFAULT_COUNTRY,
-        Settings.DEFAULT_SORTING,
         Settings.ENABLE_DARK_MODE,
-        Settings.LOAD_ARTICLES_WITHOUT_IMAGES,
-        Settings.REDIRECT_TO_ORIGINAL_SAUCE
       ]
     }
   ];
@@ -33,38 +40,48 @@ const SettingsView = () => {
   // Add received configuration to local configuration (state)
   const onItemValueChange = (key, value) => {
     const conf = configuration;
-    conf[key.toLowerCase().replace(' ', '-')] = value;
-    setConfiguration(conf);
+    conf[key] = value;
+    saveSettings();
   };
 
-  // EventListener for the Save Settings button
   // Dispatch settings configuration in store
-  const onSaveSettings = (event) => {
-    event.preventDefault();
-    console.log(configuration);
+  const saveSettings = () => {
+    const fakeNewsSettings = {
+      verifiedSources: configuration.verifiedSources,
+      highQuality: configuration.highQuality,
+      clickbaitTitles: configuration.clickbaitTitles,
+      domainNameCheck: configuration.domainNameCheck
+    };
+    const searchSettings = {
+      language: configuration.language,
+      country: configuration.country,
+      pageSize: configuration.pageSize
+    };
+    const appSettings = {
+      appearance: configuration.appearance
+    };
+    const settings = {
+      fakeNews: fakeNewsSettings,
+      search: searchSettings,
+      app: appSettings
+    };
+    store.dispatch(setCurrentSettings(settings));
   };
 
   return(
     <div className='settings-view'>
-      <form onSubmit={event => onSaveSettings(event)}>
-        <div className='settings-view--section'>
-          {
-            // Loop over all sections and add a SettingsSection element
-            sections.map((section, index) => {
-              return <SettingsSection
-                key={index}
-                title={section.title}
-                items={section.items}
-                onChange={onItemValueChange}
+      <form>
+        {
+          // Loop over all sections and add a SettingsSection element
+          sections.map((section, index) => {
+            return <SettingsSection
+              key={index}
+              title={section.title}
+              items={section.items}
+              onChange={onItemValueChange}
               />
-            })
-          }
-        </div>
-        <input
-          type='submit'
-          value='Save Settings'
-          className='settings-view--save-button'
-          />
+          })
+        }
       </form>
     </div>
   );

@@ -1,3 +1,6 @@
+import { languages, country, appearance } from '../data/options.js';
+import store from '../store.js';
+
 export const Type = {
 
   TEXT: 'text',
@@ -8,53 +11,79 @@ export const Type = {
 
 export const Settings = {
 
-  USERNAME: {
-    name: 'Username',
-    inputType: 'text',
-    placeholder: 'hans bauer',
-    type: Type.TEXT
+  VERIFIED_SOURCES: {
+    type: Type.CHECKBOX,
+    name: 'Show Verified Sources',
+    defaultValue: () => (
+      store.getState().settings.fakeNews.verifiedSources
+    ),
+    key: 'verifiedSources'
   },
-  EMAIL_ADRESS: {
-    name: 'Email Adress',
-    inputType: 'text',
-    placeholder: 'spam@me.com',
-    type: Type.TEXT
-  },
-  PASSWORD: {
-    name: 'Password',
-    inputType: 'password',
-    placeholder: 'New Password',
-    type: Type.TEXT
-  },
-  DEFAULT_LANGUAGE: {
-    name: 'Default Article Language',
-    selectFrom: 'language',
-    options: [],
-    type: Type.SELECT
-  },
-  DEFAULT_COUNTRY: {
-    name: 'Default Article Country',
-    selectFrom: 'country',
-    options: [],
-    type: Type.SELECT
-  },
-  DEFAULT_SORTING: {
-    name: 'Sort Articles by Default by',
-    selectFrom: 'sortBy',
-    options: [],
-    type: Type.SELECT
-  },
-  ENABLE_DARK_MODE: {
-    name: 'Toggle Dark Appearance',
-    type: Type.CHECKBOX
-  },
-  LOAD_ARTICLES_WITHOUT_IMAGES: {
-    name: 'Load All Articles Without Images',
-    type: Type.CHECKBOX
-  },
-  REDIRECT_TO_ORIGINAL_SAUCE: {
-    name: 'Present All Articles on its Original Site',
-    type: Type.CHECKBOX
-  }
 
+  HIGH_QUALITY_ARTICLES: {
+    type: Type.CHECKBOX,
+    name: 'Show Article Quality',
+    defaultValue: () => (
+      store.getState().settings.fakeNews.highQuality
+    ),
+    key: 'highQuality'
+  },
+
+  CLICKBAIT_TITLES: {
+    type: Type.CHECKBOX,
+    name: 'Show Title Accuracy',
+    defaultValue: () => (
+      store.getState().settings.fakeNews.clickbaitTitles
+    ),
+    key: 'clickbaitTitles'
+  },
+
+  DOMAIN_NAME_CHECK: {
+    type: Type.CHECKBOX,
+    name: 'Show Weird Source Website Names',
+    defaultValue: () => (
+      store.getState().settings.fakeNews.domainNameCheck
+    ),
+    key: 'domainNameCheck'
+  },
+
+  DEFAULT_LANGUAGE: {
+    type: Type.SELECT,
+    name: 'Default Article Language',
+    options: languages,
+    defaultValue: () => (
+      store.getState().settings.search.language
+    ),
+    key: 'language'
+  },
+
+  DEFAULT_COUNTRY: {
+    type: Type.SELECT,
+    name: 'Default Article Country',
+    options: country,
+    defaultValue: () => (
+      store.getState().settings.search.country
+    ),
+    key: 'country'
+  },
+
+  DEFAULT_PAGESIZE: {
+    type: Type.TEXT,
+    name: 'How Many Articles Should Be Loaded',
+    inputType: 'number',
+    defaultValue: () => (
+      store.getState().settings.search.pageSize
+    ),
+    key: 'pageSize'
+  },
+
+  ENABLE_DARK_MODE: {
+    type: Type.SELECT,
+    name: 'Set Appearance',
+    options: appearance,
+    defaultValue: () => (
+      store.getState().settings.app.appearance
+    ),
+    key: 'appearance'
+  }
 };

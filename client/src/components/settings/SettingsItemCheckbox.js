@@ -5,8 +5,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 const SettingsItemCheckbox = ({ item, onChange }) => {
 
   // Component State
-  // TODO: set default value
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(item.defaultValue());
 
   // EventListener for the checkbox
   // Callback from SettingsView -> onItemValueChange
@@ -16,7 +15,7 @@ const SettingsItemCheckbox = ({ item, onChange }) => {
 
   // Call onChange after setting the state completed
   useEffect(() => {
-    onChange(item.name, checked);
+    onChange(item.key, checked);
   }, [checked]);
 
   return(
@@ -24,6 +23,7 @@ const SettingsItemCheckbox = ({ item, onChange }) => {
       <label>{item.name}</label>
       <input
         type='checkbox'
+        defaultChecked={item.defaultValue()}
         onChange={(event) => onCheckboxChange(event)}
       />
     </Fragment>

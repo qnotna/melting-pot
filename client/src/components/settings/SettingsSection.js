@@ -3,6 +3,7 @@ import SettingsItemText from './SettingsItemText.js';
 import SettingsItemSelect from './SettingsItemSelect.js';
 import SettingsItemCheckbox from './SettingsItemCheckbox.js';
 import { Type } from '../../utils/Settings.js';
+import store from '../../store.js';
 
 const SettingsSection = ({ title, items, onChange }) => {
 
@@ -30,7 +31,7 @@ const SettingsSection = ({ title, items, onChange }) => {
   };
 
   return(
-    <fieldset>
+    <fieldset className='settings-view--section'>
       <legend>{title}</legend>
       {
         // Loop over all items and add a SettingsItem<T> element

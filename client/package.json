@@ -18,7 +18,8 @@
     "react-scripts": "^3.3.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "store": "^2.0.12"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,90 +1,72 @@
-/* input[type=text], input[type=email], input[type=password] {
-    width: 50%;
-    padding: 5px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 4px;
-    display: block;
+.settings-view {
+  padding: 1em 0;
 }
 
-.saveButton {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 4px;
-    width: 6em;
-    height: 2em;
-    border: 0;
-    color: white;
+legend {
+  padding-left: 0.75em;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
-.saveButton:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-    border-radius: 4px;
+.settings-view--section {
+  padding: 1em 0;
+  border: none;
 }
 
-.settingNavButton {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 4px;
-    width: 6em;
-    height: 2em;
-    border: 0;
-    cursor: pointer;
-    color: white;
-    margin-top: 4px;
+.settings-view--item {
+  width: calc(100% - 2em);
+  /* margin: 0.25em 0; */
+  padding: 0.5em 1em;
 }
 
-.active {
-    color:white;
-    background-color: rgba(0, 0, 0, 0.8);
+.settings-view--item:nth-child(even), .settings-view--item:nth-child(even) input {
+  background-color: #F0F0F0;
 }
 
-#settings-view * {
-    outline: 0;
+.settings-view--item:hover, .settings-view--item:hover > input{
+  background-color: #E8E8E8;
 }
 
+.settings-view--item label, .settings-view--item select, .settings-view--item input {
+  width: calc(50% - 1em);
+}
 
-@media screen and (max-width: 600px) {
-    select {
-        display: block;
-        margin-top: 8px;
-    }
+.settings-view--item input[type='checkbox'] {
+  margin-top: 0.2em;
+  line-height: 100%; //HACK: float left
+}
 
-    .settingNavButton {
-        height: 40px;
-    }
+.settings-view--item select, .settings-view--item input {
+  float: right;
+}
 
-    input[type=text], input[type=email], input[type=password] {
-        width: 100%;
-    }
+.settings-view--item input {
+  display: block;
+  background-color: none;
+  border: none;
+  outline: none;
+  font-size: 10pt;
+}
+
+/* .settings-view--item input:invalid {
+  color: red;
 } */
 
-.settings-view {
-  padding: 0 1em;
-}
-
-.settings-view table {
-  width: 100%;
-}
-
-.settings-view td * {
-  width: 100%;
-}
-
-.section-view td:last-child {
-}
-
-.settings-view h1 {
-  padding: 0.5em 0;
-}
-
-.settings-view--item * {
-}
-
 .settings-view--save-button {
-  margin: 1em;
-  padding: 0.5em;
-  border: none;
+  background-color: orange;
+  color: white;
+  font-size: 10pt;
+  font-weight: bold;
   border-radius: 0.25em;
+  border: none;
+  margin-left: 1em;
+  padding: 0.75em;
+}
+
+.settings-view--save-button:hover, .settings-view select:hover, .settings-view input:hover {
+  cursor: pointer;
+}
+
+.settings-view--save-button:hover {
+  background-color: darkOrange;
 }
