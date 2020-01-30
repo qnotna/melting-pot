@@ -14,9 +14,9 @@ const ActionButton = ({ text, type, selected, icon }) => {
 
       const article = store.getState().news.current_article;
       // console.log(event.target.getAttribute('data-type'));
-      if(event.target.getAttribute('data-type') === 'save'){
+      if(event.target.getAttribute('data-type') === 'add'){
         // Datenbank anlegen
-        var request = indexedDB.open('savedArticles', 1);
+        var request = indexedDB.open('favoriteArticle', 1);
 
         // Änderungs/Erzeugungs-Event
         request.onupgradeneeded = function(){

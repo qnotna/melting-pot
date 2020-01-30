@@ -61,7 +61,7 @@ class SideBarItems extends Component {
       console.log('This browser support IndexedDB');
 
       // Datenbank anlegen
-      var request = indexedDB.open('savedArticles', 1);
+      var request = indexedDB.open('favoriteArticle', 1);
 
       // Änderungs/Erzeugungs-Event
       request.onupgradeneeded = function(){
