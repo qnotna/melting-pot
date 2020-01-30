@@ -3,7 +3,6 @@ import ActionButton from './simple/ActionButton';
 import ReadingTime from './simple/ReadingTime';
 import Source from './simple/Source';
 import TextBlock from './simple/TextBlock';
-import '../stylesheets/ReaderView.css';
 import store from '../store';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';

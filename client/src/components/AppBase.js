@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactLoading from 'react-loading';
-
-import '../stylesheets/DarkMode.css';
-
 import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
 import SideBar from './SideBar.js';
