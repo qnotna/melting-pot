@@ -1,6 +1,8 @@
 import { SET_CURRENT_SETTINGS } from "../actions/types";
 
-const initialState = {
+const store = require('store');
+
+const initialState = (store.get('settings')) ? store.get('settings') : {
   fakeNews: {
     verifiedSources: true,
     highQuality: true,
@@ -19,7 +21,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   if (action.type === SET_CURRENT_SETTINGS) {
-    console.log(action.payload);
+    store.set('settings', action.payload)
     return {
       ...state,
       ...action.payload

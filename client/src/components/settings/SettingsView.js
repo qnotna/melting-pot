@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 import '../../stylesheets/Settings.css';
@@ -7,22 +7,7 @@ import { setCurrentSettings } from '../../actions/authActions.js';
 
 const SettingsView = () => {
 
-  console.log(store.getState());
-
   const [configuration, setConfiguration] = useState({});
-  const [hasUnsavedChanges, setUnsavedChanges] = useState(false);
-
-  // useEffect(() => {
-  //   setUnsavedChanges(true);
-  // }, [configuration]);
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (hasUnsavedChanges === true) {
-  //       alert('lol');
-  //     }
-  //   };
-  // }, []);
 
   const sections = [
     {
@@ -56,13 +41,11 @@ const SettingsView = () => {
   const onItemValueChange = (key, value) => {
     const conf = configuration;
     conf[key] = value;
-    setConfiguration(conf);
+    saveSettings();
   };
 
-  // EventListener for the Save Settings button
   // Dispatch settings configuration in store
-  const onSaveSettings = (event) => {
-    event.preventDefault();
+  const saveSettings = () => {
     const fakeNewsSettings = {
       verifiedSources: configuration.verifiedSources,
       highQuality: configuration.highQuality,
@@ -82,13 +65,12 @@ const SettingsView = () => {
       search: searchSettings,
       app: appSettings
     };
-    console.log(settings);
     store.dispatch(setCurrentSettings(settings));
   };
 
   return(
     <div className='settings-view'>
-      <form onSubmit={event => onSaveSettings(event)}>
+      <form>
         {
           // Loop over all sections and add a SettingsSection element
           sections.map((section, index) => {
@@ -100,11 +82,6 @@ const SettingsView = () => {
               />
           })
         }
-        <input
-          type='submit'
-          value='Save Settings'
-          className='settings-view--save-button'
-          />
       </form>
     </div>
   );

@@ -79,7 +79,7 @@ export const Settings = {
 
   ENABLE_DARK_MODE: {
     type: Type.SELECT,
-    name: 'Use Appearance',
+    name: 'Set Appearance',
     options: appearance,
     defaultValue: () => (
       store.getState().settings.app.appearance
