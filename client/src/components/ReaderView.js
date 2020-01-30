@@ -7,9 +7,13 @@ import '../stylesheets/ReaderView.css';
 import store from '../store';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
+import findTopics from "../utils/lda"
 
 const ReaderView = () => {
   const article = store.getState().news.current_article;
+  // const topics = findTopics([article.title, article.description, article.content], article.paragraphs)
+  // console.log(topics)
+
   return(
     <div id='reader-view'>
       <img src={article.urlToImage} alt={article.description}/>
@@ -30,7 +34,7 @@ const ReaderView = () => {
         <h1>{article.title}</h1>
         <h3>{article.description}</h3>
         <p id='reader-view-author'>{`By ${article.author}`}</p>
-        {/* <a href={article.url}>Link to Original</a> */}
+        <a href={article.url}>Link to Original</a>
         <TextBlock paragraphs={article.paragraphs}/>
       </div>
     </div>

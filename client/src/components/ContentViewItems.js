@@ -8,22 +8,20 @@ import contentParser from '../utils/contentParser'
 class ContentViewItems extends Component {
 
   parseArticleContent(article){
-    contentParser(article.url, article.content, (articleParagraphs) => {
+    contentParser(article.url, article.content, article.description, (articleParagraphs) => {
       article.paragraphs = articleParagraphs
       store.dispatch(setArticle(article));
-      store.dispatch(setLoadingState(false));
       store.dispatch(setContentComponent(Components.READER_VIEW))
     })
   }
 
   showRenderView(article){
     article.paragraphs = [];
-    store.dispatch(setArticle(article));
-    clearContentView();
-    this.parseArticleContent(article)
 
-    // console.log(store.getState());
-    // console.log(article);
+    store.dispatch(setArticle(article));
+    store.dispatch(setContentComponent(Components.READER_VIEW))
+
+    this.parseArticleContent(article)
   }
 
   // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
@@ -31,7 +29,7 @@ class ContentViewItems extends Component {
     let previewSize = this.props.previewSize;
     let optionalPreviewText = <Fragment/>;
     if (previewSize === 'large') {
-      optionalPreviewText = <p>{item.description}</p>
+      optionalPreviewText = item.description
     }
     return(
       <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
