@@ -25,7 +25,7 @@ class App extends Component {
             <Route path="/" component={AppBase} />
             <Redirect from="/" to="melting-hot"/>
             {/* <Switch> */}
-            <Route path='/*' component={() => <NoContent errorData={{message: "Route not found", statuscode: 404}}/>}/>
+            {/* <Route path='/*' component={() => <NoContent errorData={{message: "Route not found", statuscode: 404}}/>}/> */}
             {/* </Switch> */}
               
           </div>
