@@ -8,8 +8,7 @@ class ContentViewSections extends Component {
   getItemSize = (section) => ((section.type === 'horizontal') ? 'large' : 'small')
 
   filterArticles(articles) {
-    const unique = articles.map(article => article["url"]
-    )
+    const unique = articles.map(article => { article["url"]})
     // store index of the unique objects
     .map((url, index, currentUrl) => currentUrl.indexOf(url) === index && index)
     // eliminate the dead keys & store unique objects

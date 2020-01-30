@@ -1,10 +1,18 @@
 #reader-view {
   background-color: white;
   color: black;
+
 }
 
 #reader-view-meta-information {
   background-color: #F0F0F0;
+
+  button {
+    border-radius: 2px;
+    margin: 5px;
+    padding: 5px;
+    font-size: 1em;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

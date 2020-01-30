@@ -14,10 +14,10 @@ class ReaderView extends Component {
     const article = store.getState().news.current_article;
     return(
       <div id='reader-view'>
-        <button onClick={() => this.props.history.goBack()}>&lt;</button> 
         <img src={article.urlToImage} alt={article.description}/>
         <div id='reader-view-meta'>
           <div id='reader-view-meta-information'>
+          {/* <button onClick={() => this.props.history.goBack()} hidden={this.isHidden}>{'< Back'}</button>  */}
             <Source
               name={article.source.name}
               date={formatDate(article.publishedAt, 'reader')}
