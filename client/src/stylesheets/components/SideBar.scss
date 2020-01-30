@@ -20,6 +20,10 @@
     color: #404040;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   &_item {
     // left indentation
     *:first-of-type {

@@ -27,6 +27,11 @@ class ContentViewSections extends Component {
         :
         section.articles.length !== 0 ?
         <Fragment>
+        <Pagination
+          sectionName={section.name}
+          totalresults={section.totalResults}
+          currentResults={section.articles.length}
+        />
         <h1 className='section-title'>{section.name}</h1>
         <div className='section' type={section.type}>
             <ContentViewItems articles={this.filterArticles(section.articles)} previewSize={this.getItemSize(section)}/>

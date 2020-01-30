@@ -5,6 +5,14 @@ import SettingsView from '../components/settings/SettingsView.js';
 
 export const Routes = [
     {
+        path: "/reader-view",
+        component: () => <ReaderView/>
+    },
+    {
+        path: "/settings",
+        component: () => <SettingsView/>
+    },
+    {
         path: "/",
         component: () => <ContentView/>
     },
@@ -39,13 +47,5 @@ export const Routes = [
     {
         path: "/search-results",
         component: () => <ContentView/>
-    },
-    {
-        path: "/settings",
-        component: () => <SettingsView/>
-    },
-    {
-        path: "/reader-view",
-        component: () => <ReaderView/>
     }
 ];

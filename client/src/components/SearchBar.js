@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
@@ -22,7 +22,7 @@ class SearchBar extends Component {
 
   state = {
     showMenu: false,
-    results: [],
+    results: this.getSuggestions(),
     sourceName: ""
   }
 
@@ -47,14 +47,9 @@ class SearchBar extends Component {
     const params = store.getState().news.searchParams
     clearContentView();
     api.getSearchResults((res) => {
-      console.log(res)
       setInitData(res);
       store.dispatch(setSections([res]))
     }, params)
-  }
-
-  componentDidMount() {
-    this.getSuggestions();
   }
 
   render() {
@@ -72,9 +67,11 @@ class SearchBar extends Component {
           <button type="button" onClick={this.onShowMenu}>
             <span className = 'material-icons'>expand_more</span>
           </button>
+          <Link to="/search-results">
           <button type='button' onClick={this.handleClick}>
             <span className='material-icons'>search</span>
           </button>
+          </Link>
         </div>
         {
           this.state.showMenu ? (
@@ -111,7 +108,6 @@ class SearchBar extends Component {
                 </select>
               </div>
               <div className='navigation-bar_dropdown_filter'>
-                {/* TODO page size aus store laden */}
                 <label>Articles Per Page:</label>
                 <select ref={this.sizeRef}>
                   <option>10</option>
@@ -139,12 +135,13 @@ class SearchBar extends Component {
     event.preventDefault();
 
     //TODO Sprache automatisch aus User-Einstellungen wählen
+    //TODO pageSize automatisch aus User-Einstellungen wählen
     let searchParams = {
       q: this.qRef.current.value,
-      language: this.langRef.current ? this.langRef.current.value : "de",
+      language: this.langRef.current ? this.langRef.current.value : "de", //store.getState().auth,
       sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
       sources: this.sourceRef.current ? this.sourceRef.current.value.toLowerCase() : [],
-      pageSize: this.sizeRef.current ? this.sizeRef.current.value : 20,
+      pageSize: this.sizeRef.current ? this.sizeRef.current.value : 20, // store.getState().news
       from: this.fromRef.current ? this.fromRef.current.value : "",
       to: this.toRef.current ? this.toRef.current.value : "",
       page: 1
@@ -169,20 +166,24 @@ class SearchBar extends Component {
     }
   }
 
-  handleSource = (event) => {
-    let sourceInput = this.sourceRef.current.value;
-    if(sourceInput && sourceInput.length > 0){
-      this.setState({
-        sourceInput: sourceInput
-      })
-      if(sourceInput) {
-        this.getSuggestions();
-      }
-    }
-  }
+  // handleSource = (event) => {
+  //   let sourceInput = this.sourceRef.current.value;
+  //   if(sourceInput && sourceInput.length > 0){
+  //     this.setState({
+  //       sourceInput: sourceInput
+  //     })
+  //     if(sourceInput) {
+  //       this.getSuggestions();
+  //     }
+  //   }
+  // }
 
   getSuggestions() {
-    api.getSources((res) => {
+    // TODO select language from preferences
+    let urlParams = {
+      // language: this.langRef.current ? this.langRef.current.value : store.getState().auth,
+    }
+    api.getSources(urlParams, (res) => {
       this.setState({
         results: res.sources
       })

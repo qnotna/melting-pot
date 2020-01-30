@@ -89,10 +89,9 @@ export default {
             })
         )
     },
-    getSources(callback){
-        Axios.get(src + "newsapi/source")
+    getSources(urlParams, callback){
+        Axios.get(src + "newsapi/source", urlParams)
             .then( res => {
-                // console.log(res)
                 callback({
                     status: res.status,
                     sources: res.data.sources

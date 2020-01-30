@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactLoading from 'react-loading';
-import { Switch } from 'react-router';
+import { Switch, Route } from 'react-router';
 
 
 import ContentView from './ContentView.js';
@@ -89,16 +89,15 @@ class AppBase extends Component {
           </div>
           :
 
-          // this.routes.map((route, index) => (
-          //       <Route
-          //         key={index}
-          //         path={route.path}
-          //         // component={() => this.getComponentByName(content_component)}
-          //         component={route.component}
-          //       />
-          //     ))
-          //   } 
-          this.getComponentByName(content_component)
+          this.routes.map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  children={<route.component/>}
+                />
+              ))
+            } 
+          {/* // this.getComponentByName(content_component) */}
         }
           </Switch>
         </div>

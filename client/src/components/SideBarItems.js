@@ -5,7 +5,7 @@ import { setContentComponent, addSection, setSections } from "../actions/newsAct
 import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class SideBarItems extends Component {
@@ -26,19 +26,18 @@ class SideBarItems extends Component {
         clearContentView()
         this.loadSections()
         break;
+        
+      case Components.SETTINGS:
+        break;
 
       default:
         clearContentView()
         api.getCategory(urlParams, (res) => {
-          console.log(res)
           setInitData(res);
           store.dispatch(setSections([res]))
         })
-        break;
-    }
-    console.log(store.getState().news.content_component)
-    store.dispatch( setContentComponent(component))
-    console.log(store.getState().news.content_component)
+      }
+      store.dispatch( setContentComponent(component))
   }
 
   loadSections(){
@@ -54,6 +53,7 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
+      <Link to={"/" + item.title.toLowerCase()}>
       <li
         className='sidebar_item'
         key={this.createItemKey(false, item.title)}
@@ -79,6 +79,7 @@ class SideBarItems extends Component {
           <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
+      </Link>
     ));
   }
 

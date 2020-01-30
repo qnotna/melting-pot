@@ -4,7 +4,7 @@ import store from '../store.js';
 import { setArticle, setContentComponent } from '../actions/newsActions'
 import { Components } from '../utils/Components.js';
 import contentParser from '../utils/contentParser'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ContentViewItems extends Component {
 
@@ -31,13 +31,11 @@ class ContentViewItems extends Component {
       optionalPreviewText = <Fragment>{item.description}</Fragment>
     }
     return(
-      // <Link to='reader-view'>
       <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
         <p className='preview-text'>{optionalPreviewText}</p>
       </div>
-      // </Link>
     );
   }
 

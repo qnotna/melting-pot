@@ -5,6 +5,7 @@ import Source from './simple/Source';
 import Badge from './simple/Badge';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
+import { Link } from 'react-router-dom';
 
 class ContentViewItemPreview extends Component {
 
@@ -13,7 +14,9 @@ class ContentViewItemPreview extends Component {
     let previewSize =  this.props.previewSize;
     return(
       <div className='article_preview_container' preview-size={previewSize}>
+        <Link to='/reader-view'>
         <img className='article_preview_container_image' src={item.urlToImage} alt={item.title}/>
+        </Link>
         <Badge/>
         <div className='article_preview_information'>
           <Source
@@ -34,6 +37,7 @@ class ContentViewItemPreview extends Component {
           />
         </div>
       </div>
+
     );
   }
 }
