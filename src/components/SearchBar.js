@@ -5,9 +5,10 @@ import { Components, setInitData, clearContentView } from '../utils/Components';
 
 import api from '../utils/API';
 import { setContentComponent, setSections, setSearchParams } from '../actions/newsActions'
-import { languages, sortOptions } from '../data/options'
+import { languages, sortOptions, pageSizeOptions } from '../data/options'
 
 import Suggestions from './Suggestions';
+import { setCurrentSettings } from '../actions/authActions';
 
 
 class SearchBar extends Component {
@@ -22,11 +23,12 @@ class SearchBar extends Component {
 
   state = {
     showMenu: false,
-    results: this.getSuggestions(),
-    sourceName: ""
+    results: []
   }
 
   onShowMenu = (event) => {
+    this.getSuggestions()
+
     if(event.target.tagName.toString() === 'SPAN') {
       event.preventDefault();
       event.target.innerHTML = (this.state.showMenu === true) ? "expand_more" : "expand_less";
@@ -53,6 +55,7 @@ class SearchBar extends Component {
   }
 
   render() {
+
     // TODO: this should be it's own component with input child components!
     return (
       <form ref={this.formRef} id='searchBarForm'>
@@ -78,10 +81,12 @@ class SearchBar extends Component {
             <div className='navigation-bar_dropdown'>
               <div className='navigation-bar_dropdown_filter'>
                 <label>Language:</label>
-                <select ref={this.langRef}>
+                <select onChange={this.getSuggestions} ref={this.langRef}>
                   {
                     Object.keys(languages).map((key =>
-                      <option key={key} value={key}>{languages[key]}</option>
+                      <option key={key} value={key} 
+                      selected={this.handleSelect(key)}
+                      >{languages[key]}</option>
                     ))
                   }
                 </select>
@@ -101,7 +106,7 @@ class SearchBar extends Component {
               <div className='navigation-bar_dropdown_filter'>
                 <label>Source:</label>
                 <select
-                  type='search'
+                  name="sources"
                   ref={this.sourceRef}
                 >
                   <Suggestions sources={this.state.results}/>
@@ -109,12 +114,12 @@ class SearchBar extends Component {
               </div>
               <div className='navigation-bar_dropdown_filter'>
                 <label>Articles Per Page:</label>
-                <select ref={this.sizeRef}>
-                  <option>10</option>
-                  <option>20</option>
-                  <option>50</option>
-                  <option>100</option>
-                </select>
+                <input type="number" 
+                defaultValue={store.getState().settings.search.pageSize}
+                min="1"
+                max="100"
+                ref={this.sizeRef}>
+                </input>
               </div>
               <div className='navigation-bar_dropdown_filter'>
                 <label>From:</label>
@@ -133,15 +138,13 @@ class SearchBar extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-
-    //TODO Sprache automatisch aus User-Einstellungen wählen
-    //TODO pageSize automatisch aus User-Einstellungen wählen
+    
     let searchParams = {
       q: this.qRef.current.value,
-      language: this.langRef.current ? this.langRef.current.value : "de", //store.getState().auth,
+      language: this.langRef.current ? this.langRef.current.value : store.getState().settings.search.language,
       sortBy: this.sortRef.current ? this.sortRef.current.value : "publishedAt",
       sources: this.sourceRef.current ? this.sourceRef.current.value.toLowerCase() : [],
-      pageSize: this.sizeRef.current ? this.sizeRef.current.value : 20, // store.getState().news
+      pageSize: this.sizeRef.current ? this.sizeRef.current.value : store.getState().settings.search.pageSize,
       from: this.fromRef.current ? this.fromRef.current.value : "",
       to: this.toRef.current ? this.toRef.current.value : "",
       page: 1
@@ -155,7 +158,7 @@ class SearchBar extends Component {
 
     // Set the component to be displayed in the app to search results
     store.dispatch( setContentComponent(Components.SEARCH_RESULTS) )
-
+    // this.onShowMenu(event);
     this.qRef.current.value = "";
   }
 
@@ -167,22 +170,10 @@ class SearchBar extends Component {
     }
   }
 
-  // handleSource = (event) => {
-  //   let sourceInput = this.sourceRef.current.value;
-  //   if(sourceInput && sourceInput.length > 0){
-  //     this.setState({
-  //       sourceInput: sourceInput
-  //     })
-  //     if(sourceInput) {
-  //       this.getSuggestions();
-  //     }
-  //   }
-  // }
-
-  getSuggestions() {
+  getSuggestions = () => {
     // TODO select language from preferences
     let urlParams = {
-      // language: this.langRef.current ? this.langRef.current.value : store.getState().auth,
+      language: this.langRef.current ? this.langRef.current.value : store.getState().settings.search.language,
     }
     api.getSources(urlParams, (res) => {
       this.setState({
@@ -190,6 +181,12 @@ class SearchBar extends Component {
       })
     })
   }
+
+  handleSelect = (key) => {
+    return key === store.getState().settings.search.language ? true : false; 
+  }
+
 }
+
 
 export default withRouter(SearchBar);

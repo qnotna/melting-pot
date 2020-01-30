@@ -26,6 +26,8 @@ const SettingsItemText = ({ item, onChange }) => {
         defaultValue={item.defaultValue()}
         value={item.value}
         onChange={(event) => onTextChange(event)}
+        min="1"
+        max="100"
       />
     </Fragment>
   );
