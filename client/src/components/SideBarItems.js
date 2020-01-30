@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import store from '../store';
 
-import { setContentComponent } from "../actions/newsActions"
-import { Components } from '../utils/Components';
+import { setContentComponent, addSection, setSections } from "../actions/newsActions";
+import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
-import { addSection, setSections } from '../actions/newsActions'
-
-
 
 class SideBarItems extends Component {
 
@@ -20,43 +17,20 @@ class SideBarItems extends Component {
     }
   }
 
-  setCurrentComponent(category, component){
+  setCurrentComponent(urlParams){
+    const component = urlParams.component;
     switch (component) {
       case Components.HOME:
+        clearContentView()
         this.loadSections()
         break;
-      case Components.BUSINESS:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-      case Components.ENTERTAINMENT:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.HEALTH:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.SCIENCE:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.SPORTS:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-        case Components.TECHNOLOGY:
-        api.getCategory(category, (res) => {
-          store.dispatch(setSections([res]))
-        })
-        break;
-    
+
       default:
+        clearContentView()
+        api.getCategory(urlParams, (res) => {
+          setInitData(res);
+          store.dispatch(setSections([res]))
+        })
         break;
     }
 
@@ -64,7 +38,9 @@ class SideBarItems extends Component {
   }
 
   loadSections(){
+
     api.getHot((res) => {
+      setInitData(res);
       store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {
@@ -74,28 +50,29 @@ class SideBarItems extends Component {
 
   render() {
     return this.props.items.map((item) => (
-      <li 
-        className='sidebar-item' 
+      <li
+        className='sidebar_item'
         key={this.createItemKey(false, item.title)}
-        id={this.createItemKey(true, item.title)} 
-        onClick={(event) => this.setCurrentComponent(event.currentTarget.id, item.component)}
+        id={this.createItemKey(true, item.title)}
+        onClick={(event) =>
+          this.setCurrentComponent(
+            {
+              component: item.component,
+              page: 1
+            }
+          )}
       >
-        <input 
-          type='radio' 
-          name='sidebar-items' 
+        <input
+          type='radio'
+          name='sidebar-items'
           defaultChecked={this.isDefaultChecked(item.title)}
         />
-        <label 
-          className='sidebar-item-label' 
-          htmlFor={this.createItemKey(false, item.title)} 
+        <label
+          className='sidebar_item_label'
+          htmlFor={this.createItemKey(false, item.title)}
         >
-          <span  
-              style = {{'fontSize':'16px', 'marginRight':'6px'}} 
-              className = 'material-icons'
-            >
-              {item.icon}
-            </span>
-          <p className='sidebar-item-title' unread-amount={item.unreadAmount}>{item.title}</p>
+          <img src={item.icon} alt={item.title}/>
+          <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
         </label>
       </li>
     ));

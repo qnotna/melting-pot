@@ -1,0 +1,68 @@
+.navigation-bar {
+
+  width: calc(100% - 2em);
+  padding: 1em;
+  background-color: lightGray;
+  margin-bottom: -1em; // TODO: hack
+
+  * {
+    vertical-align: middle;
+    display: inline;
+    border-radius: 0.25em;
+    margin-right: 5px;
+    outline: 0;
+  }
+
+  &_dropdown {
+    display: flex;
+    flex-direction:column;
+    margin-top: 1em;
+    margin-bottom: -1em; // TODO: hack
+    padding: 0;
+
+    label {
+      font-size: 12pt;
+      width: 55%;
+      float: left;
+    }
+
+    &_filter {
+
+      margin-top: 0.25em;
+
+      input, select {
+        width: 30%;
+      }
+
+      input {
+        appearance: none;
+        border: none;
+        height: 1.75em;
+        float: right;
+      }
+
+      select {
+        height: 1.8em;
+        float: right;
+      }
+
+    }
+
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .navigation-bar {
+
+    background-color: #383838;
+
+    label {
+      color: white;
+      padding: 0 0.5em;
+    }
+
+  }
+
+}

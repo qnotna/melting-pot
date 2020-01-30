@@ -13,7 +13,7 @@ import lda from "lda"
 
 export default function (targetContents, articleParagraphs) {
     let ldaSentences = []
-    // console.log(targetContents)
+    console.log("HERE", targetContents)
 
     for (let content of targetContents) {
         // content may contain different sentences that has to be splitted

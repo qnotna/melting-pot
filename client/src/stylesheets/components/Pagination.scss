@@ -1,0 +1,14 @@
+.pagination {
+  margin: 1em;
+
+  &_previous, &_next {
+    padding: 1em;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+
+    &:disabled {
+      display: none;
+    }
+  }
+
+}

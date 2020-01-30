@@ -11,7 +11,8 @@ export default {
                 callback({
                     name: "Hot",
                     type: "horizontal",
-                    articles: res.data.articles
+                    articles: res.data.articles,
+                    totalResults: res.data.totalResults
                 })
             }
         ).catch(
@@ -25,7 +26,8 @@ export default {
                 callback({
                     name: "Latest",
                     type: "grid",
-                    articles: res.data.articles
+                    articles: res.data.articles,
+                    totalResults: res.data.totalResults
                 })
             }
         ).catch(
@@ -40,7 +42,8 @@ export default {
                     name: "Results",
                     type: "grid",
                     articles: res.data.articles,
-                    // res: res
+                    totalResults: res.data.totalResults
+
                 })
             }
         ).catch(
@@ -64,17 +67,19 @@ export default {
             })
         )
     },
-    getCategory(component, callback){
-        let category = component.toLowerCase();
+    getCategory(urlParams, callback){
+        console.log(urlParams);
+        let category = urlParams.component.toLowerCase();
         // let url = "http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=10"
         // console.log(url);
-        Axios.get("http://localhost:5000/newsapi/top-headlines?category=" + category + "&pageSize=20&country=de")
+        Axios.get("http://localhost:5000/newsapi/top-headlines?&pageSize=20&country=de&category=" + category + "&page=" + urlParams.page)
         .then(
             (res) => {
                 callback({
                     name: category[0].toUpperCase() + category.slice(1),
                     type: "grid",
-                    articles: res.data.articles
+                    articles: res.data.articles,
+                    totalResults: res.data.totalResults
                 })
             }
         ).catch(

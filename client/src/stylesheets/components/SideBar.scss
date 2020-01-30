@@ -1,0 +1,129 @@
+.sidebar {
+
+  height: 100%;
+  background-color: silver;
+  overflow-y: auto;
+  width: 12em;
+  user-select: none;
+
+  &_sections {
+    min-height: calc(100vh - 80px);
+    margin-bottom: 1.5em;
+  }
+
+  &_section {
+    color: white;
+    margin: 0.5em 0;
+    font-size: 8pt;
+    padding-left:  1em;
+    font-weight: 600;
+    color: #404040;
+  }
+
+  &_item {
+    // left indentation
+    *:first-of-type {
+      padding-left: 0.5em;
+    }
+
+    &_label {
+      color: #101010;
+      font-size: 10pt;
+      padding: 0.25em;
+      display: flex;
+      align-items:center;
+
+      img {
+        width: 1.3em;
+        height: 1.3em;
+      }
+
+      label {
+        margin-left: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+
+    }
+
+    input {
+      position: absolute;
+      visibility: hidden;
+
+      &:checked + label {
+        color: #202020;
+        background-color: rgba(black, 0.2);
+      }
+    }
+
+    &_title[unread-amount="0"]:after {
+      content: none;
+    }
+
+  }
+
+}
+
+#profile-overview {
+
+  color: white;
+  position: sticky;
+  margin: 1em;
+  display: flex;
+  width: calc(100% - 2em);
+
+  &_avatar-preview {
+    margin-right: 0.5em;
+    object-fit: contain;
+    height: 1.75em;
+
+    div {
+      width: 100%;
+    }
+
+  }
+
+  &_username {
+    font-size: 10pt;
+  }
+
+  &_mail-adress {
+    font-size: 8pt;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .sidebar {
+      background-color: #282828;
+
+      &_section {
+        color: gray;
+      }
+
+      &_item {
+
+        &_label {
+          color: #E0E0E0;
+        }
+
+        input {
+
+          &:checked + label {
+            color: lightGray;
+          }
+        }
+
+        &:checked + label {
+          color: white;
+          background-color: rgba(white, 0.2);
+        }
+
+      }
+  }
+
+}

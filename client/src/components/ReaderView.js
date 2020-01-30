@@ -11,9 +11,8 @@ import findTopics from "../utils/lda"
 
 const ReaderView = () => {
   const article = store.getState().news.current_article;
-
-  const topics = findTopics([article.title, article.description, article.content], article.paragraphs)
-  console.log(topics)
+  // const topics = findTopics([article.title, article.description, article.content], article.paragraphs)
+  // console.log(topics)
 
   return(
     <div id='reader-view'>
@@ -24,8 +23,7 @@ const ReaderView = () => {
             name={article.source.name}
             date={formatDate(article.publishedAt, 'reader')}
           />
-          <ReadingTime time={calcReadingTime(article.content, 'reader')}/>
-          {/* <ReadingTime time={15}/> */}
+          <ReadingTime time={calcReadingTime(article.paragraphs, 'reader')}/>
           <div>
             <ActionButton type='add'/>
             <ActionButton type='save'/>
@@ -36,7 +34,7 @@ const ReaderView = () => {
         <h1>{article.title}</h1>
         <h3>{article.description}</h3>
         <p id='reader-view-author'>{`By ${article.author}`}</p>
-        {/* <a href={article.url}>Link to Original</a> */}
+        <a href={article.url}>Link to Original</a>
         <TextBlock paragraphs={article.paragraphs}/>
       </div>
     </div>

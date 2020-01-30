@@ -6,8 +6,8 @@ class SideBarSections extends Component {
   render() {
     return this.props.sections.map((section) => (
       <li key={section.id}>
-        <p className='sidebar-section'>{section.title}</p>
-        <ul className='sidebar-items'>
+        <p className='sidebar_section'>{section.title}</p>
+        <ul className='sidebar_items'>
           <SideBarItems items={section.items}/>
         </ul>
       </li>

@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import ContentViewItemPreview from './ContentViewItemPreview.js';
 import store from '../store.js';
-import { setArticle, setContentComponent } from '../actions/newsActions'
-import { Components } from '../utils/Components.js';
+import { setArticle, setContentComponent, setSections, setLoadingState } from '../actions/newsActions'
+import { Components, clearContentView } from '../utils/Components.js';
 import contentParser from '../utils/contentParser'
 
 class ContentViewItems extends Component {
 
   parseArticleContent(article){
-    contentParser(article.url, article.content, (articleParagraphs) => {
+    contentParser(article.url, article.content, article.description, (articleParagraphs) => {
       article.paragraphs = articleParagraphs
       store.dispatch(setArticle(article));
       store.dispatch(setContentComponent(Components.READER_VIEW))
@@ -16,13 +16,12 @@ class ContentViewItems extends Component {
   }
 
   showRenderView(article){
-    article.paragraphs = []
+    article.paragraphs = [];
+
     store.dispatch(setArticle(article));
     store.dispatch(setContentComponent(Components.READER_VIEW))
-    this.parseArticleContent(article)
 
-    // console.log(store.getState());
-    // console.log(article);
+    this.parseArticleContent(article)
   }
 
   // TODO: optionalPreviewText in die ContentViewItemPreview verschieben
@@ -30,13 +29,13 @@ class ContentViewItems extends Component {
     let previewSize = this.props.previewSize;
     let optionalPreviewText = <Fragment/>;
     if (previewSize === 'large') {
-      optionalPreviewText = <p>{item.description}</p>
+      optionalPreviewText = item.description
     }
     return(
-      <div className='content-view-preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
+      <div className='article_preview' preview-size={previewSize} onClick={() => this.showRenderView(item)}>
         <ContentViewItemPreview item={item} previewSize={previewSize}/>
         <h3>{item.title}</h3>
-        {optionalPreviewText}
+        <p className='preview-text'>{optionalPreviewText}</p>
       </div>
     );
   }
@@ -44,7 +43,7 @@ class ContentViewItems extends Component {
   render() {
     return this.props.articles.map((article, index) => (
       <div
-        className='content-view-item'
+        className='article'
         preview-size={this.props.previewSize}
         key={index}
       >

@@ -1,0 +1,52 @@
+button, input[type='button'], input[type='submit'] {
+
+  border: none;
+  background-color: #181818;
+  text-align: center;
+  padding: 0.25em;
+  color: white;
+  font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  span {
+    padding-left: 0.25em;
+    color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #484848;
+  }
+
+}
+
+input[type='submit'] {
+
+  padding: 1em;
+  border-radius: 0.25em;
+  font-size: 10pt;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  button, input[type='button'], input[type='submit'], not(.action-button_add), not(.action-button_save) {
+
+    color: black;
+    background-color: white;
+
+    span {
+      color: black;
+    }
+
+    &:hover {
+      color: black;
+      background-color: lightGray;
+    }
+
+  }
+
+}

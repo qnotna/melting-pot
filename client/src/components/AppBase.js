@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import ReactLoading from 'react-loading';
 
-import '../stylesheets/App.css';
 import '../stylesheets/DarkMode.css';
 
 import ContentView from './ContentView.js';
 import NavigationBar from './NavigationBar.js';
 import SideBar from './SideBar.js';
 import ReaderView from './ReaderView.js';
+import SettingsView from './settings/SettingsView.js';
 
 // import userExampleData from '../example/user.json';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
@@ -15,7 +16,7 @@ import sideBarSectionsExampleData from '../example/sideBarSections.json';
 import api from '../utils/API';
 
 import store from '../store'
-import { setSections, setArticle,addSection } from '../actions/newsActions'
+import { setSections, setArticle, addSection } from '../actions/newsActions'
 
 import { Components } from '../utils/Components';
 
@@ -43,15 +44,17 @@ class AppBase extends Component {
   getComponentByName(component_name) {
     switch (component_name) {
       case Components.SETTINGS:
-        // return <Settings />
+        return <SettingsView />
 
       case Components.READER_VIEW:
         return <ReaderView />
 
+      // SEARCH_RESULTS, HOME, #allCategories
       default:
         return <ContentView />
-      }
+    }
   }
+
 
   componentDidMount(){
     // Load home sections
@@ -64,9 +67,9 @@ class AppBase extends Component {
   }
 
   render() {
-    // Get the name of the component that should be renderd 
+    // Get the name of the component that should be renderd
     // as App content from the App global store
-    const { content_component } = store.getState().news
+    const { content_component, isLoading } = store.getState().news;
 
     return (
       <div className='App' /*id='app'*/>
@@ -79,9 +82,20 @@ class AppBase extends Component {
           <NavigationBar
             collapseSidebar={this.collapseSidebar.bind(this)}
           />
-
-          {this.getComponentByName(content_component)}
-
+        {
+          (isLoading) ?
+          <div className='loading-view'>
+            <ReactLoading
+              className='loading-view_spinner'
+              width={'2.5em'}
+              height={'2.5em'}
+              type={"spokes"}
+              color={"gray"}
+            />
+          </div>
+          :
+          this.getComponentByName(content_component)
+        }
         </div>
       </div>
     );
