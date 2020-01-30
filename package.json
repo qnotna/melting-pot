@@ -1,7 +1,14 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
+  "name": "meltingpot",
+  "version": "1.0.0",
+  "description": "fighting fake news with independent and transparent app ",
+  "keywords": [
+    "news",
+    "app",
+    "mern"
+  ],
+  "author": "AMNJM",
+  "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
