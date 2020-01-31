@@ -6,14 +6,18 @@ import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 import ActionButton from './simple/ActionButton';
 
-const ReaderViewContent = ({ article, paragraphs, rawParagraphs, onValueChange }) => {
+const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
 
-  const [shouldShowRaw, setShowRaw] = useState(false);
+  const [checked, setChecked] = useState(false);
+  let word = 'show';
 
   const onCheckboxChange = (value) => {
-    setShowRaw(value);
-    onValueChange(shouldShowRaw);
+    word = value ? 'show' : 'hide'
+    setChecked(value);
   }
+
+  let actualParagraphs = article.hasContentBeenParsed ? paragraphs : []
+  actualParagraphs = checked ? rawParagraphs : actualParagraphs
 
   return(
     <Fragment>
@@ -51,9 +55,9 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs, onValueChange }
         <div id='reader-view_content_container'>
           <label for='reader-view_content_container_input'>
             {
-              shouldShowRaw ?
-              '⚠️ This Article Can Not Be Melted. Show Raw Content (Low Quality)' :
-              '⚠️ This Article Has Been Melted. Hide Raw Content (Low Quality)'
+              article.hasContentBeenParsed ?
+              `✅ This article has been melted successfully. Click to ${word} raw content anyway` :
+              `⚠️ This article can not be melted! Click to ${word} raw content anyway`
             }
           </label>
           <input
@@ -63,9 +67,9 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs, onValueChange }
             onChange={(event) => {onCheckboxChange(event.target.checked)}}
           />
         </div>
-        {
-          shouldShowRaw === false ? <TextBlock paragraphs={paragraphs}/> : <TextBlock paragraphs={[]}/>
-        }
+
+          <TextBlock paragraphs={actualParagraphs}/>
+
       </div>
     </Fragment>
   );

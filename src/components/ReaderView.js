@@ -7,10 +7,6 @@ import ReaderViewContent from './ReaderViewContent.js';
 
 class ReaderView extends Component {
 
-  onChange(type) {
-    console.log(type);
-  }
-
   render() {
     localStorage.setItem('settings', JSON.stringify(store.getState().settings))
     const { contentLoading, current_article } = store.getState().news;
@@ -40,8 +36,7 @@ class ReaderView extends Component {
           <ReaderViewContent
             article={current_article}
             paragraphs={paragraphs}
-            rawParagraphs={paragraphs}
-            onValueChange={this.onChange}
+            rawParagraphs={rawParagraphs}
           />
         }
       </div>

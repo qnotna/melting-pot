@@ -10,18 +10,21 @@ import fakeNewsSpotter from '../utils/fakeNewsSpotter.js';
 class ContentViewItems extends Component {
 
   fakeNewsSpotting(article){
+    console.log('BEFORE', article.paragraphs)
     fakeNewsSpotter(article, (articleInsides) => {
       article.insides = articleInsides
-      console.log(articleInsides)
+      console.log('AFTER', article.paragraphs)
       store.dispatch( setArticle(article) );
       store.dispatch( setContentComponent( Components.READER_VIEW ))
     })
+
   }
 
   parseArticleContent(article) {
     contentParser(article.url, article.content, article.description, (parsedContent) => {
       article.paragraphs = parsedContent.paragraphs
       article.rawParagraphs = parsedContent.rawParagraphs
+      article.hasContentBeenParsed = parsedContent.hasContentBeenParsed
       store.dispatch(setContentLoadingState(false))
       store.dispatch(setArticle(article));
       store.dispatch(setContentComponent(Components.READER_VIEW))

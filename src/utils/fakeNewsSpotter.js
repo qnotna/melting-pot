@@ -10,12 +10,15 @@ export default function (article, callback) {
     }
 
     // compare title, description and content topics
-    const topics = checkArticleTopics(article.title, article.description, article.paragraphs)
+    let title = article.title
+    let description = article.description
+    let paragraphs = [...article.paragraphs]
+    const topics = checkArticleTopics(title, description, paragraphs)
     let commonTopicsString = ''
     for (const common of topics.commonTopics) {
         commonTopicsString += `\'${common.term}\'(${common.position}) `
     }
-    
+
     let acticleTopicsString = ''
     for (const articleTopic of topics.articleTopics) {
         acticleTopicsString += `\'${articleTopic.term}\'(${articleTopic.position}) `
@@ -27,7 +30,7 @@ export default function (article, callback) {
         category: 'Title and Content topics',
         msg: topicsOk ? `Found ${topics.commonTopics.length} common topics. ${commonTopicsString}` : `Article title and content doesn\'t seem to share same topics. This article appears to be about ${acticleTopicsString}`
 
-    } 
+    }
 
     callback([
         author,
@@ -47,7 +50,7 @@ function checkArticleTopics(title, description, p) {
 
     let contentTags = lda([p[0], p[1], p[2], p[3]], 5, 10, ['de', 'en'])
     contentTags = [...contentTags[0], ...contentTags[1], ...contentTags[2] ]
-    
+
     let tags = []
     // check if tags already added as result previous articles
     for (const tag of contentTags) {
@@ -59,8 +62,8 @@ function checkArticleTopics(title, description, p) {
         }
     }
 
-    articleTags[0].forEach((e, i) => e.position = i)    
-    
+    articleTags[0].forEach((e, i) => e.position = i)
+
     let commonTopics = []
     for (const aTag of articleTags[0]) {
         const indexOfArticleTagInContentTags = contentTags.findIndex(e => e.term === aTag.term)

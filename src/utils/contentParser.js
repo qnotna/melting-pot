@@ -17,13 +17,13 @@ export default function(url, contentPreview, description, callback){
         let indexOfContentEnd = pArray.length
 
         // this will be true if the content parser managed to find content preview inside of the pArray
-        let contentBeginFound = false
+        let hasContentBeenParsed = false
         // this will be true if the first parahraph of the content preview contains the description
-        let descriptionFound = false   
-        
+        let descriptionFound = false
+
         // DETECT FIRST CONTENT PARAGRAPH
         //
-        // if the content preview was specified by the newsAPI 
+        // if the content preview was specified by the newsAPI
         // it is possible to specify which paragraph from the list of all page paragraphs
         // is THE FIRST ONE containing the actual content
         if(contentPreview){
@@ -31,20 +31,20 @@ export default function(url, contentPreview, description, callback){
             // accuracy means the algorithm will search for a match within the number of words
             // e.g. accuracy = 5 means it will search for a parahraph containing all five words of the content preview
             // if no paragraph with accuracy 3 found stop search
-            for (let accuracy = 5; accuracy != 2 && indexOfContentBegin == -1; accuracy--) { 
-                // console.log("try to find content")               
+            for (let accuracy = 5; accuracy != 2 && indexOfContentBegin == -1; accuracy--) {
+                // console.log("try to find content")
                 indexOfContentBegin = getFirstIndexWithContext(contentPreview, pArray, accuracy)
             }
-            contentBeginFound = indexOfContentBegin == -1 ? false : true
+            hasContentBeenParsed = indexOfContentBegin == -1 ? false : true
         }
 
         // CHECK IF FIRST PARAGRAPH CONTAINS THE DESCRIPTION
         //
         // some contents specified by the newsAPI begin with the description
-        // paragraph will be skipped if it contains the description 
+        // paragraph will be skipped if it contains the description
         // to detect this we would check if our new parahraph (indexOfContentBegin)
         // returns a match with the decription
-        if(contentBeginFound && description){ // only if a artcile begin found and description specified
+        if(hasContentBeenParsed && description){ // only if a artcile begin found and description specified
             const isDescriptionTheFirstParagraph = getFirstIndexWithContext(description, [pArray[indexOfContentBegin]]) !== -1
             if (isDescriptionTheFirstParagraph) {
                 // increasing this value will result in deleting one more paragraph (with the description)
@@ -56,7 +56,7 @@ export default function(url, contentPreview, description, callback){
 
         // REMOVE ALL PARAGRAPHS BEFORE CONTENT BEGIN (only possible if content begin found)
         //
-        if(contentBeginFound){ // only if a artcile begin found
+        if(hasContentBeenParsed){ // only if a artcile begin found
             pArray.splice(0, indexOfContentBegin)
         }
 
@@ -71,24 +71,24 @@ export default function(url, contentPreview, description, callback){
         // create an array with the innerHtml of each parahraph
         let paragraphs = []
         for(let p of pArray){
-            paragraphs.push(strip(p.innerHTML))
+            paragraphs.push(p.textContent)
         }
 
         // create an array with all html page paragraphs
-        let rawParagraphsCollection = Array.prototype.slice.call( pCollection )  
+        let rawParagraphsCollection = Array.prototype.slice.call( pCollection )
         let rawParagraphs = []
         for(let p of rawParagraphsCollection){
             rawParagraphs.push(p.innerHTML)
         }
-        
+
         const parsedContent = {
             paragraphs,
             rawParagraphs,
-            contentBeginFound,
+            hasContentBeenParsed,
             descriptionFound
         }
         callback(parsedContent)
-           
+
     }, url)
 
 }
@@ -105,7 +105,7 @@ function getIndexAfterCharAmount(paragraphs, charAmount){
         if(currentCharAmount > charAmount) {
             return i - 1
         }
-        
+
     }
 
 }
@@ -120,7 +120,7 @@ function getIndexAfterCharAmount(paragraphs, charAmount){
  */
 function getFirstIndexWithContext(context, array, accuracy = 5){
     // create an array containing the first words from context
-    const contextWords = context.split(" ").splice(0, accuracy)    
+    const contextWords = context.split(" ").splice(0, accuracy)
     return array.findIndex(p => {
         // get the first words of the paragraph
         const parahraphWords = getParahraphWords(p, accuracy)
@@ -133,7 +133,7 @@ function getFirstIndexWithContext(context, array, accuracy = 5){
  *
  * @param {*} arr1
  * @param {*} arr2
- * @returns 
+ * @returns
  */
 function areArraysEqual(arr1, arr2){
     return arr1.every((elem, i) => arr2[i] === elem)
@@ -167,16 +167,16 @@ function strip(html) {
 /**
  * Calculates the article length based on a content string deliverd by the newsAPI
  * This content preview appears in form like = "This is article... [+123 chars]"
- * 
+ *
  * 1. extract the number of chars from string (reg. ex. searches for pattern beginning with "[+number")
  * 2. calculate the number of chars taken by the char amount preview ("... [+123 chars]")
  * 3. calculate the actual preview length (without of the amount preview)
- * 4. add the actual preview length and the following character amount 
- * 
+ * 4. add the actual preview length and the following character amount
+ *
  * 4. (if description was found as a content begin)
  *
  * @param {string} content
- * @param {boolean} skipPreview - 
+ * @param {boolean} skipPreview -
  * @returns if preview should be skipped returns only the extracted following char amount
  *          else also the preview length is added
  */
