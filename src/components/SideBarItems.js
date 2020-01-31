@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import store from '../store';
 
-import { setContentComponent, addSection, setSections } from "../actions/newsActions";
+import { setContentComponent, addSection, setSectionTags, setSections } from "../actions/newsActions";
 import { Components, clearContentView, setInitData } from '../utils/Components';
 
 import api from '../utils/API';
 import { Link, withRouter } from 'react-router-dom';
 
+import { getSectionTags } from '../utils/tags';
 
 class SideBarItems extends Component {
 
@@ -15,21 +16,21 @@ class SideBarItems extends Component {
     return title.toLowerCase() === urlTitle ? true : false;
   }
   createItemKey = (isCategory, item) => {
-    if(isCategory){
+    if (isCategory) {
       return (`${item.toLowerCase()}`)
     } else {
       return (`item-${item.toLowerCase().replace(' ', '-')}`)
     }
   }
 
-  setCurrentComponent(urlParams){
+  setCurrentComponent(urlParams) {
     const component = urlParams.component;
     switch (component) {
       case Components.HOME:
         clearContentView()
         this.loadSections()
         break;
-        
+
       case Components.SETTINGS:
         break;
 
@@ -38,51 +39,64 @@ class SideBarItems extends Component {
         api.getCategory(urlParams, (res) => {
           setInitData(res);
           store.dispatch(setSections([res]))
+          store.dispatch(setContentComponent(component))
+          this.loadTags(res, component);
         })
-      }
-      store.dispatch( setContentComponent(component))
+    }
+    
   }
 
-  loadSections(){
+  loadTags(section, component){
+    // calculate hot tags
+    getSectionTags(section, 10, (tags) => {
+      store.dispatch(setSectionTags(tags))
+      store.dispatch(setContentComponent(component))
+    })
+  }
 
+  loadSections() {
     api.getHot((res) => {
       setInitData(res);
-      store.dispatch( setSections ( [res] ))
+      store.dispatch(setSections([res]))
+      // calculate hot tags
+      getSectionTags(res, 10, (tags) => {
+        store.dispatch(setSectionTags(tags))
+      })
     })
     api.getLatest((res) => {
-      store.dispatch( addSection( res ))
+      store.dispatch(addSection(res))
     })
   }
 
   render() {
     return this.props.items.map((item) => (
-      <Link to={"/" + item.title.toLowerCase().replace(" ", "-")}>
-      <li
-        className='sidebar_item'
-        key={this.createItemKey(false, item.title)}
-        id={this.createItemKey(true, item.title)}
-        onClick={(event) =>
-          this.setCurrentComponent(
-            {
-              component: item.component,
-              page: 1,
-              country: store.getState().settings.search.country
-            }
-          )}
-      >
-        <input
-          type='radio'
-          name='sidebar-items'
-          checked={this.isChecked(item.title)}
-        />
-        <label
-          className='sidebar_item_label'
-          htmlFor={this.createItemKey(false, item.title)}
+      <Link to={"/" + item.title.toLowerCase().replace(" ", "-")} key={item.id}>
+        <li
+          className='sidebar_item'
+          key={item.id}
+          id={this.createItemKey(true, item.title)}
+          onClick={(event) =>
+            this.setCurrentComponent(
+              {
+                component: item.component,
+                page: 1,
+                country: store.getState().settings.search.country
+              }
+            )}
         >
-          <img src={item.icon} alt={item.title}/>
-          <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
-        </label>
-      </li>
+          <input
+            type='radio'
+            name='sidebar-items'
+            checked={this.isChecked(item.title)}
+          />
+          <label
+            className='sidebar_item_label'
+            htmlFor={this.createItemKey(false, item.title)}
+          >
+            <img src={item.icon} alt={item.title} />
+            <p className='sidebar_item_title' unread-amount={item.unreadAmount}>{item.title}</p>
+          </label>
+        </li>
       </Link>
     ));
   }

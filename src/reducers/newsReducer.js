@@ -32,13 +32,20 @@ const initialState = {
         currentPage: 1,
         totalResults: 0,
         currentResults: 0
-    }
+    },
+
+    sectionTags: []
 };
 
 
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case "SET_SECTION_TAGS":
+            return {
+                ...state,
+                sectionTags: action.tags
+            }
         case "SET_ARTICLE":
             return {
                 ...state,

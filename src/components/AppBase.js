@@ -13,9 +13,10 @@ import SideBar from './SideBar.js';
 import sideBarSectionsExampleData from '../example/sideBarSections.json';
 
 import api from '../utils/API';
+import { getSectionTags } from '../utils/tags';
 
 import store from '../store'
-import { setSections, addSection } from '../actions/newsActions'
+import { setSections, addSection, setSectionTags } from '../actions/newsActions'
 
 import { Components } from '../utils/Components';
 import { Routes } from '../routes/index';
@@ -55,10 +56,15 @@ class AppBase extends Component {
     // Load home sections
     api.getHot((res) => {
       store.dispatch( setSections ( [res] ))
+      // calculate hot tags
+      getSectionTags(res, 10, (tags) => {
+        store.dispatch( setSectionTags ( tags ))
+      })
     })
     api.getLatest((res) => {
       store.dispatch( addSection( res ))
     })
+
   }
   render() {
     // Get the name of the component that should be renderd

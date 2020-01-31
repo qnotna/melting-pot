@@ -13,7 +13,7 @@ const ActionButton = ({ text, type, selected }) => {
   </span>
     <p>
       {
-        type === 'add' ? 'Zu Favoriten hinzufügen' : 'Für später speichern'
+        type === 'add' ? 'Add to Favorites' : 'Save for Later'
       }
     </p>
     </button>
