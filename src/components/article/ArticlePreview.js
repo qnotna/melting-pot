@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Source from '../simple/Source';
 import UnreadBadge from '../simple/UnreadBadge';
 import ActionButton from '../simple/ActionButton';
+import formatDate from '../../utils/dateFormatter';
 
 const ArticlePreview = ({ article, previewSize }) => {
 
@@ -17,7 +18,7 @@ const ArticlePreview = ({ article, previewSize }) => {
         <div className='article_preview_container_source'>
           <Source
             name={source.name}
-            date={publishedAt}
+            date={formatDate(publishedAt, 'preview')}
           />
         </div>
         <div className='article_preview_container_unread'>

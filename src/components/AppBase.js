@@ -18,7 +18,7 @@ import { getSectionTags } from '../utils/tags';
 import store from '../store'
 import { setSections, addSection, setSectionTags } from '../actions/newsActions'
 
-import { Components } from '../utils/Components';
+import { Components, clearContentView, setInitData } from '../utils/Components';
 import { Routes } from '../routes/index';
 import '../../node_modules/material-design-icons/iconfont/material-icons.css'
 
@@ -54,7 +54,10 @@ class AppBase extends Component {
 
   componentDidMount(){
     // Load home sections
+    clearContentView();
     api.getHot((res) => {
+      console.log(res)
+      setInitData(res);
       store.dispatch( setSections ( [res] ))
       // calculate hot tags
       getSectionTags(res, 10, (tags) => {
