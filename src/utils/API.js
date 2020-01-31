@@ -1,7 +1,7 @@
 // import Axios from 'axios';
 import store from '../store.js';
 const NewsAPI = require('newsapi');
-const apiKey = '04cc2e205e294f27b2072a47d8ce57bd';
+const apiKey = 'e0da45e697234dbf8e89825c62e5dfbb';
 const newsapi = new NewsAPI(apiKey);
 
 export default {
