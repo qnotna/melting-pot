@@ -14,7 +14,7 @@ export function getSectionTags(section, amount, callback){
         for (const tag of articleTags[0]) {
             const indexInsideTags = tags.findIndex(t => t.term === tag.term)
             if(indexInsideTags != -1){
-                tags[indexInsideTags].probability += tag.probability
+                tags[indexInsideTags].probability += tag.probability + (a.description ? 0 : -0.01) + (a.content ? 0 : -0.01)
             } else {
                 tags.push(tag)
             }
