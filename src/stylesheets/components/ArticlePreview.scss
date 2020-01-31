@@ -42,7 +42,8 @@
       }
     }
 
-    &_unread {
+    &_unread { // TODO: add this back
+      display: none;
       top: 0.5em;
       left: 0.5em;
       padding: 0.5em;
