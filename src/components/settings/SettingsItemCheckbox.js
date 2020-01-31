@@ -16,10 +16,12 @@ const SettingsItemCheckbox = ({ item, onChange }) => {
     onChange(item.key, checked);
   }, [checked]);
 
+  //TODO: remove disabled
   return(
     <Fragment>
       <label>{item.name}</label>
       <input
+        disabled
         type='checkbox'
         defaultChecked={item.defaultValue()}
         onChange={(event) => onCheckboxChange(event)}

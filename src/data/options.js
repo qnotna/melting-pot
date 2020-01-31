@@ -40,10 +40,10 @@ export const country = {
     ru: 'Russia'
 }
 
-export const appearance = {
-  system: 'System Style',
-  light: 'Always Light',
-  dark: 'Always Dark',
+export const appearance = { // TODO: enable options
+  system: 'System Style'//,
+  // light: 'Always Light',
+  // dark: 'Always Dark',
 }
 
 export const sortOptions = {
