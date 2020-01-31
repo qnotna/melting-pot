@@ -3,10 +3,12 @@ import Source from '../simple/Source';
 import UnreadBadge from '../simple/UnreadBadge';
 import ActionButton from '../simple/ActionButton';
 import formatDate from '../../utils/dateFormatter';
+import placeholder from '../../doc/placeholder.jpg';
 
 const ArticlePreview = ({ article, previewSize }) => {
 
   const { source, title, description, urlToImage, publishedAt } = article;
+  article.urlToImage = urlToImage ? urlToImage : placeholder;
 
   return(
     <Fragment>
