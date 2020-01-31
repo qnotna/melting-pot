@@ -12,9 +12,11 @@ class ReaderView extends Component {
   }
 
   render() {
+    localStorage.setItem('settings', JSON.stringify(store.getState().settings))
     const { contentLoading, current_article } = store.getState().news;
     const paragraphs = current_article.paragraphs || []
     const rawParagraphs = current_article.rawParagraphs || []
+
     return (
       <div id='reader-view'>
         <img

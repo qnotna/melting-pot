@@ -7,6 +7,7 @@ class ContentView extends Component {
 
   render() {
     const { sections, sectionTags } = store.getState().news
+    localStorage.setItem('settings', JSON.stringify(store.getState().settings))
 
     return(
       <div id='content-view'>
