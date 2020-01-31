@@ -48,6 +48,14 @@ class SearchBar extends Component {
     const params = store.getState().news.searchParams
     clearContentView();
     api.getSearchResults((res) => {
+
+      if(res.error){
+        res.error.status = 400;
+      }
+      else if(res.articles.length === 0) {
+        res.error = { status: "No Results" }
+      }
+
       setInitData(res);
       store.dispatch(setSections([res]))
       // clear tags on search

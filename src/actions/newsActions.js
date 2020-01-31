@@ -33,6 +33,11 @@ export const setLoadingState = (isLoading) => ({
     isLoading
 })
 
+export const setContentLoadingState = (contentLoading) => ({
+    type: "SET_CONTENT_LOADING_STATE",
+    contentLoading
+})
+
 export const setPagingData = (pagingData) => ({
     type: "SET_PAGING_DATA",
     pagingData
