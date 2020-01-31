@@ -9,7 +9,7 @@ import contentViewTagsExampleData from '../example/contentViewTags.json';
 class ContentView extends Component {
 
   render() {
-
+    // localStorage.setItem('session', JSON.stringify(store.getState().news.current_article))
     const { sections } = store.getState().news
 
     return(

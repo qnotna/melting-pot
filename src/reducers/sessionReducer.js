@@ -1,22 +1,23 @@
-const localStorage = require('store');
+const localStorage = window.localStorage;
 
-const initialState = (localStorage.get('session')) ? localStorage.get('session') : {
+let initialState = {
   
     local_storage_article: {}
 
 };
+initialState = localStorage.getItem('session') || initialState
 
 export default (state = initialState, action) => {
-  localStorage.set('session', action.local_storage_article)
+  localStorage.setItem('session', JSON.stringify(action.local_storage_article))
   return {
     ...state,
     ...action.local_storage_article
   }
-  // switch(action.type) {
-  //   case "SET_LOCAL_STORAGE_ARTICLE":
-  //     return {
-  //       ...state,
-  //       local_storage_article: action.local_storage_article
-  //     }
-  // }
+//   switch(action.type) {
+//     case "SET_LOCAL_STORAGE_ARTICLE":
+//       return {
+//         ...state,
+//         local_storage_article: action.local_storage_article
+//       }
+//   }
 }

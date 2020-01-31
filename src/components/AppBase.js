@@ -54,6 +54,7 @@ class AppBase extends Component {
   componentDidMount(){
     // Load home sections
     api.getHot((res) => {
+      console.log(res)
       store.dispatch( setSections ( [res] ))
     })
     api.getLatest((res) => {

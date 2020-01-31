@@ -96,7 +96,7 @@ export default {
 
     getCategory(urlParams, callback) {
         let category = urlParams.component.toLowerCase();
-        console.log(urlParams)
+        // console.log(urlParams)
         newsapi.v2.topHeadlines({
             pageSize: 20,
             country: urlParams.country,

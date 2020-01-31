@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import keydown from 'react-keydown';
 
 import ActionButton from './simple/ActionButton';
 import ReadingTime from './simple/ReadingTime';
@@ -12,45 +11,34 @@ import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 import '../stylesheets/ReaderView.css';
 import findTopics from "../utils/lda"
-import { SET_LOCAL_STORAGE_ARTICLE } from '../actions/sessionActions'
-const localStorage = require('store');
-const storage = window.localStorage;
+import { setLocalStorageArticle } from '../actions/sessionActions'
+// const localStorage = require('store');
 
-// @keydown
 class ReaderView extends Component {
   constructor(props) {
     super(props);
-    if (window.performance) {
-      if (performance.navigation.type == 1) {
-        this.setState({
-          current_article: localStorage.set("session", SET_LOCAL_STORAGE_ARTICLE(this.state.current_article))
-        }, this.props.history.push('/reader-view'))
-      } else {
-        alert( "This page is not reloaded");
-      }
-    }
   }
-  state = {
-    current_article: localStorage.get('session').local_storage_article ? localStorage.get('session').local_storage_article : store.getState().news.current_article
+  
+  componentWillUnmount() {
+    store.dispatch(setLocalStorageArticle(store.getState().news.current_article));
   }
-
-
-  // handleKeyEvent = (event) => {
-  //   event.preventDefault();
-  //   console.log(event)
-  // }
-
-  // componentDidMount() {
-
-  //   console.log(storage)
-  //   localStorage.set("session", SET_LOCAL_STORAGE_ARTICLE(this.state.current_article))
-  // }
-
+  
   render() {
+    const { contentLoading, current_article } = store.getState().news;
+    // const article = localStorage.get('session').local_storage_article 
+    localStorage.setItem('session', JSON.stringify(store.getState().news.current_article))
 
-    const { contentLoading } = store.getState().news;
-    const current_article = this.state.current_article
-    console.log(localStorage.get('session').local_storage_article)
+    console.log(current_article)
+    // Wenn aktueller Artikel (aus store oder aus redux) gleich ist mit dem aus redux (bzw. der vom user angeklickt wurde)
+    // if(current_article == local_storage_article){
+    //   console.log("if")
+    //   current_article = local_storage_article;
+    // }
+    // else {
+    //   console.log("else")
+    //   localStorage.set('session', setLocalStorageArticle(current_article));
+    // }
+    // console.log(current_article)
     const paragraphs = current_article.paragraphs || []
     // console.log(current_article)
     return (
@@ -84,7 +72,7 @@ class ReaderView extends Component {
               <h1>{current_article.title}</h1>
               <h3>{current_article.description}</h3>
               <p id='reader-view-author'>{`By ${current_article.author}`}</p>
-              <a href={current_article.url}>Link to Original</a>
+              <a href={current_article.url} target="_blank">Link to Original</a>
               <TextBlock paragraphs={paragraphs} />
             </div>
           </Fragment>

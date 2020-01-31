@@ -3,6 +3,7 @@ import SettingsSection from './SettingsSection.js';
 import { Settings } from '../../utils/Settings.js';
 import store from '../../store.js';
 import { setCurrentSettings } from '../../actions/authActions.js';
+const localStorage = window.localStorage;
 
 const SettingsView = () => {
 
@@ -64,6 +65,7 @@ const SettingsView = () => {
       search: searchSettings,
       app: appSettings
     };
+    // localStorage.setItem('settings', JSON.stringify(settings))
     store.dispatch(setCurrentSettings(settings));
   };
 
