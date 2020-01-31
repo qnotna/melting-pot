@@ -12,7 +12,6 @@ export default {
         })
         .then(
             (res) => {
-                console.log(res)
                 callback({
                     name: "Hot",
                     type: "horizontal",
