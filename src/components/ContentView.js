@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
 import store from '../store.js';

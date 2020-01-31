@@ -3,6 +3,8 @@ import ErrorImage from '../img/error/spilled-handle.png';
 
 const NoContent = ({ errorData }) => {
 
+  document.title = errorData.status;
+
   return(
     <div id='no-content'>
       <div id='no-content_container'>

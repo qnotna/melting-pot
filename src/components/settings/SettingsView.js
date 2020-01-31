@@ -34,6 +34,8 @@ const SettingsView = () => {
     }
   ];
 
+  document.title = 'Settings'
+
   // EventListener for all SettingsItem<T>
   // Receives SettingsItem configuration: key, value
   // Add received configuration to local configuration (state)

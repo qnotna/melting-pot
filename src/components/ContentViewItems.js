@@ -9,7 +9,7 @@ import ArticlePreview from '../components/article/ArticlePreview.js';
 class ContentViewItems extends Component {
 
   parseArticleContent(article) {
-    contentParser(article.url, article.content, article.description, (parsedContent) => {      
+    contentParser(article.url, article.content, article.description, (parsedContent) => {
       article.paragraphs = parsedContent.paragraphs
       article.rawParagraphs = parsedContent.rawParagraphs
       store.dispatch(setContentLoadingState(false))
