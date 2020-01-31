@@ -56,6 +56,7 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
         <div id='reader-view_content_check_item'>
         </div>
           <FakeNewsCheck data={article.insides || []}/>
+          <br/><hr/><br/>
         <div id='reader-view_content_container'>
           <label for='reader-view_content_container_input'>
             {
