@@ -1,7 +1,10 @@
 // import Axios from 'axios';
 import store from '../store.js';
 const NewsAPI = require('newsapi');
-const apiKey = '04cc2e205e294f27b2072a47d8ce57bd';
+// const apiKey = '04cc2e205e294f27b2072a47d8ce57bd';
+// const apiKey = '295bee57362b4034b8dd25c79e381c15';
+// const apiKey = 'e0da45e697234dbf8e89825c62e5dfbb';
+const apiKey = '7e5b135cb7fd4c46847f0f6b3d6dc671';
 const newsapi = new NewsAPI(apiKey);
 
 export default {
@@ -22,8 +25,8 @@ export default {
             }
         ).catch(
             err => {
-                console.log(err)
-                // callback( {error: err} )
+                // console.log(err)
+                callback( {error: err} )
             }
         )
     },
@@ -45,8 +48,8 @@ export default {
             }
         ).catch( 
             err => {
-                console.log(err)
-                // callback( {error: err} )
+                // console.log(err)
+                callback( {error: err} )
             }
         )
     },
@@ -85,18 +88,18 @@ export default {
         })
         .catch( 
             err => {
-                console.log(err)
-                // callback( {error: err} )
+                // console.log(err)
+                callback( {error: err} )
             }
         )
     },
 
     getCategory(urlParams, callback) {
         let category = urlParams.component.toLowerCase();
-
+        console.log(urlParams)
         newsapi.v2.topHeadlines({
             pageSize: 20,
-            country: "de",
+            country: urlParams.country,
             category,
             page: urlParams.page
         })
@@ -110,8 +113,8 @@ export default {
             })
             .catch(
                 err => {
-                    console.log(err)
-                    // callback( {error: err} )
+                    // console.log(err)
+                    callback( {error: err} )
                 }
             )
     }

@@ -8,7 +8,7 @@ class Pagination extends Component {
         totalResults: store.getState().news.pagingData.totalResults,
         currentPage: store.getState().news.pagingData.currentPage,
         currentResults: store.getState().news.pagingData.currentResults,
-        sectionName: ""
+        country: store.getState().settings.search.country
     }
 
     componentDidMount(){
@@ -28,7 +28,7 @@ class Pagination extends Component {
             currentResults: this.state.currentResults
         }));
 
-        this.changePage({component: this.props.sectionName, page: current});
+        this.changePage({component: this.props.sectionName, page: current, country:this.state.country});
     }
 
     changePage(urlParams) {
