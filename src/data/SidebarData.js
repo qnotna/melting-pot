@@ -8,17 +8,18 @@ export const SidebarData = [
         unreadAmount: 10,
         component: 'HOME',
         icon: require('../img/icons/melting-hot.png')
-      },
-      {
-        title: 'Favoriten',
-        unreadAmount: 2,
-        icon: require('../img/icons/like.png')
-      },
-      {
-        title: 'Später lesen',
-        unreadAmount: 14,
-        icon: require('../img/icons/bookmark.png')
-      }
+      } // TODO: enable sections
+      // ,
+      // {
+      //   title: 'Favoriten',
+      //   unreadAmount: 2,
+      //   icon: require('../img/icons/like.png')
+      // },
+      // {
+      //   title: 'Später lesen',
+      //   unreadAmount: 14,
+      //   icon: require('../img/icons/bookmark.png')
+      // }
     ]
   },
   {
