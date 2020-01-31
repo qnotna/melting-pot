@@ -21,6 +21,10 @@
       }
     }
 
+    &_actions {
+      display: none;
+    }
+
     &_source, &_unread, &_actions {
       position: absolute;
       border-radius: 0.5em;
@@ -114,7 +118,7 @@
     }
 
     &_actions {
-      display: inherit;
+      display: none; //TODO: set this to inherit
       width: calc(100% - 1em);
 
       button{

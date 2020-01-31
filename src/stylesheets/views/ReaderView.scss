@@ -74,6 +74,11 @@
     }
 
     &_actions {
+
+      button {
+        display: none;
+
+      }
       margin: 0 1em;
 
       &_oc {
