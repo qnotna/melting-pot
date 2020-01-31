@@ -1,5 +1,7 @@
 // import Axios from 'axios';
 import store from '../store.js';
+const localStore = require('store')
+
 const NewsAPI = require('newsapi');
 // const apiKey = '295bee57362b4034b8dd25c79e381c15';
 // const apiKey = '1a1523a02e3d4a65a047b106d46acaaa';
@@ -10,9 +12,10 @@ const newsapi = new NewsAPI(apiKey);
 
 export default {
     getHot(callback) {
+        const country = localStore.get('settings') ? localStore.get('settings').search.country : store.getState().settings.search.country
         newsapi.v2.topHeadlines({
-            country: store.getState().settings.search.country,
-            pageSize: 5
+            country,
+            pageSize: 10
         })
         .then(
             (res) => {

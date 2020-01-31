@@ -1,14 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import store from '../store';
 import findTopics from "../utils/lda"
-import { SET_LOCAL_STORAGE_ARTICLE } from '../actions/sessionActions'
 import ReaderViewContent from './ReaderViewContent.js';
 // const localStorage = require('store');
-const storage = window.localStorage;
+const localStorage = window.localStorage;
 
-// @keydown
 class ReaderView extends Component {
 
   onChange(type) {
@@ -16,12 +14,12 @@ class ReaderView extends Component {
   }
 
   render() {
-
-    const { contentLoading } = store.getState().news;
-    const current_article = this.state.current_article
-    console.log(localStorage.get('session').local_storage_article)
+    localStorage.setItem('settings', JSON.stringify(store.getState().settings))
+    const { contentLoading, current_article } = store.getState().news;
     const paragraphs = current_article.paragraphs || []
     const rawParagraphs = current_article.rawParagraphs || []
+    document.title = current_article.title
+
     return (
       <div id='reader-view'>
         <img

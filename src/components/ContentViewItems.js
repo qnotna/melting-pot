@@ -5,16 +5,28 @@ import { Components } from '../utils/Components.js';
 import contentParser from '../utils/contentParser';
 import { Link } from 'react-router-dom';
 import ArticlePreview from '../components/article/ArticlePreview.js';
+import fakeNewsSpotter from '../utils/fakeNewsSpotter.js';
 
 class ContentViewItems extends Component {
 
+  fakeNewsSpotting(article){
+    fakeNewsSpotter(article, (articleInsides) => {
+      article.insides = articleInsides
+      console.log(articleInsides)
+      store.dispatch( setArticle(article) );
+      store.dispatch( setContentComponent( Components.READER_VIEW ))
+    })
+  }
+
   parseArticleContent(article) {
-    contentParser(article.url, article.content, article.description, (parsedContent) => {      
+    contentParser(article.url, article.content, article.description, (parsedContent) => {
       article.paragraphs = parsedContent.paragraphs
       article.rawParagraphs = parsedContent.rawParagraphs
       store.dispatch(setContentLoadingState(false))
       store.dispatch(setArticle(article));
       store.dispatch(setContentComponent(Components.READER_VIEW))
+
+      this.fakeNewsSpotting(article)
     })
   }
 
