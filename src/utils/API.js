@@ -3,7 +3,7 @@ import store from '../store.js';
 const localStore = require('store')
 
 const NewsAPI = require('newsapi');
-const apiKey = '295bee57362b4034b8dd25c79e381c15';
+// const apiKey = '295bee57362b4034b8dd25c79e381c15';
 // const apiKey = '1a1523a02e3d4a65a047b106d46acaaa';
 // const apiKey = 'e0da45e697234dbf8e89825c62e5dfbb';
 // const apiKey = '7e5b135cb7fd4c46847f0f6b3d6dc671';
