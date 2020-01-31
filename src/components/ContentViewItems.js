@@ -13,8 +13,8 @@ class ContentViewItems extends Component {
     fakeNewsSpotter(article, (articleInsides) => {
       article.insides = articleInsides
       console.log(articleInsides)
-      // store.dispatch( setArticle(article) );
-      // store.dispatch( setContentComponent( Components.READER_VIEW ))
+      store.dispatch( setArticle(article) );
+      store.dispatch( setContentComponent( Components.READER_VIEW ))
     })
   }
 
