@@ -18,70 +18,63 @@
 
   &_meta {
     position: relative;
-    padding: 1em 2.25em;
+    padding: 1em 2.5em;
     width: calc(100% - 4em);
     top: 0;
     position: sticky;
     background-color: lightGray;
 
-    div {
+    li {
       display: inline-block;
     }
 
-    &_information { // Source, ReadingTime
-
-      // li:first-of-type {
-      //   float: left;
-      // }
-
-      li {
+    &_information {
+      &_left {
         float: left;
-        vertical-align: middle;
       }
-      .source {
-        * {
-          display: block;
-        }
-        &_name {
-          font-size: 18pt;
-
-        }
-        &_date {
-          padding-top: 0.25em;
-          font-size: 14pt;
-          font-family: serif;
-        }
-      }
-
-      #reading-time {
-        // position: absolute;
-        // top: 1.6em;
-        // right: 21.5em;
-
-        * {
-          width: 5em;
-          line-height: 1em;
-          display: inline;
-        }
-        p {
-          vertical-align: sub;
-          font-family: monospace;
-          font-size: 12pt;
-        }
-        &_icon {
-          vertical-align: -0.75em;
-          margin-right: 0.5em;
-          width: 1.75em;
-          height: 1.75em;
-        }
+      &_right {
+        padding-top: 0.35em;
+        float: right;
       }
     }
 
-    &_actions { // ActionButton, a
-      // position: absolute;
-      // top: 1.5em;
-      // right: 1em;
-      margin: 0 2em;
+    .source {
+      * {
+        display: block;
+      }
+
+      &_name {
+        font-size: 18pt;
+
+      }
+      &_date {
+        padding-top: 0.25em;
+        font-size: 14pt;
+        font-family: serif;
+      }
+    }
+
+    #reading-time {
+      * {
+        width: 5em;
+        line-height: 1em;
+        display: inline;
+      }
+      p {
+        vertical-align: super;
+        font-family: monospace;
+        font-size: 12pt;
+      }
+      &_icon {
+        vertical-align: -0.1em;
+        margin-right: 0.5em;
+        width: 1.75em;
+        height: 1.75em;
+      }
+    }
+
+    &_actions {
+      margin: 0 1em;
 
       &_oc {
         vertical-align: -0.15em; //TODO: hack
@@ -189,54 +182,79 @@
 
 @media screen and (min-width: 1000px) {
   #reader-view {
-    &_meta {
-      div {
-        width: 70%;
-        margin: 0 15%;
-      }
+    &_image {
+      height: 25em;
+      width: 60%;
+      margin: 0 20%;
     }
-  }
-  #reader-view_content {
-    width: 70%;
-    margin: 0 15%;
+    &_meta {
+      width: 60%;
+      padding: 1em 20%;
+    }
+    &_content {
+      width: 60%;
+      margin: 0 20%;
+    }
   }
 }
 
 @media screen and (min-width: 1200px) {
-  #reader-view img {
-    height: 35em;
-  }
-  #reader-view_meta div {
-    width: 60%;
-    margin: 0 20%;
-  }
-  #reader-view_content {
-    width: 60%;
-    margin: 0 20%;
+  #reader-view {
+    &_image {
+      width: 55%;
+      margin: 0 22.5%;
+    }
+    &_meta {
+      width: 55%;
+      padding: 1em 22.5%;
+    }
+    &_content {
+      width: 55%;
+      margin: 0 22.5%;
+    }
   }
 }
 
-@media screen and (min-width: 1600px) {
-  #reader-view img {
-    height: 40em;
+@media screen and (min-width: 1300px) {
+  #reader-view {
+    &_image {
+      width: 50%;
+      margin: 0 25%;
+    }
+    &_meta {
+      width: 50%;
+      padding: 1em 25%;
+    }
+    &_content {
+      width: 50%;
+      margin: 0 25%;
+    }
   }
-  #reader-view_meta div {
-    width: 50%;
-    margin: 0 25%;
+}
+
+@media screen and (min-width: 1700px) {
+  #reader-view_image {
+    width: 45%;
+    margin: 0 27.5%;
+  }
+  #reader-view_meta {
+    width: 45%;
+    padding: 1em 27.5%;
   }
   #reader-view_content {
-    width: 50%;
-    margin: 0 25%;
+    width: 45%;
+    margin: 0 27.5%;
   }
 }
 
 @media screen and (min-width: 2000px) {
-  #reader-view img {
-    height: 45em;
-  }
-  #reader-view_meta div {
+  #reader-view_image {
     width: 40%;
     margin: 0 30%;
+  }
+  #reader-view_meta {
+    width: 40%;
+    padding: 1em 30%;
   }
   #reader-view_content {
     width: 40%;

@@ -13,9 +13,7 @@ import Login from './components/auth/Login';
 import './stylesheets/index.scss';
 import NoContent from './components/NoContent';
 
-class App extends Component {
-
-  render() {
+const App = () => {
 
     return (
       <Provider store={store}>
@@ -27,12 +25,11 @@ class App extends Component {
             {/* <Switch> */}
             {/* <Route path='/*' component={() => <NoContent errorData={{message: "Route not found", statuscode: 404}}/>}/> */}
             {/* </Switch> */}
-              
+
           </div>
         </Router>
       </Provider>
     );
-  }
-}
+};
 
 export default App;

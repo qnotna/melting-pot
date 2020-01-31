@@ -18,13 +18,15 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs, onValueChange }
   return(
     <Fragment>
       <div id='reader-view_meta'>
-        <ul id='reader-view_meta_information'>
+        <ul id='reader-view_meta_information_left'>
           <li>
             <Source
               name={article.source.name}
               date={formatDate(article.publishedAt, 'reader')}
               />
           </li>
+        </ul>
+        <ul id='reader-view_meta_information_right'>
           <li>
             <ReadingTime
               time={calcReadingTime(article.paragraphs, 'reader')}

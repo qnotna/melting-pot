@@ -2,7 +2,7 @@ import { SET_CURRENT_SETTINGS } from "../actions/types";
 
 const localStorage = require('store');
 
-const initialState = (localStorage.get('settings')) ? localStorage.get('settings') : {
+let initialState = {
   fakeNews: {
     verifiedSources: true,
     highQuality: true,
@@ -18,9 +18,11 @@ const initialState = (localStorage.get('settings')) ? localStorage.get('settings
     appearance: 'System Style'
   }
 };
+// console.log(localStorage.getItem('settings'));
+initialState = localStorage.get('settings') || initialState;
 
 export default function (state = initialState, action) {
-  localStorage.set('settings', action.payload)
+  localStorage.set('settings', action.payload);
   return {
     ...state,
     ...action.payload
