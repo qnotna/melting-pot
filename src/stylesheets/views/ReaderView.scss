@@ -117,7 +117,7 @@
     &_container {
       background-color: lightGray;
       margin-bottom: 1em;
-      padding: 0.5em;
+      padding: 0.25em;
       border-radius: 0.25em;
       * {
         vertical-align: middle;
@@ -133,8 +133,8 @@
         padding: 0 auto;
         user-select: none;
         font-weight: bold;
-        font-size: 10pt;
-        margin: 0.25em auto;
+        font-size: 12pt;
+        margin: 0.25em 0.35em;
       }
       input {
         display: none;
@@ -142,6 +142,36 @@
       &:hover {
         background-color: silver;
         cursor: pointer;
+      }
+    }
+
+    &_check {
+      padding: 0.1em;
+      // * {
+      //   display: inline-block;
+      // }
+
+      &_item {
+        background-color: lightGray;
+        margin-bottom: 0.5em;
+        border-radius: 0.25em;
+
+        li {
+          padding:0.25em;
+          float: left;
+        }
+        // width: 100%;
+        // margin-bottom: 1em;
+        padding: 0 0.35em;
+        font-size: 12pt;
+
+        &_second {
+          font-weight: bold;
+        }
+        p {
+          margin: 0;
+          // padding-right: 0.5em;
+        }
       }
     }
   }
@@ -176,6 +206,10 @@
   }
 
   #reader-view_meta_information {
+    background-color: #101010;
+  }
+
+  #reader-view_content_check_item {
     background-color: #101010;
   }
 }

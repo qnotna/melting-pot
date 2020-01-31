@@ -5,6 +5,7 @@ import ReadingTime from './simple/ReadingTime';
 import calcReadingTime from '../utils/readingTimeCalc';
 import formatDate from '../utils/dateFormatter';
 import ActionButton from './simple/ActionButton';
+import FakeNewsCheck from './FakeNewsCheck';
 
 const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
 
@@ -52,6 +53,9 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
         <p id='reader-view_author'>
           {`By ${article.author}`}
         </p>
+        <div id='reader-view_content_check_item'>
+        </div>
+          <FakeNewsCheck data={article.insides || []}/>
         <div id='reader-view_content_container'>
           <label for='reader-view_content_container_input'>
             {
@@ -65,11 +69,9 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
             defaultChecked={false}
             type='checkbox'
             onChange={(event) => {onCheckboxChange(event.target.checked)}}
-          />
+            />
         </div>
-
-          <TextBlock paragraphs={actualParagraphs}/>
-
+        <TextBlock paragraphs={actualParagraphs}/>
       </div>
     </Fragment>
   );
