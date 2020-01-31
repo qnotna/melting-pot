@@ -1,7 +1,11 @@
 // import Axios from 'axios';
 import store from '../store.js';
 const NewsAPI = require('newsapi');
+// const apiKey = '04cc2e205e294f27b2072a47d8ce57bd';
+// const apiKey = '1a1523a02e3d4a65a047b106d46acaaa';
 const apiKey = 'e0da45e697234dbf8e89825c62e5dfbb';
+// const apiKey = '7e5b135cb7fd4c46847f0f6b3d6dc671';
+// const apiKey = '04cc2e205e294f27b2072a47d8ce57bd';
 const newsapi = new NewsAPI(apiKey);
 
 export default {
@@ -42,7 +46,7 @@ export default {
                     totalResults: res.totalResults
                 })
             }
-        ).catch( 
+        ).catch(
             err => {
                 console.log(err)
                 // callback( {error: err} )
@@ -82,7 +86,7 @@ export default {
                 sources: res.sources
             })
         })
-        .catch( 
+        .catch(
             err => {
                 console.log(err)
                 // callback( {error: err} )
