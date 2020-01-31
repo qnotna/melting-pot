@@ -37,3 +37,8 @@ export const setPagingData = (pagingData) => ({
     type: "SET_PAGING_DATA",
     pagingData
 })
+
+export const setSectionTags = (tags) => ({
+    type: "SET_SECTION_TAGS",
+    tags
+})
