@@ -22,8 +22,6 @@ export function getSectionTags(section, amount, callback){
     }
     tags.sort((a, b) => b.probability - a.probability)
     tags = tags.splice(0, amount)
-    console.log(tags)
-
 
     callback(tags)
 }
