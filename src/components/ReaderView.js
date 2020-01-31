@@ -15,7 +15,6 @@ class ReaderView extends Component {
     const { contentLoading, current_article } = store.getState().news;
     const paragraphs = current_article.paragraphs || []
     const rawParagraphs = current_article.rawParagraphs || []
-    console.log(current_article)
     return (
       <div id='reader-view'>
         <img
