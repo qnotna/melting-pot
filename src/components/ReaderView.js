@@ -1,9 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import store from '../store';
 import findTopics from "../utils/lda"
 import ReaderViewContent from './ReaderViewContent.js';
+// const localStorage = require('store');
+const localStorage = window.localStorage;
 
 class ReaderView extends Component {
 
@@ -18,7 +20,7 @@ class ReaderView extends Component {
       <div id='reader-view'>
         <img
           id='reader-view_image'
-          src={current_article.urlToImage}
+          src={current_article.urlToImage ? current_article.urlToImage : require('../doc/placeholder.jpg')}
           alt={current_article.description}
         />
         {

@@ -73,11 +73,6 @@ export const SidebarData = [
         unreadAmount: 0,
         component: 'SETTINGS',
         icon: require('../img/icons/settings.png')
-      },
-      {
-        title: 'Log Out',
-        unreadAmount: 0,
-        icon: require('../img/icons/logout.png')
       }
     ]
   }

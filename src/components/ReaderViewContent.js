@@ -44,7 +44,7 @@ const ReaderViewContent = ({ article, paragraphs, rawParagraphs }) => {
         </ul>
       </div>
       <div id='reader-view_content'>
-        <a href={article.url}>
+        <a href={article.url} target="_blank">
           {article.title}
         </a>
         <h3>

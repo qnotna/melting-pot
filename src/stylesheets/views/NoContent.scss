@@ -20,13 +20,14 @@
 
       &_code {
         margin: 0;
-        font-size: 80pt;
+        font-size: 40pt;
         font-weight: bold;
         font-family: monospace;
       }
 
       &_message {
-        font-size: 30pt;
+        margin-top: 1em;
+        font-size: 20pt;
       }
 
     }

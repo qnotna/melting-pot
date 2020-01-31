@@ -79,11 +79,11 @@ class SearchBar extends Component {
           <button type="button" onClick={this.onShowMenu}>
             <span className = 'material-icons'>expand_more</span>
           </button>
-          <Link to="/search-results">
+          {/* <Link to="/search-results"> */}
           <button type='button' onClick={this.handleClick}>
             <span className='material-icons'>search</span>
           </button>
-          </Link>
+          {/* </Link> */}
         </div>
         {
           this.state.showMenu ? (
@@ -147,7 +147,8 @@ class SearchBar extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    
+    this.props.history.push("/search-results");
+
     let searchParams = {
       q: this.qRef.current.value,
       language: this.langRef.current ? this.langRef.current.value : store.getState().settings.search.language,
@@ -174,7 +175,6 @@ class SearchBar extends Component {
   listenToKeyPress = (event) => {
     if(event.key === "Enter") {
       event.preventDefault();
-      this.props.history.push("/search-results");
       this.handleClick(event);
     }
   }

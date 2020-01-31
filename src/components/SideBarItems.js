@@ -79,7 +79,8 @@ class SideBarItems extends Component {
             this.setCurrentComponent(
               {
                 component: item.component,
-                page: 1
+                page: 1,
+                country: store.getState().settings.search.country
               }
             )}
         >

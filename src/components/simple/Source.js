@@ -9,7 +9,7 @@ const Source = ({ name, date }) => {
         {name}
       </p>
       <p className='source_date'>
-        {formatDate(date, 'preview')}
+        {date}
       </p>
     </div>
   );
