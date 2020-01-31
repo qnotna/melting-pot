@@ -4,11 +4,10 @@ import store from '../store';
 import { Components, setInitData, clearContentView } from '../utils/Components';
 
 import api from '../utils/API';
-import { setContentComponent, setSections, setSearchParams } from '../actions/newsActions'
+import { setContentComponent, setSections, setSearchParams, setSectionTags } from '../actions/newsActions'
 import { languages, sortOptions, pageSizeOptions } from '../data/options'
 
 import Suggestions from './Suggestions';
-import { setCurrentSettings } from '../actions/authActions';
 
 
 class SearchBar extends Component {
@@ -59,6 +58,8 @@ class SearchBar extends Component {
 
       setInitData(res);
       store.dispatch(setSections([res]))
+      // clear tags on search
+      store.dispatch(setSectionTags([]))
     }, params)
   }
 

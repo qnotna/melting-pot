@@ -3,19 +3,15 @@ import ContentViewSections from './ContentViewSections.js';
 import ContentViewTags from './ContentViewTags.js';
 import store from '../store.js';
 
-// Placeholder data
-import contentViewTagsExampleData from '../example/contentViewTags.json';
-
 class ContentView extends Component {
 
   render() {
-
-    const { sections } = store.getState().news
+    const { sections, sectionTags } = store.getState().news
 
     return(
       <div id='content-view'>
         <ul id='tags'>
-          <ContentViewTags tags={contentViewTagsExampleData}/>
+          <ContentViewTags tags={sectionTags}/>
         </ul>
         <ContentViewSections sections={sections}/>
       </div>
