@@ -19,7 +19,7 @@
     "jwt-decode": "^2.2.0",
     "lda": "^0.2.0",
     "material-design-icons": "^3.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "newsapi": "^2.4.0",
     "node": "^13.3.0",
     "node-sass": "^4.13.1",
